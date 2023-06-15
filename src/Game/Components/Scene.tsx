@@ -55,3 +55,4 @@ const GameBox = styled.div<IGameBoxStyled>`
   position: relative;
   overflow: hidden;
 `;
+

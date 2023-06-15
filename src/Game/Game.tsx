@@ -4,6 +4,11 @@ import createObstacle from "./Components/Obstacle/createObstacle";
 import { useGameSystem } from "./Context";
 import { GAME_WIDTH } from "./Global";
 import "../style.css";
+import { Box } from "@mui/material";
+import styled from "@emotion/styled";
+import imgButtonSmall from "../assets/images/buttons/HomeSmall.png";
+import { FaPause } from "react-icons/fa";
+
 const Game = () => {
   const { gameHasStarted } = useGameSystem();
 
@@ -24,9 +29,40 @@ const Game = () => {
         ))}
 
         <Bird />
+        <ButtonPause>
+          <FaPause />
+        </ButtonPause>
       </Scene>
     </Container>
   );
 };
+
+
+const ButtonPause = styled(Box)`
+  display: flex;
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  background-image: url(${imgButtonSmall});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  top: 65px;
+  right: 65px;
+  color: #511900;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s;
+  &:hover {
+    color: white;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+  z-index: 9000;
+`;
 
 export default Game;

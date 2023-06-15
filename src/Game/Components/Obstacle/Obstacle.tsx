@@ -5,6 +5,8 @@ import pipe from "../../../assets/images/background/pipe.png";
 import imgFloor from "../../../assets/images/background/floor.png";
 import { useBird, useGameSystem } from "../../Context";
 import React from "react";
+import { Box } from "@mui/material";
+import imgTopFlower from "../../../assets/images/background/TopFlowers.png";
 
 const Obstacle = () => {
   const { gameHasStarted } = useGameSystem();
@@ -30,6 +32,11 @@ const Obstacle = () => {
           backgroundPosition: `${bgPosition}px 0px`,
         }}
       ></SectionFloor>
+      <SectionTopFlower
+        style={{
+          backgroundPosition: `${bgPosition}px 0px`,
+        }}
+      ></SectionTopFlower>
     </>
   );
 };
@@ -95,4 +102,14 @@ const SectionFloor = styled.div`
   background-image: url(${imgFloor});
   background-size: 100% 100%;
   z-index: 3000;
+`;
+
+const SectionTopFlower = styled(Box)`
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 130px;
+  background-image: url(${imgTopFlower});
+  background-size: 100% 100%;
+  z-index: 3001;
 `;
