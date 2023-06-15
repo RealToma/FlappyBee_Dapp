@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { GAME_HEIGHT, GAME_WIDTH, UNIT } from "../Global";
 import { ReactNode } from "react";
 import { useBird } from "../Context/Bird.context";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/images/background/BGHome.png";
 import React from "react";
 import { useGameSystem } from "../Context";
 

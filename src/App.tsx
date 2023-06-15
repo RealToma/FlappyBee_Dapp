@@ -4,6 +4,8 @@ import "./style.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Game from "./Game/Game";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
@@ -13,6 +15,19 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/game" element={<Game />} />
         </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          limit={1}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </StyledComponent>
     </BrowserRouter>
   );

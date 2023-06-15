@@ -1,25 +1,53 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import imgBackHome from "../../assets/images/BGHome.png";
+import imgBackHome from "../../assets/images/background/BGHome.png";
 import imgButtonSmall from "../../assets/images/buttons/HomeSmall.png";
 import imgButtonWide from "../../assets/images/buttons/HomeWide.png";
 import imgLogoBee from "../../assets/images/Bee.png";
 import { FaInfo, FaShareAlt, FaTrophy } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
+import { toast } from "react-toastify";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const toastId: any = useRef(null);
+  const naviate = useNavigate();
+
+  const handleAlert = () => {
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.info("🐝 Coming soon.");
+    }
+  };
+
   return (
     <StyledComponent>
-      <ButtonAbout>
+      <ButtonAbout
+        onClick={() => {
+          handleAlert();
+        }}
+      >
         <FaInfo />
       </ButtonAbout>
-      <ButtonLeaderboard>
+      <ButtonLeaderboard
+        onClick={() => {
+          handleAlert();
+        }}
+      >
         <FaTrophy />
       </ButtonLeaderboard>
-      <ButtonShare>
+      <ButtonShare
+        onClick={() => {
+          handleAlert();
+        }}
+      >
         <FaShareAlt />
       </ButtonShare>
-      <ButtonRate>
+      <ButtonRate
+        onClick={() => {
+          handleAlert();
+        }}
+      >
         <AiFillLike />
       </ButtonRate>
       <TextTitle>FLAPPY BEE</TextTitle>
@@ -28,9 +56,27 @@ const Home = () => {
           <img src={imgLogoBee} width={"100%"} height={"100%"} alt="" />
         </SectionImageLogo>
         <SectionButtonGroup>
-          <ButtonWide>Play</ButtonWide>
-          <ButtonWide>Rewards</ButtonWide>
-          <ButtonWide>Settings</ButtonWide>
+          <ButtonWide
+            onClick={() => {
+              naviate("/game");
+            }}
+          >
+            Play
+          </ButtonWide>
+          <ButtonWide
+            onClick={() => {
+              handleAlert();
+            }}
+          >
+            Rewards
+          </ButtonWide>
+          <ButtonWide
+            onClick={() => {
+              handleAlert();
+            }}
+          >
+            Settings
+          </ButtonWide>
         </SectionButtonGroup>
       </SectionContent>
     </StyledComponent>
