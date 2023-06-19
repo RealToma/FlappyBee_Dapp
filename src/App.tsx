@@ -4,6 +4,7 @@ import "./style.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Game from "./Game/Game";
+import Layout from "./pages/Layout/Layout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,10 +12,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <StyledComponent>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/game" element={<Game />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/game" element={<Game />} />
+          </Routes>
+        </Layout>
         <ToastContainer
           position="top-right"
           autoClose={3000}

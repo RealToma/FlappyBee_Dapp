@@ -22,7 +22,7 @@ const Home = () => {
 
   return (
     <StyledComponent>
-      <ButtonAbout
+      {/* <ButtonAbout
         onClick={() => {
           handleAlert();
         }}
@@ -78,7 +78,7 @@ const Home = () => {
             Settings
           </ButtonWide>
         </SectionButtonGroup>
-      </SectionContent>
+      </SectionContent> */}
     </StyledComponent>
   );
 };
@@ -86,8 +86,10 @@ const Home = () => {
 const StyledComponent = styled(Box)`
   display: flex;
   width: 100%;
-  position: relative;
-  height: 100vh;
+  /* position: relative; */
+  /* height: 100vh; */
+  flex: 1;
+  height: 100%;
   background-image: url(${imgBackHome});
   background-repeat: repeat;
   background-size: cover;
