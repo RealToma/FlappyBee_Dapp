@@ -5,6 +5,7 @@ import imgBackFooter from "../../assets/images/background/floor.png";
 import { dataTopNavigation } from "../../data/Link.tsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { HiMenu } from "react-icons/hi";
 
 const Layout = ({ children }: any) => {
   const navigate = useNavigate();
@@ -28,6 +29,9 @@ const Layout = ({ children }: any) => {
             );
           })}
         </SectionPageLink>
+        <SectionMobileButton>
+          <HiMenu />
+        </SectionMobileButton>
         <SectionWalletConnect>Connect Wallet</SectionWalletConnect>
       </SectionHeader>
       {children}
@@ -57,6 +61,19 @@ const SectionHeader = styled(Box)`
   height: 120px;
   padding: 0px 60px;
   box-sizing: border-box;
+  @media (max-width: 1440px) {
+    padding: 0px 30px;
+  }
+  @media (max-width: 1024px) {
+    height: 100px;
+  }
+  @media (max-width: 500px) {
+    height: 80px;
+  }
+  @media (max-width: 390px) {
+    padding: 0px 20px;
+    height: 70px;
+  }
 `;
 
 const SectionFooter = styled(Box)`
@@ -72,6 +89,11 @@ const SectionFooter = styled(Box)`
 const SectionPageLink = styled(Box)`
   display: flex;
   align-items: center;
+
+  transition: 0.3s;
+  @media (max-width: 1023px) {
+    display: none;
+  }
 `;
 
 const SectionWalletConnect = styled(Box)`
@@ -100,6 +122,27 @@ const SectionWalletConnect = styled(Box)`
   &:active {
     transform: scale(0.9);
   }
+
+  @media (max-width: 1440px) {
+    width: 280px;
+    height: 60px;
+  }
+  @media (max-width: 1024px) {
+    width: 240px;
+    height: 55px;
+  }
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 50px;
+  }
+  @media (max-width: 500px) {
+    width: 160px;
+    height: 40px;
+  }
+  @media (max-width: 390px) {
+    width: 120px;
+    height: 30px;
+  }
 `;
 
 const LinkEach = styled(Box)`
@@ -125,6 +168,30 @@ const LinkEach = styled(Box)`
 
   &:hover {
     color: white;
+  }
+
+  @media (max-width: 1440px) {
+    height: 45px;
+  }
+  @media (max-width: 1024px) {
+    height: 40px;
+  }
+`;
+
+const SectionMobileButton = styled(Box)`
+  display: none;
+
+  transition: 0.3s;
+  cursor: pointer;
+  user-select: none;
+  color: #003d28;
+  font-size: 7em;
+  &:active {
+    color: white;
+  }
+
+  @media (max-width: 1023px) {
+    display: flex;
   }
 `;
 
