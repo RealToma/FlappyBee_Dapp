@@ -18,7 +18,7 @@ const Layout = ({ children }: any) => {
             return (
               <LinkEach
                 key={index}
-                active={flagLink === index ? 1 : 0}
+                active={flagLink === index ?  1 : 0}
                 onClick={() => {
                   setFlagLink(index);
                   navigate(each.link);
