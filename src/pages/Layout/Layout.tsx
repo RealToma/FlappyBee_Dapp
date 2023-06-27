@@ -43,7 +43,12 @@ const Layout = ({ children }: any) => {
         <SectionWalletConnect>Connect Wallet</SectionWalletConnect>
       </SectionHeader>
       <SectionContent>{children}</SectionContent>
-      <SectionFooter></SectionFooter>
+      {flagLink === 0 || flagLink === 1 ? (
+        <SectionFooter></SectionFooter>
+      ) : (
+        <></>
+      )}
+
       <Slide in={flagClickedMenu} direction={"right"}>
         <SectionMobileMenu>
           <ButtonClose

@@ -7,6 +7,7 @@ import Game from "./Game/Game";
 import Layout from "./pages/Layout/Layout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Leaderboard from "./pages/Leaderboard/Leaderboard";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/play" element={<Home />} />
             <Route path="/game" element={<Game />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
           </Routes>
         </Layout>
         <ToastContainer
