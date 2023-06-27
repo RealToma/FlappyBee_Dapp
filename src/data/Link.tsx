@@ -1,4 +1,9 @@
-export const dataTopNavigation = [
+interface Link {
+  name: string;
+  link: string;
+}
+
+export const dataTopNavigation: Link[] = [
   {
     name: "Home",
     link: "/",

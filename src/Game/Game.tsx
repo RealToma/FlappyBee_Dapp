@@ -37,7 +37,6 @@ const Game = () => {
   );
 };
 
-
 const ButtonPause = styled(Box)`
   display: flex;
   position: fixed;

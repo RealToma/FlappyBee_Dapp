@@ -6,10 +6,14 @@ import { dataTopNavigation } from "../../data/Link.tsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
+import { Slide } from "@mui/material";
+import { MdClose } from "react-icons/md";
 
 const Layout = ({ children }: any) => {
   const navigate = useNavigate();
-  const [flagLink, setFlagLink] = useState(0);
+  const [flagLink, setFlagLink] = useState(1);
+  const [flagClickedMenu, setFlagClickedMenu] = useState(false);
+
   return (
     <StyledComponent>
       <SectionHeader>
@@ -29,13 +33,44 @@ const Layout = ({ children }: any) => {
             );
           })}
         </SectionPageLink>
-        <SectionMobileButton>
+        <SectionMobileButton
+          onClick={() => {
+            setFlagClickedMenu(true);
+          }}
+        >
           <HiMenu />
         </SectionMobileButton>
         <SectionWalletConnect>Connect Wallet</SectionWalletConnect>
       </SectionHeader>
       <SectionContent>{children}</SectionContent>
       <SectionFooter></SectionFooter>
+      <Slide in={flagClickedMenu} direction={"right"}>
+        <SectionMobileMenu>
+          <ButtonClose
+            onClick={() => {
+              setFlagClickedMenu(false);
+            }}
+          >
+            <MdClose />
+          </ButtonClose>
+          <SectionMobilePageLink>
+            {dataTopNavigation?.map((each: any, index: any) => {
+              return (
+                <LinkMobileEach
+                  key={index}
+                  active={flagLink === index ? 1 : 0}
+                  onClick={() => {
+                    setFlagLink(index);
+                    navigate(each.link);
+                  }}
+                >
+                  {each.name}
+                </LinkMobileEach>
+              );
+            })}
+          </SectionMobilePageLink>
+        </SectionMobileMenu>
+      </Slide>
     </StyledComponent>
   );
 };
@@ -50,6 +85,31 @@ const StyledComponent = styled(Box)`
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
+`;
+
+const SectionMobileMenu = styled(Box)`
+  display: flex;
+  position: fixed;
+  width: 300px;
+  flex-direction: column;
+  height: 100vh;
+  box-shadow: 0px 0px 10px black;
+  background-color: #a9d100;
+  padding: 35px 0px;
+  box-sizing: border-box;
+`;
+
+const ButtonClose = styled(Box)`
+  display: flex;
+  margin-left: 30px;
+  transition: 0.3s;
+  cursor: pointer;
+  user-select: none;
+  color: #003d28;
+  font-size: 7em;
+  &:active {
+    color: white;
+  }
 `;
 
 const SectionHeader = styled(Box)`
@@ -115,6 +175,12 @@ const SectionPageLink = styled(Box)`
   @media (max-width: 1023px) {
     display: none;
   }
+`;
+
+const SectionMobilePageLink = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
 `;
 
 const SectionWalletConnect = styled(Box)`
@@ -203,9 +269,32 @@ const LinkEach = styled(Box)`
   }
 `;
 
+const LinkMobileEach = styled(Box)`
+  display: flex;
+  width: 100%;
+  height: 40px;
+  padding: 0px 35px;
+  box-sizing: border-box;
+  align-items: center;
+  background-color: ${({ active }: any) => (active ? "#003D28" : "unset")};
+  color: ${({ active }: any) => (active ? "white" : "#003D28")};
+  font-family: "Rowdies";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 3em;
+  line-height: 3.4em;
+  margin-bottom: 16px;
+  transition: 0.3s;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    color: white;
+  }
+`;
+
 const SectionMobileButton = styled(Box)`
   display: none;
-
   transition: 0.3s;
   cursor: pointer;
   user-select: none;
