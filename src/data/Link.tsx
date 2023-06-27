@@ -4,6 +4,14 @@ export const dataTopNavigation = [
     link: "/",
   },
   {
+    name: "Play",
+    link: "/play",
+  },
+  {
+    name: "Stake",
+    link: "/stake",
+  },
+  {
     name: "Leaderboard",
     link: "/leaderboard",
   },

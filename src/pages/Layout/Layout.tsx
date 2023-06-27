@@ -18,7 +18,7 @@ const Layout = ({ children }: any) => {
             return (
               <LinkEach
                 key={index}
-                active={flagLink === index ?  1 : 0}
+                active={flagLink === index ? 1 : 0}
                 onClick={() => {
                   setFlagLink(index);
                   navigate(each.link);
@@ -34,7 +34,7 @@ const Layout = ({ children }: any) => {
         </SectionMobileButton>
         <SectionWalletConnect>Connect Wallet</SectionWalletConnect>
       </SectionHeader>
-      {children}
+      <SectionContent>{children}</SectionContent>
       <SectionFooter></SectionFooter>
     </StyledComponent>
   );
@@ -61,19 +61,26 @@ const SectionHeader = styled(Box)`
   height: 120px;
   padding: 0px 60px;
   box-sizing: border-box;
+  transition: 0.3s;
   @media (max-width: 1440px) {
     padding: 0px 30px;
   }
   @media (max-width: 1024px) {
+    padding: 0px 20px;
+  }
+  @media (max-width: 768px) {
     height: 100px;
   }
-  @media (max-width: 500px) {
-    height: 80px;
-  }
   @media (max-width: 390px) {
-    padding: 0px 20px;
-    height: 70px;
+    height: 90px;
   }
+`;
+
+const SectionContent = styled(Box)`
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: fit-content;
 `;
 
 const SectionFooter = styled(Box)`
@@ -84,6 +91,20 @@ const SectionFooter = styled(Box)`
   background-repeat: repeat;
   background-size: 100% 100%;
   background-position: center;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    height: 100px;
+  }
+  @media (max-width: 1024px) {
+    height: 80px;
+  }
+  @media (max-width: 768px) {
+    height: 70px;
+  }
+  @media (max-width: 390px) {
+    height: 60px;
+  }
 `;
 
 const SectionPageLink = styled(Box)`
@@ -124,7 +145,7 @@ const SectionWalletConnect = styled(Box)`
   }
 
   @media (max-width: 1440px) {
-    width: 280px;
+    width: 240px;
     height: 60px;
   }
   @media (max-width: 1024px) {
@@ -170,8 +191,12 @@ const LinkEach = styled(Box)`
     color: white;
   }
 
+  @media (max-width: 1600px) {
+    margin-right: 30px;
+  }
   @media (max-width: 1440px) {
     height: 45px;
+    margin-right: 20px;
   }
   @media (max-width: 1024px) {
     height: 40px;
