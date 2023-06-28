@@ -80,6 +80,19 @@ const RowEach = styled(Box)`
   &:hover {
     box-shadow: 6px 6px 6px rgba(255, 255, 255, 0.3);
   }
+
+  @media (max-width: 1440px) {
+    height: 90px;
+    margin-top: 18px;
+  }
+  @media (max-width: 1024px) {
+    height: 70px;
+    margin-top: 15px;
+  }
+  @media (max-width: 768px) {
+    height: 50px;
+    margin-top: 12px;
+  }
 `;
 
 export default TableLeaderboard;

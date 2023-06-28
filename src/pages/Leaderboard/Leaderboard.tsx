@@ -64,6 +64,18 @@ const TextTitle = styled(Box)`
   line-height: 100px;
 
   margin-top: 70px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    margin-top: 60px;
+  }
+  @media (max-width: 1024px) {
+    margin-top: 50px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 40px;
+    line-height: unset;
+  }
 `;
 
 const TextDescription = styled(Box)`
@@ -81,6 +93,11 @@ const SectionButtonGroup = styled(Box)`
   align-items: center;
   margin-top: 45px;
   margin-bottom: 45px;
+
+  transition: 0.3s;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 const ButtonPlay = styled(Box)`
@@ -111,6 +128,24 @@ const ButtonPlay = styled(Box)`
   }
 
   margin-right: 20px;
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    width: 300px;
+    height: 85px;
+  }
+  @media (max-width: 1024px) {
+    width: 250px;
+    height: 70px;
+  }
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 55px;
+  }
+
+  @media (max-width: 500px) {
+    margin-right: unset;
+    margin-bottom: 20px;
+  }
 `;
 
 const ButtonHome = styled(Box)`
@@ -139,6 +174,20 @@ const ButtonHome = styled(Box)`
   &:hover {
     color: white;
   }
+
+  transition: all 0.2s;
+  @media (max-width: 1440px) {
+    width: 300px;
+    height: 85px;
+  }
+  @media (max-width: 1024px) {
+    width: 250px;
+    height: 70px;
+  }
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 55px;
+  }
 `;
 
 const SectionLeaderboard = styled(Box)`
@@ -147,14 +196,45 @@ const SectionLeaderboard = styled(Box)`
   box-sizing: border-box;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 126px;
+
+  transition: all 0.2s;
+  @media (max-width: 1600px) {
+    grid-column-gap: 120px;
+  }
+  @media (max-width: 1440px) {
+    grid-column-gap: 100px;
+  }
+  @media (max-width: 1024px) {
+    grid-column-gap: 80px;
+  }
+  @media (max-width: 768px) {
+    grid-column-gap: 50px;
+  }
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const SectionContent = styled(Box)`
   display: flex;
   width: 100%;
-  padding: 80px 178px 150px 178px;
+  padding: 86px 178px 150px 178px;
   box-sizing: border-box;
   flex-direction: column;
+
+  transition: all 0.2s;
+  @media (max-width: 1600px) {
+    padding: 0px 120px 140px 120px;
+  }
+  @media (max-width: 1440px) {
+    padding: 0px 80px 130px 80px;
+  }
+  @media (max-width: 1024px) {
+    padding: 0px 50px 120px 50px;
+  }
+  @media (max-width: 768px) {
+    padding: 0px 30px 100px 30px;
+  }
 `;
 
 const SectionEachContent = styled(Box)`
@@ -172,6 +252,21 @@ const TextContentTitle = styled(Box)`
   font-family: Rowdies;
   font-weight: 700;
   line-height: 50px;
+  margin-top: 80px;
+
+  transition: 0.3s;
+  @media (max-width: 1024px) {
+    margin-top: 60px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
+  @media (max-width: 700px) {
+    margin-top: 80px;
+  }
+  @media (max-width: 500px) {
+    margin-top: 60px;
+  }
 `;
 
 const SectionLeaderStats = styled(Box)`
@@ -185,6 +280,17 @@ const SectionTable = styled(Box)`
   display: flex;
   width: 100%;
   margin-top: 110px;
+
+  transition: 0.3s;
+  @media (max-width: 1024px) {
+    margin-top: 80px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 60px;
+  }
+  @media (max-width: 700px) {
+    margin-top: 30px;
+  }
 `;
 
 export default Leaderboard;

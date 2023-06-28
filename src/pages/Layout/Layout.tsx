@@ -124,6 +124,7 @@ const SectionHeader = styled(Box)`
   align-items: center;
   background-color: #a9d100;
   height: 120px;
+  min-height: 120px;
   padding: 0px 60px;
   box-sizing: border-box;
   transition: 0.3s;
@@ -135,9 +136,11 @@ const SectionHeader = styled(Box)`
   }
   @media (max-width: 768px) {
     height: 100px;
+    min-height: 100px;
   }
   @media (max-width: 390px) {
     height: 90px;
+    min-height: 90px;
   }
 `;
 
