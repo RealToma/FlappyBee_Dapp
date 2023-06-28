@@ -26,7 +26,7 @@ const TableLeaderboard = ({ data }: any) => {
               {shortAddress(each.addressWallet)}
             </TextRowCell>
             <TextRowCell flex="2" active={index === 0 ? 1 : 0}>
-              Score
+              {each.score}
             </TextRowCell>
           </RowEach>
         );
@@ -74,6 +74,12 @@ const RowEach = styled(Box)`
   align-items: center;
   background-color: ${({ active }: any) => (active ? "#A9D100" : "#00583A")};
   margin-top: 20px;
+
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 6px 6px 6px rgba(255, 255, 255, 0.3);
+  }
 `;
 
 export default TableLeaderboard;

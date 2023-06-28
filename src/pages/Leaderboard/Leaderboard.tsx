@@ -29,7 +29,12 @@ const Leaderboard = () => {
               <TableLeaderboard data={dataAllTime} />
             </SectionTable>
           </SectionEachContent>
-          <SectionEachContent></SectionEachContent>
+          <SectionEachContent>
+            <TextContentTitle>24-Hour Leaderboard</TextContentTitle>
+            <SectionTable>
+              <TableLeaderboard data={dataAllTime} />
+            </SectionTable>
+          </SectionEachContent>
         </SectionLeaderboard>
         <SectionLeaderStats></SectionLeaderStats>
       </SectionContent>
@@ -160,8 +165,9 @@ const SectionEachContent = styled(Box)`
 `;
 
 const TextContentTitle = styled(Box)`
+  display: flex;
+  width: 100%;
   color: #fff;
-  text-align: center;
   font-size: 5em;
   font-family: Rowdies;
   font-weight: 700;
