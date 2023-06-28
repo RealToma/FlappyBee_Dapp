@@ -2,6 +2,8 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgButtonPlay from "../../assets/images/buttons/HomeWide.png";
 import imgButtonHome from "../../assets/images/buttons/GreenWide.svg";
+import TableLeaderboard from "../../components/TableLeaderboard";
+import { dataAllTime } from "../../data/Leaderboard";
 
 const Leaderboard = () => {
   return (
@@ -18,7 +20,19 @@ const Leaderboard = () => {
           <ButtonHome>Home</ButtonHome>
         </SectionButtonGroup>
       </SectionTop>
-      <SectionContent></SectionContent>
+
+      <SectionContent>
+        <SectionLeaderboard>
+          <SectionEachContent>
+            <TextContentTitle>All-Time Leaderboard</TextContentTitle>
+            <SectionTable>
+              <TableLeaderboard data={dataAllTime} />
+            </SectionTable>
+          </SectionEachContent>
+          <SectionEachContent></SectionEachContent>
+        </SectionLeaderboard>
+        <SectionLeaderStats></SectionLeaderStats>
+      </SectionContent>
     </StyledComponent>
   );
 };
@@ -122,13 +136,49 @@ const ButtonHome = styled(Box)`
   }
 `;
 
-const SectionContent = styled(Box)`
+const SectionLeaderboard = styled(Box)`
   display: grid;
   width: 100%;
-  padding: 178px;
   box-sizing: border-box;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 126px;
+`;
+
+const SectionContent = styled(Box)`
+  display: flex;
+  width: 100%;
+  padding: 80px 178px 150px 178px;
+  box-sizing: border-box;
+  flex-direction: column;
+`;
+
+const SectionEachContent = styled(Box)`
+  display: flex;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+`;
+
+const TextContentTitle = styled(Box)`
+  color: #fff;
+  text-align: center;
+  font-size: 5em;
+  font-family: Rowdies;
+  font-weight: 700;
+  line-height: 50px;
+`;
+
+const SectionLeaderStats = styled(Box)`
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 65px;
+`;
+
+const SectionTable = styled(Box)`
+  display: flex;
+  width: 100%;
+  margin-top: 110px;
 `;
 
 export default Leaderboard;
