@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgCoin from "../../assets/images/icons/coinReward.png";
+import imgChecked from "../../assets/images/icons/checkReward.png";
 
 const Rewards = () => {
-  const claimed = 4;
+  const claimed = 2;
 
   return (
     <StyledComponent>
@@ -12,12 +13,44 @@ const Rewards = () => {
         Play everyday to get 50 Flappy bee tokens on day 7
       </TextDescription>
       <SectionSelectRewards>
-        <SectionEachReward>
-          <TextDay>Day 1</TextDay>
-          <ImageCoin>
-            <img src={imgCoin} width={"100%"} alt="" />
-          </ImageCoin>
-        </SectionEachReward>
+        <SectionScroll>
+          {new Array(7).fill(0).map((each: any, index: any) => {
+            if (index < claimed) {
+              return (
+                <SectionEachClaimedReward key={index}>
+                  <TextClaimedDay>Day {index + 1}</TextClaimedDay>
+                  <ImageCoin>
+                    <img src={imgCoin} width={"100%"} alt="" />
+                    <ImageChecked>
+                      <img src={imgChecked} width={"100%"} alt="" />
+                    </ImageChecked>
+                  </ImageCoin>
+                  <SectionValue>10</SectionValue>
+                </SectionEachClaimedReward>
+              );
+            } else if (index === claimed) {
+              return (
+                <SectionEachReward key={index}>
+                  <TextDay>Day {index + 1}</TextDay>
+                  <ImageCoin>
+                    <img src={imgCoin} width={"100%"} alt="" />
+                  </ImageCoin>
+                  <SectionValue>10</SectionValue>
+                </SectionEachReward>
+              );
+            } else {
+              return (
+                <SectionEachReward key={index} style={{ opacity: "0.4" }}>
+                  <TextDay>Day {index + 1}</TextDay>
+                  <ImageCoin>
+                    <img src={imgCoin} width={"100%"} alt="" />
+                  </ImageCoin>
+                  <SectionValue>10</SectionValue>
+                </SectionEachReward>
+              );
+            }
+          })}
+        </SectionScroll>
       </SectionSelectRewards>
     </StyledComponent>
   );
@@ -29,6 +62,25 @@ const StyledComponent = styled(Box)`
   flex-direction: column;
   background: #003d28;
   align-items: center;
+  padding: 0px 150px;
+  box-sizing: border-box;
+
+  transition: 0.3s;
+  @media (max-width: 1600px) {
+    padding: 0px 100px;
+  }
+  @media (max-width: 1440px) {
+    padding: 0px 60px;
+  }
+  @media (max-width: 768px) {
+    padding: 0px 40px;
+  }
+  @media (max-width: 500px) {
+    padding: 0px 20px;
+  }
+  @media (max-width: 390px) {
+    padding: 0px 15px;
+  }
 `;
 
 const TextTitle = styled(Box)`
@@ -39,6 +91,15 @@ const TextTitle = styled(Box)`
   line-height: 100px;
 
   margin-top: 70px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    margin-top: 60px;
+  }
+  @media (max-width: 768px) {
+    line-height: unset;
+    margin-top: 50px;
+  }
 `;
 
 const TextDescription = styled(Box)`
@@ -48,22 +109,61 @@ const TextDescription = styled(Box)`
   font-family: Lato;
   font-weight: 500;
   line-height: 50px;
+
+  @media (max-width: 768px) {
+    line-height: unset;
+    margin-top: 30px;
+  }
 `;
 
 const SectionSelectRewards = styled(Box)`
   display: flex;
   width: 100%;
-  padding: 0px 150px;
-  box-sizing: border-box;
   margin-top: 120px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    margin-top: 100px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 80px;
+  }
+  @media (max-width: 390px) {
+    margin-top: 60px;
+  }
+`;
+
+const SectionScroll = styled(Box)`
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 25px;
   align-items: center;
+  padding-bottom: 30px;
+  overflow-x: scroll;
+
+  ::-webkit-scrollbar {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: white;
+    border-radius: 6px !important;
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #511900; // #ec8424
+    border-radius: 4px !important;
+  }
 `;
 
 const SectionEachReward = styled(Box)`
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
-  width: 250px;
   padding: 30px 45px;
   box-sizing: border-box;
   background: #fff;
@@ -71,10 +171,23 @@ const SectionEachReward = styled(Box)`
     linear-gradient(to bottom, rgba(255, 153, 0, 1), rgba(216, 32, 5, 1))
       border-box;
   border-radius: 10px;
-  border: 4px solid transparent;
+  border: 8px solid transparent;
 
   cursor: pointer;
   user-select: none;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    padding: 20px 30px;
+  }
+  @media (max-width: 768px) {
+    border: 6px solid transparent;
+    padding: 15px 20px;
+  }
+  @media (max-width: 390px) {
+    padding: 10px 15px;
+    border: 4px solid transparent;
+  }
 `;
 
 const TextDay = styled(Box)`
@@ -83,10 +196,135 @@ const TextDay = styled(Box)`
   font-size: 4em;
   font-family: Rowdies;
   line-height: 50px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    line-height: 40px;
+  }
+  @media (max-width: 768px) {
+    line-height: 20px;
+  }
+  @media (max-width: 390px) {
+    line-height: 10px;
+  }
+`;
+
+const SectionEachClaimedReward = styled(Box)`
+  display: flex;
+  flex: 1;
+  /* width: 250px; */
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 45px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 8px solid #fff;
+  background: var(--color-1, linear-gradient(180deg, #f90 0%, #d82005 100%));
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    padding: 20px 30px;
+  }
+  @media (max-width: 768px) {
+    border: 6px solid #fff;
+    padding: 15px 20px;
+  }
+  @media (max-width: 390px) {
+    padding: 10px 15px;
+    border: 4px solid #fff;
+  }
+`;
+
+const TextClaimedDay = styled(Box)`
+  color: white;
+  text-align: center;
+  font-size: 4em;
+  font-family: Rowdies;
+  line-height: 50px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    line-height: 40px;
+  }
+  @media (max-width: 768px) {
+    line-height: 20px;
+  }
+  @media (max-width: 390px) {
+    line-height: 10px;
+  }
 `;
 
 const ImageCoin = styled(Box)`
+  display: flex;
+  position: relative;
   width: 120px;
+  margin-top: 10px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    width: 100px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 5px;
+    width: 80px;
+  }
+  @media (max-width: 390px) {
+    width: 60px;
+  }
+`;
+
+const ImageChecked = styled(Box)`
+  display: flex;
+  position: absolute;
+  width: 80px;
+  left: 50%;
+  bottom: 10%;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    width: 60px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 5px;
+    width: 50px;
+  }
+  @media (max-width: 390px) {
+    width: 40px;
+  }
+`;
+
+const SectionValue = styled(Box)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 50px;
+  border-radius: 99px;
+  background: #511900;
+  color: #fff;
+  text-align: center;
+  font-size: 3em;
+  font-family: Rowdies;
+  line-height: 40px;
+  margin-top: 10px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    width: 130px;
+    height: 40px;
+  }
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 30px;
+    margin-top: 5px;
+  }
+  @media (max-width: 390px) {
+    width: 80px;
+    height: 25px;
+  }
 `;
 
 export default Rewards;
