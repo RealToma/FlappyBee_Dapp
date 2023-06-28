@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgCoin from "../../assets/images/icons/coinReward.png";
 import imgChecked from "../../assets/images/icons/checkReward.png";
+import imgButtonHome from "../../assets/images/buttons/GreenWide.svg";
 
 const Rewards = () => {
   const claimed = 2;
@@ -15,9 +16,11 @@ const Rewards = () => {
       <SectionSelectRewards>
         <SectionScroll>
           {new Array(7).fill(0).map((each: any, index: any) => {
+            const _key = index;
             if (index < claimed) {
+              console.log("index:", index);
               return (
-                <SectionEachClaimedReward key={index}>
+                <SectionEachClaimedReward key={_key}>
                   <TextClaimedDay>Day {index + 1}</TextClaimedDay>
                   <ImageCoin>
                     <img src={imgCoin} width={"100%"} alt="" />
@@ -25,33 +28,36 @@ const Rewards = () => {
                       <img src={imgChecked} width={"100%"} alt="" />
                     </ImageChecked>
                   </ImageCoin>
-                  <SectionValue>10</SectionValue>
+                  <SectionValue>{10*(index+1)}</SectionValue>
                 </SectionEachClaimedReward>
               );
             } else if (index === claimed) {
+              console.log("index:", index);
               return (
-                <SectionEachReward key={index}>
+                <SectionEachReward key={_key}>
                   <TextDay>Day {index + 1}</TextDay>
                   <ImageCoin>
                     <img src={imgCoin} width={"100%"} alt="" />
                   </ImageCoin>
-                  <SectionValue>10</SectionValue>
+                  <SectionValue>{10*(index+1)}</SectionValue>
                 </SectionEachReward>
               );
             } else {
+              console.log("index:", index);
               return (
-                <SectionEachReward key={index} style={{ opacity: "0.4" }}>
+                <SectionEachReward key={_key} style={{ opacity: "0.4" }}>
                   <TextDay>Day {index + 1}</TextDay>
                   <ImageCoin>
                     <img src={imgCoin} width={"100%"} alt="" />
                   </ImageCoin>
-                  <SectionValue>10</SectionValue>
+                  <SectionValue>{10*(index+1)}</SectionValue>
                 </SectionEachReward>
               );
             }
           })}
         </SectionScroll>
       </SectionSelectRewards>
+      <ButtonClaim>Claim</ButtonClaim>
     </StyledComponent>
   );
 };
@@ -324,6 +330,51 @@ const SectionValue = styled(Box)`
   @media (max-width: 390px) {
     width: 80px;
     height: 25px;
+  }
+`;
+
+const ButtonClaim = styled(Box)`
+  display: flex;
+  width: 470px;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  color: #511900;
+  text-align: center;
+  font-size: 5em;
+  font-family: Rowdies;
+  font-weight: 300;
+  line-height: 65px;
+
+  background-image: url(${imgButtonHome});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.3s;
+  &:active {
+    transform: scale(0.9);
+  }
+  &:hover {
+    color: white;
+  }
+  margin: 100px 0px;
+
+  transition: all 0.2s;
+  @media (max-width: 1440px) {
+    width: 420px;
+    height: 85px;
+    margin: 80px 0px;
+  }
+  @media (max-width: 1024px) {
+    width: 370px;
+    height: 70px;
+    margin: 60px 0px;
+  }
+  @media (max-width: 768px) {
+    width: 350px;
+    height: 60px;
   }
 `;
 

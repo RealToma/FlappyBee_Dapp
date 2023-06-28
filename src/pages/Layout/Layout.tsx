@@ -19,18 +19,43 @@ const Layout = ({ children }: any) => {
       <SectionHeader>
         <SectionPageLink>
           {dataTopNavigation?.map((each: any, index: any) => {
-            return (
-              <LinkEach
-                key={index}
-                active={flagLink === index ? 1 : 0}
-                onClick={() => {
-                  setFlagLink(index);
-                  navigate(each.link);
-                }}
-              >
-                {each.name}
-              </LinkEach>
-            );
+            const _key = index;
+            if (each.flagNavigate) {
+              return (
+                <a
+                  href={each.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={_key}
+                  style={{ textDecoration: "none" }}
+                >
+                  <LinkEach
+                    active={flagLink === index ? 1 : 0}
+                    onClick={() => {
+                      // setFlagLink(index);
+                      // navigate(each.link);
+                      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                    }}
+                  >
+                    {each.name}
+                  </LinkEach>
+                </a>
+              );
+            } else {
+              return (
+                <LinkEach
+                  key={_key}
+                  active={flagLink === index ? 1 : 0}
+                  onClick={() => {
+                    setFlagLink(index);
+                    navigate(each.link);
+                    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                  }}
+                >
+                  {each.name}
+                </LinkEach>
+              );
+            }
           })}
         </SectionPageLink>
         <SectionMobileButton
@@ -67,6 +92,8 @@ const Layout = ({ children }: any) => {
                   onClick={() => {
                     setFlagLink(index);
                     navigate(each.link);
+                    setFlagClickedMenu(false);
+                    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
                   }}
                 >
                   {each.name}
