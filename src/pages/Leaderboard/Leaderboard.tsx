@@ -4,6 +4,7 @@ import imgButtonPlay from "../../assets/images/buttons/HomeWide.png";
 import imgButtonHome from "../../assets/images/buttons/GreenWide.svg";
 import TableLeaderboard from "../../components/TableLeaderboard";
 import { dataAllTime } from "../../data/Leaderboard";
+import { shortAddress } from "../../libs/Functions";
 
 const Leaderboard = () => {
   return (
@@ -36,7 +37,47 @@ const Leaderboard = () => {
             </SectionTable>
           </SectionEachContent>
         </SectionLeaderboard>
-        <SectionLeaderStats></SectionLeaderStats>
+        <TextStatsTitle>Leaderboard Stats</TextStatsTitle>
+        <SectionLeaderStats>
+          <SectionEachStats>
+            <TextEachStatsTitle>Avarage Score</TextEachStatsTitle>
+            <TextEachStatsContent>68.7</TextEachStatsContent>
+          </SectionEachStats>
+          <SectionEachStats>
+            <TextEachStatsTitle>Your Record</TextEachStatsTitle>
+            <TextEachStatsContent>41</TextEachStatsContent>
+          </SectionEachStats>
+          <SectionEachStats>
+            <TextEachStatsTitle>Best Score</TextEachStatsTitle>
+            <TextEachStatsContent>2345</TextEachStatsContent>
+          </SectionEachStats>
+          <SectionEachStats>
+            <TextEachStatsTitle>Best Player </TextEachStatsTitle>
+            <TextEachStatsContent>
+              {shortAddress("0x04830c9a998e6229fF518630608dd9De0BA79CCa ")}
+            </TextEachStatsContent>
+          </SectionEachStats>
+        </SectionLeaderStats>
+
+        <TextStatsTitle>All-Time Leaderboard</TextStatsTitle>
+        <SectionLeaderStats>
+          <SectionEachStats>
+            <TextEachStatsTitle>Avarage Score</TextEachStatsTitle>
+            <TextEachStatsContent>68.7</TextEachStatsContent>
+          </SectionEachStats>
+          <SectionEachStats>
+            <TextEachStatsTitle>Best Score</TextEachStatsTitle>
+            <TextEachStatsContent>2345</TextEachStatsContent>
+          </SectionEachStats>
+          <SectionEachStats>
+            <TextEachStatsTitle>Your Record</TextEachStatsTitle>
+            <TextEachStatsContent>41</TextEachStatsContent>
+          </SectionEachStats>
+          <SectionEachStats>
+            <TextEachStatsTitle>Your Rank</TextEachStatsTitle>
+            <TextEachStatsContent>1478</TextEachStatsContent>
+          </SectionEachStats>
+        </SectionLeaderStats>
       </SectionContent>
     </StyledComponent>
   );
@@ -54,6 +95,42 @@ const SectionTop = styled(Box)`
   background: #00583a;
   flex-direction: column;
   align-items: center;
+`;
+
+const SectionEachStats = styled(Box)`
+  display: flex;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  background: #00583a;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    padding: 20px 20px;
+  }
+  @media (max-width: 768px) {
+    padding: 15px 15px;
+  }
+  @media (max-width: 390px) {
+    padding: 10px 10px;
+  }
+`;
+
+const TextEachStatsTitle = styled(Box)`
+  color: #fff;
+  font-size: 3em;
+  font-family: Lato;
+  line-height: 46px;
+`;
+
+const TextEachStatsContent = styled(Box)`
+  color: #fff;
+  font-size: 3.6em;
+  font-family: Lato;
+  font-weight: 700;
+  line-height: 46px;
 `;
 
 const TextTitle = styled(Box)`
@@ -269,11 +346,49 @@ const TextContentTitle = styled(Box)`
   }
 `;
 
+const TextStatsTitle = styled(Box)`
+  display: flex;
+  width: 100%;
+  color: #fff;
+  font-size: 5em;
+  font-family: Rowdies;
+  font-weight: 700;
+  margin-top: 100px;
+  margin-bottom: 60px;
+
+  transition: 0.3s;
+  @media (max-width: 1024px) {
+    margin-top: 80px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 390px) {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+`;
+
 const SectionLeaderStats = styled(Box)`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 65px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    grid-column-gap: 40px;
+  }
+  transition: 0.3s;
+  @media (max-width: 1024px) {
+    grid-column-gap: 20px;
+  }
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 20px;
+  }
 `;
 
 const SectionTable = styled(Box)`
