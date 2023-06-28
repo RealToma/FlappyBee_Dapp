@@ -116,6 +116,12 @@ const SectionEachStats = styled(Box)`
   @media (max-width: 390px) {
     padding: 10px 10px;
   }
+
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 6px 6px 6px rgba(255, 255, 255, 0.3);
+  }
 `;
 
 const TextEachStatsTitle = styled(Box)`
