@@ -9,6 +9,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
 import Rewards from "./pages/Rewards/Rewards";
+import Stake from "./pages/Stake/Stake";
+import Settings from "./pages/Settings/Settings";
 
 const App = () => {
   return (
@@ -18,9 +20,11 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/play" element={<Home />} />
+            <Route path="/stake" element={<Stake />} />
             <Route path="/game" element={<Game />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/rewards" element={<Rewards />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </Layout>
         <ToastContainer

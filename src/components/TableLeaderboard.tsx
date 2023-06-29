@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import { shortAddress } from "../libs/Functions";
+import imgLeaderboardTop from "../assets/images/background/leaderboardTop.svg";
+import imgLeaderboardNormal from "../assets/images/background/leaderboardNormal.svg";
 
 const TableLeaderboard = ({ data }: any) => {
   return (
@@ -71,15 +73,21 @@ const RowEach = styled(Box)`
   display: flex;
   width: 100%;
   height: 100px;
-  align-items: center;
-  background-color: ${({ active }: any) => (active ? "#A9D100" : "#00583A")};
-  margin-top: 20px;
+  background-image: ${({ active }: any) =>
+    active ? `url(${imgLeaderboardTop})` : `url(${imgLeaderboardNormal})`};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 
-  transition: 0.3s;
+  align-items: center;
+  /* background-color: ${({ active }: any) =>
+    active ? "#A9D100" : "#00583A"}; */
+  margin-top: 20px;
   cursor: pointer;
   &:hover {
-    box-shadow: 6px 6px 6px rgba(255, 255, 255, 0.3);
+    filter: drop-shadow(6px 6px 6px rgba(255, 255, 255, 0.3));
   }
+  transition: 0.3s;
 
   @media (max-width: 1440px) {
     height: 90px;

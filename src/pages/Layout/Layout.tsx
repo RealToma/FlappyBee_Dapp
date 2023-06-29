@@ -85,20 +85,46 @@ const Layout = ({ children }: any) => {
           </ButtonClose>
           <SectionMobilePageLink>
             {dataTopNavigation?.map((each: any, index: any) => {
-              return (
-                <LinkMobileEach
-                  key={index}
-                  active={flagLink === index ? 1 : 0}
-                  onClick={() => {
-                    setFlagLink(index);
-                    navigate(each.link);
-                    setFlagClickedMenu(false);
-                    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-                  }}
-                >
-                  {each.name}
-                </LinkMobileEach>
-              );
+              const _key = index;
+              if (each.flagNavigate) {
+                return (
+                  <a
+                    href={each.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={_key}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <LinkMobileEach
+                      onClick={() => {
+                        setFlagClickedMenu(false);
+                        window.scrollTo({
+                          top: 0,
+                          left: 0,
+                          behavior: "smooth",
+                        });
+                      }}
+                    >
+                      {each.name}
+                    </LinkMobileEach>
+                  </a>
+                );
+              } else {
+                return (
+                  <LinkMobileEach
+                    key={_key}
+                    active={flagLink === index ? 1 : 0}
+                    onClick={() => {
+                      setFlagLink(index);
+                      navigate(each.link);
+                      setFlagClickedMenu(false);
+                      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                    }}
+                  >
+                    {each.name}
+                  </LinkMobileEach>
+                );
+              }
             })}
           </SectionMobilePageLink>
         </SectionMobileMenu>

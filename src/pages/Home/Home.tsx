@@ -14,11 +14,11 @@ const Home = () => {
   const toastId: any = useRef(null);
   const naviate = useNavigate();
 
-  const handleAlert = () => {
-    if (!toast.isActive(toastId.current)) {
-      toastId.current = toast.info("🐝 Coming soon.");
-    }
-  };
+  // const handleAlert = () => {
+  //   if (!toast.isActive(toastId.current)) {
+  //     toastId.current = toast.info("🐝 Coming soon.");
+  //   }
+  // };
 
   return (
     <StyledComponent>

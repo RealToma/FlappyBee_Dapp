@@ -5,6 +5,7 @@ import imgButtonHome from "../../assets/images/buttons/GreenWide.svg";
 import TableLeaderboard from "../../components/TableLeaderboard";
 import { dataAllTime } from "../../data/Leaderboard";
 import { shortAddress } from "../../libs/Functions";
+import imgLeaderboardStas from "../../assets/images/background/leaderboardStats.svg";
 
 const Leaderboard = () => {
   return (
@@ -102,25 +103,32 @@ const SectionEachStats = styled(Box)`
   flex: 1;
   width: 100%;
   flex-direction: column;
-  padding: 20px 30px;
+  padding: 30px 50px;
   box-sizing: border-box;
-  background: #00583a;
+  background-image: url(${imgLeaderboardStas});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /* background: #00583a; */
 
   transition: 0.3s;
   @media (max-width: 1440px) {
-    padding: 20px 20px;
+    padding: 30px 50px;
+  }
+  @media (max-width: 1024px) {
+    padding: 20px 35px;
   }
   @media (max-width: 768px) {
-    padding: 15px 15px;
+    padding: 30px 70px;
   }
   @media (max-width: 390px) {
-    padding: 10px 10px;
+    padding: 10px 20px;
   }
 
   transition: 0.3s;
   cursor: pointer;
   &:hover {
-    box-shadow: 6px 6px 6px rgba(255, 255, 255, 0.3);
+    filter: drop-shadow(6px 6px 6px rgba(255, 255, 255, 0.3));
   }
 `;
 
@@ -129,6 +137,10 @@ const TextEachStatsTitle = styled(Box)`
   font-size: 3em;
   font-family: Lato;
   line-height: 46px;
+  transition: 0.3s;
+  @media (max-width: 390px) {
+    line-height: 30px;
+  }
 `;
 
 const TextEachStatsContent = styled(Box)`
@@ -137,6 +149,10 @@ const TextEachStatsContent = styled(Box)`
   font-family: Lato;
   font-weight: 700;
   line-height: 46px;
+  transition: 0.3s;
+  @media (max-width: 390px) {
+    line-height: 30px;
+  }
 `;
 
 const TextTitle = styled(Box)`
@@ -381,7 +397,7 @@ const SectionLeaderStats = styled(Box)`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-column-gap: 65px;
+  grid-column-gap: 80px;
 
   transition: 0.3s;
   @media (max-width: 1440px) {
@@ -391,7 +407,7 @@ const SectionLeaderStats = styled(Box)`
   @media (max-width: 1024px) {
     grid-column-gap: 20px;
   }
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
     grid-row-gap: 20px;
   }
