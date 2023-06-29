@@ -155,6 +155,7 @@ const SectionMobileMenu = styled(Box)`
   background-color: #a9d100;
   padding: 35px 0px;
   box-sizing: border-box;
+  z-index: 100000;
 `;
 
 const ButtonClose = styled(Box)`

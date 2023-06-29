@@ -1,55 +1,52 @@
-import styled from "@emotion/styled"
-import { BIRD_SIZE, GAME_WIDTH } from "../Global"
-import { useBird } from "../Context/Bird.context"
-import { useGameSystem } from "../Context/GameSystem.context"
-import { Bird_img } from "../../assets/Vector"
-import React from "react"
+import styled from "@emotion/styled";
+import { BIRD_SIZE, GAME_WIDTH } from "../Global";
+import { useBird } from "../Context/Bird.context";
+import { useGameSystem } from "../Context/GameSystem.context";
+import { FlyingBee } from "../../assets/images/bee/flaying/Vector";
+import React from "react";
 
 const Bird = () => {
-
-  const { birdPosition, birdAngle } = useBird()
-  const { gameHasStarted } = useGameSystem()
-  const [birdFrame, setBirdFrame] = React.useState<number>(1)
+  const { birdPosition, birdAngle } = useBird();
+  const { gameHasStarted } = useGameSystem();
+  const [birdFrame, setBirdFrame] = React.useState<number>(1);
   React.useEffect(() => {
     if (gameHasStarted) {
       const intervalID = setInterval(() => {
-        setBirdFrame(prev => prev == 1 ? 2 : prev == 2 ? 3 : 1)
-
-      }, 280)
-      return () => clearInterval(intervalID)
+        setBirdFrame((prev) => (prev == 1 ? 2 : prev == 2 ? 3 : 1));
+      }, 100);
+      return () => clearInterval(intervalID);
     }
-  }, [gameHasStarted])
+  }, [gameHasStarted]);
   return (
     <BirdElement
       gameHasStarted={gameHasStarted}
       size={BIRD_SIZE}
       top={birdPosition}
-      left={(GAME_WIDTH / 5) - (BIRD_SIZE / 2)}
+      left={GAME_WIDTH / 5 - BIRD_SIZE / 2}
       angle={birdAngle}
     >
-      <Bird_img variant={birdFrame} />
-    </BirdElement>)
-}
+      <FlyingBee variant={birdFrame} />
+    </BirdElement>
+  );
+};
 
-export default Bird
-
-
+export default Bird;
 
 interface IBirdStyled {
-  top: number
-  left: number
-  size: number
-  gameHasStarted: boolean
-  angle: number
+  top: number;
+  left: number;
+  size: number;
+  gameHasStarted: boolean;
+  angle: number;
 }
 
-const BirdElement = styled.div < IBirdStyled>`
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
+const BirdElement = styled.div<IBirdStyled>`
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
   position: absolute;
-  top: ${props => props.top}px;
-  left: ${props => props.left}px;
-  transform: ${props => `rotate(${props.angle}deg) `};
+  top: ${(props) => props.top}px;
+  left: ${(props) => props.left}px;
+  transform: ${(props) => `rotate(${props.angle}deg) `};
   transition: all 80ms linear;
   overflow: hidden;
-`
+`;

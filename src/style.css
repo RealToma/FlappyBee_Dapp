@@ -40,3 +40,17 @@ html {
   /* font-family: "Cherry Bomb One", cursive; */
   font-family: "Rowdies", cursive;
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #dddddd;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #00583a;
+  /* border-radius: 3px; */
+}

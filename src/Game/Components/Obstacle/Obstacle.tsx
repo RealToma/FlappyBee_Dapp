@@ -27,16 +27,17 @@ const Obstacle = () => {
   return (
     <>
       <Obstacles />
+{/* 
       <SectionFloor
         style={{
           backgroundPosition: `${bgPosition}px 0px`,
         }}
-      ></SectionFloor>
-      <SectionTopFlower
+      ></SectionFloor> */}
+      {/* <SectionTopFlower
         style={{
           backgroundPosition: `${bgPosition}px 0px`,
         }}
-      ></SectionTopFlower>
+      ></SectionTopFlower> */}
     </>
   );
 };

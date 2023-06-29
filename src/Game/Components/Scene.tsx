@@ -46,7 +46,8 @@ interface IGameBoxStyled {
 }
 
 const GameBox = styled.div<IGameBoxStyled>`
-  height: ${(props) => props.height}px;
+  height: calc(100vh - 64px - 120px);
+  /* height: ${(props) => props.height}px; */
   width: ${(props) => props.width}px;
   background-color: #03a9f4;
   background-image: ${(props) => `url(${props.bg})`};

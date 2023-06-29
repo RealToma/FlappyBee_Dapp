@@ -25,12 +25,12 @@ const ScoreElement = styled(Box)`
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  top: 65px;
+  top: 150px;
   left: 65px;
   color: #511900;
-  font-size: 3rem;
+  font-size: 5em;
   cursor: pointer;
-  user-select: none;
+  user-select: non e;
   transition: 0.2s;
   /* &:hover {
     color: white;
@@ -39,6 +39,25 @@ const ScoreElement = styled(Box)`
     transform: scale(0.9);
   } */
   z-index: 9000;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    left: 50px;
+    width: 80px;
+    height: 80px;
+  }
+  @media (max-width: 768px) {
+    width: 70px;
+    height: 70px;
+    top: 130px;
+    left: 30px;
+  }
+  @media (max-width: 390px) {
+    width: 50px;
+    height: 50px;
+    top: 110px;
+    left: 20px;
+  }
 `;
 
 const H1 = styled.h1`
