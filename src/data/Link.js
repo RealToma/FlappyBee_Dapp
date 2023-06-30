@@ -1,10 +1,4 @@
-interface Link {
-  name: string;
-  link: string;
-  flagNavigate: boolean;
-}
-
-export const dataTopNavigation: Link[] = [
+export const dataTopNavigation = [
   {
     name: "Home",
     link: "https://flappybee-website.netlify.app/",
