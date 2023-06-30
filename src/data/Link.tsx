@@ -7,7 +7,7 @@ interface Link {
 export const dataTopNavigation: Link[] = [
   {
     name: "Home",
-    link: "http://localhost:3000/",
+    link: "https://flappybee-website.netlify.app/",
     flagNavigate: true,
   },
   {
