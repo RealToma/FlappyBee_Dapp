@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgBackHome from "../../assets/images/background/BGHome.png";
 import imgBackFooter from "../../assets/images/background/floor.png";
-import { dataTopNavigation } from "../../data/Link.tsx";
+import { dataTopNavigation } from "../../data/Link.js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
