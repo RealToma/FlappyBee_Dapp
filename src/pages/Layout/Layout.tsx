@@ -148,7 +148,7 @@ const StyledComponent = styled(Box)`
 const SectionMobileMenu = styled(Box)`
   display: flex;
   position: fixed;
-  width: 300px;
+  width: 300px;  
   flex-direction: column;
   height: 100vh;
   box-shadow: 0px 0px 10px black;
@@ -168,7 +168,7 @@ const ButtonClose = styled(Box)`
   font-size: 7em;
   &:active {
     color: white;
-  }
+  } 
 `;
 
 const SectionHeader = styled(Box)`
