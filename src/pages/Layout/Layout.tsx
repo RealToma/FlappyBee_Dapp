@@ -1,19 +1,73 @@
-import { Box } from "@mui/material";
+import { Box, Modal } from "@mui/material";
 import styled from "styled-components";
 import imgBackHome from "../../assets/images/background/BGHome.png";
 import imgBackFooter from "../../assets/images/background/floor.png";
 import { dataTopNavigation } from "../../data/Link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import { Slide } from "@mui/material";
 import { MdClose } from "react-icons/md";
+import imgMetamask from "../../assets/images/wallet/metamask.png";
+import imgWalletConnect from "../../assets/images/wallet/walletConnect.svg";
+import imgBinance from "../../assets/images/wallet/binance.png";
+import imgTrust from "../../assets/images/wallet/trust.png";
+import { useWeb3React } from "@web3-react/core";
+import {
+  DESKTOP_CONNECTORS,
+  chainId,
+  NETWORK_NAME,
+} from "../../utils/connectors";
+import { shortAddress } from "../../libs/Functions";
 
 const Layout = ({ children }: any) => {
   const navigate = useNavigate();
   const [flagLink, setFlagLink] = useState(1);
   const [flagClickedMenu, setFlagClickedMenu] = useState(false);
 
+  const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(false);
+  const { account, active, activate, deactivate } = useWeb3React();
+
+  const walletConnectors: any = DESKTOP_CONNECTORS;
+  const handleSwitch = async () => {
+    try {
+      if (window.ethereum.networkVersion !== chainId) {
+        await window.ethereum
+          .request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: `0x${Number(chainId).toString(16)}` }],
+          })
+          .then(() => {
+            //   setConnected(true);
+          });
+        console.log("You have successfully switched to Correct Network");
+      }
+    } catch (ex) {
+      //   setConnected(false);
+      // NotificationManager.error(
+      //   "Failed to switch to " + NETWORK_NAME + " network.",
+      //   "ERROR",
+      //   3000
+      // );
+    }
+  };
+
+  const handleConnect = async (currentConnector: any) => {
+    await activate(walletConnectors[currentConnector]);
+    // set_wConnect(walletConnectors[currentConnector]);
+    window.localStorage.setItem("CurrentWalletConnect", currentConnector);
+    handleSwitch();
+    // setConnected(true);
+    handleClose();
+  };
+
+  useEffect(() => {
+    const currentWalletState = window.localStorage.getItem(
+      "CurrentWalletConnect"
+    );
+    currentWalletState && activate(walletConnectors[currentWalletState]);
+  }, []);
   return (
     <StyledComponent>
       <SectionHeader>
@@ -65,7 +119,13 @@ const Layout = ({ children }: any) => {
         >
           <HiMenu />
         </SectionMobileButton>
-        <SectionWalletConnect>Connect Wallet</SectionWalletConnect>
+        <SectionWalletConnect
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          {active ? shortAddress(account) : "Connect Wallet"}
+        </SectionWalletConnect>
       </SectionHeader>
       <SectionContent>{children}</SectionContent>
       {flagLink === 0 || flagLink === 1 ? (
@@ -129,6 +189,76 @@ const Layout = ({ children }: any) => {
           </SectionMobilePageLink>
         </SectionMobileMenu>
       </Slide>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        BackdropComponent={backdropstyled}
+      >
+        <ModalBox>
+          <UpText>Select Wallet</UpText>
+          <DownText>
+            Connect to the site below with one of our available wallet
+            providers.
+          </DownText>
+          <ConnectPart>
+            <ConnectWallet
+              onClick={() => {
+                handleConnect("MetaMask");
+              }}
+            >
+              <Box display={"flex"} marginLeft={"5%"}>
+                Metamask
+              </Box>
+              <Box display={"flex"} marginRight={"5%"}>
+                <img src={imgMetamask} width={"24px"} height={"24px"} alt="" />
+              </Box>
+            </ConnectWallet>
+            <ConnectWallet
+              onClick={() => {
+                handleConnect("BinanceWallet");
+              }}
+            >
+              <Box display={"flex"} marginLeft={"5%"}>
+                BinanceWallet
+              </Box>
+              <Box display={"flex"} marginRight={"5%"}>
+                <img src={imgBinance} width={"24px"} height={"24px"} alt="" />
+              </Box>
+            </ConnectWallet>
+            <ConnectWallet
+              onClick={() => {
+                handleConnect("WalletConnect");
+              }}
+            >
+              <Box display={"flex"} marginLeft={"5%"}>
+                WalletConnect
+              </Box>
+              <Box display={"flex"} marginRight={"5%"}>
+                <img
+                  src={imgWalletConnect}
+                  width={"24px"}
+                  height={"24px"}
+                  alt=""
+                />
+              </Box>
+            </ConnectWallet>
+            <ConnectWallet
+              onClick={() => {
+                handleConnect("TrustWallet");
+              }}
+            >
+              <Box display={"flex"} marginLeft={"5%"}>
+                TrustWallet
+              </Box>
+              <Box display={"flex"} marginRight={"5%"}>
+                <img src={imgTrust} width={"24px"} height={"24px"} alt="" />
+              </Box>
+            </ConnectWallet>
+          </ConnectPart>
+        </ModalBox>
+      </Modal>
     </StyledComponent>
   );
 };
@@ -148,7 +278,7 @@ const StyledComponent = styled(Box)`
 const SectionMobileMenu = styled(Box)`
   display: flex;
   position: fixed;
-  width: 300px;  
+  width: 300px;
   flex-direction: column;
   height: 100vh;
   box-shadow: 0px 0px 10px black;
@@ -168,7 +298,7 @@ const ButtonClose = styled(Box)`
   font-size: 7em;
   &:active {
     color: white;
-  } 
+  }
 `;
 
 const SectionHeader = styled(Box)`
@@ -369,6 +499,99 @@ const SectionMobileButton = styled(Box)`
   @media (max-width: 1023px) {
     display: flex;
   }
+`;
+
+const ConnectWallet = styled(Box)`
+  display: flex;
+  width: 100%;
+  padding: 10px 0px;
+  box-sizing: border-box;
+  font-size: 1.3em;
+  line-height: 1.25;
+  font-weight: 400;
+  /* text-shadow: 1px 1px 6px #000; */
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  font-size: 18px;
+  color: #412518;
+  border-radius: 8px;
+  transition: 0.5s;
+  cursor: pointer;
+  &:hover {
+    background: #a9d100;
+  }
+`;
+
+const ConnectPart = styled(Box)`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+  margin-top: 20px;
+`;
+
+const UpText = styled(Box)`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 6px #000;
+  color: white;
+`;
+const DownText = styled(Box)`
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  font-family: Lato;
+  font-size: 14px;
+  text-shadow: 1px 1px 6px #000;
+  color: white;
+  margin-top: 10px;
+`;
+
+const ModalBox = styled(Box)`
+  display: flex;
+  width: 350px;
+  flex-direction: column;
+  background-color: white;
+  border: none;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px 0 #000;
+  border-radius: 20px;
+  background: #003d28;
+  padding: 30px;
+  box-sizing: border-box;
+  transition: box-shadow 300ms;
+  transition: transform 505ms cubic-bezier(0, 0, 0.2, 1) 0ms !important;
+  outline: none;
+  animation: back_animation1 0.5s 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  @keyframes back_animation1 {
+    0% {
+      opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+
+  @media (max-width: 370px) {
+    width: 300px;
+  }
+`;
+export const backdropstyled = styled(Box)`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: black;
+  opacity: 0.8;
 `;
 
 export default Layout;
