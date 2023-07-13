@@ -32,8 +32,8 @@ const Layout = ({ children }: any) => {
   const walletConnectors: any = DESKTOP_CONNECTORS;
   const handleSwitch = async () => {
     try {
-      if (window.ethereum.networkVersion !== chainId) {
-        await window.ethereum
+      if ((window as any).ethereum.networkVersion !== chainId) {
+        await (window as any).ethereum
           .request({
             method: "wallet_switchEthereumChain",
             params: [{ chainId: `0x${Number(chainId).toString(16)}` }],
