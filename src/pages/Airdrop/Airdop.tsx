@@ -384,4 +384,6 @@ const TextEachGuide = styled(Box)`
   }
 `;
 
+
+
 export default Airdrop;
