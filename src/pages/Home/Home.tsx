@@ -232,4 +232,6 @@ const SectionSocialButton = styled(Box)`
   grid-column-gap: 50px;
 `;
 
+
+
 export default Home;
