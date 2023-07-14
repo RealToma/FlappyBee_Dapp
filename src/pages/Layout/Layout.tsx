@@ -19,6 +19,7 @@ import {
   NETWORK_NAME,
 } from "../../utils/connectors";
 import { shortAddress } from "../../libs/Functions";
+import imgButtonTop from "../../assets/images/buttons/topbar.png";
 
 const Layout = ({ children }: any) => {
   const navigate = useNavigate();
@@ -432,8 +433,15 @@ const LinkEach = styled(Box)`
   height: 45px;
   justify-content: center;
   align-items: center;
-  background-color: ${({ active }: any) => (active ? "#003D28" : "unset")};
+  background-image: ${({ active }: any) =>
+    active ? `url(${imgButtonTop})` : "none"};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /* background-color: ${({ active }: any) =>
+    active ? "#003D28" : "unset"}; */
   color: ${({ active }: any) => (active ? "white" : "#003D28")};
+
   font-family: "Rowdies";
   font-style: normal;
   font-weight: 300;
@@ -455,6 +463,9 @@ const LinkEach = styled(Box)`
   @media (max-width: 1440px) {
     height: 45px;
     margin-right: 20px;
+  }
+  @media (max-width: 1200px) {
+    margin-right: 5px;
   }
   @media (max-width: 1024px) {
     height: 40px;

@@ -16,6 +16,11 @@ export const dataTopNavigation: Link[] = [
     flagNavigate: false,
   },
   {
+    name: "Airdrop",
+    link: "/airdrop",
+    flagNavigate: false,
+  },
+  {
     name: "Stake",
     link: "/stake",
     flagNavigate: false,
@@ -25,6 +30,7 @@ export const dataTopNavigation: Link[] = [
     link: "/leaderboard",
     flagNavigate: false,
   },
+
   {
     name: "Rewards",
     link: "/rewards",

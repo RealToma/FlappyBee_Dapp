@@ -13,6 +13,7 @@ import Stake from "./pages/Stake/Stake";
 import Settings from "./pages/Settings/Settings";
 import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
+import Airdrop from "./pages/Airdrop/Airdop";
 
 function getLibrary(provider: any) {
   const library = new Web3Provider(provider);
@@ -29,6 +30,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/play" element={<Home />} />
+              <Route path="/airdrop" element={<Airdrop />} />
               <Route path="/stake" element={<Stake />} />
               <Route path="/game" element={<Game />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
