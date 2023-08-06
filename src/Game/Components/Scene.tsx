@@ -1,20 +1,22 @@
 import styled from "@emotion/styled";
 import { GAME_HEIGHT, GAME_WIDTH, UNIT } from "../Global";
-import { ReactNode } from "react";
+
 import { useBird } from "../Context/Bird.context";
 import bg from "../../assets/images/background/BGHome.png";
 import React from "react";
 import { useGameSystem } from "../Context";
+import { ReactNode } from "react";
 
 interface IScene {
   children: ReactNode;
 }
+
 const Scene = ({ children }: IScene) => {
-  const { jump, birdPosition } = useBird();
+  const { jump } = useBird();
   const { gameHasStarted } = useGameSystem();
   const [bgPosition, setBgPosition] = React.useState<number>(0);
   React.useEffect(() => {
-    if (gameHasStarted === 0) {
+    if ( gameHasStarted === 1) {
       let intervalID = setInterval(() => {
         setBgPosition((prev) => (prev += UNIT / 10));
       }, 30);
@@ -25,9 +27,9 @@ const Scene = ({ children }: IScene) => {
 
   return (
     <GameBox
+      onClick={() => jump()}
       moveBG={-bgPosition}
       bg={bg}
-      onClick={() => jump()}
       height={GAME_HEIGHT}
       width={GAME_WIDTH}
     >

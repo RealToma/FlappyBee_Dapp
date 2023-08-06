@@ -1,7 +1,7 @@
 import { Scene, Score, Bird } from "./Components";
 import { Container } from "./Components/Container";
 import createObstacle from "./Components/Obstacle/createObstacle";
-import { useGameSystem, useScore } from "./Context";
+import { useBird, useGameSystem, useObstacle, useScore } from "./Context";
 import { GAME_WIDTH } from "./Global";
 import "../style.css";
 import { Box } from "@mui/material";
@@ -11,10 +11,12 @@ import { FaMedal, FaPause, FaShareAlt } from "react-icons/fa";
 import imgGameOver from "../assets/images/background/game over.png";
 import imgCoin from "../assets/images/icons/coinReward.png";
 import imgButtonStart from "../assets/images/buttons/HomeWide.png";
+import imgCursorStart from "../assets/images/icons/cursorClickon.png";
 
 const Game = () => {
-  const { gameHasStarted } = useGameSystem();
+  const { gameHasStarted, startGame } = useGameSystem();
   const { score, bestScore } = useScore();
+
   let increment = GAME_WIDTH / 2;
 
   const Obstacle1 = createObstacle({ increment: increment / 2 });
@@ -22,6 +24,10 @@ const Game = () => {
   const Obstacle3 = createObstacle({ increment: increment * 2 });
 
   const obstacles = [Obstacle1, Obstacle2];
+
+  const handleReply = () => {
+    startGame();
+  };
 
   return (
     <Container>
@@ -37,7 +43,17 @@ const Game = () => {
         </ButtonPause>
 
         {gameHasStarted === 0 ? (
-          <SectionGameStart></SectionGameStart>
+          <SectionGameStart
+            onClick={() => {
+              startGame();
+            }}
+          >
+            <TextGetReady>GET READY !</TextGetReady>
+            <ImgCursorStart>
+              <img src={imgCursorStart} width={"100%"} alt="" />
+            </ImgCursorStart>
+            <TextTapPlay>Tap to Play</TextTapPlay>
+          </SectionGameStart>
         ) : gameHasStarted === 1 ? (
           <></>
         ) : gameHasStarted === 2 ? (
@@ -79,7 +95,7 @@ const Game = () => {
               <ButtonSocial>
                 <FaShareAlt />
               </ButtonSocial>
-              <ButtonReply>Reply</ButtonReply>
+              <ButtonReply onClick={() => handleReply()}>Reply</ButtonReply>
               <ButtonSocial>
                 <FaMedal />
               </ButtonSocial>
@@ -90,6 +106,41 @@ const Game = () => {
     </Container>
   );
 };
+
+const ImgCursorStart = styled(Box)`
+  display: flex;
+  width: 110px;
+  margin-top: 45px;
+  margin-bottom: 30px;
+`;
+
+const TextTapPlay = styled(Box)`
+  display: flex;
+  background-color: rgba(255, 12, 12, 1);
+  text-align: center;
+  font-family: Rowdies;
+  font-size: 8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 90px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px white;
+`;
+
+const TextGetReady = styled(Box)`
+  display: flex;
+  background-color: #5a0800;
+  text-align: center;
+  font-family: Rowdies;
+  font-size: 10rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 90px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 3px white;
+`;
 
 const ButtonReply = styled(Box)`
   display: flex;
@@ -333,7 +384,6 @@ const SectionBoard = styled(Box)`
       border-box;
   border-radius: 20px;
   border: 12px solid transparent;
-
   margin-top: 50px;
 `;
 
@@ -343,7 +393,9 @@ const SectionGameStart = styled(Box)`
   height: 100%;
   justify-content: center;
   align-items: center;
-  z-index: 9100;
+  z-index: 9999;
+  user-select: none;
+  cursor: pointer;
   flex-direction: column;
 `;
 
@@ -411,9 +463,10 @@ const SectionGameOver = styled(Box)`
   display: flex;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
   align-items: center;
-  z-index: 9100;
+  z-index: 910000;
   flex-direction: column;
 `;
 

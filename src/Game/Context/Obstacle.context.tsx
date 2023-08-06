@@ -46,7 +46,7 @@ export const ObstacleProvider = ({
   const [firstObstaclePassed, setFirstObstaclePassed] =
     React.useState<boolean>(false);
 
-  const { gameHasStarted, restartGame } = useGameSystem();
+  const { gameHasStarted, restartGame, overGame } = useGameSystem();
   const { incrementScore, restartScore } = useScore();
   const { birdPosition, restartBird, stop } = useBird();
 
@@ -82,7 +82,7 @@ export const ObstacleProvider = ({
   }
 
   React.useEffect(() => {
-    let obstacleID: number;
+    let obstacleID: any;
     if (gameHasStarted === 1 && obstaclePosition >= -OBSTACLE_WIDTH / 2) {
       obstacleID = setInterval(() => {
         setObstaclePosition((prev) => (prev -= UNIT * 3));
@@ -109,6 +109,7 @@ export const ObstacleProvider = ({
       obstaclePosition >= GAME_WIDTH / 5 - OBSTACLE_WIDTH &&
       (hasCollideWithTopObstacle || hasCollideWithBottomObstacle)
     ) {
+      overGame();
       restartObstacle();
     }
   }, [birdPosition]);

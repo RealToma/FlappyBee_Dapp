@@ -31,17 +31,28 @@ export const BirdProvider = ({ children }: IChildren) => {
   function stop() {}
 
   React.useEffect(() => {
-    let intervalID: number | undefined;
+    let intervalID: any;
 
     console.log(birdPosition);
-    console.log(GAME_HEIGHT - BIRD_SIZE);
-    if (gameHasStarted === 1 && birdPosition < GAME_HEIGHT - BIRD_SIZE) {
+    if (
+      gameHasStarted === 1 &&
+      birdPosition < GAME_HEIGHT - BIRD_SIZE - 125 - 28
+    ) {
       intervalID = setInterval(() => {
         setBirdPosition((prev) => {
           return prev + GRAVITY;
         });
       }, 24);
     } else {
+      restartBird();
+    }
+    if (
+      gameHasStarted === 1 &&
+      birdPosition > GAME_HEIGHT - BIRD_SIZE - 125 - 28
+    ) {
+      overGame();
+    }
+    if (gameHasStarted === 0) {
       restartBird();
     }
     return () => {
@@ -53,7 +64,6 @@ export const BirdProvider = ({ children }: IChildren) => {
     setBirdPosition(GAME_HEIGHT / 2);
     setBirdAngle(0);
     restartScore();
-    overGame()
     // restartGame();
   }
 
@@ -65,7 +75,11 @@ export const BirdProvider = ({ children }: IChildren) => {
     if (newBirdPosition + BIRD_SIZE < 0) {
       setBirdPosition(0);
     } else {
-      setBirdPosition(newBirdPosition);
+      if (gameHasStarted === 1) {
+        setBirdPosition(newBirdPosition);
+      } else {
+        return;
+      }
     }
   }
 
