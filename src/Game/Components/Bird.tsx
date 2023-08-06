@@ -10,7 +10,7 @@ const Bird = () => {
   const { gameHasStarted } = useGameSystem();
   const [birdFrame, setBirdFrame] = React.useState<number>(1);
   React.useEffect(() => {
-    if (gameHasStarted) {
+    if (gameHasStarted === 1) {
       const intervalID = setInterval(() => {
         setBirdFrame((prev) => (prev == 1 ? 2 : prev == 2 ? 3 : 1));
       }, 100);
@@ -36,7 +36,7 @@ interface IBirdStyled {
   top: number;
   left: number;
   size: number;
-  gameHasStarted: boolean;
+  gameHasStarted: number;
   angle: number;
 }
 

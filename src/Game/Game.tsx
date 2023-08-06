@@ -7,9 +7,10 @@ import "../style.css";
 import { Box } from "@mui/material";
 import styled from "@emotion/styled";
 import imgButtonSmall from "../assets/images/buttons/HomeSmall.png";
-import { FaPause } from "react-icons/fa";
+import { FaMedal, FaPause, FaShareAlt } from "react-icons/fa";
 import imgGameOver from "../assets/images/background/game over.png";
 import imgCoin from "../assets/images/icons/coinReward.png";
+import imgButtonStart from "../assets/images/buttons/HomeWide.png";
 
 const Game = () => {
   const { gameHasStarted } = useGameSystem();
@@ -74,12 +75,114 @@ const Game = () => {
                 </SectionBoardScore>
               </SectionInsideBoard>
             </SectionBoard>
+            <ButtonGroup>
+              <ButtonSocial>
+                <FaShareAlt />
+              </ButtonSocial>
+              <ButtonReply>Reply</ButtonReply>
+              <ButtonSocial>
+                <FaMedal />
+              </ButtonSocial>
+            </ButtonGroup>
           </SectionGameOver>
         )}
       </Scene>
     </Container>
   );
 };
+
+const ButtonReply = styled(Box)`
+  display: flex;
+  width: 320px;
+  height: 100px;
+  margin: 0px 30px;
+  justify-content: center;
+  align-items: center;
+  background-image: url(${imgButtonStart});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  font-family: "Rowdies";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 5em;
+  line-height: 90px;
+  /* identical to box height, or 129% */
+
+  text-align: center;
+
+  color: #511900;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s;
+  &:hover {
+    color: white;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    width: 300px;
+    height: 100px;
+  }
+  @media (max-width: 1024px) {
+    width: 280px;
+    height: 90px;
+  }
+  @media (max-width: 768px) {
+    width: 255px;
+    height: 75px;
+  }
+  @media (max-width: 390px) {
+    width: 170px;
+    height: 50px;
+  }
+`;
+
+const ButtonSocial = styled(Box)`
+  display: flex;
+  width: 100px;
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  background-image: url(${imgButtonSmall});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #511900;
+  font-size: 5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s;
+  &:hover {
+    color: white;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    width: 90px;
+  }
+  @media (max-width: 1024px) {
+    width: 80px;
+  }
+  @media (max-width: 768px) {
+    width: 70px;
+  }
+  @media (max-width: 390px) {
+    width: 55px;
+  }
+`;
+
+const ButtonGroup = styled(Box)`
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+`;
 
 const SectionDropScore = styled(Box)`
   display: flex;
