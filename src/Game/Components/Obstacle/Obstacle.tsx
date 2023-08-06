@@ -19,7 +19,7 @@ const Obstacle = () => {
   }, [birdPosition]);
 
   React.useEffect(() => {
-    if (!gameHasStarted) {
+    if (gameHasStarted === 0) {
       setBgPosition(0);
     }
   }, [gameHasStarted]);
@@ -27,7 +27,7 @@ const Obstacle = () => {
   return (
     <>
       <Obstacles />
-{/* 
+      {/* 
       <SectionFloor
         style={{
           backgroundPosition: `${bgPosition}px 0px`,

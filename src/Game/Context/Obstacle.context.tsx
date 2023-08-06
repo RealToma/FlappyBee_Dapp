@@ -83,7 +83,7 @@ export const ObstacleProvider = ({
 
   React.useEffect(() => {
     let obstacleID: number;
-    if (gameHasStarted && obstaclePosition >= -OBSTACLE_WIDTH / 2) {
+    if (gameHasStarted === 1 && obstaclePosition >= -OBSTACLE_WIDTH / 2) {
       obstacleID = setInterval(() => {
         setObstaclePosition((prev) => (prev -= UNIT * 3));
       }, 24);
@@ -91,7 +91,7 @@ export const ObstacleProvider = ({
       return () => clearInterval(obstacleID);
     } else {
       newObstacle();
-      if (gameHasStarted && firstObstaclePassed) {
+      if (gameHasStarted === 1 && firstObstaclePassed) {
         incrementScore();
       }
     }

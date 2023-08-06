@@ -1,75 +1,81 @@
-import React from "react"
-import { IChildren } from "../Types/utils"
-import { BIRD_SIZE, GAME_HEIGHT, GRAVITY, JUMP_SIZE } from "../Global"
-import { useGameSystem } from "./GameSystem.context"
-import { useScore } from "./Score.context"
-
+import React from "react";
+import { IChildren } from "../Types/utils";
+import { BIRD_SIZE, GAME_HEIGHT, GRAVITY, JUMP_SIZE } from "../Global";
+import { useGameSystem } from "./GameSystem.context";
+import { useScore } from "./Score.context";
 
 interface IBirdContext {
-  birdPosition: number
-  restartBird: () => void
-  jump: () => void
-  birdAngle: number
-  stop: () => void
+  birdPosition: number;
+  restartBird: () => void;
+  jump: () => void;
+  birdAngle: number;
+  stop: () => void;
 }
 
 const BirdContext = React.createContext<IBirdContext>({
   birdPosition: GAME_HEIGHT / 2,
-  restartBird: () => { },
-  jump: () => { },
+  restartBird: () => {},
+  jump: () => {},
   birdAngle: 0,
-  stop: () => { }
-})
+  stop: () => {},
+});
 
 export const BirdProvider = ({ children }: IChildren) => {
-  const [birdPosition, setBirdPosition] = React.useState<number>(GAME_HEIGHT / 2)
-  const { gameHasStarted, restartGame, startGame } = useGameSystem()
-  const [birdAngle, setBirdAngle] = React.useState<number>(0)
-  const { restartScore } = useScore()
-  function stop() {
-  }
+  const [birdPosition, setBirdPosition] = React.useState<number>(
+    GAME_HEIGHT / 2
+  );
+  const { gameHasStarted, restartGame, startGame, pauseGame, overGame } =
+    useGameSystem();
+  const [birdAngle, setBirdAngle] = React.useState<number>(0);
+  const { restartScore } = useScore();
+  function stop() {}
 
   React.useEffect(() => {
     let intervalID: number | undefined;
-    if (gameHasStarted && birdPosition < GAME_HEIGHT - BIRD_SIZE) {
+
+    console.log(birdPosition);
+    console.log(GAME_HEIGHT - BIRD_SIZE);
+    if (gameHasStarted === 1 && birdPosition < GAME_HEIGHT - BIRD_SIZE) {
       intervalID = setInterval(() => {
-        setBirdPosition(prev => {
-          return prev + GRAVITY
-        })
-      }, 24)
+        setBirdPosition((prev) => {
+          return prev + GRAVITY;
+        });
+      }, 24);
     } else {
-      restartGame()
-      restartBird()
+      restartBird();
     }
     return () => {
-      clearInterval(intervalID)
-    }
-  }, [birdPosition, gameHasStarted])
+      clearInterval(intervalID);
+    };
+  }, [birdPosition, gameHasStarted]);
 
   function restartBird() {
-    setBirdPosition(GAME_HEIGHT / 2)
-    setBirdAngle(0)
-    restartScore()
-    restartGame()
+    setBirdPosition(GAME_HEIGHT / 2);
+    setBirdAngle(0);
+    restartScore();
+    overGame()
+    // restartGame();
   }
 
   function jump() {
-    let newBirdPosition = birdPosition - JUMP_SIZE
-    if (!gameHasStarted) {
-      startGame()
+    let newBirdPosition = birdPosition - JUMP_SIZE;
+    if (gameHasStarted === 0) {
+      startGame();
     }
     if (newBirdPosition + BIRD_SIZE < 0) {
-      setBirdPosition(0)
+      setBirdPosition(0);
     } else {
-      setBirdPosition(newBirdPosition)
+      setBirdPosition(newBirdPosition);
     }
   }
 
+  return (
+    <BirdContext.Provider
+      value={{ stop, birdPosition, restartBird, jump, birdAngle }}
+    >
+      {children}
+    </BirdContext.Provider>
+  );
+};
 
-  return <BirdContext.Provider value={{ stop, birdPosition, restartBird, jump, birdAngle }}>
-    {children}
-  </BirdContext.Provider>
-}
-
-
-export const useBird = () => React.useContext(BirdContext)
+export const useBird = () => React.useContext(BirdContext);
