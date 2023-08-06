@@ -34,6 +34,9 @@ export const BirdProvider = ({ children }: IChildren) => {
     let intervalID: any;
 
     console.log(birdPosition);
+    if (gameHasStarted === 0) {
+      restartBird();
+    }
     if (
       gameHasStarted === 1 &&
       birdPosition < GAME_HEIGHT - BIRD_SIZE - 125 - 28
@@ -52,9 +55,7 @@ export const BirdProvider = ({ children }: IChildren) => {
     ) {
       overGame();
     }
-    if (gameHasStarted === 0) {
-      restartBird();
-    }
+
     return () => {
       clearInterval(intervalID);
     };

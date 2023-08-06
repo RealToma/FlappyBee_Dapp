@@ -1,7 +1,7 @@
 import { Scene, Score, Bird } from "./Components";
 import { Container } from "./Components/Container";
 import createObstacle from "./Components/Obstacle/createObstacle";
-import { useBird, useGameSystem, useObstacle, useScore } from "./Context";
+import { useGameSystem, useScore } from "./Context";
 import { GAME_WIDTH } from "./Global";
 import "../style.css";
 import { Box } from "@mui/material";

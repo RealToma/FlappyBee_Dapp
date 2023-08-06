@@ -48,6 +48,7 @@ interface IGameBoxStyled {
 }
 
 const GameBox = styled.div<IGameBoxStyled>`
+  display: flex;
   height: calc(100vh - 64px - 120px);
   /* height: ${(props) => props.height}px; */
   width: ${(props) => props.width}px;

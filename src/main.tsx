@@ -6,11 +6,7 @@ import { BirdProvider } from "./Game/Context/Bird.context";
 import { ObstacleProvider } from "./Game/Context/Obstacle.context";
 import { ScoreProvider } from "./Game/Context/Score.context";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-
-root.render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <GameSystemProvider>
       <ScoreProvider>
