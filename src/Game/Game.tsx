@@ -14,7 +14,7 @@ import imgButtonStart from "../assets/images/buttons/HomeWide.png";
 import imgCursorStart from "../assets/images/icons/cursorClickon.png";
 
 const Game = () => {
-  const { gameHasStarted, startGame } = useGameSystem();
+  const { gameHasStarted, startGame, restartGame } = useGameSystem();
   const { score, bestScore } = useScore();
 
   let increment = GAME_WIDTH / 2;
@@ -26,7 +26,7 @@ const Game = () => {
   const obstacles = [Obstacle1, Obstacle2];
 
   const handleReply = () => {
-    startGame();
+    restartGame();
   };
 
   return (
@@ -70,20 +70,21 @@ const Game = () => {
                   <SectionRewardCoin>
                     <img src={imgCoin} width={"90%"} alt="" />
                   </SectionRewardCoin>
-                  <SectionValue>{10}</SectionValue>
+                  <SectionValue>{score * 10}</SectionValue>
                 </SectionBoardReward>
                 <SectionBoardScore>
                   <SectionScore>
-                    <TextScoreDescription>SCORE</TextScoreDescription>
+                    <SectionBestMark>
+                      {score > bestScore ? <MarkNew>NEW</MarkNew> : <></>}
+
+                      <TextScoreDescription>SCORE</TextScoreDescription>
+                    </SectionBestMark>
                     <SectionDropScore>
                       <TextScore>{score}</TextScore>
                     </SectionDropScore>
                   </SectionScore>
                   <SectionBestScore>
-                    <SectionBestMark>
-                      <MarkNew>NEW</MarkNew>
-                      <TextScoreDescription>BEST</TextScoreDescription>
-                    </SectionBestMark>
+                    <TextScoreDescription>BEST</TextScoreDescription>
                     <SectionDropScore>
                       <TextScore>{bestScore}</TextScore>
                     </SectionDropScore>

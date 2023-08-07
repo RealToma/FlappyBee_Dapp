@@ -75,7 +75,6 @@ export const ObstacleProvider = ({
     setFirstObstaclePassed(false);
 
     restartBird();
-
     setObstacleHeight(0);
     setObstacleBottomHeight(0);
     setObstaclePosition(GAME_WIDTH + startPosition);

@@ -1,3 +1,3 @@
 # flappybird
  
-demo: [flappybird-one.vercel.app](https://flappybird-one.vercel.app/)
+demo: [flappybee-game-dapp.netlify.app](https://flappybee-game-dapp.netlify.app/play)

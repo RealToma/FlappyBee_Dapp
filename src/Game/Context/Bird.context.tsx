@@ -35,6 +35,7 @@ export const BirdProvider = ({ children }: IChildren) => {
 
     console.log(birdPosition);
     if (gameHasStarted === 0) {
+      restartScore();
       restartBird();
     }
     if (
@@ -64,7 +65,7 @@ export const BirdProvider = ({ children }: IChildren) => {
   function restartBird() {
     setBirdPosition(GAME_HEIGHT / 2);
     setBirdAngle(0);
-    restartScore();
+    // restartScore();
     // restartGame();
   }
 

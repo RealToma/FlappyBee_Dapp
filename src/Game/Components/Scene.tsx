@@ -16,10 +16,10 @@ const Scene = ({ children }: IScene) => {
   const { gameHasStarted } = useGameSystem();
   const [bgPosition, setBgPosition] = React.useState<number>(0);
   React.useEffect(() => {
-    if ( gameHasStarted === 1) {
+    if (gameHasStarted === 1) {
       let intervalID = setInterval(() => {
         setBgPosition((prev) => (prev += UNIT / 10));
-      }, 30);
+      }, 24);
 
       return () => clearInterval(intervalID);
     }
