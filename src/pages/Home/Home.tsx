@@ -9,15 +9,26 @@ import { AiFillLike } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useWeb3React } from "@web3-react/core";
 
 const Home = () => {
   const toastId: any = useRef(null);
-  const naviate = useNavigate();
+  const navigate = useNavigate();
+  const { account } = useWeb3React();
 
+  const handleStart = () => {
+    if (account === undefined || account === null) {
+      if (!toast.isActive(toastId.current)) {
+        toastId.current = toast.info("Please connect to your wallet first.");
+      }
+      return;
+    }
+    navigate("/game");
+  };
   // const handleAlert = () => {
-  //   if (!toast.isActive(toastId.current)) {
-  //     toastId.current = toast.info("🐝 Coming soon.");
-  //   }
+  // if (!toast.isActive(toastId.current)) {
+  //   toastId.current = toast.info("🐝 Coming soon.");
+  // }
   // };
 
   return (
@@ -32,7 +43,7 @@ const Home = () => {
       </SectionTitle>
       <ButtonStart
         onClick={() => {
-          naviate("/game");
+          handleStart();
         }}
       >
         Start
@@ -231,7 +242,5 @@ const SectionSocialButton = styled(Box)`
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 50px;
 `;
-
-
 
 export default Home;

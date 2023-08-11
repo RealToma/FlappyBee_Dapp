@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <GameSystemProvider>
       <ScoreProvider>
         <BirdProvider>
-          <App />
+            <App />
         </BirdProvider>
       </ScoreProvider>
     </GameSystemProvider>

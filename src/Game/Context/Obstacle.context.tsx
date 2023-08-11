@@ -88,8 +88,7 @@ export const ObstacleProvider = ({
       }, 24);
 
       return () => clearInterval(obstacleID);
-    } 
-    else {
+    } else {
       newObstacle();
       if (gameHasStarted === 1 && firstObstaclePassed) {
         incrementScore();

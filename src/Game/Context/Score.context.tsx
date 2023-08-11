@@ -24,7 +24,7 @@ export const ScoreProvider = ({ children }: IChildren) => {
   }
 
   function restartScore() {
-    if (score >= bestScore) {
+    if (score > bestScore) {
       setBestScore(score);
     }
     setScore(0);
