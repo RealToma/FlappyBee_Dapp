@@ -59,5 +59,6 @@ const GameBox = styled.div<IGameBoxStyled>`
   background-size: auto 100%;
   background-position: ${(props) => props.moveBG}%;
   position: relative;
+  cursor: pointer;
   overflow: hidden;
 `;
