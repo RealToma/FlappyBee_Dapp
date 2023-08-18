@@ -584,6 +584,7 @@ const ModalBox = styled(Box)`
   animation: back_animation1 0.5s 1;
   animation-timing-function: ease;
   animation-fill-mode: forwards;
+  z-index: 100000;
   @keyframes back_animation1 {
     0% {
       opacity: 0%;

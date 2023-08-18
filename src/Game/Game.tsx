@@ -48,7 +48,7 @@ const Game = () => {
               startGame();
             }}
           >
-            <TextGetReady>GET READY !</TextGetReady>
+            <TextGetReady>GET READY!</TextGetReady>
             <ImgCursorStart>
               <img src={imgCursorStart} width={"100%"} alt="" />
             </ImgCursorStart>
@@ -467,7 +467,7 @@ const SectionGameOver = styled(Box)`
   background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
   align-items: center;
-  z-index: 910000;
+  z-index: 91000;
   flex-direction: column;
 `;
 

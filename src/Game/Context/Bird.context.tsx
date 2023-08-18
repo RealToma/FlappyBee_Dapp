@@ -33,7 +33,6 @@ export const BirdProvider = ({ children }: IChildren) => {
   React.useEffect(() => {
     let intervalID: any;
 
-    console.log(birdPosition);
     if (gameHasStarted === 0) {
       restartScore();
       restartBird();
@@ -54,6 +53,7 @@ export const BirdProvider = ({ children }: IChildren) => {
       gameHasStarted === 1 &&
       birdPosition > GAME_HEIGHT - BIRD_SIZE - 125 - 28
     ) {
+      console.log("dead!")
       overGame();
     }
 

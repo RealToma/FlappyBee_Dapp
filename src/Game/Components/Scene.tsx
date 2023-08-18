@@ -16,7 +16,6 @@ const Scene = ({ children }: IScene) => {
   const { gameHasStarted } = useGameSystem();
   const [bgPosition, setBgPosition] = React.useState<number>(0);
 
-
   React.useEffect(() => {
     if (gameHasStarted === 1) {
       let intervalID = setInterval(() => {
