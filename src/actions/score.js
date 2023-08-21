@@ -1,14 +1,10 @@
 import axios from "axios";
 
-export const actionSetScore = (account, score, scoreBest) => {
-  console.log("address", account)
-  console.log("address", score)
-  console.log("address", scoreBest)
+export const actionSetScore = (account, score) => {
   return axios
     .post("/api/score/set_score", {
-      addressWallet: address,
+      addressWallet: account,
       score: score,
-      scoreBest: scoreBest,
     })
     .then((res) => {
       return res.data;

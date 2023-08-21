@@ -52,7 +52,7 @@ const ScoreElement = styled(Box)`
     top: 130px;
     left: 30px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     width: 50px;
     height: 50px;
     top: 110px;

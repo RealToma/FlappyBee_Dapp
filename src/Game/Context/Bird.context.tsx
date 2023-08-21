@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import { IChildren } from "../Types/utils";
 import { BIRD_SIZE, GAME_HEIGHT, GRAVITY, JUMP_SIZE } from "../Global";
 import { useGameSystem } from "./GameSystem.context";
 import { useScore } from "./Score.context";
+import { useWeb3React } from "@web3-react/core";
+import { actionSetScore } from "../../actions/score.js";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface IBirdContext {
   birdPosition: number;
@@ -27,7 +31,9 @@ export const BirdProvider = ({ children }: IChildren) => {
   const { gameHasStarted, restartGame, startGame, pauseGame, overGame } =
     useGameSystem();
   const [birdAngle, setBirdAngle] = React.useState<number>(0);
-  const { restartScore } = useScore();
+  const { score, restartScore } = useScore();
+  const toastId: any = useRef(null);
+  const { account } = useWeb3React();
   function stop() {}
 
   React.useEffect(() => {
@@ -53,8 +59,17 @@ export const BirdProvider = ({ children }: IChildren) => {
       gameHasStarted === 1 &&
       birdPosition > GAME_HEIGHT - BIRD_SIZE - 125 - 28
     ) {
-      console.log("dead!")
+      console.log("dead!");
       overGame();
+      if (account === undefined || account === null) {
+        if (!toast.isActive(toastId.current)) {
+          toastId.current = toast.info("Please connect to your wallet first.");
+        }
+        return;
+      } else {
+        console.log("score:", score);
+        actionSetScore(account, score);
+      }
     }
 
     return () => {

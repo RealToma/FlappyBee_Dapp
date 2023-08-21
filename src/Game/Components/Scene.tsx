@@ -60,4 +60,13 @@ const GameBox = styled.div<IGameBoxStyled>`
   position: relative;
   cursor: pointer;
   overflow: hidden;
+
+  transition: 0.3s;
+
+  @media (max-width: 768px) {
+    height: calc(100vh - 64px - 100px);
+  }
+  @media (max-width: 390px) {
+    height: calc(100vh - 60px - 90px);
+  }
 `;

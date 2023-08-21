@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { IChildren } from "../Types/utils";
 import {
   GAME_HEIGHT,
@@ -11,6 +11,10 @@ import {
 import { useGameSystem } from "./GameSystem.context";
 import { useScore } from "./Score.context";
 import { useBird } from "./Bird.context";
+import { useWeb3React } from "@web3-react/core";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { actionSetScore } from "../../actions/score.js";
 
 interface IObstacleContext {
   obstacleHeight: number;
@@ -47,10 +51,12 @@ export const ObstacleProvider = ({
     React.useState<boolean>(false);
 
   const { gameHasStarted, restartGame, overGame } = useGameSystem();
-  const { incrementScore, restartScore } = useScore();
+  const { score, incrementScore, restartScore } = useScore();
+  const { account } = useWeb3React();
   const { birdPosition, restartBird, stop } = useBird();
 
   const [stopObstacle, setStopObstacle] = React.useState<boolean>(false);
+  const toastId: any = useRef(null);
 
   function height() {
     return Math.random() * (GAME_HEIGHT - OBSTACLE_GAP);
@@ -110,6 +116,16 @@ export const ObstacleProvider = ({
     ) {
       overGame();
       restartObstacle();
+
+      if (account === undefined || account === null) {
+        if (!toast.isActive(toastId.current)) {
+          toastId.current = toast.info("Please connect to your wallet first.");
+        }
+        return;
+      } else {
+        console.log("score:", score);
+        actionSetScore(account, score);
+      }
     }
   }, [birdPosition]);
 

@@ -186,10 +186,12 @@ const ButtonReply = styled(Box)`
   @media (max-width: 768px) {
     width: 255px;
     height: 75px;
+    margin: 0px 20px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     width: 170px;
     height: 50px;
+    margin: 0px 15px;
   }
 `;
 
@@ -225,7 +227,7 @@ const ButtonSocial = styled(Box)`
   @media (max-width: 768px) {
     width: 70px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     width: 55px;
   }
 `;
@@ -233,7 +235,14 @@ const ButtonSocial = styled(Box)`
 const ButtonGroup = styled(Box)`
   display: flex;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 30px;
+  transition: 0.3s;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
+  @media (max-width: 500px) {
+  }
 `;
 
 const SectionDropScore = styled(Box)`
@@ -256,6 +265,22 @@ const MarkNew = styled(Box)`
   font-weight: 700;
   line-height: 46px;
   margin-right: 20px;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    width: 62px;
+    height: 34px;
+    margin-right: 15px;
+  }
+  @media (max-width: 500px) {
+    width: 50px;
+    height: 26px;
+    margin-right: 10px;
+  }
+  @media (max-width: 390px) {
+    width: 41px;
+    height: 21px;
+  }
 `;
 
 const SectionBestMark = styled(Box)`
@@ -266,10 +291,9 @@ const SectionBestMark = styled(Box)`
 const TextScoreDescription = styled(Box)`
   text-align: right;
   font-family: Lato;
-  font-size: 36px;
+  font-size: 3.6rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 46px;
   background: var(--color-1, linear-gradient(180deg, #f90 0%, #d82005 100%));
   background-clip: text;
   -webkit-background-clip: text;
@@ -282,7 +306,6 @@ const TextScore = styled(Box)`
   font-size: 9rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 80px; /* 88.889% */
   color: #511900;
 `;
 
@@ -297,6 +320,19 @@ const SectionBestScore = styled(Box)`
   flex-direction: column;
   align-items: flex-end;
   margin-top: 40px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+  }
+  @media (max-width: 1024px) {
+    margin-top: 35px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
+  @media (max-width: 390px) {
+    margin-top: 20px;
+  }
 `;
 
 const SectionValue = styled(Box)`
@@ -340,6 +376,24 @@ const SectionRewardCoin = styled(Box)`
   background: linear-gradient(rgba(255, 153, 0, 1), rgba(216, 32, 5, 1));
   margin-top: 15px;
   margin-bottom: 30px;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    width: 87px;
+    height: 87px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 500px) {
+    width: 67px;
+    height: 67px;
+  }
+  @media (max-width: 390px) {
+    width: 57px;
+    height: 57px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
 `;
 
 const TextReward = styled(Box)`
@@ -348,7 +402,6 @@ const TextReward = styled(Box)`
   font-size: 4rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 50px;
 `;
 
 const SectionBoardScore = styled(Box)`
@@ -372,8 +425,18 @@ const SectionInsideBoard = styled(Box)`
   border-radius: 8px;
   border: 5px solid #511900;
   background: radial-gradient(50% 50% at 50% 50%, #fce9d5 0%, #fad6b0 100%);
-  padding: 40px;
+  padding: 30px;
   box-sizing: border-box;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    padding: 20px;
+    border: 4px solid #511900;
+  }
+  @media (max-width: 500px) {
+    padding: 20px 20px;
+    border: 3px solid #511900;
+  }
 `;
 
 const SectionBoard = styled(Box)`
@@ -385,7 +448,25 @@ const SectionBoard = styled(Box)`
       border-box;
   border-radius: 20px;
   border: 12px solid transparent;
-  margin-top: 50px;
+  margin-top: 30px;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    width: 500px;
+    margin-top: 20px;
+  }
+  @media (max-width: 600px) {
+    width: 400px;
+  }
+  @media (max-width: 500px) {
+    width: 350px;
+  }
+  @media (max-width: 390px) {
+    width: 320px;
+  }
+  @media (max-width: 350px) {
+    width: 300px;
+  }
 `;
 
 const SectionGameStart = styled(Box)`
@@ -412,7 +493,24 @@ const SectionGamePause = styled(Box)`
 
 const ImgGameOver = styled(Box)`
   display: flex;
-  width: 560px;
+  width: 500px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    width: 450px;
+  }
+  @media (max-width: 1024px) {
+    width: 400px;
+  }
+  @media (max-width: 768px) {
+    width: 350px;
+  }
+  @media (max-width: 500px) {
+    width: 260px;
+  }
+  @media (max-width: 350px) {
+    width: 230px;
+  }
 `;
 
 const ButtonPause = styled(Box)`
@@ -451,7 +549,7 @@ const ButtonPause = styled(Box)`
     top: 130px;
     right: 30px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     width: 50px;
     height: 50px;
     top: 110px;

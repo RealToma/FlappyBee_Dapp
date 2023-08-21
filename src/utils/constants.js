@@ -1,4 +1,4 @@
-const IS_MAINNET = process.env.REACT_APP_NETWORK === 'mainnet';
+const IS_MAINNET = import.meta.env.VITE_APP_NETWORK === 'mainnet';
 
 const CONTRACTS = IS_MAINNET
   ? {
