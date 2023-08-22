@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b50ec6f3.css",
+    "main.js": "/static/js/main.37a0779c.js",
+    "static/js/563.1d645fe9.chunk.js": "/static/js/563.1d645fe9.chunk.js",
+    "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
+    "static/js/778.fdec32bc.chunk.js": "/static/js/778.fdec32bc.chunk.js",
+    "static/media/bgAirdrop.png": "/static/media/bgAirdrop.8e94ac63f5bd318cd941.png",
+    "static/media/BGHome.png": "/static/media/BGHome.c20685ce6e266b6b6c9c.png",
+    "static/media/airdrop.png": "/static/media/airdrop.5210044f29ab1f98d348.png",
+    "static/media/metamask.png": "/static/media/metamask.02e3ec2750d2107176f5.png",
+    "static/media/game over.png": "/static/media/game over.3079ebcc024c844d882d.png",
+    "static/media/TopFlowers.png": "/static/media/TopFlowers.1c25468452a6bad64455.png",
+    "static/media/pipe.png": "/static/media/pipe.c012cc55f45026713ad8.png",
+    "static/media/Bee.png": "/static/media/Bee.5bc5925cbd776b7e8451.png",
+    "static/media/HomeWide.png": "/static/media/HomeWide.1d10a651d11c10cf10af.png",
+    "static/media/Bee-01.png": "/static/media/Bee-01.79c8e64d624457035e64.png",
+    "static/media/Bee-02.png": "/static/media/Bee-02.de6d815550eb00ce3436.png",
+    "static/media/Bee-03.png": "/static/media/Bee-03.112b3b46031ea605964b.png",
+    "static/media/coinReward.png": "/static/media/coinReward.dbb2ff0fdb21b9c0a9ce.png",
+    "static/media/floor.png": "/static/media/floor.138d35eea73f8d30467c.png",
+    "static/media/walletConnect.svg": "/static/media/walletConnect.488dc369fbb265f431a7f8e741623b76.svg",
+    "static/media/HomeSmall.png": "/static/media/HomeSmall.82bebf0155559005e43c.png",
+    "static/media/cursorClickon.png": "/static/media/cursorClickon.d0c6db7c1d71413e978e.png",
+    "static/media/GreenWide.svg": "/static/media/GreenWide.fba4f2011fe14af9b4bff83140843109.svg",
+    "static/media/leaderboardTop.svg": "/static/media/leaderboardTop.edf36bd5774ea1b7f472eb5f8e169502.svg",
+    "static/media/leaderboardStats.svg": "/static/media/leaderboardStats.2a90fa3898e28d0ff93a2228c7df9a14.svg",
+    "static/media/leaderboardNormal.svg": "/static/media/leaderboardNormal.f23e8a57bf53a42aa7731f24a3f70cdb.svg",
+    "index.html": "/index.html",
+    "main.b50ec6f3.css.map": "/static/css/main.b50ec6f3.css.map",
+    "main.37a0779c.js.map": "/static/js/main.37a0779c.js.map",
+    "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map",
+    "778.fdec32bc.chunk.js.map": "/static/js/778.fdec32bc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b50ec6f3.css",
+    "static/js/main.37a0779c.js"
+  ]
+}
