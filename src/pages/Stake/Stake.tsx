@@ -93,14 +93,14 @@ const Stake = () => {
             </SectionGroupValue>
           </SectionEachState>
         </SectionStakingState>
-        {/* <SectionStakingOptions>
+        <SectionStakingOptions>
           <TextSatkingOptions>Staking Options</TextSatkingOptions>
           <SectionOptions>
             {dataStakingOptions.map((each, index) => {
               return <CardStakingOption data={each} key={index} />;
             })}
           </SectionOptions>
-        </SectionStakingOptions> */}
+        </SectionStakingOptions>
       </SectionContent>
     </StyledComponent>
   );
