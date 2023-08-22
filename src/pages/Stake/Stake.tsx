@@ -93,14 +93,14 @@ const Stake = () => {
             </SectionGroupValue>
           </SectionEachState>
         </SectionStakingState>
-        <SectionStakingOptions>
+        {/* <SectionStakingOptions>
           <TextSatkingOptions>Staking Options</TextSatkingOptions>
           <SectionOptions>
             {dataStakingOptions.map((each, index) => {
               return <CardStakingOption data={each} key={index} />;
             })}
           </SectionOptions>
-        </SectionStakingOptions>
+        </SectionStakingOptions> */}
       </SectionContent>
     </StyledComponent>
   );
@@ -309,14 +309,24 @@ const SectionStakingState = styled(Box)`
   @media (max-width: 1440px) {
     grid-column-gap: 45px;
   }
+  @media (max-width: 1439px) {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+  }
   @media (max-width: 1200px) {
     grid-column-gap: 20px;
+    grid-row-gap: 20px;
   }
   @media (max-width: 768px) {
-    padding: 40px 20px 70px 20px;
+    padding: 20px 20px 50px 20px;
+  }
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    padding: 1px 10px 40px 10px;
   }
   @media (max-width: 390px) {
-    padding: 30px 10px 50px 10px;
+    padding: 0px 10px 30px 10px;
   }
 `;
 
@@ -339,18 +349,18 @@ const SectionEachState = styled(Box)`
 
   transition: all 0.3s;
   @media (max-width: 1600px) {
+    padding: 35px;
   }
   @media (max-width: 1440px) {
     padding: 30px;
   }
   @media (max-width: 1024px) {
-    padding: 20px;
+    padding: 26px;
   }
   @media (max-width: 768px) {
-    padding: 15px;
+    padding: 24px;
   }
   @media (max-width: 390px) {
-    padding: 10px;
   }
 `;
 
@@ -367,6 +377,23 @@ const SectionGroupValue = styled(Box)`
   display: flex;
   width: 100%;
   margin-top: 80px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    margin-top: 60px;
+  }
+  @media (max-width: 1024px) {
+    margin-top: 40px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
+  @media (max-width: 500px) {
+    margin-top: 20px;
+  }
+  @media (max-width: 390px) {
+    margin-top: 10px;
+  }
 `;
 
 const SectionEachValue = styled(Box)`
