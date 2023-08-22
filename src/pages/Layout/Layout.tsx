@@ -46,7 +46,7 @@ const Layout = ({ children }: any) => {
       }
     } catch (ex) {
       //   setConnected(false);
-      // NotificationManager.error(
+      // NotificationManager.warning(
       //   "Failed to switch to " + NETWORK_NAME + " network.",
       //   "ERROR",
       //   3000

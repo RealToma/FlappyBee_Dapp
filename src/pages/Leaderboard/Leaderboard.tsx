@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgButtonPlay from "../../assets/images/buttons/HomeWide.png";
@@ -14,13 +14,11 @@ import imgLeaderboardStas from "../../assets/images/background/leaderboardStats.
 import { actionGetAllScores } from "../../actions/score";
 import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { NotificationManager } from "react-notifications";
 
 const Leaderboard = () => {
   const navigate = useNavigate();
   const { account } = useWeb3React();
-  const toastId: any = useRef(null);
   const [dataAllScores, setDataAllScores] = useState([]);
   const [dataMyScores, setDataMyScores]: any = useState({
     average: 0,
@@ -42,10 +40,7 @@ const Leaderboard = () => {
 
   const handleConnectWallet = () => {
     if (account === undefined) {
-      if (!toast.isActive(toastId.current)) {
-        toastId.current = toast.warning("Please connect to your wallet first.");
-      }
-      return;
+      return NotificationManager.warning("Please connect your wallet.", "", 3000);
     }
   };
   useEffect(() => {

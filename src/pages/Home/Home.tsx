@@ -6,22 +6,17 @@ import imgButtonStart from "../../assets/images/buttons/HomeWide.png";
 import imgLogoBee from "../../assets/images/Bee.png";
 import { FaShareAlt } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
-import { toast } from "react-toastify";
-import { useRef } from "react";
+import { NotificationManager } from "react-notifications";
 import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 
 const Home = () => {
-  const toastId: any = useRef(null);
   const navigate = useNavigate();
   const { account } = useWeb3React();
 
   const handleStart = () => {
     if (account === undefined || account === null) {
-      if (!toast.isActive(toastId.current)) {
-        toastId.current = toast.warning("Please connect to your wallet first.");
-      }
-      return;
+      return NotificationManager.warning("Please connect your wallet.", "", 3000);
     }
     navigate("/game");
   };

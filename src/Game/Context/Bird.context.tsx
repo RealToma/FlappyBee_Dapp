@@ -5,8 +5,7 @@ import { useGameSystem } from "./GameSystem.context";
 import { useScore } from "./Score.context";
 import { useWeb3React } from "@web3-react/core";
 import { actionSetScore } from "../../actions/score";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { NotificationManager } from "react-notifications";
 
 interface IBirdContext {
   birdPosition: number;
@@ -60,12 +59,11 @@ export const BirdProvider = ({ children }: IChildren) => {
       console.log("dead!");
       overGame();
       if (account === undefined || account === null) {
-        if (!toast.isActive(toastId.current)) {
-          toastId.current = toast.warning(
-            "Please connect to your wallet first."
-          );
-        }
-        return;
+        return NotificationManager.warning(
+          "Please connect your wallet.",
+          "",
+          3000
+        );
       } else {
         console.log("score:", score);
         actionSetScore(account, score);

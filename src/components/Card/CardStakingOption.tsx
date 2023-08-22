@@ -4,8 +4,7 @@ import { useState, useRef } from "react";
 import { MdClose } from "react-icons/md";
 import imgCoinStake from "../../assets/images/icons/coinReward.png";
 import { useWeb3React } from "@web3-react/core";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { NotificationManager } from "react-notifications";
 
 const CardStakingOption = ({ data }: any) => {
   const [open, setOpen] = useState(false);
@@ -28,15 +27,9 @@ const CardStakingOption = ({ data }: any) => {
 
   const handleConfirm = () => {
     if (account === undefined) {
-      if (!toast.isActive(toastId.current)) {
-        toastId.current = toast.warning("Please connect to your wallet first.");
-      }
-      return;
+      return NotificationManager.warning("Please connect your wallet.", "", 3000);
     }
-    if (!toast.isActive(toastId.current)) {
-      toastId.current = toast.info("Coming soon.");
-    }
-    return;
+    return NotificationManager.info("Coming soon.", "", 3000);
   };
 
   return (

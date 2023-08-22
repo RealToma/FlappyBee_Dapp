@@ -54,3 +54,10 @@ html {
   background-color: #00583a;
   /* border-radius: 3px; */
 }
+
+.notification-container {
+  font-family: Lato;
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+}
