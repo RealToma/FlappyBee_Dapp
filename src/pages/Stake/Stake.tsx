@@ -180,7 +180,7 @@ const SectionButtonGroup = styled(Box)`
 
   transition: 0.3s;
   @media (max-width: 500px) {
-    flex-direction: column;
+    /* flex-direction: column; */
   }
 `;
 
@@ -223,12 +223,16 @@ const ButtonPlay = styled(Box)`
   }
   @media (max-width: 768px) {
     width: 200px;
-    height: 55px;
+    height: 60px;
   }
 
   @media (max-width: 500px) {
-    margin-right: unset;
-    margin-bottom: 20px;
+    width: 150px;
+    height: 45px;
+  }
+  @media (max-width: 500px) {
+    width: 135px;
+    height: 40px;
   }
 `;
 
@@ -271,6 +275,14 @@ const ButtonHome = styled(Box)`
   @media (max-width: 768px) {
     width: 200px;
     height: 55px;
+  }
+  @media (max-width: 500px) {
+    width: 150px;
+    height: 45px;
+  }
+  @media (max-width: 500px) {
+    width: 135px;
+    height: 40px;
   }
 `;
 
