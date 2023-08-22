@@ -19,7 +19,7 @@ const Home = () => {
   const handleStart = () => {
     if (account === undefined || account === null) {
       if (!toast.isActive(toastId.current)) {
-        toastId.current = toast.info("Please connect to your wallet first.");
+        toastId.current = toast.warning("Please connect to your wallet first.");
       }
       return;
     }

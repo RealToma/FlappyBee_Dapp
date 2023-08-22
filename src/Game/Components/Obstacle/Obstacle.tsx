@@ -27,13 +27,13 @@ const Obstacle = () => {
   return (
     <>
       <Obstacles />
-      {/* 
+
       <SectionFloor
         style={{
           backgroundPosition: `${bgPosition}px 0px`,
         }}
-      ></SectionFloor> */}
-      {/* <SectionTopFlower
+      ></SectionFloor>
+      {/* {/* <SectionTopFlower
         style={{
           backgroundPosition: `${bgPosition}px 0px`,
         }}
@@ -103,6 +103,13 @@ const SectionFloor = styled.div`
   background-image: url(${imgFloor});
   background-size: 100% 100%;
   z-index: 3000;
+
+  @media (max-width: 768px) {
+    height: 50px;
+  }
+  @media (max-width: 390px) {
+    height: 40px;
+  }
 `;
 
 const SectionTopFlower = styled(Box)`

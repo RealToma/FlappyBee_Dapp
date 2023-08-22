@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import "./style.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Game from "./Game/Game";
@@ -12,6 +11,7 @@ import Rewards from "./pages/Rewards/Rewards";
 import Stake from "./pages/Stake/Stake";
 import Settings from "./pages/Settings/Settings";
 import Airdrop from "./pages/Airdrop/Airdop";
+import "./actions/baseURL";
 
 const App = () => {
   return (

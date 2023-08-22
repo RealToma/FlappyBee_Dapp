@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
 import { GAME_HEIGHT, GAME_WIDTH, UNIT } from "../Global";
-
+import { ReactNode } from "react";
 import { useBird } from "../Context/Bird.context";
 import bg from "../../assets/images/background/BGHome.png";
 import React from "react";
 import { useGameSystem } from "../Context";
-import { ReactNode } from "react";
 
 interface IScene {
   children: ReactNode;
@@ -50,7 +49,7 @@ interface IGameBoxStyled {
 
 const GameBox = styled.div<IGameBoxStyled>`
   display: flex;
-  height: calc(100vh - 64px - 120px);
+  height: calc(100vh - 120px);
   /* height: ${(props) => props.height}px; */
   width: ${(props) => props.width}px;
   background-color: #03a9f4;
@@ -64,9 +63,9 @@ const GameBox = styled.div<IGameBoxStyled>`
   transition: 0.3s;
 
   @media (max-width: 768px) {
-    height: calc(100vh - 64px - 100px);
+    height: calc(100vh - 100px);
   }
   @media (max-width: 390px) {
-    height: calc(100vh - 60px - 90px);
+    height: calc(100vh - 90px);
   }
 `;

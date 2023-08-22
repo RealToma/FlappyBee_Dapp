@@ -14,7 +14,7 @@ import { useBird } from "./Bird.context";
 import { useWeb3React } from "@web3-react/core";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { actionSetScore } from "../../actions/score.js";
+import { actionSetScore } from "../../actions/score";
 
 interface IObstacleContext {
   obstacleHeight: number;

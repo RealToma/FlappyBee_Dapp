@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const API_PORT = process.env.VITE_APP_PORT_API;
+const API_PORT = process.env.REACT_APP_PORT_API;
 const app = express();
 var http = require("http").createServer(app);
 var io = require("socket.io")(http);

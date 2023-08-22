@@ -4,7 +4,7 @@ import { BIRD_SIZE, GAME_HEIGHT, GRAVITY, JUMP_SIZE } from "../Global";
 import { useGameSystem } from "./GameSystem.context";
 import { useScore } from "./Score.context";
 import { useWeb3React } from "@web3-react/core";
-import { actionSetScore } from "../../actions/score.js";
+import { actionSetScore } from "../../actions/score";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -52,8 +52,6 @@ export const BirdProvider = ({ children }: IChildren) => {
           return prev + GRAVITY;
         });
       }, 24);
-    } else {
-      restartBird();
     }
     if (
       gameHasStarted === 1 &&
@@ -63,7 +61,9 @@ export const BirdProvider = ({ children }: IChildren) => {
       overGame();
       if (account === undefined || account === null) {
         if (!toast.isActive(toastId.current)) {
-          toastId.current = toast.info("Please connect to your wallet first.");
+          toastId.current = toast.warning(
+            "Please connect to your wallet first."
+          );
         }
         return;
       } else {

@@ -12,8 +12,8 @@ const Bird = () => {
   React.useEffect(() => {
     if (gameHasStarted === 1) {
       const intervalID = setInterval(() => {
-        setBirdFrame((prev) => (prev == 1 ? 2 : prev == 2 ? 3 : 1));
-      }, 100);
+        setBirdFrame((prev) => (prev === 1 ? 2 : prev === 2 ? 3 : 1));
+      }, 70);
       return () => clearInterval(intervalID);
     }
   }, [gameHasStarted]);
@@ -36,7 +36,7 @@ interface IBirdStyled {
   top: number;
   left: number;
   size: number;
-  gameHasStarted: number;
+  gameHasStarted: any;
   angle: number;
 }
 

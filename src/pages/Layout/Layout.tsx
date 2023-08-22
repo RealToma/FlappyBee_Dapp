@@ -129,11 +129,7 @@ const Layout = ({ children }: any) => {
         </SectionWalletConnect>
       </SectionHeader>
       <SectionContent>{children}</SectionContent>
-      {flagLink === 0 || flagLink === 1 ? (
-        <SectionFooter></SectionFooter>
-      ) : (
-        <></>
-      )}
+      {flagLink === 0 ? <SectionFooter></SectionFooter> : <></>}
 
       <Slide in={flagClickedMenu} direction={"right"}>
         <SectionMobileMenu>
@@ -195,7 +191,7 @@ const Layout = ({ children }: any) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        BackdropComponent={backdropstyled}
+        // BackdropComponent={backdropstyled}
       >
         <ModalBox>
           <UpText>Select Wallet</UpText>
@@ -425,7 +421,7 @@ const SectionWalletConnect = styled(Box)`
   }
 `;
 
-const LinkEach = styled(Box)`
+const LinkEach = styled(Box)<any>`
   display: flex;
   width: fit-content;
   padding: 0px 10px;
@@ -472,7 +468,7 @@ const LinkEach = styled(Box)`
   }
 `;
 
-const LinkMobileEach = styled(Box)`
+const LinkMobileEach = styled(Box)<any>`
   display: flex;
   width: 100%;
   height: 40px;
@@ -569,7 +565,7 @@ const ModalBox = styled(Box)`
   flex-direction: column;
   background-color: white;
   border: none;
-  position: relative;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -584,7 +580,7 @@ const ModalBox = styled(Box)`
   animation: back_animation1 0.5s 1;
   animation-timing-function: ease;
   animation-fill-mode: forwards;
-  z-index: 100000;
+  z-index: 9999 !important;
   @keyframes back_animation1 {
     0% {
       opacity: 0%;

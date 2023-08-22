@@ -1,13 +1,130 @@
+import { useEffect, useState, useRef } from "react";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgButtonPlay from "../../assets/images/buttons/HomeWide.png";
 import imgButtonHome from "../../assets/images/buttons/GreenWide.svg";
 import TableLeaderboard from "../../components/TableLeaderboard";
 import { dataAllTime } from "../../data/Leaderboard";
-import { shortAddress } from "../../libs/Functions";
+import {
+  shortAddress,
+  sort24hScores,
+  sortAllTimeScores,
+} from "../../libs/Functions";
 import imgLeaderboardStas from "../../assets/images/background/leaderboardStats.svg";
+import { actionGetAllScores } from "../../actions/score";
+import { useNavigate } from "react-router-dom";
+import { useWeb3React } from "@web3-react/core";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Leaderboard = () => {
+  const navigate = useNavigate();
+  const { account } = useWeb3React();
+  const toastId: any = useRef(null);
+  const [dataAllScores, setDataAllScores] = useState([]);
+  const [dataMyScores, setDataMyScores]: any = useState({
+    average: 0,
+    best: 0,
+    record: 0,
+    rank: 0,
+  });
+
+  const [dataAllTimeScores, setDataAllTimeScores]: any = useState({
+    averageScore: 0,
+    bestScore: 0,
+    recordTotal: 0,
+    bestPlayer: "",
+  });
+
+  const isFloat = (value: any) => {
+    return Number(value) === value && value % 1 !== 0;
+  };
+
+  const handleConnectWallet = () => {
+    if (account === undefined) {
+      if (!toast.isActive(toastId.current)) {
+        toastId.current = toast.warning("Please connect to your wallet first.");
+      }
+      return;
+    }
+  };
+  useEffect(() => {
+    actionGetAllScores().then((res) => {
+      // console.log(res);
+      if (res.flagSuccess) {
+        let tempDataAllScores: any = [];
+        let tempDataMyScores: any = [];
+        for (var i = 0; i < res.dataScores.length; i++) {
+          tempDataAllScores.push(res.dataScores[i]);
+
+          if (account !== undefined) {
+            if (res.dataScores[i].addressWallet === account) {
+              tempDataMyScores.push(res.dataScores[i]);
+            }
+          }
+        }
+
+        setDataAllScores(tempDataAllScores);
+
+        // handle all record
+        let averageAll, bestScoreAll, recordAll, bestPlayerAll;
+        let totalScoreAll = 0;
+        for (var k = 0; k < tempDataAllScores.length; k++) {
+          totalScoreAll += tempDataAllScores[k].score;
+        }
+        averageAll = isFloat(totalScoreAll / tempDataAllScores.length)
+          ? (totalScoreAll / tempDataAllScores.length).toFixed(3)
+          : totalScoreAll / tempDataAllScores.length;
+        let tempSortDataAllScores: any = [];
+        tempSortDataAllScores = tempDataAllScores.sort(
+          (a: any, b: any) => b.score - a.score
+        );
+        bestScoreAll = tempSortDataAllScores[0]?.score;
+        bestPlayerAll = tempSortDataAllScores[0]?.addressWallet;
+
+        recordAll = tempDataAllScores.length;
+
+        let objectDataAllScores = {
+          averageScore: averageAll,
+          bestScore: bestScoreAll,
+          recordTotal: recordAll,
+          bestPlayer: bestPlayerAll,
+        };
+        setDataAllTimeScores(objectDataAllScores);
+
+        // handle my record
+        let averageMy, bestMy, recordMy, rankMy;
+        let totalScoreMy = 0;
+        for (var j = 0; j < tempDataMyScores.length; j++) {
+          totalScoreMy += tempDataMyScores[j].score;
+        }
+        averageMy = isFloat(totalScoreMy / tempDataMyScores.length)
+          ? (totalScoreMy / tempDataMyScores.length).toFixed(3)
+          : totalScoreMy / tempDataMyScores.length;
+
+        let tempSortDataMyAllScores: any = [];
+        tempSortDataMyAllScores = tempDataMyScores.sort(
+          (a: any, b: any) => b.score - a.score
+        );
+        bestMy = tempSortDataMyAllScores[0]?.score;
+        recordMy = tempDataMyScores.length;
+        // rankMy =
+        let objectDataMyScores = {
+          average: averageMy,
+          best: bestMy,
+          record: recordMy,
+          rank: 0,
+        };
+        setDataMyScores(objectDataMyScores);
+
+        console.log(tempDataMyScores);
+      } else {
+        console.log(res.msgError);
+      }
+    });
+    console.log("account", account);
+  }, [account]);
+
   return (
     <StyledComponent>
       <SectionTop>
@@ -18,7 +135,13 @@ const Leaderboard = () => {
           Want to your name on the leaderboard? Play the game now!
         </TextDescription>
         <SectionButtonGroup>
-          <ButtonPlay>Play</ButtonPlay>
+          <ButtonPlay
+            onClick={() => {
+              // navigate("/play");
+            }}
+          >
+            Play
+          </ButtonPlay>
           <ButtonHome>Home</ButtonHome>
         </SectionButtonGroup>
       </SectionTop>
@@ -28,35 +151,73 @@ const Leaderboard = () => {
           <SectionEachContent>
             <TextContentTitle>All-Time Leaderboard</TextContentTitle>
             <SectionTable>
-              <TableLeaderboard data={dataAllTime} />
+              <TableLeaderboard data={sortAllTimeScores(dataAllScores)} />
             </SectionTable>
           </SectionEachContent>
           <SectionEachContent>
             <TextContentTitle>24-Hour Leaderboard</TextContentTitle>
             <SectionTable>
-              <TableLeaderboard data={dataAllTime} />
+              <TableLeaderboard data={sort24hScores(dataAllScores)} />
             </SectionTable>
           </SectionEachContent>
         </SectionLeaderboard>
-        <TextStatsTitle>Leaderboard Stats</TextStatsTitle>
+        <TextStatsTitle>Your Stats</TextStatsTitle>
         <SectionLeaderStats>
           <SectionEachStats>
             <TextEachStatsTitle>Avarage Score</TextEachStatsTitle>
-            <TextEachStatsContent>68.7</TextEachStatsContent>
-          </SectionEachStats>
-          <SectionEachStats>
-            <TextEachStatsTitle>Your Record</TextEachStatsTitle>
-            <TextEachStatsContent>41</TextEachStatsContent>
+            {account !== undefined ? (
+              <TextEachStatsContent>
+                {dataMyScores["average"]}
+              </TextEachStatsContent>
+            ) : (
+              <TextEachStatesConnectWallet
+                onClick={() => handleConnectWallet()}
+              >
+                Connect Wallet
+              </TextEachStatesConnectWallet>
+            )}
           </SectionEachStats>
           <SectionEachStats>
             <TextEachStatsTitle>Best Score</TextEachStatsTitle>
-            <TextEachStatsContent>2345</TextEachStatsContent>
+            {account !== undefined ? (
+              <TextEachStatsContent>
+                {dataMyScores["best"]}
+              </TextEachStatsContent>
+            ) : (
+              <TextEachStatesConnectWallet
+                onClick={() => handleConnectWallet()}
+              >
+                Connect Wallet
+              </TextEachStatesConnectWallet>
+            )}
           </SectionEachStats>
           <SectionEachStats>
-            <TextEachStatsTitle>Best Player </TextEachStatsTitle>
-            <TextEachStatsContent>
-              {shortAddress("0x04830c9a998e6229fF518630608dd9De0BA79CCa ")}
-            </TextEachStatsContent>
+            <TextEachStatsTitle>Your Record</TextEachStatsTitle>
+            {account !== undefined ? (
+              <TextEachStatsContent>
+                {dataMyScores["record"]}
+              </TextEachStatsContent>
+            ) : (
+              <TextEachStatesConnectWallet
+                onClick={() => handleConnectWallet()}
+              >
+                Connect Wallet
+              </TextEachStatesConnectWallet>
+            )}
+          </SectionEachStats>
+          <SectionEachStats>
+            <TextEachStatsTitle>Your Rank</TextEachStatsTitle>
+            {account !== undefined ? (
+              <TextEachStatsContent>
+                {dataMyScores["rank"]}
+              </TextEachStatsContent>
+            ) : (
+              <TextEachStatesConnectWallet
+                onClick={() => handleConnectWallet()}
+              >
+                Connect Wallet
+              </TextEachStatesConnectWallet>
+            )}
           </SectionEachStats>
         </SectionLeaderStats>
 
@@ -64,19 +225,27 @@ const Leaderboard = () => {
         <SectionLeaderStats>
           <SectionEachStats>
             <TextEachStatsTitle>Avarage Score</TextEachStatsTitle>
-            <TextEachStatsContent>68.7</TextEachStatsContent>
+            <TextEachStatsContent>
+              {dataAllTimeScores["averageScore"]}
+            </TextEachStatsContent>
           </SectionEachStats>
           <SectionEachStats>
             <TextEachStatsTitle>Best Score</TextEachStatsTitle>
-            <TextEachStatsContent>2345</TextEachStatsContent>
+            <TextEachStatsContent>
+              {dataAllTimeScores["bestScore"]}
+            </TextEachStatsContent>
           </SectionEachStats>
           <SectionEachStats>
-            <TextEachStatsTitle>Your Record</TextEachStatsTitle>
-            <TextEachStatsContent>41</TextEachStatsContent>
+            <TextEachStatsTitle>Total Record</TextEachStatsTitle>
+            <TextEachStatsContent>
+              {dataAllTimeScores["recordTotal"]}
+            </TextEachStatsContent>
           </SectionEachStats>
           <SectionEachStats>
-            <TextEachStatsTitle>Your Rank</TextEachStatsTitle>
-            <TextEachStatsContent>1478</TextEachStatsContent>
+            <TextEachStatsTitle>Best Player</TextEachStatsTitle>
+            <TextEachStatsContent>
+              {shortAddress(dataAllTimeScores["bestPlayer"])}
+            </TextEachStatsContent>
           </SectionEachStats>
         </SectionLeaderStats>
       </SectionContent>
@@ -148,6 +317,18 @@ const TextEachStatsContent = styled(Box)`
   font-size: 3.6em;
   font-family: Lato;
   font-weight: 700;
+  line-height: 46px;
+  transition: 0.3s;
+  @media (max-width: 390px) {
+    line-height: 30px;
+  }
+`;
+
+const TextEachStatesConnectWallet = styled(Box)`
+  color: rgb(217, 255, 0);
+  font-size: 2.5rem;
+  font-family: Lato;
+  font-weight: 600;
   line-height: 46px;
   transition: 0.3s;
   @media (max-width: 390px) {

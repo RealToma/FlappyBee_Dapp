@@ -59,7 +59,7 @@ const TextHeadCell = styled(Box)`
   line-height: 60px;
 `;
 
-const TextRowCell = styled(Box)`
+const TextRowCell = styled(Box)<any>`
   display: flex;
   align-items: center;
   font-size: 3.6em;
@@ -69,7 +69,7 @@ const TextRowCell = styled(Box)`
   color: ${({ active }: any) => (active ? "#003D28" : "#FFF")};
 `;
 
-const RowEach = styled(Box)`
+const RowEach = styled(Box)<any>`
   display: flex;
   width: 100%;
   height: 100px;

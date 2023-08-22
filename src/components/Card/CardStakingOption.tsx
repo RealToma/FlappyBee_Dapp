@@ -1,15 +1,20 @@
 import { Box, Modal } from "@mui/material";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { MdClose } from "react-icons/md";
 import imgCoinStake from "../../assets/images/icons/coinReward.png";
+import { useWeb3React } from "@web3-react/core";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CardStakingOption = ({ data }: any) => {
   const [open, setOpen] = useState(false);
+  const toastId: any = useRef(null);
   const handleModalClose = () => setOpen(false);
   const handleModalOpen = () => setOpen(true);
   const [flagStake, setFlagStake] = useState(false);
   const [valueStake, setValueStake] = useState(0);
+  const { account } = useWeb3React();
 
   const handleStake = () => {
     handleModalOpen();
@@ -19,6 +24,19 @@ const CardStakingOption = ({ data }: any) => {
   const handleUnStake = () => {
     handleModalOpen();
     setFlagStake(true);
+  };
+
+  const handleConfirm = () => {
+    if (account === undefined) {
+      if (!toast.isActive(toastId.current)) {
+        toastId.current = toast.warning("Please connect to your wallet first.");
+      }
+      return;
+    }
+    if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.info("Coming soon.");
+    }
+    return;
   };
 
   return (
@@ -86,7 +104,7 @@ const CardStakingOption = ({ data }: any) => {
         // onClose={handleModalClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        BackdropComponent={backdropstyled}
+        // BackdropComponent={backdropstyled}
       >
         <ModalBox>
           <ButtonClose onClick={() => handleModalClose()}>
@@ -123,7 +141,13 @@ const CardStakingOption = ({ data }: any) => {
               Max
             </ButtonMax>
           </SectionInputValue>
-          <ButtonConfirm>Confirm</ButtonConfirm>
+          <ButtonConfirm
+            onClick={() => {
+              handleConfirm();
+            }}
+          >
+            Confirm
+          </ButtonConfirm>
         </ModalBox>
       </Modal>
     </StyledComponent>
@@ -436,7 +460,7 @@ const ButtonMax = styled(Box)`
   }
 `;
 
-const InputStake = styled(Box)`
+const InputStake = styled(Box)<any>`
   display: flex;
   flex: 1;
   width: 100%;

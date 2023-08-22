@@ -4,12 +4,10 @@ import { Box } from "@mui/material";
 import imgButtonSmall from "../../assets/images/buttons/HomeSmall.png";
 
 const Score = () => {
-  const { score, bestScore } = useScore();
+  const { score } = useScore();
   return (
     <ScoreElement>
       {score}
-      {/* <H1>{score}</H1>
-      <H2>{bestScore}</H2> */}
     </ScoreElement>
   );
 };
@@ -58,15 +56,6 @@ const ScoreElement = styled(Box)`
     top: 110px;
     left: 20px;
   }
-`;
-
-const H1 = styled.h1`
-  font-size: 40px;
-`;
-
-const H2 = styled.h2`
-  font-size: 20px;
-  line-height: 2rem;
 `;
 
 export default Score;
