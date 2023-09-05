@@ -5,7 +5,7 @@ html {
   height: 100%;
   margin: 0;
   font-size: 10px;
-
+  background:#003D28;
   transition: all 0.2s;
   @media (max-width: 1600px) {
     font-size: 9px;

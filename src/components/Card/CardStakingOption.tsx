@@ -1,6 +1,6 @@
 import { Box, Modal } from "@mui/material";
 import styled from "styled-components";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import imgCoinStake from "../../assets/images/icons/coinReward.png";
 import { useWeb3React } from "@web3-react/core";
@@ -8,7 +8,6 @@ import { NotificationManager } from "react-notifications";
 
 const CardStakingOption = ({ data }: any) => {
   const [open, setOpen] = useState(false);
-  const toastId: any = useRef(null);
   const handleModalClose = () => setOpen(false);
   const handleModalOpen = () => setOpen(true);
   const [flagStake, setFlagStake] = useState(false);
@@ -18,6 +17,7 @@ const CardStakingOption = ({ data }: any) => {
   const handleStake = () => {
     handleModalOpen();
     setFlagStake(false);
+    console.log("account:", account);
   };
 
   const handleUnStake = () => {
@@ -27,7 +27,11 @@ const CardStakingOption = ({ data }: any) => {
 
   const handleConfirm = () => {
     if (account === undefined) {
-      return NotificationManager.warning("Please connect your wallet.", "", 3000);
+      return NotificationManager.warning(
+        "Please connect your wallet.",
+        "",
+        3000
+      );
     }
     return NotificationManager.info("Coming soon.", "", 3000);
   };
