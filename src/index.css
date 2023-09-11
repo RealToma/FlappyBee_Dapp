@@ -5,7 +5,7 @@ html {
   height: 100%;
   margin: 0;
   font-size: 10px;
-  background:#003D28;
+  background: #003d28;
   transition: all 0.2s;
   @media (max-width: 1600px) {
     font-size: 9px;
@@ -60,4 +60,8 @@ html {
   font-weight: 400;
   font-size: 16px;
   color: white;
+}
+
+.MuiModal-root {
+  z-index: 9999 !important;
 }

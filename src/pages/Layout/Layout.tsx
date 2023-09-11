@@ -270,6 +270,8 @@ const StyledComponent = styled(Box)`
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
+
+
 `;
 
 const SectionMobileMenu = styled(Box)`

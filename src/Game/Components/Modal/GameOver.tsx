@@ -220,7 +220,7 @@ const SectionBestMark = styled(Box)`
 const TextScoreDescription = styled(Box)`
   text-align: right;
   font-family: Lato;
-  font-size: 3.6rem;
+  font-size: 3.3rem;
   font-style: normal;
   font-weight: 700;
   background: var(--color-1, linear-gradient(180deg, #f90 0%, #d82005 100%));
@@ -232,7 +232,7 @@ const TextScoreDescription = styled(Box)`
 const TextScore = styled(Box)`
   text-align: right;
   font-family: Rowdies;
-  font-size: 9rem;
+  font-size: 8rem;
   font-style: normal;
   font-weight: 400;
   color: #511900;
@@ -252,12 +252,13 @@ const SectionBestScore = styled(Box)`
 
   transition: 0.3s;
   @media (max-width: 1440px) {
-  }
-  @media (max-width: 1024px) {
     margin-top: 35px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     margin-top: 30px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 25px;
   }
   @media (max-width: 390px) {
     margin-top: 20px;
@@ -307,6 +308,10 @@ const SectionRewardCoin = styled(Box)`
   margin-bottom: 30px;
 
   transition: 0.3s;
+  @media (max-width: 1440px) {
+    width: 100px;
+    height: 100px;
+  }
   @media (max-width: 768px) {
     width: 87px;
     height: 87px;
@@ -358,6 +363,10 @@ const SectionInsideBoard = styled(Box)`
   box-sizing: border-box;
 
   transition: 0.3s;
+  @media (max-width: 1440px) {
+    padding: 25px;
+    border: 4px solid #511900;
+  }
   @media (max-width: 768px) {
     padding: 20px;
     border: 4px solid #511900;
@@ -380,6 +389,14 @@ const SectionBoard = styled(Box)`
   margin-top: 30px;
 
   transition: 0.3s;
+  @media (max-width: 1600px) {
+    width: 600px;
+    margin-top: 20px;
+  }
+  @media (max-width: 1440px) {
+    width: 550px;
+    margin-top: 20px;
+  }
   @media (max-width: 768px) {
     width: 500px;
     margin-top: 20px;
@@ -414,13 +431,13 @@ const ImgGameOver = styled(Box)`
 
   transition: 0.3s;
   @media (max-width: 1440px) {
-    width: 450px;
-  }
-  @media (max-width: 1024px) {
     width: 400px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     width: 350px;
+  }
+  @media (max-width: 768px) {
+    width: 300px;
   }
   @media (max-width: 500px) {
     width: 260px;

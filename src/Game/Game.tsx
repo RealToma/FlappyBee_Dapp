@@ -46,7 +46,7 @@ const Game = () => {
             <ImgCursorStart>
               <img src={imgCursorStart} width={"100%"} alt="" />
             </ImgCursorStart>
-            <TextTapPlay>Tap to Play</TextTapPlay>
+            <TextTapPlay>Play</TextTapPlay>
           </SectionGameStart>
         ) : gameHasStarted === 1 ? (
           <></>
