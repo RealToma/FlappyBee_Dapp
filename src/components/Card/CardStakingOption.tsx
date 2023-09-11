@@ -167,6 +167,21 @@ const StyledComponent = styled(Box)`
   &:hover {
     box-shadow: 0px 0px 12px white;
   }
+
+  transition: 0.3s;
+
+  @media (max-width: 1440px) {
+    padding: 50px 25px 25px 25px;
+  }
+  @media (max-width: 1024px) {
+    padding: 40px 20px 20px 20px;
+  }
+  @media (max-width: 768px) {
+    padding: 10px 15px 15px 15px;
+  }
+  @media (max-width: 390px) {
+    /* padding: 60px 30px 30px 30px; */
+  }
 `;
 
 const SectionDays = styled(Box)`
@@ -193,6 +208,10 @@ const TextDays = styled(Box)`
   font-weight: 400;
   line-height: 50px;
   margin-left: 10px;
+  transition: 0.3s;
+  @media (max-width: 500px) {
+    line-height: 60px;
+  }
 `;
 
 const TextLockDuration = styled(Box)`
@@ -204,6 +223,12 @@ const TextLockDuration = styled(Box)`
   font-weight: 500;
   line-height: 40px;
   margin-top: 8px;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    line-height: 10px;
+    margin-top: 0px;
+  }
 `;
 
 const SectionStakingState = styled(Box)`
@@ -211,6 +236,14 @@ const SectionStakingState = styled(Box)`
   width: 100%;
   flex-direction: column;
   margin-top: 50px;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
+  @media (max-width: 500px) {
+    margin-top: 20px;
+  }
 `;
 
 const SectionEachState = styled(Box)`
@@ -218,6 +251,11 @@ const SectionEachState = styled(Box)`
   width: 100%;
   align-items: center;
   margin-bottom: 10px;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    margin-bottom: 0px;
+  }
 `;
 
 const IconPoint = styled(Box)`
@@ -246,6 +284,16 @@ const ButtonGroupStake = styled(Box)`
   margin: 40px 0px 20px 0px;
   padding-bottom: 20px;
   border-bottom: 2px solid #117754;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    margin: 30px 0px 15px 0px;
+    padding-bottom: 15px;
+  }
+  @media (max-width: 500px) {
+    margin: 20px 0px 10px 0px;
+    padding-bottom: 10px;
+  }
 `;
 
 const ButtonStatke = styled(Box)`
@@ -275,6 +323,14 @@ const ButtonStatke = styled(Box)`
   &:active {
     transform: scale(0.9);
   }
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    height: 50px;
+  }
+  @media (max-width: 500px) {
+    height: 40px;
+  }
 `;
 
 const ButtonGroupWithdraw = styled(Box)`
@@ -284,6 +340,14 @@ const ButtonGroupWithdraw = styled(Box)`
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;
   margin-top: 30px;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
+  @media (max-width: 500px) {
+    margin-top: 10px;
+  }
 `;
 
 const ButtonWithdraw = styled(Box)`
@@ -312,6 +376,14 @@ const ButtonWithdraw = styled(Box)`
 
   &:active {
     transform: scale(0.9);
+  }
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    height: 50px;
+  }
+  @media (max-width: 500px) {
+    height: 40px;
   }
 `;
 
@@ -382,6 +454,23 @@ const SectionBalance = styled(Box)`
   width: 100%;
   align-items: center;
   margin-top: 100px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    margin-top: 90px;
+  }
+  @media (max-width: 1024px) {
+    margin-top: 80px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 60px;
+  }
+  @media (max-width: 500px) {
+    margin-top: 50px;
+  }
+  @media (max-width: 390px) {
+    margin-top:40px;
+  }
 `;
 
 const TextBalanceBEET = styled(Box)`
@@ -416,6 +505,24 @@ const SectionInputValue = styled(Box)`
   align-items: center;
   padding: 7px;
   box-sizing: border-box;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    margin-bottom: 150px;
+  }
+  @media (max-width: 1024px) {
+    margin-bottom: 120px;
+  }
+  @media (max-width: 768px) {
+    margin-bottom: 100px;
+    height: 50px;
+  }
+  @media (max-width: 500px) {
+    margin-bottom: 80px;
+  }
+  @media (max-width: 390px) {
+    margin-bottom: 60px;
+  }
 `;
 
 const ImageCoin = styled(Box)`
@@ -455,6 +562,8 @@ const ButtonMax = styled(Box)`
   &:active {
     transform: scale(0.9);
   }
+
+
 `;
 
 const InputStake = styled(Box)<any>`
@@ -499,6 +608,15 @@ const ButtonConfirm = styled(Box)`
   }
   &:active {
     transform: scale(0.9);
+  }
+
+  
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    height: 50px;
+  }
+  @media (max-width: 500px) {
+    height: 40px;
   }
 `;
 

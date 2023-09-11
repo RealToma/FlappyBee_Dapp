@@ -23,10 +23,8 @@ const Airdrop = () => {
           <img src={imgAirdropBee} width={"100%"} alt="" />
         </SectionImageGroup>
         <TextHead>
-          FLAPPY BEE is airdropping a total of 15 % $BEET to early investors of
-          $PEPE users. To be eligible to this airdrop you need to be holder of
-          $PEPE token during the first 3 weeks of the $PEPE project launch or
-          until May 8th 2023.
+          Flappy Bee will airdropping BEET Tokens and BEET NFTs Every months To
+          the Flappy Bee holders and first 10 address of the leaderboard.
         </TextHead>
         <TextHeadGuide>How to enter: Step by step Guide</TextHeadGuide>
         <SectionGuide>
@@ -383,7 +381,5 @@ const TextEachGuide = styled(Box)`
     line-height: 20px;
   }
 `;
-
-
 
 export default Airdrop;

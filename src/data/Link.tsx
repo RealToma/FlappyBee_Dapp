@@ -27,6 +27,11 @@ export const dataTopNavigation: Link[] = [
     flagNavigate: false,
   },
   {
+    name: "NFT",
+    link: "/stake",
+    flagNavigate: false,
+  },
+  {
     name: "Leaderboard",
     link: "/leaderboard",
     flagNavigate: false,

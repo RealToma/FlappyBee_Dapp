@@ -453,6 +453,17 @@ const SectionOptions = styled(Box)`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 40px;
   margin-top: 60px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+  }
+  @media (max-width:600px) {
+    grid-template-columns: 1fr;
+    grid-row-gap: 30px;
+  }
 `;
 
 export default Stake;
