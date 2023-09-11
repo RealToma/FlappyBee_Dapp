@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Game from "./Game/Game";
 import Layout from "./pages/Layout/Layout";
@@ -15,6 +15,7 @@ import "./index.css";
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 import { useEffect, useState } from "react";
+import NFT from "./pages/NFT/NFT";
 
 const App = () => {
   const [isLoading, setLoading] = useState(true);
@@ -22,7 +23,7 @@ const App = () => {
   const someRequest = () => {
     //Simulates a request; makes a "promise" that'll run for 2.5 seconds
     return new Promise((resolve) =>
-      setTimeout(() => resolve(BrowserRouter), 1000)
+      setTimeout(() => resolve(HashRouter), 1000)
     );
   };
 
@@ -42,7 +43,7 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <StyledComponent>
         <Layout>
           <Routes>
@@ -50,6 +51,7 @@ const App = () => {
             <Route path="/play" element={<Home />} />
             <Route path="/airdrop" element={<Airdrop />} />
             <Route path="/stake" element={<Stake />} />
+            <Route path="/nft" element={<NFT />} />
             <Route path="/game" element={<Game />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/rewards" element={<Rewards />} />
@@ -58,7 +60,7 @@ const App = () => {
         </Layout>
       </StyledComponent>
       <NotificationContainer />
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
