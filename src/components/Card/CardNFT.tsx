@@ -8,7 +8,14 @@ const CardNFT = ({ data }: any) => {
         <img src={`/assets/images/nfts/${data + 1}.jpg`} alt="" />
       </SectionImage>
       <SectionBorderImage>MORE INFO</SectionBorderImage>
-      <SectionTextDetails></SectionTextDetails>
+      <SectionCommonDetails>
+        <TextCommon>Common</TextCommon>
+        <TextNFTName>FlappyBee #{data + 1}</TextNFTName>
+      </SectionCommonDetails>
+      <SectionOtherDetails>
+        <TextComingSoon>Coming Soon</TextComingSoon>
+        <TextPrice>Price</TextPrice>
+      </SectionOtherDetails>
     </StyledComponent>
   );
 };
@@ -25,7 +32,10 @@ const StyledComponent = styled(Box)`
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0px 0px 12px white;
+    box-shadow: 0px 0px 20px white;
+    > :nth-child(1) > img {
+      transform: scale(1.2);
+    }
   }
   transition: 0.3s;
   @media (max-width: 1440px) {
@@ -42,9 +52,12 @@ const StyledComponent = styled(Box)`
 const SectionImage = styled(Box)`
   display: flex;
   width: 100%;
+  overflow: hidden;
+  border-radius: 20px 20px 0px 0px;
   > img {
     width: 100%;
     aspect-ratio: 1;
+    transition: 0.3s;
     border-radius: 20px 20px 0px 0px;
   }
 `;
@@ -77,8 +90,106 @@ const SectionBorderImage = styled(Box)`
   }
 `;
 
-const SectionTextDetails = styled(Box)`
+const SectionCommonDetails = styled(Box)`
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 30px 0px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(0, 61, 40, 0.1);
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    padding: 25px 0px;
+  }
+  @media (max-width: 1024px) {
+    padding: 20px 0px;
+  }
+  @media (max-width: 768px) {
+    padding: 10px 0px;
+  }
+`;
+
+const TextCommon = styled(Box)`
+  color: #003d28;
+  font-family: Lato;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+  }
+  @media (max-width: 1024px) {
+    line-height: 20px;
+  }
+  @media (max-width: 500px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const TextNFTName = styled(Box)`
+  color: #003d28;
+  font-family: Rowdies;
+  font-size: 3.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+
+  @media (max-width: 500px) {
+    font-size: 4rem;
+  }
+`;
+
+const SectionOtherDetails = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 22px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    margin-top: 20px;
+  }
+  @media (max-width: 1024px) {
+    margin-top: 15px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
+`;
+
+const TextComingSoon = styled(Box)`
+  color: #003d28;
+  font-family: Lato;
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    line-height: 30px;
+  }
+  @media (max-width: 1024px) {
+    line-height: 20px;
+  }
+  @media (max-width: 500px) {
+    font-size: 3rem;
+  }
+`;
+
+const TextPrice = styled(Box)`
+  color: rgba(0, 61, 40, 0.5);
+  font-family: Lato;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  @media (max-width: 500px) {
+    font-size: 2.2rem;
+  }
 `;
 
 export default CardNFT;

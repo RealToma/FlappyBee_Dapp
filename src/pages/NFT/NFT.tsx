@@ -201,24 +201,28 @@ const SectionInitialNFT = styled(Box)`
     margin-bottom: 80px;
   }
   @media (max-width: 1439px) {
-
     grid-column-gap: 30px;
     grid-row-gap: 30px;
   }
   @media (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     margin-bottom: 70px;
   }
   @media (max-width: 768px) {
     padding: 20px 20px 50px 20px;
+    grid-template-columns: 1fr 1fr;
     margin-bottom: 60px;
   }
   @media (max-width: 700px) {
     padding: 1px 10px 40px 10px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
     margin-bottom: 50px;
+  }
+  @media (max-width: 390px) {
     padding: 0px 10px 30px 10px;
   }
 `;
