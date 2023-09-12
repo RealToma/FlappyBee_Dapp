@@ -23,10 +23,13 @@ const Airdrop = () => {
           <img src={imgAirdropBee} width={"100%"} alt="" />
         </SectionImageGroup>
         <TextHead>
-          Flappy Bee will airdropping BEET Tokens and BEET NFTs Every months To
-          the Flappy Bee holders and first 10 address of the leaderboard.
+          FlappyBEE will have Giveaway Events with BEET Tokens and FlappyBee
+          NFTs every months to the FlappyBEE ($BEET) Holders and the first 10
+          address of the leaderboard.
+          {/* Flappy Bee will airdropping BEET Tokens and BEET NFTs Every months To
+          the Flappy Bee holders and first 10 address of the leaderboard. */}
         </TextHead>
-        <TextHeadGuide>How to enter: Step by step Guide</TextHeadGuide>
+        <TextHeadGuide>How to enter?</TextHeadGuide>
         <SectionGuide>
           {textAirdropGuide.map((each, index) => {
             return <TextEachGuide key={index}>{each}</TextEachGuide>;
