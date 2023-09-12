@@ -35,10 +35,10 @@ const Airdrop = () => {
             return <TextEachGuide key={index}>{each}</TextEachGuide>;
           })}
         </SectionGuide>
-        <TextAirdropRate>
+        {/* <TextAirdropRate>
           <span style={{ fontWeight: "500" }}>Airdrop Rate:</span>
           {"\u00a0"}1 $PEPE : 0.00000420690 $BEET
-        </TextAirdropRate>
+        </TextAirdropRate> */}
       </SectionDescription>
     </StyledComponent>
   );

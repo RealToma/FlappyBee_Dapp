@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const CardNFT = ({ data }: any) => {
   return (
-    <StyledComponent>
+    <StyledComponent data-aos="flip-left" data-aos-duration="1000">
       <SectionImage>
-        <img src={`/assets/images/nfts/${data + 1}.jpg`} alt="" />
+        <img src={`/assets/images/nfts/${data + 1}.jpeg`} alt="" />
       </SectionImage>
       <SectionBorderImage>MORE INFO</SectionBorderImage>
       <SectionCommonDetails>

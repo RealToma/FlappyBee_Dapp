@@ -2,8 +2,20 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgButtonPlay from "../../assets/images/buttons/HomeWide.png";
 import CardNFT from "../../components/Card/CardNFT";
+import { useState } from "react";
 
 const NFT = () => {
+  const [countNFT, setCountNFT] = useState(8);
+  const [flagShowAll, setFlagShowAll] = useState(false);
+  const handleShowAll = () => {
+    if (flagShowAll) {
+      setCountNFT(8);
+    } else {
+      setCountNFT(40);
+    }
+    setFlagShowAll(!flagShowAll);
+  };
+
   return (
     <StyledComponent>
       <SectionTop>
@@ -16,16 +28,28 @@ const NFT = () => {
           token BEET when they play.
         </TextDescription>
         <SectionButtonGroup>
-          <ButtonPlay>Browse</ButtonPlay>
+          <ButtonPlay onClick={() => {}}>Browse</ButtonPlay>
         </SectionButtonGroup>
       </SectionTop>
       <SectionContent>
         <SectionInitialNFT>
-          {new Array(10).fill(0).map((each, index) => {
-            return <CardNFT key={index} data={index} />;
+          {new Array(countNFT).fill(0).map((each, index) => {
+            return (
+              <CardNFT
+                key={index}
+                data={index}
+              />
+            );
           })}
         </SectionInitialNFT>
-        <TextMoreComingSoon>More Coming Soon!</TextMoreComingSoon>
+        <SectionButtonGroup>
+          {!flagShowAll ? (
+            <ButtonPlay onClick={() => handleShowAll()}>Show All</ButtonPlay>
+          ) : (
+            <ButtonPlay onClick={() => handleShowAll()}>Show Less</ButtonPlay>
+          )}
+        </SectionButtonGroup>
+        {/* <TextMoreComingSoon>More Coming Soon!</TextMoreComingSoon> */}
       </SectionContent>
     </StyledComponent>
   );

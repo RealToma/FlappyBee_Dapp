@@ -11,11 +11,12 @@ import Settings from "./pages/Settings/Settings";
 import Airdrop from "./pages/Airdrop/Airdop";
 import "./actions/baseURL";
 import "./index.css";
-
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 import { useEffect, useState } from "react";
 import NFT from "./pages/NFT/NFT";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const App = () => {
   const [isLoading, setLoading] = useState(true);
@@ -26,6 +27,12 @@ const App = () => {
       setTimeout(() => resolve(HashRouter), 1000)
     );
   };
+
+  useEffect(() => {
+    AOS.init({
+      duration: 3000,
+    });
+  }, []);
 
   useEffect(() => {
     someRequest().then(() => {

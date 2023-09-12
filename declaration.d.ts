@@ -1,4 +1,5 @@
 declare module "styled-components";
+declare module "aos";
 declare module "react-notifications" {
   import { ReactNode } from "react";
   import { EventEmitter } from "events";
