@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import imgCoin from "../../assets/images/icons/coinReward.png";
+import imgBee from "../../assets/images/bee/flaying/Bee-01.png";
+// import imgCoin from "../../assets/images/icons/coinReward.png";
 import imgChecked from "../../assets/images/icons/checkReward.png";
 import imgButtonHome from "../../assets/images/buttons/GreenWide.svg";
 
@@ -11,7 +12,7 @@ const Rewards = () => {
     <StyledComponent>
       <TextTitle>DAILY REWARDS</TextTitle>
       <TextDescription>
-        Play everyday to get 50 Flappy bee tokens on day 7
+        Play everyday to get 50 Flappy Bee tokens on day 7
       </TextDescription>
       <SectionSelectRewards>
         <SectionScroll>
@@ -23,12 +24,12 @@ const Rewards = () => {
                 <SectionEachClaimedReward key={_key}>
                   <TextClaimedDay>Day {index + 1}</TextClaimedDay>
                   <ImageCoin>
-                    <img src={imgCoin} width={"100%"} alt="" />
+                    <img src={imgBee} width={"60%"} alt="" />
                     <ImageChecked>
                       <img src={imgChecked} width={"100%"} alt="" />
                     </ImageChecked>
                   </ImageCoin>
-                  <SectionValue>{10*(index+1)}</SectionValue>
+                  <SectionValue>{10 * (index + 1)} BEET</SectionValue>
                 </SectionEachClaimedReward>
               );
             } else if (index === claimed) {
@@ -37,9 +38,9 @@ const Rewards = () => {
                 <SectionEachReward key={_key}>
                   <TextDay>Day {index + 1}</TextDay>
                   <ImageCoin>
-                    <img src={imgCoin} width={"100%"} alt="" />
+                    <img src={imgBee} width={"60%"} alt="" />
                   </ImageCoin>
-                  <SectionValue>{10*(index+1)}</SectionValue>
+                  <SectionValue>{10 * (index + 1)} BEET</SectionValue>
                 </SectionEachReward>
               );
             } else {
@@ -48,9 +49,9 @@ const Rewards = () => {
                 <SectionEachReward key={_key} style={{ opacity: "0.4" }}>
                   <TextDay>Day {index + 1}</TextDay>
                   <ImageCoin>
-                    <img src={imgCoin} width={"100%"} alt="" />
+                    <img src={imgBee} width={"60%"} alt="" />
                   </ImageCoin>
-                  <SectionValue>{10*(index+1)}</SectionValue>
+                  <SectionValue>{10 * (index + 1)} BEET</SectionValue>
                 </SectionEachReward>
               );
             }
@@ -267,14 +268,21 @@ const ImageCoin = styled(Box)`
   display: flex;
   position: relative;
   width: 120px;
-  margin-top: 10px;
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background: #fdc400;
+  margin-top: 30px;
+  margin-bottom: 20px;
 
   transition: 0.3s;
   @media (max-width: 1440px) {
     width: 100px;
   }
   @media (max-width: 768px) {
-    margin-top: 5px;
+    margin-top: 20px;
+    margin-bottom: 15px;
     width: 80px;
   }
   @media (max-width: 390px) {
@@ -312,7 +320,7 @@ const SectionValue = styled(Box)`
   background: #511900;
   color: #fff;
   text-align: center;
-  font-size: 3em;
+  font-size: 2.5rem;
   font-family: Rowdies;
   line-height: 40px;
   margin-top: 10px;

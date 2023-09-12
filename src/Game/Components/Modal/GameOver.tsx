@@ -3,7 +3,8 @@ import { FaMedal, FaShareAlt } from "react-icons/fa";
 import styled from "styled-components";
 import { useGameSystem, useScore } from "../../Context";
 import imgGameOver from "../../../assets/images/background/game over.png";
-import imgCoin from "../../../assets/images/icons/coinReward.png";
+// import imgCoin from "../../../assets/images/icons/coinReward.png";
+import imgBee from "../../../assets/images/bee/flaying/Bee-01.png";
 import imgButtonStart from "../../../assets/images/buttons/HomeWide.png";
 import imgButtonSmall from "../../../assets/images/buttons/HomeSmall.png";
 
@@ -24,9 +25,9 @@ const GameOver = () => {
           <SectionBoardReward>
             <TextReward>Rewards</TextReward>
             <SectionRewardCoin>
-              <img src={imgCoin} width={"90%"} alt="" />
+              <img src={imgBee} width={"60%"} alt="" />
             </SectionRewardCoin>
-            <SectionValue>{score * 10}</SectionValue>
+            <SectionValue>{score * 10} BEET</SectionValue>
           </SectionBoardReward>
           <SectionBoardScore>
             <SectionScore>
@@ -275,7 +276,7 @@ const SectionValue = styled(Box)`
   background: #511900;
   color: #fff;
   text-align: center;
-  font-size: 3em;
+  font-size: 2.5em;
   font-family: Rowdies;
   line-height: 40px;
   margin-top: 10px;
