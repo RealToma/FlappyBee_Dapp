@@ -11,7 +11,7 @@ import imgButtonSmall from "../../../assets/images/buttons/HomeSmall.png";
 const GameOver = () => {
   const { score, bestScore } = useScore();
   const { restartGame } = useGameSystem();
-  const handleReply = () => {
+  const handleReplay = () => {
     restartGame();
   };
 
@@ -53,7 +53,7 @@ const GameOver = () => {
         <ButtonSocial>
           <FaShareAlt />
         </ButtonSocial>
-        <ButtonReply onClick={() => handleReply()}>Reply</ButtonReply>
+        <ButtonReplay onClick={() => handleReplay()}>Replay</ButtonReplay>
         <ButtonSocial>
           <FaMedal />
         </ButtonSocial>
@@ -73,7 +73,7 @@ const SectionGameOver = styled(Box)`
   flex-direction: column;
 `;
 
-const ButtonReply = styled(Box)`
+const ButtonReplay = styled(Box)`
   display: flex;
   width: 320px;
   height: 100px;
