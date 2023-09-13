@@ -4,14 +4,14 @@ import { ethers } from "ethers";
 
 // const IS_MAINNET = process.env.REACT_APP_NETWORK === "mainnet";
 const IS_MAINNET = false;
-const NETWORK_NAME = IS_MAINNET ? "ether" : "rinkeby testnet ";
-const chainId = IS_MAINNET ? 56 : 97;
+const NETWORK_NAME = IS_MAINNET ? "Ethereum Mainnet" : "Goerli test network";
+const chainId = IS_MAINNET ? 1 : 5;
 const rpcUrl = IS_MAINNET
-  ? "https://bsc-dataseed1.binance.org/"
-  : "https://data-seed-prebsc-1-s1.binance.org:8545/";
+  ? "https://mainnet.infura.io/v3/"
+  : "https://goerli.infura.io/v3/";
 const scanUrl = IS_MAINNET
-  ? "https://bscscan.com/"
-  : "https://testnet.bscscan.com/";
+  ? "https://etherscan.io"
+  : "https://goerli.etherscan.io";
 
 const BINANCE_MAINNET_PARAMS = {
   chainId: chainId,
