@@ -7,8 +7,10 @@ import imgGameOver from "../../../assets/images/background/game over.png";
 import imgBee from "../../../assets/images/bee/flaying/Bee-01.png";
 import imgButtonStart from "../../../assets/images/buttons/HomeWide.png";
 import imgButtonSmall from "../../../assets/images/buttons/HomeSmall.png";
+import { useNavigate } from "react-router-dom";
 
 const GameOver = () => {
+  const navigate = useNavigate();
   const { score, bestScore } = useScore();
   const { restartGame } = useGameSystem();
   const handleReplay = () => {
@@ -54,7 +56,11 @@ const GameOver = () => {
           <FaShareAlt />
         </ButtonSocial>
         <ButtonReplay onClick={() => handleReplay()}>Replay</ButtonReplay>
-        <ButtonSocial>
+        <ButtonSocial
+          onClick={() => {
+            navigate("/leaderboard");
+          }}
+        >
           <FaMedal />
         </ButtonSocial>
       </ButtonGroup>

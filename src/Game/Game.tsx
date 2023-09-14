@@ -12,7 +12,7 @@ import { FaPause } from "react-icons/fa";
 import imgCursorStart from "../assets/images/icons/cursorClickon.png";
 import GameOver from "./Components/Modal/GameOver";
 
-const Game = () => {
+const Game = ({ setPlayMusicGame }: any) => {
   const { gameHasStarted, startGame, restartGame } = useGameSystem();
 
   let increment = GAME_WIDTH / 2;
@@ -40,6 +40,7 @@ const Game = () => {
           <SectionGameStart
             onClick={() => {
               startGame();
+              setPlayMusicGame(true);
             }}
           >
             <TextGetReady>GET READY!</TextGetReady>

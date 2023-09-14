@@ -21,7 +21,7 @@ import {
 import { shortAddress } from "../../libs/Functions";
 import imgButtonTop from "../../assets/images/buttons/topbar.png";
 
-const Layout = ({ children }: any) => {
+const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
   const [flagLink, setFlagLink] = useState(1);
   const [flagClickedMenu, setFlagClickedMenu] = useState(false);
@@ -69,9 +69,14 @@ const Layout = ({ children }: any) => {
     );
     currentWalletState && activate(walletConnectors[currentWalletState]);
   }, []);
+
   return (
     <StyledComponent>
-      <SectionHeader>
+      <SectionHeader
+        onClick={() => {
+          setPlayMusicGame(false);
+        }}
+      >
         <SectionPageLink>
           {dataTopNavigation?.map((each: any, index: any) => {
             const _key = index;
@@ -270,8 +275,6 @@ const StyledComponent = styled(Box)`
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
-
-
 `;
 
 const SectionMobileMenu = styled(Box)`
