@@ -4,7 +4,7 @@ import imgBackHome from "../../assets/images/background/BGHome.png";
 import imgBackFooter from "../../assets/images/background/floor.png";
 import { dataTopNavigation } from "../../data/Link";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import { Slide } from "@mui/material";
 import { MdClose } from "react-icons/md";
@@ -23,6 +23,7 @@ import imgButtonTop from "../../assets/images/buttons/topbar.png";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [flagLink, setFlagLink] = useState(1);
   const [flagClickedMenu, setFlagClickedMenu] = useState(false);
 
@@ -31,6 +32,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   const { account, active, activate, deactivate } = useWeb3React();
 
   const walletConnectors: any = DESKTOP_CONNECTORS;
+
   const handleSwitch = async () => {
     try {
       if ((window as any).ethereum.networkVersion !== chainId) {
@@ -62,6 +64,15 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     // setConnected(true);
     handleClose();
   };
+
+  useEffect(() => {
+    let pathName = location.pathname;
+    for (let i = 0; i < dataTopNavigation.length - 1; i++) {
+      if (dataTopNavigation[i].link === pathName) {
+        setFlagLink(i);
+      }
+    }
+  }, [location]);
 
   useEffect(() => {
     const currentWalletState = window.localStorage.getItem(

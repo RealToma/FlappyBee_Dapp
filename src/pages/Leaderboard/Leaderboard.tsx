@@ -4,7 +4,7 @@ import styled from "styled-components";
 import imgButtonPlay from "../../assets/images/buttons/HomeWide.png";
 import imgButtonHome from "../../assets/images/buttons/GreenWide.svg";
 import TableLeaderboard from "../../components/TableLeaderboard";
-import { dataAllTime } from "../../data/Leaderboard";
+// import { dataAllTime } from "../../data/Leaderboard";
 import {
   shortAddress,
   sort24hScores,
@@ -40,7 +40,11 @@ const Leaderboard = () => {
 
   const handleConnectWallet = () => {
     if (account === undefined) {
-      return NotificationManager.warning("Please connect your wallet.", "", 3000);
+      return NotificationManager.warning(
+        "Please connect your wallet.",
+        "",
+        3000
+      );
     }
   };
   useEffect(() => {
@@ -130,14 +134,22 @@ const Leaderboard = () => {
           Want to your name on the leaderboard? Play the game now!
         </TextDescription>
         <SectionButtonGroup>
+          <a
+            href="https://flappybee.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <ButtonHome>Home</ButtonHome>
+          </a>
+
           <ButtonPlay
             onClick={() => {
-              // navigate("/play");
+              navigate("/play");
             }}
           >
             Play
           </ButtonPlay>
-          <ButtonHome>Home</ButtonHome>
         </SectionButtonGroup>
       </SectionTop>
 
@@ -402,7 +414,6 @@ const ButtonPlay = styled(Box)`
     color: white;
   }
 
-  margin-right: 20px;
   transition: 0.3s;
   @media (max-width: 1440px) {
     width: 300px;
@@ -415,11 +426,6 @@ const ButtonPlay = styled(Box)`
   @media (max-width: 768px) {
     width: 200px;
     height: 55px;
-  }
-
-  @media (max-width: 500px) {
-    margin-right: unset;
-    margin-bottom: 20px;
   }
 `;
 
@@ -443,6 +449,8 @@ const ButtonHome = styled(Box)`
   cursor: pointer;
   user-select: none;
   transition: 0.3s;
+  margin-right: 20px;
+
   &:active {
     transform: scale(0.9);
   }
@@ -462,6 +470,10 @@ const ButtonHome = styled(Box)`
   @media (max-width: 768px) {
     width: 200px;
     height: 55px;
+  }
+  @media (max-width: 500px) {
+    margin-right: unset;
+    margin-bottom: 20px;
   }
 `;
 
