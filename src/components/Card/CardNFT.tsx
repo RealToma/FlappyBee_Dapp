@@ -30,14 +30,15 @@ const StyledComponent = styled(Box)`
   padding: 10px 10px 20px 10px;
   box-sizing: border-box;
   cursor: pointer;
-
+  transition: 0.5s !important;
   &:hover {
     box-shadow: 0px 0px 20px white;
     > :nth-child(1) > img {
+      transition: 0.3s;
       transform: scale(1.2);
     }
   }
-  transition: 0.3s;
+
   @media (max-width: 1440px) {
     padding: 8px 8px 18px 8px;
   }
@@ -77,8 +78,13 @@ const SectionBorderImage = styled(Box)`
   font-style: normal;
   font-weight: 700;
   /* line-height: 30px; */
-
+  cursor: pointer;
   transition: 0.3s;
+  &:hover {
+    background-color: #003d28;
+    color: #a9d100;
+  }
+
   @media (max-width: 1440px) {
     height: 31px;
   }
