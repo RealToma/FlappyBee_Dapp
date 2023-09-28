@@ -27,7 +27,7 @@ export const dataTopNavigation: Link[] = [
     flagNavigate: false,
   },
   {
-    name: "NFT",
+    name: "Marketplace",
     link: "/nft",
     flagNavigate: false,
   },

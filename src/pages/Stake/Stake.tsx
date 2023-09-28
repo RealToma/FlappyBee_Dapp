@@ -460,7 +460,7 @@ const SectionOptions = styled(Box)`
     grid-column-gap: 30px;
     grid-row-gap: 30px;
   }
-  @media (max-width:600px) {
+  @media (max-width: 600px) {
     grid-template-columns: 1fr;
     grid-row-gap: 30px;
   }
