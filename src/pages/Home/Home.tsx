@@ -9,6 +9,7 @@ import { AiFillLike } from "react-icons/ai";
 import { NotificationManager } from "react-notifications";
 import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
+import { checkWhiteList } from "../../actions/auth";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -16,9 +17,16 @@ const Home = () => {
 
   const handleStart = () => {
     if (account === undefined || account === null) {
-      return NotificationManager.warning("Please connect your wallet.", "", 3000);
+      return NotificationManager.warning(
+        "Please connect your wallet.",
+        "",
+        3000
+      );
     }
-    navigate("/game");
+    checkWhiteList(account).then((res) => {
+      console.log(res);
+    });
+    // navigate("/game");
   };
   // const handleAlert = () => {
   // if (!toast.isActive(toastId.current)) {

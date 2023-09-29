@@ -10,6 +10,7 @@ const cors = require("cors");
 
 const config = require("./config/key");
 const controllerScore = require("./controller/score");
+const controllerAuth = require("./controller/auth");
 
 // connects our back end code with the database
 mongoose.connect(config.mongoURI, {
@@ -35,6 +36,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/api/score", controllerScore);
+app.use("/api/auth", controllerAuth);
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));

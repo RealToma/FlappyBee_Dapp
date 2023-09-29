@@ -3,7 +3,12 @@ import styled from "styled-components";
 import imgBackClaim from "../../assets/images/background/bgAirdrop.png";
 import imgButtonStart from "../../assets/images/buttons/HomeWide.png";
 import imgAirdropBee from "../../assets/images/bee/airdrop.png";
-import { textAirdropGuide } from "../../data/Airdrop";
+import {
+  textAirdropEligibility,
+  textAirdropParticipate,
+  textAirdropPeriod,
+  textAirdropRewards,
+} from "../../data/Airdrop";
 
 const Airdrop = () => {
   return (
@@ -22,19 +27,53 @@ const Airdrop = () => {
           </ImageRight>
           <img src={imgAirdropBee} width={"100%"} alt="" />
         </SectionImageGroup>
-        <TextHead>
-          FlappyBEE will have Giveaway Events with BEET Tokens and FlappyBee
-          NFTs every months to the FlappyBEE ($BEET) Holders and the first 10
-          address of the leaderboard.
+        <TextHead data-aos="fade-up" data-aos-duration="2000">
+          If you are ready to come into the exciting world of FlappyBee and win
+          fantastic rewards? Then lucky you, because here's your golden
+          opportunity! We're delighted to introduce the FlappyBee Airdrop, where
+          players get the chance to win BEET tokens and NFTs.
           {/* Flappy Bee will airdropping BEET Tokens and BEET NFTs Every months To
           the Flappy Bee holders and first 10 address of the leaderboard. */}
         </TextHead>
-        <TextHeadGuide>How to enter?</TextHeadGuide>
-        <SectionGuide>
-          {textAirdropGuide.map((each, index) => {
+        <TextHeadGuide data-aos="zoom-in" data-aos-duration="1000">
+          How to Participate:
+        </TextHeadGuide>
+        <SectionGuide data-aos="fade-up" data-aos-duration="2000">
+          {textAirdropParticipate.map((each, index) => {
             return <TextEachGuide key={index}>{each}</TextEachGuide>;
           })}
         </SectionGuide>
+        <TextHeadGuide data-aos="zoom-in" data-aos-duration="1000">
+          Airdrop Period:
+        </TextHeadGuide>
+        <SectionGuide data-aos="fade-up" data-aos-duration="2000">
+          {textAirdropPeriod.map((each, index) => {
+            return <TextEachGuide key={index}>{each}</TextEachGuide>;
+          })}
+        </SectionGuide>
+        <TextHeadGuide data-aos="zoom-in" data-aos-duration="1000">
+          Prizes and Rewards:
+        </TextHeadGuide>
+        <SectionGuide data-aos="fade-up" data-aos-duration="2000">
+          {textAirdropRewards.map((each, index) => {
+            return <TextEachGuide key={index}>{each}</TextEachGuide>;
+          })}
+        </SectionGuide>
+        <TextHeadGuide data-aos="zoom-in" data-aos-duration="1000">
+          FlappyBee Game Eligibility:
+        </TextHeadGuide>
+        <SectionGuide data-aos="fade-up" data-aos-duration="2000">
+          {textAirdropEligibility.map((each, index) => {
+            return <TextEachGuide key={index}>{each}</TextEachGuide>;
+          })}
+        </SectionGuide>
+        <TextHead data-aos="fade-up" data-aos-duration="2000">
+          It's time to spread your wings and seize your chance in the FlappyBee
+          Airdrop? It's an adventure like no other, where you can earn valuable
+          tokens and unique NFTs while enjoying our thrilling blockchain-powered
+          game. Don't miss out—connect your wallet, play Flappy Bee, and let the
+          games begin! The true meaning of Play-and-earn!
+        </TextHead>
         {/* <TextAirdropRate>
           <span style={{ fontWeight: "500" }}>Airdrop Rate:</span>
           {"\u00a0"}1 $PEPE : 0.00000420690 $BEET
@@ -287,6 +326,7 @@ const TextHead = styled(Box)`
   font-style: normal;
   font-weight: 500;
   line-height: 44px;
+  text-align: center;
 
   margin-top: 80px;
   transition: 0.3s;
@@ -310,17 +350,20 @@ const TextHeadGuide = styled(Box)`
   font-weight: 400;
   line-height: 75px;
 
-  margin-top: 70px;
+  margin-top: 120px;
   transition: 0.3s;
+  @media (max-width: 1440px) {
+    margin-top: 100px;
+  }
   @media (max-width: 1024px) {
-    margin-top: 60px;
+    margin-top: 80px;
   }
   @media (max-width: 768px) {
     line-height: 60px;
-    margin-top: 50px;
+    margin-top: 60px;
   }
   @media (max-width: 390px) {
-    margin-top: 40px;
+    margin-top: 50px;
     line-height: 50px;
   }
 `;
