@@ -20,6 +20,8 @@ import {
 } from "../../utils/connectors";
 import { shortAddress } from "../../libs/Functions";
 import imgButtonTop from "../../assets/images/buttons/topbar.png";
+import { checkWhiteList } from "../../actions/auth";
+import { NotificationManager } from "react-notifications";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -80,6 +82,17 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     );
     currentWalletState && activate(walletConnectors[currentWalletState]);
   }, []);
+
+  useEffect(() => {
+    checkWhiteList(account).then((res) => {
+      if (res.flagSuccess) {
+        return;
+      } else {
+        navigate("/play");
+        return NotificationManager.error("You are not whitelisted!", "", 5000);
+      }
+    });
+  }, [account]);
 
   return (
     <StyledComponent>

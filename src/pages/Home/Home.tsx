@@ -24,9 +24,13 @@ const Home = () => {
       );
     }
     checkWhiteList(account).then((res) => {
-      console.log(res);
+      if (res.flagSuccess) {
+        navigate("/game");
+        return;
+      } else {
+        return NotificationManager.error("You are not whitelisted!", "", 5000);
+      }
     });
-    // navigate("/game");
   };
   // const handleAlert = () => {
   // if (!toast.isActive(toastId.current)) {

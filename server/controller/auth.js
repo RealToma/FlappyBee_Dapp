@@ -4,6 +4,7 @@ const { modelScore } = require("../schema/score");
 const { google } = require("googleapis");
 
 router.post("/check_white_list", async (req, res) => {
+  const addressWallet = req.body.addressWallet;
   console.log("wallet address:", req.body.addressWallet);
 
   try {
@@ -20,17 +21,36 @@ router.post("/check_white_list", async (req, res) => {
       range,
     });
 
-    const rows = response.data.values;
-    if (rows.length) {
-      console.log("Data:");
-      rows.forEach((row) => {
-        console.log(row);
+    const dataSheet = response.data.values;
+
+    let arrayAddressWallet = [];
+    if (dataSheet.length !== 0) {
+      for (var i = 1; i < dataSheet.length; i++) {
+        if (dataSheet[i][7].toLowerCase() === addressWallet.toLowerCase()) {
+          arrayAddressWallet.push(dataSheet[i][7]);
+        }
+      }
+    } else {
+      console.log("No sheet data found.");
+      return res.json({
+        flagSuccess: false,
+      });
+    }
+    console.log("arrayAddressWallet:", arrayAddressWallet);
+    if (arrayAddressWallet.length !== 0) {
+      return res.json({
+        flagSuccess: true,
       });
     } else {
-      console.log("No data found.");
+      return res.json({
+        flagSuccess: false,
+      });
     }
   } catch (error) {
     console.error("Error reading sheet content:", error);
+    return res.json({
+      flagSuccess: false,
+    });
   }
 });
 
