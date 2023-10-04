@@ -36,6 +36,7 @@ router.post("/check_white_list", async (req, res) => {
         flagSuccess: false,
       });
     }
+    
     console.log("arrayAddressWallet:", arrayAddressWallet);
     if (arrayAddressWallet.length !== 0) {
       return res.json({

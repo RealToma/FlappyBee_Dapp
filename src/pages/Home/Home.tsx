@@ -48,13 +48,23 @@ const Home = () => {
           <img src={imgLogoBee} width={"100%"} height={"100%"} alt="" />
         </SectionImageLogo>
       </SectionTitle>
-      <ButtonStart
-        onClick={() => {
-          handleStart();
-        }}
-      >
-        Start
-      </ButtonStart>
+      <SectionButtonGroup>
+        <ButtonStart
+          onClick={() => {
+            handleStart();
+          }}
+        >
+          Start
+        </ButtonStart>
+        {/* <ButtonStart
+          onClick={() => {
+            handleStart();
+          }}
+        >
+          Free Mint
+        </ButtonStart> */}
+      </SectionButtonGroup>
+
       <SectionSocialButton>
         <ButtonSocial>
           <FaShareAlt />
@@ -248,6 +258,11 @@ const SectionSocialButton = styled(Box)`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 50px;
+`;
+
+const SectionButtonGroup = styled(Box)`
+  display: flex;
+  align-items: center;
 `;
 
 export default Home;

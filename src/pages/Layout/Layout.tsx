@@ -470,9 +470,9 @@ const LinkEach = styled(Box)<any>`
   font-family: "Rowdies";
   font-style: normal;
   font-weight: 300;
-  font-size: 3em;
+  font-size: 2.8em;
   line-height: 40px;
-  margin-right: 40px;
+  margin-right: 30px;
 
   transition: 0.3s;
   cursor: pointer;
@@ -483,11 +483,11 @@ const LinkEach = styled(Box)<any>`
   }
 
   @media (max-width: 1600px) {
-    margin-right: 30px;
+    margin-right: 20px;
   }
   @media (max-width: 1440px) {
     height: 45px;
-    margin-right: 20px;
+    margin-right: 10px;
   }
   @media (max-width: 1200px) {
     margin-right: 5px;
