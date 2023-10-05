@@ -22,7 +22,7 @@ router.post("/check_white_list", async (req, res) => {
     });
 
     const dataSheet = response.data.values;
-
+    console.log("dataSheet:",dataSheet)
     let arrayAddressWallet = [];
     if (dataSheet.length !== 0) {
       for (var i = 1; i < dataSheet.length; i++) {

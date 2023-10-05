@@ -470,7 +470,7 @@ const LinkEach = styled(Box)<any>`
   font-family: "Rowdies";
   font-style: normal;
   font-weight: 300;
-  font-size: 2.8em;
+  font-size: 2.5em;
   line-height: 40px;
   margin-right: 30px;
 

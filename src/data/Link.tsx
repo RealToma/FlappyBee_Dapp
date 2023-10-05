@@ -17,6 +17,11 @@ export const dataTopNavigation: Link[] = [
     flagNavigate: false,
   },
   {
+    name: "Free Mint",
+    link: "/free_mint",
+    flagNavigate: false,
+  },
+  {
     name: "Airdrop",
     link: "/airdrop",
     flagNavigate: false,

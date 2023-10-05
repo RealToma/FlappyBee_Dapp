@@ -19,6 +19,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 import imgButtonSmall from "./assets/images/buttons/HomeSmall.png";
+import FreeMint from "./pages/FreeMint/FreeMint";
 
 const App = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -78,6 +79,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/play" element={<Home />} />
+            <Route path="/free_mint" element={<FreeMint />} />
             <Route path="/airdrop" element={<Airdrop />} />
             <Route path="/stake" element={<Stake />} />
             <Route path="/nft" element={<NFT />} />
