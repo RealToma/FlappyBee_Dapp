@@ -11,17 +11,39 @@ import { FaPause } from "react-icons/fa";
 
 import imgCursorStart from "../assets/images/icons/cursorClickon.png";
 import GameOver from "./Components/Modal/GameOver";
+import { useEffect } from "react";
+import { checkWhiteList } from "../actions/auth";
+import { useWeb3React } from "@web3-react/core";
+import { useNavigate } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
+
 
 const Game = ({ setPlayMusicGame }: any) => {
   const { gameHasStarted, startGame, restartGame } = useGameSystem();
+  const { account } = useWeb3React();
+  const navigate = useNavigate();
 
   let increment = GAME_WIDTH / 2;
-
   const Obstacle1 = createObstacle({ increment: increment / 2 });
   const Obstacle2 = createObstacle({ increment: increment * 2 });
   // const Obstacle3 = createObstacle({ increment: increment * 2 });
 
   const obstacles = [Obstacle1, Obstacle2];
+
+  useEffect(() => {
+    checkWhiteList(account).then((res) => {
+      if (res.flagSuccess) {
+        return;
+      } else {
+        navigate("/play");
+        return NotificationManager.error(
+          "Only whitelisted address can play, know more about FREE MINT",
+          "You are not whitelisted!",
+          5000
+        );
+      }
+    });
+  }, [account, navigate]);
 
   return (
     <Container>
