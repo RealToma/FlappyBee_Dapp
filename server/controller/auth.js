@@ -26,7 +26,7 @@ router.post("/check_white_list", async (req, res) => {
     let arrayAddressWallet = [];
     if (dataSheet.length !== 0) {
       for (var i = 1; i < dataSheet.length; i++) {
-        if (dataSheet[i][7].toLowerCase() === addressWallet.toLowerCase()) {
+        if (dataSheet[i][7]?.toLowerCase() === addressWallet?.toLowerCase()) {
           arrayAddressWallet.push(dataSheet[i][7]);
         }
       }

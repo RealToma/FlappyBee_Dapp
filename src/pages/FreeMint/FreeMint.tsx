@@ -1,8 +1,6 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgBackClaim from "../../assets/images/background/bgAirdrop.png";
-import imgButtonStart from "../../assets/images/buttons/HomeWide.png";
-import imgAirdropBee from "../../assets/images/bee/airdrop.png";
 import { textFreeMintRules } from "../../data/FreeMint";
 
 const FreeMint = () => {
@@ -10,26 +8,21 @@ const FreeMint = () => {
     <StyledComponent>
       <SectionClaim>
         <TextAirdrop>Free Mint Event</TextAirdrop>
-        {/* <ButtonStart onClick={() => {}}>Claim $BEET</ButtonStart> */}
       </SectionClaim>
       <SectionDescription>
-        <SectionImageGroup>
-          <ImageLeft>
-            <img src={imgAirdropBee} width={"100%"} alt="" />
-          </ImageLeft>
-          <ImageRight>
-            <img src={imgAirdropBee} width={"100%"} alt="" />
-          </ImageRight>
-          <img src={imgAirdropBee} width={"100%"} alt="" />
-        </SectionImageGroup>
         <TextHead data-aos="fade-up" data-aos-duration="2000">
           You can earn free $BEET by playing FlappyBee game during FREE MINT
           event!
           <br />
           <br />
           Before proceeding, please ensure you have completed the required
-          procedure at :{"\u00a0"}
-          <a style={{ textDecoration: "underline" }}>
+          procedure at: {"\u00a0"}
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdgIPmSSBnBAmXdjkygjtzCOmxS2hTummJg85YkZz-KC-CRTA/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "white" }}
+          >
             https://docs.google.com/forms/d/e/1FAIpQLSdgIPmSSBnBAmXdjkygjtzCOmxS2hTummJg85YkZz-KC-CRTA/viewform
           </a>
           {"\u00a0"}
@@ -39,14 +32,50 @@ const FreeMint = () => {
           Kindly review the following rules carefully to earn FREE $BEET:
         </TextHeadGuide>
         <SectionGuide data-aos="fade-up" data-aos-duration="2000">
-          {textFreeMintRules.map((each, index) => {
-            return <TextEachGuide key={index}>{each}</TextEachGuide>;
-          })}
+          <TextEachGuide>
+            1. Visit{" "}
+            <a
+              href="https://flappybee.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              flappybee.com
+            </a>
+            <br />
+            2. Connect your wallet.
+            <br />
+            3. Ensure you have selected the Goerli network (for instructions on
+            switching to Goerli, please refer to :{"\u00a0"}
+            <a
+              href="https://flappybee.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              https://medium.com/@gezimosmanii/a-simple-guide-to-adding-goerli-testnet-to-your-metamask-wallet-2023-step-by-step-guide-ce34b70e3125
+            </a>
+            )
+            <br />
+            4. Play the game and record your score on Goerli network.
+            <br />
+            5. Your score multiplied by 10%will determine your reward on the
+            mainnet. For instance, if you score 100 $BEET on the testnet, you
+            will be eligible to claim 10 $BEET on the mainnet.
+            <br />
+            6. Tokens will be claimable on mainnet once the FREE MINT session
+            concludes.
+          </TextEachGuide>
         </SectionGuide>
 
-        <TextHead data-aos="fade-up" data-aos-duration="2000">
+        <TextHead>
           Thank you for participating in our event, and good luck!
         </TextHead>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </SectionDescription>
     </StyledComponent>
   );
@@ -69,23 +98,29 @@ const SectionClaim = styled(Box)`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 125px 0px;
+  padding: 230px 0px;
   box-sizing: border-box;
 
   /* box-shadow: inset 0px 0px 20px 0px #666666; */
 
   transition: 0.3s;
-  @media (max-width: 1200px) {
-    padding: 100px 0px;
+  @media (max-width: 1440px) {
+    padding: 200px 0px;
   }
   @media (max-width: 1200px) {
-    padding: 80px 0px;
+    padding: 150px 0px;
+  }
+  @media (max-width: 1200px) {
+    padding: 120px 0px;
   }
   @media (max-width: 768px) {
-    padding: 60px 0px;
+    padding: 100px 0px;
+  }
+  @media (max-width: 500px) {
+    padding: 70px 0px;
   }
   @media (max-width: 390px) {
-    padding: 40px 0px;
+    padding: 50px 0px;
   }
 `;
 
@@ -107,182 +142,33 @@ const TextAirdrop = styled(Box)`
   }
 `;
 
-const ButtonStart = styled(Box)`
-  display: flex;
-  width: 600px;
-  height: 130px;
-  justify-content: center;
-  align-items: center;
-  background-image: url(${imgButtonStart});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  font-family: "Rowdies";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 6em;
-  margin-top: 125px;
-
-  /* identical to box height, or 129% */
-
-  text-align: center;
-
-  color: #511900;
-  cursor: pointer;
-  user-select: none;
-  transition: 0.2s;
-  &:hover {
-    color: white;
-  }
-  &:active {
-    transform: scale(0.9);
-  }
-
-  transition: 0.3s;
-  @media (max-width: 1440px) {
-    width: 500px;
-    height: 100px;
-  }
-  @media (max-width: 1024px) {
-    margin-top: 80px;
-    width: 400px;
-    height: 93px;
-  }
-  @media (max-width: 768px) {
-    margin-top: 60px;
-    width: 370px;
-    height: 85px;
-  }
-  @media (max-width: 500px) {
-    width: 300px;
-    height: 66px;
-    margin-top: 40px;
-  }
-  @media (max-width: 390px) {
-    width: 260px;
-    height: 66px;
-  }
-`;
-
 const SectionDescription = styled(Box)`
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
-
-  padding: 120px 330px;
+  margin-bottom: 120px;
+  padding: 50px 330px;
   box-sizing: border-box;
   transition: 0.3s;
   @media (max-width: 1440px) {
-    padding: 120px 180px;
+    padding: 50px 180px;
   }
   @media (max-width: 1024px) {
-    padding: 100px 120px;
+    padding: 40px 120px;
+    margin-bottom: 100px;
   }
   @media (max-width: 768px) {
-    padding: 120px 60px;
+    padding: 30px 60px;
+    margin-bottom: 70px;
   }
   @media (max-width: 500px) {
-    padding: 100px 40px;
+    padding: 25px 40px;
+    margin-bottom: 50px;
   }
   @media (max-width: 390px) {
-    padding: 80px 30px;
-  }
-`;
-
-const SectionImageGroup = styled(Box)`
-  display: flex;
-  position: relative;
-  width: 250px;
-  aspect-ratio: 1;
-
-  transition: 0.3s;
-  @media (max-width: 1440px) {
-    width: 250px;
-  }
-  @media (max-width: 1024px) {
-    width: 220px;
-  }
-  @media (max-width: 768px) {
-    width: 192px;
-  }
-  @media (max-width: 500px) {
-    width: 150px;
-  }
-  @media (max-width: 390px) {
-    width: 120px;
-  }
-
-  > img {
-    z-index: 100;
-  }
-`;
-
-const ImageLeft = styled(Box)`
-  display: flex;
-  position: absolute;
-  top: 50%;
-  right: 180px;
-  transform: translateY(-50%);
-  width: 250px;
-  aspect-ratio: 1;
-  > img {
-    z-index: 99;
-  }
-
-  transition: 0.3s;
-  @media (max-width: 1440px) {
-    width: 250px;
-  }
-  @media (max-width: 1024px) {
-    width: 220px;
-    right: 160px;
-  }
-  @media (max-width: 768px) {
-    width: 192px;
-    right: 150px;
-  }
-  @media (max-width: 500px) {
-    width: 150px;
-    right: 120px;
-  }
-  @media (max-width: 390px) {
-    width: 120px;
-    right: 90px;
-  }
-`;
-
-const ImageRight = styled(Box)`
-  display: flex;
-  position: absolute;
-  top: 50%;
-  left: 180px;
-  transform: translateY(-50%);
-  width: 250px;
-  aspect-ratio: 1;
-  > img {
-    z-index: 98;
-  }
-
-  transition: 0.3s;
-  @media (max-width: 1440px) {
-    width: 250px;
-  }
-  @media (max-width: 1024px) {
-    width: 220px;
-    left: 160px;
-  }
-  @media (max-width: 768px) {
-    width: 192px;
-    left: 150px;
-  }
-  @media (max-width: 500px) {
-    width: 150px;
-    left: 120px;
-  }
-  @media (max-width: 390px) {
-    width: 120px;
-    left: 90px;
+    padding: 20px 30px;
+    margin-bottom: 30px;
   }
 `;
 
@@ -300,14 +186,24 @@ const TextHead = styled(Box)`
 
   margin-top: 80px;
   transition: 0.3s;
-  @media (max-width: 1024px) {
-    margin-top: 70px;
-  }
-  @media (max-width: 768px) {
+  @media (max-width: 1440px) {
     margin-top: 60px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 1024px) {
     margin-top: 50px;
+    line-height: 40px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 40px;
+    line-height: 35px;
+  }
+  @media (max-width: 500px) {
+    margin-top: 30px;
+    line-height: 30px;
+  }
+  @media (max-width: 390px) {
+    margin-top: 20px;
+    line-height: 25px;
   }
 `;
 
@@ -315,7 +211,7 @@ const TextHeadGuide = styled(Box)`
   color: #fff;
   text-align: center;
   font-family: Rowdies;
-  font-size: 6em;
+  font-size: 4em;
   font-style: normal;
   font-weight: 400;
   line-height: 75px;
@@ -338,28 +234,6 @@ const TextHeadGuide = styled(Box)`
   }
 `;
 
-const TextAirdropRate = styled(Box)`
-  display: flex;
-  width: 100%;
-  color: #fff;
-  font-family: Lato;
-  font-size: 3em;
-  font-style: normal;
-  line-height: 33px;
-
-  margin-top: 80px;
-  transition: 0.3s;
-  @media (max-width: 1024px) {
-    margin-top: 70px;
-  }
-  @media (max-width: 768px) {
-    margin-top: 60px;
-  }
-  @media (max-width: 390px) {
-    margin-top: 50px;
-  }
-`;
-
 const SectionGuide = styled(Box)`
   display: flex;
   width: 100%;
@@ -376,25 +250,25 @@ const SectionGuide = styled(Box)`
 `;
 
 const TextEachGuide = styled(Box)`
-  display: flex;
   width: 100%;
   color: #fff;
   font-family: Lato;
   font-size: 3em;
   font-style: normal;
   font-weight: 500;
-  line-height: 44px;
+  word-wrap: break-word;
+  line-height: 60px;
 
   margin-top: 20px;
 
   transition: 0.3s;
   @media (max-width: 768px) {
     margin-top: 16px;
-    line-height: 30px;
+    line-height: 50px;
   }
   @media (max-width: 390px) {
     margin-top: 12px;
-    line-height: 20px;
+    line-height: 30px;
   }
 `;
 

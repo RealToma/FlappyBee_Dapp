@@ -28,7 +28,11 @@ const Home = () => {
         navigate("/game");
         return;
       } else {
-        return NotificationManager.error("You are not whitelisted!", "", 5000);
+        return NotificationManager.error(
+          "Only whitelisted address can play, know more about FREE MINT",
+          "You are not whitelisted!",
+          5000
+        );
       }
     });
   };
