@@ -59,7 +59,7 @@ const FreeMint = () => {
             <br />
             4. Play the game and record your score on Goerli network.
             <br />
-            5. Your score multiplied by 10%will determine your reward on the
+            5. Your score multiplied by 10% will determine your reward on the
             mainnet. For instance, if you score 100 $BEET on the testnet, you
             will be eligible to claim 10 $BEET on the mainnet.
             <br />

@@ -5,7 +5,7 @@ const { google } = require("googleapis");
 
 router.post("/check_white_list", async (req, res) => {
   const addressWallet = req.body.addressWallet;
-  console.log("wallet address:", req.body.addressWallet);
+  // console.log("wallet address:", req.body.addressWallet);
 
   try {
     const sheets = google.sheets({
@@ -22,7 +22,7 @@ router.post("/check_white_list", async (req, res) => {
     });
 
     const dataSheet = response.data.values;
-    console.log("dataSheet:",dataSheet)
+    // console.log("dataSheet:",dataSheet)
     let arrayAddressWallet = [];
     if (dataSheet.length !== 0) {
       for (var i = 1; i < dataSheet.length; i++) {
@@ -37,7 +37,7 @@ router.post("/check_white_list", async (req, res) => {
       });
     }
     
-    console.log("arrayAddressWallet:", arrayAddressWallet);
+    // console.log("arrayAddressWallet:", arrayAddressWallet);
     if (arrayAddressWallet.length !== 0) {
       return res.json({
         flagSuccess: true,

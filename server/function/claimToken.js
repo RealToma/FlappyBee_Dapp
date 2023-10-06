@@ -1,10 +1,8 @@
-const { ethers, JsonRpcProvider } = require("ethers");
+const { ethers, JsonRpcProvider, parseUnits } = require("ethers");
 const { abiTokenBEET } = require("../utils/ABI");
 const { modelTotalScore } = require("../schema/totalScore");
 
-const provider = new JsonRpcProvider(
-  process.env.REACT_APP_URL_PRC_PROVIDER
-);
+const provider = new JsonRpcProvider(process.env.REACT_APP_URL_PRC_PROVIDER);
 const wallet = new ethers.Wallet(
   process.env.REACT_APP_KEY_PRIVATE_OWNER,
   provider
@@ -16,21 +14,50 @@ const tokenContract = new ethers.Contract(
   wallet
 );
 
-// const recipientAddress = "<recipient_address>";
-// const amount = ethers.utils.parseUnits(
-//   "<amount_to_send>",
-//   process.env.REACT_APP_DECIMAL_TOKEN
-// );
-
 const claimRewardTokens = async () => {
-  console.log("=== step1 ===");
+  console.log("starting claim reward BEET tokens automatically...");
   try {
+    console.log("Getting database that has white-listed scores");
     let dataTotalScores = await modelTotalScore.find();
-    console.log("=== step2 ===");
-    console.log("dataTotalScores:", dataTotalScores);
-    // const transaction = await tokenContract.transfer(recipientAddress, amount);
-    // await transaction.wait();
-    console.log("Tokens sent successfully!");
+    if (dataTotalScores.length !== 0) {
+      for (var i = 0; i < dataTotalScores.length; i++) {
+        console.log("Sending...");
+        let recipientAddress = dataTotalScores[i]["addressWallet"];
+        // let amount = parseUnits(
+        //   dataTotalScores[i]["totalScore"].toString(),
+        //   process.env.REACT_APP_DECIMAL_TOKEN
+        // );
+        // console.log("amount:", amount);
+        let transaction = await tokenContract.transfer(
+          recipientAddress,
+          "0x" +
+            (
+              dataTotalScores[i]["totalScore"] *
+              Math.pow(10, process.env.REACT_APP_DECIMAL_TOKEN)
+            ).toString(16)
+        );
+        let transRecipt = await transaction.wait();
+        console.log(
+          `${i + 1}. Sent ${dataTotalScores[i]["totalScore"]} BEET to ${
+            dataTotalScores[i]["addressWallet"]
+          }:`,
+          `https://goerli.etherscan.io/tx/${transRecipt.hash}`
+        );
+
+        const now = new Date();
+        const options = { timeZone: "America/New_York" };
+        const estDateTime = now.toLocaleString("en-US", options);
+        await modelTotalScore.findOneAndUpdate(
+          { addressWallet: recipientAddress },
+          {
+            totalScore: 0,
+            flagClaimed: true,
+            timeClaimed: estDateTime,
+          }
+        );
+        // console.log("transRecipt:", transRecipt.hash);
+      }
+    }
   } catch (error) {
     console.error("Error sending tokens:", error);
   }
