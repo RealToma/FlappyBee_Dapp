@@ -17,7 +17,6 @@ import { useWeb3React } from "@web3-react/core";
 import { useNavigate } from "react-router-dom";
 import { NotificationManager } from "react-notifications";
 
-
 const Game = ({ setPlayMusicGame }: any) => {
   const { gameHasStarted, startGame, restartGame } = useGameSystem();
   const { account } = useWeb3React();
@@ -36,9 +35,10 @@ const Game = ({ setPlayMusicGame }: any) => {
         return;
       } else {
         navigate("/play");
-        return NotificationManager.error(
-          "Only whitelisted address can play, know more about FREE MINT",
-          "You are not whitelisted!",
+        return NotificationManager.warning(
+          "Oops....  it seems this address is not whitelisted. Please make sure to connect with a whitelisted address",
+          "",
+          // "You are not whitelisted!",
           5000
         );
       }
@@ -88,6 +88,20 @@ const ImgCursorStart = styled(Box)`
   width: 110px;
   margin-top: 45px;
   margin-bottom: 30px;
+
+  animation: zoomIN 0.7s infinite;
+
+  @keyframes zoomIN {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.8);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 `;
 
 const TextTapPlay = styled(Box)`
@@ -116,6 +130,52 @@ const TextGetReady = styled(Box)`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 3px white;
+
+  animation: colorchange 3s infinite alternate;
+  @keyframes colorchange {
+    0% {
+      background-color: #5a0800;
+    }
+
+    10% {
+      background-color: #8e44ad;
+    }
+
+    20% {
+      background-color: #1abc9c;
+    }
+
+    30% {
+      background-color: #d35400;
+    }
+
+    40% {
+      background-color: blue;
+    }
+
+    50% {
+      background-color: #5a0800;
+    }
+
+    60% {
+      background-color: #34495e;
+    }
+
+    70% {
+      background-color: #00ff0d;
+    }
+    80% {
+      background-color: #f1c40f;
+    }
+
+    90% {
+      background-color: #2980b9;
+    }
+
+    100% {
+      background-color: #5a0800;
+    }
+  }
 `;
 
 const SectionGameStart = styled(Box)`

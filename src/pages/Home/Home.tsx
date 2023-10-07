@@ -28,9 +28,10 @@ const Home = () => {
         navigate("/game");
         return;
       } else {
-        return NotificationManager.error(
-          "Only whitelisted address can play, know more about FREE MINT",
-          "You are not whitelisted!",
+        return NotificationManager.warning(
+          "Oops....  it seems this address is not whitelisted. Please make sure to connect with a whitelisted address",
+          // "You are not whitelisted!",
+          "",
           5000
         );
       }
