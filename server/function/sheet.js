@@ -22,14 +22,14 @@ const coverSheetToDatabase = async () => {
     if (dataSheet.length !== 0) {
       for (var i = 1; i < dataSheet.length; i++) {
         if (
-          (dataSheet[i][9] === "yes" ||
-            dataSheet[i][9] === "Yes" ||
-            dataSheet[i][9] === "YES" ||
-            dataSheet[i][9] === "Y" ||
-            dataSheet[i][9] === true ||
-            dataSheet[i][9] === "true",
-          dataSheet[i][9] === "True",
-          dataSheet[i][9] === "TRUE")
+          dataSheet[i][9] === "yes" ||
+          dataSheet[i][9] === "Yes" ||
+          dataSheet[i][9] === "YES" ||
+          dataSheet[i][9] === "Y" ||
+          dataSheet[i][9] === true ||
+          dataSheet[i][9] === "true" ||
+          dataSheet[i][9] === "True" ||
+          dataSheet[i][9] === "TRUE"
         ) {
           let databaseUser = await modelUsers.find({
             $or: [
@@ -40,6 +40,7 @@ const coverSheetToDatabase = async () => {
               },
             ],
           });
+          // console.log("databaseUser:", databaseUser);
 
           if (databaseUser.length === 0) {
             let modelEachUser = new modelUsers({
