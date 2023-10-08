@@ -12,6 +12,7 @@ const config = require("./config/key");
 const controllerScore = require("./controller/score");
 const controllerAuth = require("./controller/auth");
 const { claimRewardTokens } = require("./function/claimToken");
+const { coverSheetToDatabase } = require("./function/sheet");
 
 // connects our back end code with the database
 mongoose.connect(config.mongoURI, {
@@ -38,6 +39,8 @@ app.use((req, res, next) => {
 });
 
 // claimRewardTokens();
+coverSheetToDatabase();
+
 app.use("/api/score", controllerScore);
 app.use("/api/auth", controllerAuth);
 

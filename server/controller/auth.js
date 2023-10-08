@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const { modelScore } = require("../schema/score");
 const { google } = require("googleapis");
 
 router.post("/check_white_list", async (req, res) => {
