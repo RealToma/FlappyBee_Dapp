@@ -32,15 +32,16 @@ const claimRewardTokens = async () => {
           recipientAddress,
           "0x" +
             (
+              process.env.REACT_APP_CLAIM_RATE *
               dataTotalScores[i]["totalScore"] *
               Math.pow(10, process.env.REACT_APP_DECIMAL_TOKEN)
             ).toString(16)
         );
         let transRecipt = await transaction.wait();
         console.log(
-          `${i + 1}. Sent ${dataTotalScores[i]["totalScore"]} BEET to ${
-            dataTotalScores[i]["addressWallet"]
-          }:`,
+          `${i + 1} - Sent ${
+            process.env.REACT_APP_CLAIM_RATE * dataTotalScores[i]["totalScore"]
+          } BEET to ${dataTotalScores[i]["addressWallet"]}:`,
           `https://goerli.etherscan.io/tx/${transRecipt.hash}`
         );
 

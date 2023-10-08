@@ -10,10 +10,14 @@ import { NotificationManager } from "react-notifications";
 import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import { checkWhiteList } from "../../actions/auth";
+import useProgressiveImg from "../../components/Image/ImageLoadEffect";
 
 const Home = () => {
   const navigate = useNavigate();
   const { account } = useWeb3React();
+
+  const [srcBackHome, { blur }] = useProgressiveImg(imgBackHome, imgBackHome);
+  console.log("blur:", blur);
 
   const handleStart = () => {
     if (account === undefined || account === null) {
@@ -44,7 +48,14 @@ const Home = () => {
   // };
 
   return (
-    <StyledComponent>
+    <StyledComponent
+      // srcBackHome={srcBackHome ? srcBackHome : srcBackHome}
+      style={{
+        filter: !blur ? "blur(20px)" : "none",
+        transition: !blur ? "none" : "filter 0.5s ease-out",
+        backgroundImage: srcBackHome,
+      }}
+    >
       <SectionTitle>
         <SectionTextTitle>
           <TextTitle>Flappy Bee</TextTitle>
@@ -92,7 +103,7 @@ const StyledComponent = styled(Box)`
   align-items: center;
   justify-content: space-evenly;
   height: 100%;
-  background-image: url(${imgBackHome});
+
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
