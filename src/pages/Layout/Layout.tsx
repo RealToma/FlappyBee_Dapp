@@ -20,6 +20,7 @@ import {
 } from "../../utils/connectors";
 import { shortAddress } from "../../libs/Functions";
 import imgButtonTop from "../../assets/images/buttons/topbar.png";
+import MetaMaskOnboarding from "@metamask/onboarding";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   };
 
   const handleConnect = async (currentConnector: any) => {
+    const onboarding = new MetaMaskOnboarding();
     await activate(walletConnectors[currentConnector]);
     // set_wConnect(walletConnectors[currentConnector]);
     window.localStorage.setItem("CurrentWalletConnect", currentConnector);
@@ -80,8 +82,6 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     );
     currentWalletState && activate(walletConnectors[currentWalletState]);
   }, []);
-
-  
 
   return (
     <StyledComponent>
