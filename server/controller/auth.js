@@ -14,7 +14,7 @@ router.post("/check_white_list", async (req, res) => {
     });
 
     const spreadsheetId = process.env.REACT_APP_ID_GOOGLE_SHEET_WHITE_LIST;
-    const range = "Sheet1"; // Specify the range of cells you want to read
+    const range = process.env.REACT_APP_NAME_GOOGLE_SHEET; // Specify the range of cells you want to read
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
@@ -22,7 +22,7 @@ router.post("/check_white_list", async (req, res) => {
     });
 
     const dataSheet = response.data.values;
-    // console.log("dataSheet:",dataSheet)
+    // console.log("dataSheet:", dataSheet);
     let arrayAddressWallet = [];
     if (dataSheet.length !== 0) {
       for (var i = 1; i < dataSheet.length; i++) {
@@ -36,7 +36,7 @@ router.post("/check_white_list", async (req, res) => {
         flagSuccess: false,
       });
     }
-    
+
     // console.log("arrayAddressWallet:", arrayAddressWallet);
     if (arrayAddressWallet.length !== 0) {
       return res.json({
