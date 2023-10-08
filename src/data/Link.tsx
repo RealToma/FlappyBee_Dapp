@@ -22,10 +22,15 @@ export const dataTopNavigation: Link[] = [
     flagNavigate: false,
   },
   {
-    name: "Airdrop",
-    link: "/airdrop",
+    name: "Claim",
+    link: "/claim",
     flagNavigate: false,
   },
+  // {
+  //   name: "Airdrop",
+  //   link: "/airdrop",
+  //   flagNavigate: false,
+  // },
   {
     name: "Stake",
     link: "/stake",

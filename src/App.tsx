@@ -8,7 +8,7 @@ import Leaderboard from "./pages/Leaderboard/Leaderboard";
 import Rewards from "./pages/Rewards/Rewards";
 import Stake from "./pages/Stake/Stake";
 import Settings from "./pages/Settings/Settings";
-import Airdrop from "./pages/Airdrop/Airdop";
+// import Airdrop from "./pages/Airdrop/Airdop";
 import "./actions/baseURL";
 import "./index.css";
 import { NotificationContainer } from "react-notifications";
@@ -20,7 +20,7 @@ import "aos/dist/aos.css";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 import imgButtonSmall from "./assets/images/buttons/HomeSmall.png";
 import FreeMint from "./pages/FreeMint/FreeMint";
-
+import Claim from "./pages/Claim/Claim";
 
 const App = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -81,7 +81,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/play" element={<Home />} />
             <Route path="/free_mint" element={<FreeMint />} />
-            <Route path="/airdrop" element={<Airdrop />} />
+            <Route path="/claim" element={<Claim />} />
+            {/* <Route path="/airdrop" element={<Airdrop />} /> */}
             <Route path="/stake" element={<Stake />} />
             <Route path="/nft" element={<NFT />} />
             <Route
