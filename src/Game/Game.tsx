@@ -116,6 +116,12 @@ const TextTapPlay = styled(Box)`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 2px white;
+  @media (max-width: 768px) {
+    -webkit-text-stroke: 1.7px white;
+  }
+  @media (max-width: 390px) {
+    -webkit-text-stroke: 1px white;
+  }
 `;
 
 const TextGetReady = styled(Box)`
@@ -130,6 +136,12 @@ const TextGetReady = styled(Box)`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 3px white;
+  @media (max-width: 768px) {
+    -webkit-text-stroke: 2.5px white;
+  }
+  @media (max-width: 390px) {
+    -webkit-text-stroke: 2px white;
+  }
 
   animation: colorchange 3s infinite alternate;
   @keyframes colorchange {
