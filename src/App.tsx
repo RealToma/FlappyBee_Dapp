@@ -21,6 +21,7 @@ import { MdMusicNote, MdMusicOff } from "react-icons/md";
 import imgButtonSmall from "./assets/images/buttons/HomeSmall.png";
 import FreeMint from "./pages/FreeMint/FreeMint";
 
+
 const App = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [playMusicBack, setPlayMusicBack] = useState(false);

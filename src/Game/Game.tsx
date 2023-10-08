@@ -89,9 +89,9 @@ const ImgCursorStart = styled(Box)`
   margin-top: 45px;
   margin-bottom: 30px;
 
-  animation: zoomIN 0.7s infinite;
+  animation: zoomINCursor 0.7s infinite;
 
-  @keyframes zoomIN {
+  @keyframes zoomINCursor {
     0% {
       transform: scale(1);
     }
@@ -121,6 +121,21 @@ const TextTapPlay = styled(Box)`
   }
   @media (max-width: 390px) {
     -webkit-text-stroke: 1px white;
+  }
+
+  
+  animation: zoomINText 0.7s infinite;
+
+  @keyframes zoomINText {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.8);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 `;
 

@@ -29,7 +29,9 @@ const GameOver = () => {
             <SectionRewardCoin>
               <img src={imgBee} width={"60%"} alt="" />
             </SectionRewardCoin>
-            <SectionValue>{score * 10} BEET</SectionValue>
+            <SectionValue>
+              {score * (process.env.REACT_APP_CLAIM_RATE as any)} BEET
+            </SectionValue>
           </SectionBoardReward>
           <SectionBoardScore>
             <SectionScore>
@@ -216,6 +218,23 @@ const MarkNew = styled(Box)`
   @media (max-width: 390px) {
     width: 41px;
     height: 21px;
+  }
+
+  animation: animationNewMark 0.7s infinite;
+
+  @keyframes animationNewMark {
+    0% {
+      /* background: #ff3517; */
+      color: #fff;
+    }
+    50% {
+      /* background: #fff; */
+      color: #511900;
+    }
+    100% {
+      /* background: #ff3517; */
+      color: #fff;
+    }
   }
 `;
 

@@ -37,6 +37,10 @@ const schemaUsers = new mongoose.Schema({
     type: String,
     require: true,
   },
+  countFreeMint: {
+    type: Number,
+    require: true,
+  },
 });
 
 const modelUsers = mongoose.model("users", schemaUsers);
