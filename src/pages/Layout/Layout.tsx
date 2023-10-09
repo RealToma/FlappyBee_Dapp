@@ -21,6 +21,7 @@ import {
 import { shortAddress } from "../../libs/Functions";
 import imgButtonTop from "../../assets/images/buttons/topbar.png";
 import MetaMaskOnboarding from "@metamask/onboarding";
+import Marquee from "react-fast-marquee";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -86,7 +87,19 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   return (
     <StyledComponent>
       <SectionTopbar>
-        📢 FREE MINT event will start on October 15, 2023 🐝🐝🐝
+        <Marquee
+          speed={30}
+          // gradient={true}
+          // gradientWidth={30}
+          // gradientColor={[0, 61, 40]}
+        >
+          {"\u00a0"}
+          {"\u00a0"}
+          {"\u00a0"}📢 FREE MINT event will start on October 15, 2023. Check out
+          Claim Page!{"\u00a0"}
+          {"\u00a0"}
+          {"\u00a0"}
+        </Marquee>
       </SectionTopbar>
       <SectionHeader
         onClick={() => {
