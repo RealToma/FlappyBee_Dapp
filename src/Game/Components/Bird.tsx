@@ -13,7 +13,7 @@ const Bird = () => {
     if (gameHasStarted === 1) {
       const intervalID = setInterval(() => {
         setBirdFrame((prev) => (prev === 1 ? 2 : prev === 2 ? 3 : 1));
-      }, 70);
+      }, 50);
       return () => clearInterval(intervalID);
     }
   }, [gameHasStarted]);

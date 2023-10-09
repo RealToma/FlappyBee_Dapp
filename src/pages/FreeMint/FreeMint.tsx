@@ -10,18 +10,18 @@ const FreeMint = () => {
         <TextAirdrop>Free Mint Event</TextAirdrop>
       </SectionClaim>
       <SectionDescription>
-        <TextHead data-aos="fade-up" data-aos-duration="2000">
+        <TextHeadGuide data-aos="zoom-in" data-aos-duration="1000">
           You can earn free $BEET by playing FlappyBee game during FREE MINT
           event!
-          <br />
-          <br />
+        </TextHeadGuide>
+        <TextHead data-aos="fade-up" data-aos-duration="2000">
           Before proceeding, please ensure you have completed the required
           procedure at: {"\u00a0"}
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSdgIPmSSBnBAmXdjkygjtzCOmxS2hTummJg85YkZz-KC-CRTA/viewform"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ textDecoration: "none", color: "white" }}
+            style={{ textDecoration: "underline", color: "white" }}
           >
             https://docs.google.com/forms/d/e/1FAIpQLSdgIPmSSBnBAmXdjkygjtzCOmxS2hTummJg85YkZz-KC-CRTA/viewform
           </a>
@@ -38,7 +38,7 @@ const FreeMint = () => {
               href="https://flappybee.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "underline", color: "white" }}
             >
               flappybee.com
             </a>
@@ -51,7 +51,7 @@ const FreeMint = () => {
               href="https://flappybee.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "underline", color: "white" }}
             >
               https://medium.com/@gezimosmanii/a-simple-guide-to-adding-goerli-testnet-to-your-metamask-wallet-2023-step-by-step-guide-ce34b70e3125
             </a>
@@ -228,7 +228,7 @@ const TextHeadGuide = styled(Box)`
     line-height: 60px;
     margin-top: 60px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     margin-top: 50px;
     line-height: 50px;
   }

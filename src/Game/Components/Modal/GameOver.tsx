@@ -37,7 +37,6 @@ const GameOver = () => {
             <SectionScore>
               <SectionBestMark>
                 {score > bestScore ? <MarkNew>NEW</MarkNew> : <></>}
-
                 <TextScoreDescription>SCORE</TextScoreDescription>
               </SectionBestMark>
               <SectionDropScore>

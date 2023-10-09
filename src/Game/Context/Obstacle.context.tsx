@@ -57,7 +57,7 @@ export const ObstacleProvider = ({
   const [stopObstacle, setStopObstacle] = React.useState<boolean>(false);
 
   function height() {
-    return Math.random() * (GAME_HEIGHT - OBSTACLE_GAP);
+    return Math.random() * (GAME_HEIGHT - OBSTACLE_GAP - 100);
   }
   function newObstacle() {
     let newHeight = height();
@@ -86,7 +86,7 @@ export const ObstacleProvider = ({
 
   React.useEffect(() => {
     let speed =
-      window.innerWidth > 900 ? 24 : window.innerWidth > 500 ? 35 : 50;
+      window.innerWidth > 900 ? 24 : window.innerWidth > 500 ? 40 : 60;
     let obstacleID: any;
     if (gameHasStarted === 1 && obstaclePosition >= -OBSTACLE_WIDTH / 2) {
       obstacleID = setInterval(() => {
