@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Game from "./Game/Game";
 import Layout from "./pages/Layout/Layout";
@@ -48,7 +48,7 @@ const App = () => {
   const someRequest = () => {
     //Simulates a request; makes a "promise" that'll run for 2.5 seconds
     return new Promise((resolve) =>
-      setTimeout(() => resolve(HashRouter), 1000)
+      setTimeout(() => resolve(BrowserRouter), 1000)
     );
   };
 
@@ -74,7 +74,7 @@ const App = () => {
   }
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <StyledComponent>
         <Layout setPlayMusicGame={setPlayMusicGame}>
           <Routes>
@@ -128,7 +128,7 @@ const App = () => {
         loop
         autoPlay
       /> */}
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
