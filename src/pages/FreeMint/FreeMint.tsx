@@ -20,11 +20,11 @@ const FreeMint = () => {
         <TextAirdrop>Free Mint Event</TextAirdrop>
         <SectionDropEffect>
           <Snowfall
-            snowflakeCount={20}
+            snowflakeCount={window.innerWidth < 768 ? 10 : 20}
             images={imagesParachute}
-            wind={[-1, 1]}
+            wind={[-0.5, 0.5]}
             rotationSpeed={[-0.2, 0.2]}
-            radius={[60, 150]}
+            radius={window.innerWidth < 768 ? [40, 100] : [60, 150]}
           />
         </SectionDropEffect>
       </SectionClaim>

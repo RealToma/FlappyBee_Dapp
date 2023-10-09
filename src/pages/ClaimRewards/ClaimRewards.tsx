@@ -2,13 +2,28 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgBackClaim from "../../assets/images/background/bgAirdrop.png";
 import imgAirdropBee from "../../assets/images/bee/airdrop.png";
+import Snowfall from "react-snowfall";
+import imgButtonStart from "../../assets/images/buttons/HomeWide.png";
 // import { textFreeMintRules } from "../../data/FreeMint";
 
 const ClaimRewards = () => {
+  const imgParachute01 = document.createElement("img");
+  imgParachute01.src = "/assets/images/icons/parachutes01.png";
+  const imagesParachute: any = [imgParachute01];
+
   return (
     <StyledComponent>
       <SectionClaim>
         <TextAirdrop>Claim Rewards</TextAirdrop>
+        <SectionDropEffect>
+          <Snowfall
+            snowflakeCount={window.innerWidth < 768 ? 10 : 20}
+            images={imagesParachute}
+            wind={[-0.5, 0.5]}
+            rotationSpeed={[-0.2, 0.2]}
+            radius={window.innerWidth < 768 ? [40, 100] : [60, 150]}
+          />
+        </SectionDropEffect>
       </SectionClaim>
       <SectionDescription>
         <SectionImageGroup>
@@ -26,6 +41,27 @@ const ClaimRewards = () => {
         <TextHead data-aos="fade-up" data-aos-duration="2000">
           You are eligible to claim up to:
         </TextHead>
+
+        <ButtonStart
+          onClick={() => {}}
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          Claim $BEET
+        </ButtonStart>
+        <TextSmall data-aos="fade-up" data-aos-duration="2000">
+          BEET will soon be claimable
+        </TextSmall>
+        <SectionNotify data-aos="fade-up" data-aos-duration="2000">
+          <TextHead>Notify me when $BEET goes mainnet:</TextHead>
+          <SectionInputEmail>
+            <InputEmail
+              component="input"
+              placeholder="example@gmail.com"
+            ></InputEmail>
+          </SectionInputEmail>
+          <ButtonSubmit>Submit</ButtonSubmit>
+        </SectionNotify>
       </SectionDescription>
     </StyledComponent>
   );
@@ -41,6 +77,7 @@ const StyledComponent = styled(Box)`
 
 const SectionClaim = styled(Box)`
   display: flex;
+  position: relative;
   width: 100%;
   flex-direction: column;
   align-items: center;
@@ -82,6 +119,7 @@ const TextAirdrop = styled(Box)`
   font-style: normal;
   font-weight: 400;
   line-height: 90px;
+  z-index: 100;
   /* -webkit-background-clip: text; */
   /* -webkit-text-fill-color: transparent; */
   -webkit-text-stroke: 3px white;
@@ -155,6 +193,39 @@ const TextHead = styled(Box)`
   }
 `;
 
+const TextSmall = styled(Box)`
+  /* display: flex; */
+  width: 100%;
+  color: #fff;
+  font-family: Lato;
+  font-size: 2.6em;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 44px;
+  text-align: center;
+  word-break: break-word;
+
+  margin-top: 30px;
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+  }
+  @media (max-width: 1024px) {
+    margin-top: 25px;
+    line-height: 40px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    line-height: 35px;
+  }
+  @media (max-width: 500px) {
+    line-height: 30px;
+  }
+  @media (max-width: 390px) {
+    margin-top: 10px;
+    line-height: 25px;
+  }
+`;
+
 const TextHeadGuide = styled(Box)`
   color: #fff;
   text-align: center;
@@ -182,43 +253,43 @@ const TextHeadGuide = styled(Box)`
   }
 `;
 
-const SectionGuide = styled(Box)`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  margin-top: 40px;
+// const SectionGuide = styled(Box)`
+//   display: flex;
+//   width: 100%;
+//   flex-direction: column;
+//   margin-top: 40px;
 
-  transition: 0.3s;
-  @media (max-width: 768px) {
-    margin-top: 30px;
-  }
-  @media (max-width: 390px) {
-    margin-top: 20px;
-  }
-`;
+//   transition: 0.3s;
+//   @media (max-width: 768px) {
+//     margin-top: 30px;
+//   }
+//   @media (max-width: 390px) {
+//     margin-top: 20px;
+//   }
+// `;
 
-const TextEachGuide = styled(Box)`
-  width: 100%;
-  color: #fff;
-  font-family: Lato;
-  font-size: 2.5em;
-  font-style: normal;
-  font-weight: 500;
-  word-wrap: break-word;
-  line-height: 60px;
+// const TextEachGuide = styled(Box)`
+//   width: 100%;
+//   color: #fff;
+//   font-family: Lato;
+//   font-size: 2.5em;
+//   font-style: normal;
+//   font-weight: 500;
+//   word-wrap: break-word;
+//   line-height: 60px;
 
-  margin-top: 20px;
+//   margin-top: 20px;
 
-  transition: 0.3s;
-  @media (max-width: 768px) {
-    margin-top: 16px;
-    line-height: 50px;
-  }
-  @media (max-width: 390px) {
-    margin-top: 12px;
-    line-height: 30px;
-  }
-`;
+//   transition: 0.3s;
+//   @media (max-width: 768px) {
+//     margin-top: 16px;
+//     line-height: 50px;
+//   }
+//   @media (max-width: 390px) {
+//     margin-top: 12px;
+//     line-height: 30px;
+//   }
+// `;
 
 const SectionImageGroup = styled(Box)`
   display: flex;
@@ -318,6 +389,183 @@ const ImageRight = styled(Box)`
   @media (max-width: 390px) {
     width: 120px;
     left: 90px;
+  }
+`;
+
+const SectionDropEffect = styled(Box)`
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const ButtonStart = styled(Box)`
+  display: flex;
+  width: 500px;
+  height: 130px;
+  justify-content: center;
+  align-items: center;
+  background-image: url(${imgButtonStart});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  font-family: "Rowdies";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 6em;
+  margin-top: 125px;
+
+  /* identical to box height, or 129% */
+
+  text-align: center;
+
+  color: #511900;
+  cursor: not-allowed;
+  user-select: none;
+  transition: 0.2s;
+
+  filter: opacity(0.3);
+  /* &:hover {
+    color: white;
+  }
+  &:active {
+    transform: scale(0.9);
+  } */
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    width: 450px;
+    height: 100px;
+  }
+  @media (max-width: 1024px) {
+    margin-top: 80px;
+    width: 400px;
+    height: 93px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 60px;
+    width: 370px;
+    height: 85px;
+  }
+  @media (max-width: 500px) {
+    width: 300px;
+    height: 66px;
+    margin-top: 40px;
+  }
+  @media (max-width: 390px) {
+    width: 260px;
+    height: 66px;
+  }
+`;
+
+const SectionNotify = styled(Box)`
+  display: flex;
+  width: 500px;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: 60px;
+
+  transition: 0.3s;
+  @media (max-width: 1024px) {
+    width: 400px;
+    margin-bottom: 50px;
+  }
+  @media (max-width: 768px) {
+    width: 350px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 500px) {
+    width: 300px;
+    margin-bottom: 30px;
+  }
+`;
+
+const SectionInputEmail = styled(Box)`
+  display: flex;
+  align-items: center;
+  padding: 0px 30px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+  margin-top: 20px;
+  border-radius: 12px;
+  border: 1px solid #ffffff60;
+
+  transition: 0.3s;
+  @media (max-width: 1024px) {
+    padding: 0px 25px;
+    height: 55px;
+  }
+  @media (max-width: 768px) {
+    padding: 0px 20px;
+    height: 50px;
+  }
+  @media (max-width: 500px) {
+    height: 40px;
+    padding: 0px 15px;
+  }
+`;
+
+const InputEmail = styled(Box)`
+  display: flex;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+
+  color: #fff;
+  font-family: Lato;
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 34px;
+`;
+
+const ButtonSubmit = styled(Box)`
+  display: flex;
+  width: 100%;
+  height: 60px;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid #a9d100;
+  background: #a9d100;
+  justify-content: center;
+  align-items: center;
+  color: #003d28;
+  text-align: center;
+  font-family: Rowdies;
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 34px;
+  user-select: none;
+  cursor: pointer;
+
+  transition: 0.3s;
+  &:hover {
+    background-color: white;
+    border: 1px solid white;
+  }
+
+  &:active {
+    transform: scale(0.93);
+    background-color: white;
+    border: 1px solid white;
+  }
+
+  transition: 0.3s;
+  @media (max-width: 1024px) {
+    height: 55px;
+  }
+  @media (max-width: 768px) {
+    height: 50px;
+  }
+  @media (max-width: 500px) {
+    height: 40px;
+    font-size: 2.2rem !important;
   }
 `;
 

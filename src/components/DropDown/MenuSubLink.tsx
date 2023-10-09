@@ -120,7 +120,7 @@ const SectionDropDown = styled(Box)`
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-z-index: 10000;
+  z-index: 10000;
   transition: 0.3s;
   @media (max-width: 1440px) {
     padding: 12px 24px;
