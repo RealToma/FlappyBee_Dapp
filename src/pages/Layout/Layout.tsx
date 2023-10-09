@@ -22,13 +22,14 @@ import { shortAddress } from "../../libs/Functions";
 import imgButtonTop from "../../assets/images/buttons/topbar.png";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import Marquee from "react-fast-marquee";
+import { FaHeart } from "react-icons/fa";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [flagLink, setFlagLink] = useState(1);
   const [flagClickedMenu, setFlagClickedMenu] = useState(false);
-
+  const [flagDisplayFooter, setFlagDisplayFooter] = useState(1);
   const handleClose = () => setOpen(false);
   const [open, setOpen] = useState(false);
   const { account, active, activate, deactivate } = useWeb3React();
@@ -75,6 +76,13 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         setFlagLink(i);
       }
     }
+    if (pathName === "/game") {
+      setFlagDisplayFooter(0);
+    } else if (pathName === "/play" || pathName === "/settings") {
+      setFlagDisplayFooter(1);
+    } else {
+      setFlagDisplayFooter(2);
+    }
   }, [location]);
 
   useEffect(() => {
@@ -95,8 +103,12 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         >
           {"\u00a0"}
           {"\u00a0"}
-          {"\u00a0"}📢 FREE MINT event will start on October 15, 2023. Check out
-          Claim Page!{"\u00a0"}
+          {"\u00a0"}
+          {flagDisplayFooter === 0
+            ? "📢 Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
+            : `📢 FREE MINT event will start on October 15, 2023. Check out
+          Claim Page!`}
+          {"\u00a0"}
           {"\u00a0"}
           {"\u00a0"}
         </Marquee>
@@ -163,7 +175,28 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         </SectionWalletConnect>
       </SectionHeader>
       <SectionContent>{children}</SectionContent>
-      {flagLink === 0 ? <SectionFooter></SectionFooter> : <></>}
+      {flagDisplayFooter === 1 ? (
+        <SectionFooterGrass></SectionFooterGrass>
+      ) : (
+        <></>
+      )}
+      {flagDisplayFooter === 1 || flagDisplayFooter === 2 ? (
+        <SectionFooter fixed={flagDisplayFooter === 1 ? 1 : 0}>
+          <SectionFooterSide>
+            <SectionFooterText>Terms of Use</SectionFooterText>
+            <SectionFooterText>About us</SectionFooterText>
+          </SectionFooterSide>
+          <SectionFooterSide>
+            <SectionFooterTextETH>
+              Made with{"\u00a0"}
+              <FaHeart style={{ color: "#ff1616" }} />
+              {"\u00a0"}on ETH blockchain
+            </SectionFooterTextETH>
+          </SectionFooterSide>
+        </SectionFooter>
+      ) : (
+        <></>
+      )}
 
       <Slide in={flagClickedMenu} direction={"right"}>
         <SectionMobileMenu>
@@ -368,13 +401,13 @@ const SectionContent = styled(Box)`
   height: fit-content;
 `;
 
-const SectionFooter = styled(Box)`
+const SectionFooterGrass = styled(Box)`
   display: flex;
   width: 100%;
   height: 125px;
   background-image: url(${imgBackFooter});
   background-repeat: repeat;
-  background-size: 100% 100%;
+  background-size: cover;
   background-position: center;
 
   transition: 0.3s;
@@ -390,6 +423,91 @@ const SectionFooter = styled(Box)`
   @media (max-width: 390px) {
     height: 60px;
   }
+`;
+
+const SectionFooter = styled(Box)`
+  display: flex;
+  position: ${({ fixed }: any) => (fixed ? "fixed" : "unset")};
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 30px;
+  min-height: 30px;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(0, 61, 40, 0) 0%, #003d28 73.96%);
+  padding: 0px 60px;
+  box-sizing: border-box;
+  /* background-image: url(${imgBackFooter}); */
+  /* background-repeat: repeat;
+  background-size: 100% 100%;
+  background-position: center; */
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    padding: 0px 30px;
+  }
+  @media (max-width: 1024px) {
+    padding: 0px 20px;
+  }
+  @media (max-width: 768px) {
+    height: 25px;
+    min-height: 25px;
+  }
+  @media (max-width: 390px) {
+  }
+`;
+
+const SectionFooterText = styled(Box)`
+  display: flex;
+  color: white;
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  margin-right: 24px;
+  cursor: pointer;
+
+  transition: 0.3s;
+  &:hover {
+    color: #fdc400;
+  }
+  @media (max-width: 768px) {
+    font-size: 12px;
+    margin-right: 16px;
+  }
+  @media (max-width: 390px) {
+    font-size: 10px;
+  }
+`;
+
+const SectionFooterTextETH = styled(Box)`
+  display: flex;
+  align-items: center;
+  color: white;
+  font-family: Lato;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  cursor: pointer;
+
+  transition: 0.3s;
+  &:hover {
+    color: #fdc400;
+  }
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 390px) {
+    font-size: 10px;
+  }
+`;
+
+const SectionFooterSide = styled(Box)`
+  display: flex;
+  align-items: center;
 `;
 
 const SectionPageLink = styled(Box)`

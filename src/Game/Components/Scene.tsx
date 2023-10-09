@@ -51,7 +51,7 @@ interface IGameBoxStyled {
 
 const GameBox = styled.div<IGameBoxStyled>`
   display: flex;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 130px);
   /* height: ${(props) => props.height}px; */
   width: ${(props) => props.width}px;
   background-color: #03a9f4;
@@ -68,6 +68,6 @@ const GameBox = styled.div<IGameBoxStyled>`
     height: calc(100vh - 100px);
   }
   @media (max-width: 390px) {
-    height: calc(100vh - 90px);
+    height: calc(100vh - 80px);
   }
 `;

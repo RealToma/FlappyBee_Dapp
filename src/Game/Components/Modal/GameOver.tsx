@@ -529,7 +529,7 @@ const TextGameOverFront = styled(Box)`
   /* top: -3px; */
   text-align: center;
   font-family: Rowdies;
-  font-size: 6rem;
+  font-size: 5.5rem;
   font-style: normal;
   font-weight: 700;
   background: -webkit-linear-gradient(#ff9900, #d82005);
