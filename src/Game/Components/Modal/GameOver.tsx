@@ -33,7 +33,7 @@ const GameOver = () => {
     }
     actionGetFreeMintCount(account).then((res) => {
       if (res.flagSuccess) {
-        if (res.count <= 0) {
+        if (res.count >= 3) {
           navigate("/play");
           return NotificationManager.warning(
             "You can't play anymore. Your fee mint event has expired.",
@@ -59,7 +59,6 @@ const GameOver = () => {
       );
     } else {
       actionSetFreeMintCount(account).then((res) => {
-        console.log("res:", res);
         if (res.flagSuccess) {
           console.log(res);
           setCountFreeMint(res.count);

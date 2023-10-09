@@ -35,7 +35,7 @@ const Game = ({ setPlayMusicGame }: any) => {
       if (res.flagSuccess) {
         actionGetFreeMintCount(account).then((res1) => {
           if (res1.flagSuccess) {
-            if (res1.count <= 0) {
+            if (res1.count >= 3) {
               navigate("/play");
               return NotificationManager.warning(
                 "You can't play anymore. Your fee mint event has expired.",

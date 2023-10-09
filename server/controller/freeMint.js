@@ -9,7 +9,7 @@ router.post("/set_count", async (req, res) => {
     });
     if (dataUser.length !== 0) {
       let tempCount = dataUser[0].countFreeMint;
-      if (tempCount <= 0) {
+      if (tempCount >= 3) {
         return res.json({
           flagSuccess: false,
           msgError: "You can't play anymore. Your fee mint event has expired.",
@@ -19,11 +19,11 @@ router.post("/set_count", async (req, res) => {
           {
             addressWallet: req.body.addressWallet,
           },
-          { countFreeMint: tempCount - 1 }
+          { countFreeMint: tempCount + 1 }
         );
         return res.json({
           flagSuccess: true,
-          count: tempCount - 1,
+          count: tempCount + 1,
         });
       }
     }

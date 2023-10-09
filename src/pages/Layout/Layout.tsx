@@ -85,6 +85,9 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
 
   return (
     <StyledComponent>
+      <SectionTopbar>
+        📢 FREE MINT event will start on October 15, 2023 🐝🐝🐝
+      </SectionTopbar>
       <SectionHeader
         onClick={() => {
           setPlayMusicGame(false);
@@ -618,6 +621,30 @@ export const backdropstyled = styled(Box)`
   position: fixed;
   background: black;
   opacity: 0.8;
+`;
+
+const SectionTopbar = styled(Box)`
+  display: flex;
+  width: 100%;
+  height: 40px;
+  background-color: #003d28;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+  /* border-bottom: 2px solid white; */
+  /* filter: drop-shadow(0px 2px 3px black); */
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 390px) {
+    font-size: 10px;
+  }
 `;
 
 export default Layout;

@@ -53,7 +53,7 @@ const coverSheetToDatabase = async () => {
               flagRules: dataSheet[i][8],
               flagVerified: dataSheet[i][9],
               timeSubmittedForm: dataSheet[i][0],
-              countFreeMint: 3,
+              countFreeMint: 0,
             });
             await modelEachUser.save();
           }
