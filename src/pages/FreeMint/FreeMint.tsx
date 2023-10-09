@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgBackClaim from "../../assets/images/background/bgAirdrop.png";
-import { textFreeMintRules } from "../../data/FreeMint";
+// import { textFreeMintRules } from "../../data/FreeMint";
 
 const FreeMint = () => {
   return (

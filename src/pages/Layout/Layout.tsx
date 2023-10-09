@@ -23,6 +23,7 @@ import imgButtonTop from "../../assets/images/buttons/topbar.png";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import Marquee from "react-fast-marquee";
 import { FaHeart } from "react-icons/fa";
+import MenuSubLink from "../../components/DropDown/MenuSubLink";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -143,19 +144,31 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                 </a>
               );
             } else {
-              return (
-                <LinkEach
-                  key={_key}
-                  active={flagLink === index ? 1 : 0}
-                  onClick={() => {
-                    setFlagLink(index);
-                    navigate(each.link);
-                    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-                  }}
-                >
-                  {each.name}
-                </LinkEach>
-              );
+              if (each.flagSubLink) {
+                return (
+                  <MenuSubLink
+                    key={_key}
+                    active={flagLink === index ? 1 : 0}
+                    index={index}
+                    setFlagLink={setFlagLink}
+                    data={each}
+                  ></MenuSubLink>
+                );
+              } else {
+                return (
+                  <LinkEach
+                    key={_key}
+                    active={flagLink === index ? 1 : 0}
+                    onClick={() => {
+                      setFlagLink(index);
+                      navigate(each.link);
+                      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                    }}
+                  >
+                    {each.name}
+                  </LinkEach>
+                );
+              }
             }
           })}
         </SectionPageLink>
@@ -590,7 +603,7 @@ const LinkEach = styled(Box)<any>`
   font-family: "Rowdies";
   font-style: normal;
   font-weight: 300;
-  font-size: 2em;
+  font-size: 2rem;
   line-height: 30px;
   margin-right: 20px;
 
