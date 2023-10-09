@@ -29,8 +29,8 @@ const Home = () => {
     }
     checkWhiteList(account).then((res) => {
       if (res.flagSuccess) {
-        // navigate("/game");
-        window.open("https://app.flappybee.com/#/game", "_self");
+        navigate("/game");
+        // window.open("https://app.flappybee.com/#/game", "_self");
         return;
       } else {
         return NotificationManager.warning(
@@ -50,12 +50,12 @@ const Home = () => {
 
   return (
     <StyledComponent
-      // srcBackHome={srcBackHome ? srcBackHome : srcBackHome}
-      // style={{
-      //   filter: !blur ? "blur(20px)" : "none",
-      //   transition: !blur ? "none" : "filter 0.5s ease-out",
-      //   backgroundImage: srcBackHome,
-      // }}
+    // srcBackHome={srcBackHome ? srcBackHome : srcBackHome}
+    // style={{
+    //   filter: !blur ? "blur(20px)" : "none",
+    //   transition: !blur ? "none" : "filter 0.5s ease-out",
+    //   backgroundImage: srcBackHome,
+    // }}
     >
       <SectionTitle>
         <SectionTextTitle>
