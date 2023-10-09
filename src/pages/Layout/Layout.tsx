@@ -106,7 +106,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {"\u00a0"}
           {flagDisplayFooter === 0
-            ? "📢 Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
+            ? "📢 Its recommended to play the game on Desktop browser : Chrome, Firefox, Brave."
             : `📢 FREE MINT event will start on October 15, 2023. Check out
           Claim Page!`}
           {"\u00a0"}
@@ -448,7 +448,10 @@ const SectionFooter = styled(Box)`
   min-height: 30px;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(180deg, rgba(0, 61, 40, 0) 0%, #003d28 73.96%);
+  background: ${({ fixed }: any) =>
+    fixed
+      ? 
+       "linear-gradient(180deg, rgba(0, 61, 40, 0) 0%, #003d28 73.96%)":"rgba(0, 61, 40, 1)"};
   padding: 0px 60px;
   box-sizing: border-box;
   /* background-image: url(${imgBackFooter}); */

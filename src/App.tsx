@@ -21,6 +21,7 @@ import { MdMusicNote, MdMusicOff } from "react-icons/md";
 import imgButtonSmall from "./assets/images/buttons/HomeSmall.png";
 import FreeMint from "./pages/FreeMint/FreeMint";
 import Claim from "./pages/Claim/Claim";
+import ClaimRewards from "./pages/ClaimRewards/ClaimRewards";
 
 const App = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -81,7 +82,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/play" element={<Home />} />
             <Route path="/free_mint" element={<FreeMint />} />
-            <Route path="/claim" element={<Claim />} />
+            <Route path="/claim_rewards" element={<ClaimRewards />} />
+            {/* <Route path="/claim" element={<Claim />} /> */}
             {/* <Route path="/airdrop" element={<Airdrop />} /> */}
             <Route path="/stake" element={<Stake />} />
             <Route path="/nft" element={<NFT />} />
@@ -136,7 +138,6 @@ const StyledComponent = styled(Box)`
   display: flex;
   width: 100%;
   height: 100%;
-
   .Toastify__toast {
     font-size: 35px !important;
   }
