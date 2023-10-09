@@ -85,11 +85,13 @@ export const ObstacleProvider = ({
   }
 
   React.useEffect(() => {
+    let speed =
+      window.innerWidth > 900 ? 24 : window.innerWidth > 500 ? 35 : 50;
     let obstacleID: any;
     if (gameHasStarted === 1 && obstaclePosition >= -OBSTACLE_WIDTH / 2) {
       obstacleID = setInterval(() => {
         setObstaclePosition((prev) => (prev -= UNIT * 3));
-      }, 24);
+      }, speed);
 
       return () => clearInterval(obstacleID);
     } else {

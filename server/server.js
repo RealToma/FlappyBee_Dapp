@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 });
 
 // claimRewardTokens();
-coverSheetToDatabase();
+// coverSheetToDatabase();
 
 app.use("/api/score", controllerScore);
 app.use("/api/auth", controllerAuth);

@@ -16,10 +16,12 @@ const Scene = ({ children }: IScene) => {
   const [bgPosition, setBgPosition] = React.useState<number>(0);
 
   React.useEffect(() => {
+    let speed =
+      window.innerWidth > 900 ? 24 : window.innerWidth > 500 ? 35 : 50;
     if (gameHasStarted === 1) {
       let intervalID = setInterval(() => {
         setBgPosition((prev) => (prev += UNIT / 10));
-      }, 24);
+      }, speed);
 
       return () => clearInterval(intervalID);
     }

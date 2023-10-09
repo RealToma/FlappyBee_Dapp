@@ -297,6 +297,9 @@ const SectionEachStats = styled(Box)`
   @media (max-width: 768px) {
     padding: 30px 70px;
   }
+  @media (max-width: 500px) {
+    padding: 20px 40px;
+  }
   @media (max-width: 390px) {
     padding: 10px 20px;
   }
@@ -314,7 +317,7 @@ const TextEachStatsTitle = styled(Box)`
   font-family: Lato;
   line-height: 46px;
   transition: 0.3s;
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     line-height: 30px;
   }
 `;
@@ -326,7 +329,7 @@ const TextEachStatsContent = styled(Box)`
   font-weight: 700;
   line-height: 46px;
   transition: 0.3s;
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     line-height: 30px;
   }
 `;
@@ -338,7 +341,7 @@ const TextEachStatesConnectWallet = styled(Box)`
   font-weight: 600;
   line-height: 46px;
   transition: 0.3s;
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     line-height: 30px;
   }
 `;
@@ -575,7 +578,7 @@ const TextStatsTitle = styled(Box)`
     margin-top: 60px;
     margin-bottom: 30px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     margin-top: 50px;
     margin-bottom: 20px;
   }

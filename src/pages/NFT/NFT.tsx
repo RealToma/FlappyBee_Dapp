@@ -179,10 +179,10 @@ const ButtonPlay = styled(Box)`
     width: 150px;
     height: 45px;
   }
-  @media (max-width: 500px) {
+  /* @media (max-width: 390px) {
     width: 135px;
     height: 40px;
-  }
+  } */
 `;
 
 const SectionContent = styled(Box)`

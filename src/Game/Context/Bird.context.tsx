@@ -37,7 +37,8 @@ export const BirdProvider = ({ children }: IChildren) => {
 
   React.useEffect(() => {
     let intervalID: any;
-
+    let speed =
+      window.innerWidth > 900 ? 24 : window.innerWidth > 500 ? 30 : 35;
     if (gameHasStarted === 0) {
       restartScore();
       restartBird();
@@ -50,7 +51,7 @@ export const BirdProvider = ({ children }: IChildren) => {
         setBirdPosition((prev) => {
           return prev + GRAVITY;
         });
-      }, 24);
+      }, speed);
     }
     if (
       gameHasStarted === 1 &&
