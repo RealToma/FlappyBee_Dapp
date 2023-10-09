@@ -29,7 +29,8 @@ const Home = () => {
     }
     checkWhiteList(account).then((res) => {
       if (res.flagSuccess) {
-        navigate("/game");
+        // navigate("/game");
+        window.open("https://app.flappybee.com/#/game", "_self");
         return;
       } else {
         return NotificationManager.warning(
