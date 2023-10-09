@@ -8,20 +8,76 @@ import imgBee from "../../../assets/images/bee/flaying/Bee-01.png";
 import imgButtonStart from "../../../assets/images/buttons/HomeWide.png";
 import imgButtonSmall from "../../../assets/images/buttons/HomeSmall.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+  actionGetFreeMintCount,
+  actionSetFreeMintCount,
+} from "../../../actions/freeMint";
+import { useWeb3React } from "@web3-react/core";
+import { NotificationManager } from "react-notifications";
 
 const GameOver = () => {
   const navigate = useNavigate();
+  const { account } = useWeb3React();
   const { score, bestScore } = useScore();
   const { restartGame } = useGameSystem();
+  const [countFreeMint, setCountFreeMint] = useState();
+
   const handleReplay = () => {
-    restartGame();
+    if (account === undefined || account === null) {
+      return NotificationManager.warning(
+        "Please connect your wallet.",
+        "",
+        3000
+      );
+    }
+    actionGetFreeMintCount(account).then((res) => {
+      if (res.flagSuccess) {
+        if (res.count <= 0) {
+          navigate("/play");
+          return NotificationManager.warning(
+            "You can't play anymore. Your fee mint event has expired.",
+            "",
+            5000
+          );
+        } else {
+          restartGame();
+          return;
+        }
+      } else {
+        return NotificationManager.warning(res.msgError, "", 5000);
+      }
+    });
   };
+
+  useEffect(() => {
+    if (account === undefined || account === null) {
+      return NotificationManager.warning(
+        "Please connect your wallet.",
+        "",
+        3000
+      );
+    } else {
+      actionSetFreeMintCount(account).then((res) => {
+        console.log("res:", res);
+        if (res.flagSuccess) {
+          console.log(res);
+          setCountFreeMint(res.count);
+        } else {
+          return NotificationManager.warning(res.msgError, "", 5000);
+        }
+      });
+    }
+  }, []);
 
   return (
     <SectionGameOver>
-      <ImgGameOver>
+      <TextGameOverBack>
+        <TextGameOverFront>GAME OVER ({countFreeMint}/3)</TextGameOverFront>
+      </TextGameOverBack>
+      {/* <ImgGameOver>
         <img src={imgGameOver} width={"100%"} height={"100%"} alt="" />
-      </ImgGameOver>
+      </ImgGameOver> */}
       <SectionBoard>
         <SectionInsideBoard>
           <SectionBoardReward>
@@ -57,11 +113,7 @@ const GameOver = () => {
           <FaShareAlt />
         </ButtonSocial>
         <ButtonReplay onClick={() => handleReplay()}>Replay</ButtonReplay>
-        <ButtonSocial
-          onClick={() => {
-            navigate("/leaderboard");
-          }}
-        >
+        <ButtonSocial onClick={() => {}}>
           <FaMedal />
         </ButtonSocial>
       </ButtonGroup>
@@ -469,6 +521,39 @@ const ImgGameOver = styled(Box)`
   }
   @media (max-width: 350px) {
     width: 230px;
+  }
+`;
+
+const TextGameOverFront = styled(Box)`
+  /* display: flex; */
+  /* left: -3px; */
+  /* top: -3px; */
+  text-align: center;
+  font-family: Rowdies;
+  font-size: 6rem;
+  font-style: normal;
+  font-weight: 700;
+  background: -webkit-linear-gradient(#ff9900, #d82005);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 3px #511900;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    -webkit-text-stroke: 2px #511900;
+  }
+`;
+
+const TextGameOverBack = styled(Box)`
+  display: flex;
+  filter: drop-shadow(3px 3px 0px #fff);
+
+  transition: 0.3s;
+  @media (max-width: 1024px) {
+    filter: drop-shadow(2px 2px 0px #fff);
+  }
+  @media (max-width: 500px) {
+    filter: drop-shadow(1px 1px 0px #fff);
   }
 `;
 

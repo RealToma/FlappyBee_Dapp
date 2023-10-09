@@ -16,6 +16,7 @@ import { checkWhiteList } from "../actions/auth";
 import { useWeb3React } from "@web3-react/core";
 import { useNavigate } from "react-router-dom";
 import { NotificationManager } from "react-notifications";
+import { actionGetFreeMintCount } from "../actions/freeMint";
 
 const Game = ({ setPlayMusicGame }: any) => {
   const { gameHasStarted, startGame, restartGame } = useGameSystem();
@@ -32,7 +33,20 @@ const Game = ({ setPlayMusicGame }: any) => {
   useEffect(() => {
     checkWhiteList(account).then((res) => {
       if (res.flagSuccess) {
-        return;
+        actionGetFreeMintCount(account).then((res1) => {
+          if (res1.flagSuccess) {
+            if (res1.count <= 0) {
+              navigate("/play");
+              return NotificationManager.warning(
+                "You can't play anymore. Your fee mint event has expired.",
+                "",
+                5000
+              );
+            }
+          } else {
+            return NotificationManager.warning(res1.msgError, "", 5000);
+          }
+        });
       } else {
         navigate("/play");
         return NotificationManager.warning(
@@ -123,7 +137,6 @@ const TextTapPlay = styled(Box)`
     -webkit-text-stroke: 1px white;
   }
 
-  
   animation: zoomINText 0.7s infinite;
 
   @keyframes zoomINText {

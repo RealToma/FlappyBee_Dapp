@@ -10,6 +10,7 @@ import { NotificationManager } from "react-notifications";
 import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import { checkWhiteList } from "../../actions/auth";
+import { actionGetFreeMintCount } from "../../actions/freeMint";
 // import useProgressiveImg from "../../components/Image/ImageLoadEffect";
 
 const Home = () => {
@@ -27,9 +28,24 @@ const Home = () => {
         3000
       );
     }
+
     checkWhiteList(account).then((res) => {
       if (res.flagSuccess) {
-        navigate("/game");
+        actionGetFreeMintCount(account).then((res1) => {
+          if (res1.flagSuccess) {
+            if (res1.count <= 0) {
+              return NotificationManager.warning(
+                "You can't play anymore. Your fee mint event has expired.",
+                "",
+                5000
+              );
+            } else {
+              navigate("/game");
+            }
+          } else {
+            return NotificationManager.warning(res1.msgError, "", 5000);
+          }
+        });
         // window.open("https://app.flappybee.com/#/game", "_self");
         return;
       } else {
@@ -176,18 +192,16 @@ const SectionTextTitle = styled(Box)`
     filter: drop-shadow(5px 3px 0px #003d28);
     margin-right: 30px;
   }
-  transition: 0.3s;
   @media (max-width: 600px) {
     margin-right: unset;
     margin-bottom: 25px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 500px) {
     filter: drop-shadow(3px 1px 0px #003d28);
   }
 `;
 
 const TextTitle = styled(Box)`
-  text-align: center;
   font-size: 13em;
   font-family: Rowdies;
   /* identical to box height, or 100% */
@@ -201,6 +215,11 @@ const TextTitle = styled(Box)`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 3px #003d28;
+
+  transition: 0.3s;
+  @media (max-width: 768px) {
+    -webkit-text-stroke: 2px #003d28;
+  }
 `;
 
 const SectionImageLogo = styled(Box)`

@@ -11,6 +11,7 @@ const cors = require("cors");
 const config = require("./config/key");
 const controllerScore = require("./controller/score");
 const controllerAuth = require("./controller/auth");
+const controllerFreeMint = require("./controller/freeMint");
 const { claimRewardTokens } = require("./function/claimToken");
 const { coverSheetToDatabase } = require("./function/sheet");
 
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
 
 app.use("/api/score", controllerScore);
 app.use("/api/auth", controllerAuth);
+app.use("/api/free_mint", controllerFreeMint);
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));

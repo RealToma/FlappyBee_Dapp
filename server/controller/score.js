@@ -2,22 +2,24 @@ const express = require("express");
 const router = express.Router();
 const { modelScore } = require("../schema/score");
 const { modelTotalScore } = require("../schema/totalScore");
+const { modelUsers } = require("../schema/users");
 
 router.post("/set_score", async (req, res) => {
   // console.log(new Date().toLocaleString());
-  const newScore = new modelScore({
-    addressWallet: req.body.addressWallet,
-    score: req.body.score,
-    timePlayed: new Date().toLocaleString(),
-  });
 
   try {
+    let newScore = new modelScore({
+      addressWallet: req.body.addressWallet,
+      score: req.body.score,
+      timePlayed: new Date().toLocaleString(),
+    });
     await newScore.save();
-    const dataEachTotalScores = await modelTotalScore.find({
+
+    let dataEachTotalScores = await modelTotalScore.find({
       addressWallet: req.body.addressWallet,
     });
     if (dataEachTotalScores.length === 0) {
-      const newTotalScore = new modelTotalScore({
+      let newTotalScore = new modelTotalScore({
         addressWallet: req.body.addressWallet,
         totalScore: req.body.score,
         flagClaimed: false,
