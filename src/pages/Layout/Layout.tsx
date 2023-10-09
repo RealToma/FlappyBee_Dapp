@@ -338,8 +338,8 @@ const SectionHeader = styled(Box)`
   justify-content: space-between;
   align-items: center;
   background-color: #a9d100;
-  height: 120px;
-  min-height: 120px;
+  height: 90px;
+  min-height: 90px;
   padding: 0px 60px;
   box-sizing: border-box;
   transition: 0.3s;
@@ -348,14 +348,16 @@ const SectionHeader = styled(Box)`
   }
   @media (max-width: 1024px) {
     padding: 0px 20px;
+    height: 80px;
+    min-height: 80px;
   }
   @media (max-width: 768px) {
-    height: 100px;
-    min-height: 100px;
+    height: 70px;
+    min-height: 70px;
   }
   @media (max-width: 390px) {
-    height: 90px;
-    min-height: 90px;
+    height: 60px;
+    min-height: 60px;
   }
 `;
 
@@ -408,8 +410,8 @@ const SectionMobilePageLink = styled(Box)`
 
 const SectionWalletConnect = styled(Box)`
   display: flex;
-  width: 280px;
-  height: 60px;
+  width: 250px;
+  height: 50px;
   justify-content: center;
   align-items: center;
   background: #003d28;
@@ -418,8 +420,8 @@ const SectionWalletConnect = styled(Box)`
   font-family: "Rowdies";
   font-style: normal;
   font-weight: 400;
-  font-size: 3em;
-  line-height: 38px;
+  font-size: 2.6em;
+  /* line-height: 38px; */
   text-align: center;
   color: white;
 
@@ -434,23 +436,19 @@ const SectionWalletConnect = styled(Box)`
   }
 
   @media (max-width: 1440px) {
-    width: 240px;
-    height: 60px;
+    width: 200px;
+    height: 46px;
   }
   @media (max-width: 1024px) {
-    width: 240px;
-    height: 55px;
-  }
-  @media (max-width: 768px) {
-    width: 200px;
-    height: 50px;
-  }
-  @media (max-width: 500px) {
-    width: 160px;
+    width: 180px;
     height: 40px;
   }
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 36px;
+  }
   @media (max-width: 390px) {
-    width: 120px;
+    width: 100px;
     height: 30px;
   }
 `;
@@ -458,9 +456,8 @@ const SectionWalletConnect = styled(Box)`
 const LinkEach = styled(Box)<any>`
   display: flex;
   width: fit-content;
-  padding: 0px 10px;
+  padding: 5px 10px;
   box-sizing: border-box;
-  height: 45px;
   justify-content: center;
   align-items: center;
   background-image: ${({ active }: any) =>
@@ -475,9 +472,9 @@ const LinkEach = styled(Box)<any>`
   font-family: "Rowdies";
   font-style: normal;
   font-weight: 300;
-  font-size: 2.5em;
-  line-height: 40px;
-  margin-right: 30px;
+  font-size: 2em;
+  line-height: 30px;
+  margin-right: 20px;
 
   transition: 0.3s;
   cursor: pointer;
@@ -491,14 +488,15 @@ const LinkEach = styled(Box)<any>`
     margin-right: 20px;
   }
   @media (max-width: 1440px) {
-    height: 45px;
     margin-right: 10px;
+    padding: 3px 8px;
+    line-height: 27px;
   }
   @media (max-width: 1200px) {
     margin-right: 5px;
   }
   @media (max-width: 1024px) {
-    height: 40px;
+    padding: 0px 6px;
   }
 `;
 
@@ -532,7 +530,7 @@ const SectionMobileButton = styled(Box)`
   cursor: pointer;
   user-select: none;
   color: #003d28;
-  font-size: 7em;
+  font-size: 6em;
   &:active {
     color: white;
   }
@@ -640,6 +638,7 @@ const SectionTopbar = styled(Box)`
   display: flex;
   width: 100%;
   height: 40px;
+  min-height: 40px;
   background-color: #003d28;
   justify-content: center;
   align-items: center;
@@ -654,9 +653,13 @@ const SectionTopbar = styled(Box)`
   transition: 0.3s;
   @media (max-width: 768px) {
     font-size: 12px;
+    height: 30px;
+    min-height: 30px;
   }
   @media (max-width: 390px) {
     font-size: 10px;
+    height: 24px;
+    min-height: 24px;
   }
 `;
 
