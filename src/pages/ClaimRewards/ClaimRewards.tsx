@@ -26,9 +26,10 @@ const ClaimRewards = () => {
       );
     }
     actionGetUserClaimScore(account).then((res) => {
-      console.log(res);
       if (res.flagSuccess) {
         setAmountClaim(res.dataClaimScore.totalScore);
+      } else {
+        return NotificationManager.error(res.msgError, "", 5000);
       }
     });
   }, [account]);

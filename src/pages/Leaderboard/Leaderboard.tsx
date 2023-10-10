@@ -15,6 +15,7 @@ import { actionGetAllScores } from "../../actions/score";
 import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import { NotificationManager } from "react-notifications";
+import LoadingEffectMain from "../../components/Loading/LoadingEffectMain";
 
 const Leaderboard = () => {
   const navigate = useNavigate();
@@ -34,6 +35,8 @@ const Leaderboard = () => {
     bestPlayer: "",
   });
 
+  const [flagFetchLoading, setFlagFetchLoading] = useState(false);
+
   const isFloat = (value: any) => {
     return Number(value) === value && value % 1 !== 0;
   };
@@ -49,7 +52,7 @@ const Leaderboard = () => {
   };
   useEffect(() => {
     actionGetAllScores().then((res) => {
-      // console.log(res);
+      setFlagFetchLoading(true);
       if (res.flagSuccess) {
         let tempDataAllScores: any = [];
         let tempDataMyScores: any = [];
@@ -115,13 +118,10 @@ const Leaderboard = () => {
           rank: 0,
         };
         setDataMyScores(objectDataMyScores);
-
-        console.log(tempDataMyScores);
       } else {
-        console.log(res.msgError);
+        return NotificationManager.error(res.msgError, "", 5000);
       }
     });
-    console.log("account", account);
   }, [account]);
 
   return (
@@ -256,6 +256,7 @@ const Leaderboard = () => {
           </SectionEachStats>
         </SectionLeaderStats>
       </SectionContent>
+      {!flagFetchLoading ? <LoadingEffectMain text="Loading" /> : <></>}
     </StyledComponent>
   );
 };

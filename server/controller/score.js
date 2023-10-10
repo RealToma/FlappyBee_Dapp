@@ -46,10 +46,17 @@ router.post("/set_score", async (req, res) => {
 router.get("/get_all_scores", async (req, res) => {
   try {
     let dataScores = await modelScore.find();
-    return res.json({
-      flagSuccess: true,
-      dataScores: dataScores,
-    });
+    if (dataScores.length !== 0) {
+      return res.json({
+        flagSuccess: true,
+        dataScores: dataScores,
+      });
+    } else {
+      return res.json({
+        flagSuccess: false,
+        msgError: "Couldn't fetch the data!",
+      });
+    }
   } catch (error) {
     console.log(error);
     return res.json({

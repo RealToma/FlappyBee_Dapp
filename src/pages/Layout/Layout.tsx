@@ -424,6 +424,7 @@ const SectionHeader = styled(Box)`
   min-height: 90px;
   padding: 0px 60px;
   box-sizing: border-box;
+  z-index: 5;
   transition: 0.3s;
   @media (max-width: 1440px) {
     padding: 0px 30px;
@@ -482,6 +483,23 @@ const SectionTextLock = styled(Box)`
   color: #a81010;
   transform: rotate(-15deg);
   z-index: 3;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    font-size: 26rem;
+  }
+  @media (max-width: 1024px) {
+    font-size: 22rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 20rem;
+  }
+  @media (max-width: 500px) {
+    font-size: 18rem;
+  }
+  @media (max-width: 390px) {
+    font-size: 15rem;
+  }
 `;
 
 const SectionFooterGrass = styled(Box)`
@@ -492,7 +510,7 @@ const SectionFooterGrass = styled(Box)`
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
-
+  z-index: 5;
   transition: 0.3s;
   @media (max-width: 1440px) {
     height: 100px;
@@ -528,7 +546,7 @@ const SectionFooter = styled(Box)`
   /* background-repeat: repeat;
   background-size: 100% 100%;
   background-position: center; */
-
+  z-index: 6;
   transition: 0.3s;
   @media (max-width: 1440px) {
     padding: 0px 30px;
@@ -852,6 +870,7 @@ const SectionTopbar = styled(Box)`
   font-style: normal;
   font-weight: 700;
   line-height: 26px;
+  z-index: 4;
   /* border-bottom: 2px solid white; */
   /* filter: drop-shadow(0px 2px 3px black); */
   transition: 0.3s;
