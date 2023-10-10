@@ -115,7 +115,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {flagDisplayFooter === 0
             ? "📢  Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
-            : `📢 FREE MINT event will start on October 15, 2023.`}
+            : `📢 FREE MINT event will start on October 15, 2023!`}
           {"\u00a0"}
           {"\u00a0"}
           {"\u00a0"}

@@ -2,10 +2,10 @@ import "./Loading.css";
 
 const LoadingEffectMain = ({ text }: any) => {
   return (
-    <div className="content_ring">
-      <div className="ring">
+    <div className="content_loading">
+      <div className="ring_loading">
         {text}
-        <span className="page_load_spin"></span>
+        <span className="page_loading_spin"></span>
       </div>
     </div>
   );
