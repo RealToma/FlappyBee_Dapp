@@ -33,7 +33,7 @@
   text-transform: uppercase;
   text-shadow: 0 0 10px #fdc400;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  animation: animateText 2s linear infinite;
+  animation: animateTextLoading 2s linear infinite;
 }
 
 .ring:before {
@@ -48,7 +48,7 @@
   border-right: 4px solid #fdc400;
 
   border-radius: 50%;
-  animation: animateC 1s linear infinite;
+  animation: animateLoading 1s linear infinite;
 }
 
 .page_load_spin {
@@ -61,7 +61,7 @@
   background: transparent;
   box-shadow: 0 0 10px #FDC400;
   transform-origin: left;
-  animation: animateSpan 1s linear infinite;
+  animation: animateSpanLoading 1s linear infinite;
 }
 
 .page_load_spin:before {
@@ -77,7 +77,7 @@
   box-shadow: 0 0 12px #fdc400;
 }
 
-@keyframes animateC {
+@keyframes animateLoading {
   0% {
     transform: rotate(0deg);
   }
@@ -87,7 +87,7 @@
   }
 }
 
-@keyframes animateSpan {
+@keyframes animateSpanLoading {
   0% {
     transform: rotate(45deg);
   }
@@ -97,7 +97,7 @@
   }
 }
 
-@keyframes animateText {
+@keyframes animateTextLoading {
   0% {
     text-shadow: 0 0 12px white;
   }
