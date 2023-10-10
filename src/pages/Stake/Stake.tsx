@@ -2,10 +2,6 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgButtonPlay from "../../assets/images/buttons/HomeWide.png";
 import imgButtonHome from "../../assets/images/buttons/GreenWide.svg";
-import TableLeaderboard from "../../components/TableLeaderboard";
-import { dataAllTime } from "../../data/Leaderboard";
-import { shortAddress } from "../../libs/Functions";
-import imgLeaderboardStas from "../../assets/images/background/leaderboardStats.svg";
 import { dataStakingOptions } from "../../data/Staking";
 import CardStakingOption from "../../components/Card/CardStakingOption";
 
@@ -36,7 +32,7 @@ const Stake = () => {
               </SectionEachValue>
               <SectionEachValue>
                 <TextUpValueState style={{ color: "white" }}>
-                  2803
+                  --
                 </TextUpValueState>
                 <TextDownValueState>Available in Wallet</TextDownValueState>
               </SectionEachValue>
@@ -80,7 +76,7 @@ const Stake = () => {
             <SectionGroupValue>
               <SectionEachValue>
                 <TextUpValueState style={{ color: "white" }}>
-                  17093
+                --
                 </TextUpValueState>
                 <TextDownValueState>Total Staked</TextDownValueState>
               </SectionEachValue>

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import { Slide } from "@mui/material";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdLockClock } from "react-icons/md";
 import imgMetamask from "../../assets/images/wallet/metamask.png";
 import imgWalletConnect from "../../assets/images/wallet/walletConnect.svg";
 import imgBinance from "../../assets/images/wallet/binance.png";
@@ -29,6 +29,7 @@ import MenuMobileSubLink from "../../components/DropDown/MenuMobileSubLink";
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [flagLockPath, setFlagLockPath] = useState(false);
   const [flagLink, setFlagLink] = useState(1);
   const [flagClickedMenu, setFlagClickedMenu] = useState(false);
   const [flagDisplayFooter, setFlagDisplayFooter] = useState(1);
@@ -84,6 +85,12 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
       setFlagDisplayFooter(1);
     } else {
       setFlagDisplayFooter(2);
+    }
+
+    if (pathName === "/stake" || pathName === "/rewards") {
+      setFlagLockPath(true);
+    } else {
+      setFlagLockPath(false);
     }
   }, [location]);
 
@@ -188,7 +195,18 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {active ? shortAddress(account) : "Connect Wallet"}
         </SectionWalletConnect>
       </SectionHeader>
-      <SectionContent>{children}</SectionContent>
+      {flagLockPath ? (
+        <SectionContent>
+          {children}
+          <SectionLockContent></SectionLockContent>
+          <SectionTextLock>
+            <MdLockClock /> LOCK
+          </SectionTextLock>
+        </SectionContent>
+      ) : (
+        <SectionContent>{children}</SectionContent>
+      )}
+
       {flagDisplayFooter === 1 ? (
         <SectionFooterGrass></SectionFooterGrass>
       ) : (
@@ -427,9 +445,43 @@ const SectionHeader = styled(Box)`
 
 const SectionContent = styled(Box)`
   display: flex;
+  position: relative;
   flex: 1;
   width: 100%;
   height: fit-content;
+  z-index: 1;
+`;
+
+const SectionLockContent = styled(Box)`
+  display: flex;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  cursor: not-allowed;
+  background-color: #0f160d;
+  opacity: 0.7;
+  z-index: 2;
+`;
+
+const SectionTextLock = styled(Box)`
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  /* top: 0%;
+  left: 50%;
+  transform: translateX(-50%); */
+  justify-content: center;
+  align-items: center;
+  font-size: 30rem;
+  color: #a81010;
+  transform: rotate(-15deg);
+  z-index: 3;
 `;
 
 const SectionFooterGrass = styled(Box)`
