@@ -22,8 +22,8 @@ const MintRules = () => {
           <Snowfall
             snowflakeCount={window.innerWidth < 768 ? 10 : 20}
             images={imagesParachute}
-            wind={[-0.5, 0]}
-            speed={[0, 3]}
+            wind={[-0.5, 1]}
+            speed={[1, 3]}
             rotationSpeed={[-0.2, 0.2]}
             radius={window.innerWidth < 768 ? [40, 80] : [60, 120]}
           />

@@ -6,6 +6,7 @@ const TermsOfUse = () => {
   return (
     <StyledComponent>
       <TextTitle>Terms of Use</TextTitle>
+      <TextUpdate>Last Updated: October 1, 2023. (01/10/2023)</TextUpdate>
       <SectionContent>
         {textTermsOfUse.map((each, index) => {
           return (
@@ -76,6 +77,22 @@ const SectionContent = styled(Box)`
   width: 100%;
   flex-direction: column;
   margin-top: 56px;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    margin-top: 50px;
+  }
+  @media (max-width: 1024px) {
+  }
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
+  @media (max-width: 500px) {
+    margin-top: 30px;
+  }
+  @media (max-width: 390px) {
+    margin-top: 20px;
+  }
 `;
 
 const TextEachRow = styled(Box)`
@@ -153,6 +170,34 @@ const TextFooter = styled(Box)`
   }
   @media (max-width: 390px) {
     margin-bottom: 20px;
+  }
+`;
+
+const TextUpdate = styled(Box)`
+  text-align: center;
+  color: #fff;
+  font-family: Rowdies;
+  font-size: 2.8rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 4rem;
+
+  margin: 30px 0px;
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    margin: 28px 0px;
+  }
+  @media (max-width: 1024px) {
+    margin: 25px 0px;
+  }
+  @media (max-width: 768px) {
+    margin: 20px 0px;
+  }
+  @media (max-width: 500px) {
+    margin: 18px 0px;
+  }
+  @media (max-width: 390px) {
+    margin: 16px 0px;
   }
 `;
 

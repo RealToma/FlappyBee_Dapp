@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { NotificationManager } from "react-notifications";
 import { actionGetUserClaimScore } from "../../actions/score";
+import { checkInteger } from "../../utils/functions";
 // import { textFreeMintRules } from "../../data/FreeMint";
 
 const ClaimRewards = () => {
@@ -63,7 +64,10 @@ const ClaimRewards = () => {
           You are eligible to claim up to:
         </TextHead>
         <TextHeadGuide data-aos="fade-up" data-aos-duration="2000">
-          {amountClaim * (process.env.REACT_APP_CLAIM_RATE as any)} BEET
+          {checkInteger(
+            amountClaim * (process.env.REACT_APP_CLAIM_RATE as any)
+          )}{" "}
+          BEET
         </TextHeadGuide>
 
         <ButtonStart
