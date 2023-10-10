@@ -35,6 +35,11 @@ const MenuSubLink = ({ active, index, setFlagLink, data }: any) => {
                 key={index}
                 onClick={() => {
                   navigate(each.link);
+                  window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth",
+                  });
                 }}
               >
                 {each.name}

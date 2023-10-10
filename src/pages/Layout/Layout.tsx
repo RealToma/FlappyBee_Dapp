@@ -24,6 +24,7 @@ import MetaMaskOnboarding from "@metamask/onboarding";
 import Marquee from "react-fast-marquee";
 import { FaHeart } from "react-icons/fa";
 import MenuSubLink from "../../components/DropDown/MenuSubLink";
+import MenuMobileSubLink from "../../components/DropDown/MenuMobileSubLink";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -106,7 +107,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {"\u00a0"}
           {flagDisplayFooter === 0
-            ? "📢 Its recommended to play the game on Desktop browser : Chrome, Firefox, Brave."
+            ? "📢  Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
             : `📢 FREE MINT event will start on October 15, 2023. Check out
           Claim Page!`}
           {"\u00a0"}
@@ -247,20 +248,37 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                   </a>
                 );
               } else {
-                return (
-                  <LinkMobileEach
-                    key={_key}
-                    active={flagLink === index ? 1 : 0}
-                    onClick={() => {
-                      setFlagLink(index);
-                      navigate(each.link);
-                      setFlagClickedMenu(false);
-                      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-                    }}
-                  >
-                    {each.name}
-                  </LinkMobileEach>
-                );
+                if (each.flagSubLink) {
+                  return (
+                    <MenuMobileSubLink
+                      key={_key}
+                      active={flagLink === index ? 1 : 0}
+                      index={index}
+                      setFlagLink={setFlagLink}
+                      setFlagClickedMenu={setFlagClickedMenu}
+                      data={each}
+                    />
+                  );
+                } else {
+                  return (
+                    <LinkMobileEach
+                      key={_key}
+                      active={flagLink === index ? 1 : 0}
+                      onClick={() => {
+                        setFlagLink(index);
+                        navigate(each.link);
+                        setFlagClickedMenu(false);
+                        window.scrollTo({
+                          top: 0,
+                          left: 0,
+                          behavior: "smooth",
+                        });
+                      }}
+                    >
+                      {each.name}
+                    </LinkMobileEach>
+                  );
+                }
               }
             })}
           </SectionMobilePageLink>
