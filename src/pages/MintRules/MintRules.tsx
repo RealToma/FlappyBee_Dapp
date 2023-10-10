@@ -321,7 +321,7 @@ const SectionImageGroup = styled(Box)`
     width: 192px;
   }
   @media (max-width: 500px) {
-    width: 150px;
+    width: 130px;
     margin-top: 20px;
   }
   @media (max-width: 390px) {
@@ -358,8 +358,8 @@ const ImageLeft = styled(Box)`
     right: 150px;
   }
   @media (max-width: 500px) {
-    width: 150px;
-    right: 120px;
+    width: 130px;
+    right: 100px;
   }
   @media (max-width: 390px) {
     width: 120px;
@@ -392,8 +392,8 @@ const ImageRight = styled(Box)`
     left: 150px;
   }
   @media (max-width: 500px) {
-    width: 150px;
-    left: 120px;
+    width: 130px;
+    left: 100px;
   }
   @media (max-width: 390px) {
     width: 120px;

@@ -4,12 +4,34 @@ import imgBackClaim from "../../assets/images/background/bgAirdrop.png";
 import imgAirdropBee from "../../assets/images/bee/airdrop.png";
 import Snowfall from "react-snowfall";
 import imgButtonStart from "../../assets/images/buttons/HomeWide.png";
+import { useEffect, useState } from "react";
+import { useWeb3React } from "@web3-react/core";
+import { NotificationManager } from "react-notifications";
+import { actionGetUserClaimScore } from "../../actions/score";
 // import { textFreeMintRules } from "../../data/FreeMint";
 
 const ClaimRewards = () => {
   const imgParachute01 = document.createElement("img");
   imgParachute01.src = "/assets/images/icons/parachutes01.png";
   const imagesParachute: any = [imgParachute01];
+  const { account } = useWeb3React();
+  const [amountClaim, setAmountClaim] = useState(0);
+
+  useEffect(() => {
+    if (account === undefined || account === null) {
+      return NotificationManager.warning(
+        "Please connect your wallet.",
+        "",
+        3000
+      );
+    }
+    actionGetUserClaimScore(account).then((res) => {
+      console.log(res);
+      if (res.flagSuccess) {
+        setAmountClaim(res.dataClaimScore.totalScore);
+      }
+    });
+  }, [account]);
 
   return (
     <StyledComponent>
@@ -39,7 +61,7 @@ const ClaimRewards = () => {
           You are eligible to claim up to:
         </TextHead>
         <TextHeadGuide data-aos="fade-up" data-aos-duration="2000">
-          0.345 BEET
+          {amountClaim * (process.env.REACT_APP_CLAIM_RATE as any)} BEET
         </TextHeadGuide>
 
         <ButtonStart
@@ -312,7 +334,7 @@ const SectionImageGroup = styled(Box)`
     width: 192px;
   }
   @media (max-width: 500px) {
-    width: 150px;
+    width: 130px;
     margin-top: 20px;
   }
   @media (max-width: 390px) {
@@ -349,8 +371,8 @@ const ImageLeft = styled(Box)`
     right: 150px;
   }
   @media (max-width: 500px) {
-    width: 150px;
-    right: 120px;
+    width: 130px;
+    right: 100px;
   }
   @media (max-width: 390px) {
     width: 120px;
@@ -383,8 +405,8 @@ const ImageRight = styled(Box)`
     left: 150px;
   }
   @media (max-width: 500px) {
-    width: 150px;
-    left: 120px;
+    width: 130px;
+    left: 100px;
   }
   @media (max-width: 390px) {
     width: 120px;
