@@ -22,7 +22,7 @@ import { shortAddress } from "../../libs/Functions";
 import imgButtonTop from "../../assets/images/buttons/topbar.png";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import Marquee from "react-fast-marquee";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import MenuSubLink from "../../components/DropDown/MenuSubLink";
 import MenuMobileSubLink from "../../components/DropDown/MenuMobileSubLink";
 
@@ -107,8 +107,8 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         <Marquee
           speed={30}
           // gradient={true}
-          // gradientWidth={30}
-          // gradientColor={[0, 61, 40]}
+          // gradientWidth={200}
+          // gradientColor={[255,0,255]}
         >
           {"\u00a0"}
           {"\u00a0"}
@@ -120,6 +120,22 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {"\u00a0"}
         </Marquee>
+        <SecitonSocial>
+          <IconSocial
+            onClick={() => {
+              window.open("https://twitter.com/FlappyBee_ETH", "_blank");
+            }}
+          >
+            <FaTwitter />
+          </IconSocial>
+          <IconSocial
+            onClick={() => {
+              window.open("https://t.me/FlappyBee_ETH", "_blank");
+            }}
+          >
+            <FaTelegramPlane />
+          </IconSocial>
+        </SecitonSocial>
       </SectionTopbar>
       <SectionHeader
         onClick={() => {
@@ -879,6 +895,7 @@ export const backdropstyled = styled(Box)`
 
 const SectionTopbar = styled(Box)`
   display: flex;
+  position: relative;
   width: 100%;
   height: 40px;
   min-height: 40px;
@@ -891,6 +908,8 @@ const SectionTopbar = styled(Box)`
   font-style: normal;
   font-weight: 700;
   line-height: 26px;
+  /* padding: 0px 200px;
+  box-sizing: border-box; */
   z-index: 4;
   /* border-bottom: 2px solid white; */
   /* filter: drop-shadow(0px 2px 3px black); */
@@ -904,6 +923,61 @@ const SectionTopbar = styled(Box)`
     font-size: 10px;
     height: 24px;
     min-height: 24px;
+  }
+`;
+
+const SecitonSocial = styled(Box)`
+  display: flex;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  align-items: center;
+  background-color: #003d28;
+  box-shadow: -30px 0px 20px #003d28;
+  padding: 0px 60px 0px 20px;
+  box-sizing: border-box;
+
+  z-index: 5;
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    padding: 0px 30px 0px 20px;
+  }
+  @media (max-width: 1024px) {
+    padding: 0px 20px;
+  }
+  @media (max-width: 768px) {
+    box-shadow: -20px 0px 20px #003d28;
+  }
+  @media (max-width: 390px) {
+    box-shadow: -12px 0px 12px #003d28;
+  }
+`;
+
+const IconSocial = styled(Box)`
+  display: flex;
+  color: white;
+  font-size: 24px;
+  margin: 0px 10px;
+  cursor: pointer;
+
+  transition: 0.3s;
+  &:hover {
+    color: #fdc400;
+  }
+  &:active {
+    transform: scale(0.85);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    margin: 0px 8px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin: 0px 5px;
   }
 `;
 
