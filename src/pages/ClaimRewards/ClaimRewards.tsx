@@ -50,7 +50,7 @@ const ClaimRewards = () => {
         </SectionDropEffect>
       </SectionClaim> */}
       <SectionDescription>
-        <SectionImageGroup data-aos="fade-down" data-aos-duration="1000">
+        <SectionImageGroup data-aos="zoom-in" data-aos-duration="2000">
           {/* <ImageLeft>
             <img src={imgAirdropBee} width={"100%"} alt="" />
           </ImageLeft>
@@ -59,7 +59,7 @@ const ClaimRewards = () => {
           </ImageRight> */}
           <img src={imgCoinsRewards} width={"100%"} alt="" />
         </SectionImageGroup>
-        <TextHead data-aos="zoom-in" data-aos-duration="1000">
+        <TextHead data-aos="fade-up" data-aos-duration="2000">
           You are eligible to claim up to:
         </TextHead>
         <TextHeadGuide data-aos="fade-up" data-aos-duration="2000">
