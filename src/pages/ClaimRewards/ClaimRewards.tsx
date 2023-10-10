@@ -35,12 +35,12 @@ const ClaimRewards = () => {
           </ImageRight>
           <img src={imgAirdropBee} width={"100%"} alt="" />
         </SectionImageGroup>
-        <TextHeadGuide data-aos="zoom-in" data-aos-duration="1000">
-          0.345 BEET
-        </TextHeadGuide>
-        <TextHead data-aos="fade-up" data-aos-duration="2000">
+        <TextHead data-aos="zoom-in" data-aos-duration="1000">
           You are eligible to claim up to:
         </TextHead>
+        <TextHeadGuide data-aos="fade-up" data-aos-duration="2000">
+          0.345 BEET
+        </TextHeadGuide>
 
         <ButtonStart
           onClick={() => {}}
@@ -50,7 +50,7 @@ const ClaimRewards = () => {
           Claim $BEET
         </ButtonStart>
         <TextSmall data-aos="fade-up" data-aos-duration="2000">
-          BEET will soon be claimable
+          🥳 BEET will soon be claimable🥳
         </TextSmall>
         <SectionNotify data-aos="fade-up" data-aos-duration="2000">
           <TextHead>Notify me when $BEET goes mainnet:</TextHead>
@@ -172,23 +172,24 @@ const TextHead = styled(Box)`
   text-align: center;
   word-break: break-word;
 
-  margin-top: 30px;
+  margin-top: 70px;
   transition: 0.3s;
   @media (max-width: 1440px) {
   }
   @media (max-width: 1024px) {
-    margin-top: 25px;
+    margin-top: 60px;
     line-height: 40px;
   }
   @media (max-width: 768px) {
-    margin-top: 20px;
+    margin-top: 50px;
     line-height: 35px;
   }
   @media (max-width: 500px) {
+    margin-top: 40px;
     line-height: 30px;
   }
   @media (max-width: 390px) {
-    margin-top: 10px;
+    margin-top: 30px;
     line-height: 25px;
   }
 `;
@@ -235,20 +236,19 @@ const TextHeadGuide = styled(Box)`
   font-weight: 400;
   line-height: 50px;
 
-  margin-top: 70px;
+  margin-top: 20px;
   transition: 0.3s;
   @media (max-width: 1440px) {
     line-height: 60px;
   }
   @media (max-width: 1024px) {
-    margin-top: 60px;
+    margin-top: 15px;
   }
   @media (max-width: 768px) {
     line-height: 35px;
-    margin-top: 50px;
   }
   @media (max-width: 500px) {
-    margin-top: 40px;
+    margin-top: 10px;
     line-height: 30px;
   }
 `;

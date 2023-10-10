@@ -19,9 +19,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 import imgButtonSmall from "./assets/images/buttons/HomeSmall.png";
-import FreeMint from "./pages/FreeMint/FreeMint";
-import Claim from "./pages/Claim/Claim";
+// import Claim from "./pages/Claim/Claim";
 import ClaimRewards from "./pages/ClaimRewards/ClaimRewards";
+import MintRules from "./pages/MintRules/MintRules";
 
 const App = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -81,7 +81,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/play" element={<Home />} />
-            <Route path="/free_mint" element={<FreeMint />} />
+            <Route path="/mint_rules" element={<MintRules />} />
             <Route path="/claim_rewards" element={<ClaimRewards />} />
             {/* <Route path="/claim" element={<Claim />} /> */}
             {/* <Route path="/airdrop" element={<Airdrop />} /> */}

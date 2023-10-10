@@ -7,7 +7,7 @@ import imgAirdropBee from "../../assets/images/bee/airdrop.png";
 import Snowfall from "react-snowfall";
 // import { textFreeMintRules } from "../../data/FreeMint";
 
-const FreeMint = () => {
+const MintRules = () => {
   const imgParachute01 = document.createElement("img");
   imgParachute01.src = "/assets/images/icons/parachutes01.png";
   // const imgParachute02 = document.createElement("img");
@@ -17,7 +17,7 @@ const FreeMint = () => {
   return (
     <StyledComponent>
       <SectionClaim>
-        <TextAirdrop>Free Mint Event</TextAirdrop>
+        <TextAirdrop>Free Mint Rules</TextAirdrop>
         <SectionDropEffect>
           <Snowfall
             snowflakeCount={window.innerWidth < 768 ? 10 : 20}
@@ -411,4 +411,4 @@ const SectionDropEffect = styled(Box)`
   transform: translate(-50%, -50%);
 `;
 
-export default FreeMint;
+export default MintRules;

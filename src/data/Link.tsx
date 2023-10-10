@@ -27,14 +27,14 @@ export const dataTopNavigation: Link[] = [
   //   flagSubLink: false,
   // },
   {
-    name: "Claim",
-    link: "/claim",
+    name: "Free Mint",
+    link: "/free_mint",
     flagNavigate: false,
     flagSubLink: true,
     sublink: [
       {
-        name: "Free Mint",
-        link: "/free_mint",
+        name: "Rules",
+        link: "/mint_rules",
       },
       {
         name: "Claim Rewards",

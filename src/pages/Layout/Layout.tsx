@@ -450,8 +450,8 @@ const SectionFooter = styled(Box)`
   justify-content: space-between;
   background: ${({ fixed }: any) =>
     fixed
-      ? 
-       "linear-gradient(180deg, rgba(0, 61, 40, 0) 0%, #003d28 73.96%)":"rgba(0, 61, 40, 1)"};
+      ? "linear-gradient(180deg, rgba(0, 61, 40, 0) 0%, #003d28 73.96%)"
+      : "rgba(0, 61, 40, 1)"};
   padding: 0px 60px;
   box-sizing: border-box;
   /* background-image: url(${imgBackFooter}); */
