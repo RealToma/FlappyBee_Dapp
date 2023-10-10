@@ -72,10 +72,10 @@ export const dataTopNavigation: Link[] = [
     flagNavigate: false,
     flagSubLink: false,
   },
-  {
-    name: "Settings",
-    link: "/settings",
-    flagNavigate: false,
-    flagSubLink: false,
-  },
+  // {
+  //   name: "Settings",
+  //   link: "/settings",
+  //   flagNavigate: false,
+  //   flagSubLink: false,
+  // },
 ];
