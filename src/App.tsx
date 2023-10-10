@@ -178,17 +178,18 @@ const ButtonPlayMusic = styled(Box)`
     width: 90px;
   }
   @media (max-width: 1024px) {
+    bottom: 45px;
     width: 80px;
   }
   @media (max-width: 768px) {
     right: 30px;
-    bottom: 30px;
+    bottom: 40px;
     width: 70px;
   }
   @media (max-width: 500px) {
     width: 55px;
     right: 20px;
-    bottom: 20px;
+    bottom: 35px;
   }
 `;
 
