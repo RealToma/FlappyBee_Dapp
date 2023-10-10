@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgBackClaim from "../../assets/images/background/bgAirdrop.png";
 // import imgAirdropBee from "../../assets/images/bee/airdrop.png";
-import imgCoinsRewards from "../../assets/images/icons/coins.png"
+import imgCoinsRewards from "../../assets/images/icons/coins.png";
 import Snowfall from "react-snowfall";
 import imgButtonStart from "../../assets/images/buttons/HomeWide.png";
 import { useEffect, useState } from "react";
@@ -37,7 +37,7 @@ const ClaimRewards = () => {
 
   return (
     <StyledComponent>
-      <SectionClaim>
+      {/* <SectionClaim>
         <TextAirdrop>Claim Rewards</TextAirdrop>
         <SectionDropEffect>
           <Snowfall
@@ -48,7 +48,7 @@ const ClaimRewards = () => {
             radius={window.innerWidth < 768 ? [40, 100] : [60, 150]}
           />
         </SectionDropEffect>
-      </SectionClaim>
+      </SectionClaim> */}
       <SectionDescription>
         <SectionImageGroup data-aos="fade-down" data-aos-duration="1000">
           {/* <ImageLeft>

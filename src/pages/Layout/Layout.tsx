@@ -215,7 +215,18 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
       {flagDisplayFooter === 1 || flagDisplayFooter === 2 ? (
         <SectionFooter fixed={flagDisplayFooter === 1 ? 1 : 0}>
           <SectionFooterSide>
-            <SectionFooterText>Terms of Use</SectionFooterText>
+            <SectionFooterText
+              onClick={() => {
+                navigate("/terms_of_use");
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth",
+                });
+              }}
+            >
+              Terms of Use
+            </SectionFooterText>
             <SectionFooterText>About us</SectionFooterText>
           </SectionFooterSide>
           <SectionFooterSide>

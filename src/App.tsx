@@ -22,6 +22,7 @@ import imgButtonSmall from "./assets/images/buttons/HomeSmall.png";
 // import Claim from "./pages/Claim/Claim";
 import ClaimRewards from "./pages/ClaimRewards/ClaimRewards";
 import MintRules from "./pages/MintRules/MintRules";
+import TermsOfUse from "./pages/TermsOfUse/TermsOfUse";
 
 const App = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -94,6 +95,7 @@ const App = () => {
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/terms_of_use" element={<TermsOfUse />} />
           </Routes>
         </Layout>
         <ButtonPlayMusic onClick={() => handlePlayMusic()}>

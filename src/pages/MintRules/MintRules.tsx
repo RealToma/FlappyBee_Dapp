@@ -92,7 +92,7 @@ const MintRules = () => {
             mainnet. For instance, if you score{" "}
             <span style={{ color: "#00FF19" }}>100 $BEET</span> on the testnet,
             you will be eligible to claim{" "}
-            <span style={{ color: "#00FF19" }}>10 $BEET</span> on the mainnet.
+            <span style={{ color: "#00FF19" }}>1 $BEET</span> on the mainnet.
             <br />
             6. Tokens will be claimable on mainnet once the FREE MINT session
             concludes.
