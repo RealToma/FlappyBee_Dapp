@@ -1,7 +1,8 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgBackClaim from "../../assets/images/background/bgAirdrop.png";
-import imgAirdropBee from "../../assets/images/bee/airdrop.png";
+// import imgAirdropBee from "../../assets/images/bee/airdrop.png";
+import imgCoinsRewards from "../../assets/images/icons/coins.png"
 import Snowfall from "react-snowfall";
 import imgButtonStart from "../../assets/images/buttons/HomeWide.png";
 import { useEffect, useState } from "react";
@@ -49,14 +50,14 @@ const ClaimRewards = () => {
         </SectionDropEffect>
       </SectionClaim>
       <SectionDescription>
-        <SectionImageGroup>
-          <ImageLeft>
+        <SectionImageGroup data-aos="fade-down" data-aos-duration="1000">
+          {/* <ImageLeft>
             <img src={imgAirdropBee} width={"100%"} alt="" />
           </ImageLeft>
           <ImageRight>
             <img src={imgAirdropBee} width={"100%"} alt="" />
-          </ImageRight>
-          <img src={imgAirdropBee} width={"100%"} alt="" />
+          </ImageRight> */}
+          <img src={imgCoinsRewards} width={"100%"} alt="" />
         </SectionImageGroup>
         <TextHead data-aos="zoom-in" data-aos-duration="1000">
           You are eligible to claim up to:
@@ -317,29 +318,29 @@ const TextHeadGuide = styled(Box)`
 const SectionImageGroup = styled(Box)`
   display: flex;
   position: relative;
-  width: 250px;
-  aspect-ratio: 1;
+  width: 300px;
+  /* aspect-ratio: 1; */
   margin-top: 30px;
   > img {
     filter: drop-shadow(0px 0px 12px black);
   }
   transition: 0.3s;
   @media (max-width: 1440px) {
-    width: 250px;
+    width: 280px;
   }
   @media (max-width: 1024px) {
-    width: 220px;
+    width: 250px;
   }
   @media (max-width: 768px) {
     margin-top: 25px;
-    width: 192px;
+    width: 220px;
   }
   @media (max-width: 500px) {
-    width: 130px;
+    width: 200px;
     margin-top: 20px;
   }
   @media (max-width: 390px) {
-    width: 120px;
+    width: 180px;
   }
 
   > img {
@@ -347,73 +348,73 @@ const SectionImageGroup = styled(Box)`
   }
 `;
 
-const ImageLeft = styled(Box)`
-  display: flex;
-  position: absolute;
-  top: 50%;
-  right: 180px;
-  transform: translateY(-50%);
-  width: 250px;
-  aspect-ratio: 1;
-  > img {
-    z-index: 99;
-  }
+// const ImageLeft = styled(Box)`
+//   display: flex;
+//   position: absolute;
+//   top: 50%;
+//   right: 180px;
+//   transform: translateY(-50%);
+//   width: 250px;
+//   aspect-ratio: 1;
+//   > img {
+//     z-index: 99;
+//   }
 
-  transition: 0.3s;
-  @media (max-width: 1440px) {
-    width: 250px;
-  }
-  @media (max-width: 1024px) {
-    width: 220px;
-    right: 160px;
-  }
-  @media (max-width: 768px) {
-    width: 192px;
-    right: 150px;
-  }
-  @media (max-width: 500px) {
-    width: 130px;
-    right: 100px;
-  }
-  @media (max-width: 390px) {
-    width: 120px;
-    right: 90px;
-  }
-`;
+//   transition: 0.3s;
+//   @media (max-width: 1440px) {
+//     width: 250px;
+//   }
+//   @media (max-width: 1024px) {
+//     width: 220px;
+//     right: 160px;
+//   }
+//   @media (max-width: 768px) {
+//     width: 192px;
+//     right: 150px;
+//   }
+//   @media (max-width: 500px) {
+//     width: 130px;
+//     right: 100px;
+//   }
+//   @media (max-width: 390px) {
+//     width: 120px;
+//     right: 90px;
+//   }
+// `;
 
-const ImageRight = styled(Box)`
-  display: flex;
-  position: absolute;
-  top: 50%;
-  left: 180px;
-  transform: translateY(-50%);
-  width: 250px;
-  aspect-ratio: 1;
-  > img {
-    z-index: 98;
-  }
+// const ImageRight = styled(Box)`
+//   display: flex;
+//   position: absolute;
+//   top: 50%;
+//   left: 180px;
+//   transform: translateY(-50%);
+//   width: 250px;
+//   aspect-ratio: 1;
+//   > img {
+//     z-index: 98;
+//   }
 
-  transition: 0.3s;
-  @media (max-width: 1440px) {
-    width: 250px;
-  }
-  @media (max-width: 1024px) {
-    width: 220px;
-    left: 160px;
-  }
-  @media (max-width: 768px) {
-    width: 192px;
-    left: 150px;
-  }
-  @media (max-width: 500px) {
-    width: 130px;
-    left: 100px;
-  }
-  @media (max-width: 390px) {
-    width: 120px;
-    left: 90px;
-  }
-`;
+//   transition: 0.3s;
+//   @media (max-width: 1440px) {
+//     width: 250px;
+//   }
+//   @media (max-width: 1024px) {
+//     width: 220px;
+//     left: 160px;
+//   }
+//   @media (max-width: 768px) {
+//     width: 192px;
+//     left: 150px;
+//   }
+//   @media (max-width: 500px) {
+//     width: 130px;
+//     left: 100px;
+//   }
+//   @media (max-width: 390px) {
+//     width: 120px;
+//     left: 90px;
+//   }
+// `;
 
 const SectionDropEffect = styled(Box)`
   display: flex;
