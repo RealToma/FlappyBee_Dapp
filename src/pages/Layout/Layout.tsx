@@ -227,7 +227,18 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
             >
               Terms of Use
             </SectionFooterText>
-            <SectionFooterText>About us</SectionFooterText>
+            <SectionFooterText
+              onClick={() => {
+                navigate("/about_us");
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth",
+                });
+              }}
+            >
+              About us
+            </SectionFooterText>
           </SectionFooterSide>
           <SectionFooterSide>
             <SectionFooterTextETH>
