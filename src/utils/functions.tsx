@@ -5,3 +5,8 @@ export const checkInteger = (number: any) => {
     return parseFloat(number.toFixed(3));
   }
 };
+
+export const validateEmail = (email: any) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};

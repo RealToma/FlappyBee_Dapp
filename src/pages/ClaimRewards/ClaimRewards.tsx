@@ -1,23 +1,57 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import imgBackClaim from "../../assets/images/background/bgAirdrop.png";
+// import imgBackClaim from "../../assets/images/background/bgAirdrop.png";
 // import imgAirdropBee from "../../assets/images/bee/airdrop.png";
 import imgCoinsRewards from "../../assets/images/icons/coins.png";
-import Snowfall from "react-snowfall";
+// import Snowfall from "react-snowfall";
 import imgButtonStart from "../../assets/images/buttons/HomeWide.png";
 import { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { NotificationManager } from "react-notifications";
 import { actionGetUserClaimScore } from "../../actions/score";
-import { checkInteger } from "../../utils/functions";
+import { checkInteger, validateEmail } from "../../utils/functions";
+import { actionSubmitClaimNotify } from "../../actions/freeMint";
 // import { textFreeMintRules } from "../../data/FreeMint";
 
 const ClaimRewards = () => {
   const imgParachute01 = document.createElement("img");
   imgParachute01.src = "/assets/images/icons/parachutes01.png";
-  const imagesParachute: any = [imgParachute01];
+  // const imagesParachute: any = [imgParachute01];
   const { account } = useWeb3React();
   const [amountClaim, setAmountClaim] = useState(0);
+  const [email, setEmail] = useState();
+
+  const handleSubmit = () => {
+    if (account === undefined || account === null) {
+      return NotificationManager.warning(
+        "Please connect your wallet.",
+        "",
+        3000
+      );
+    }
+    if (email === "" || email === null || email === undefined) {
+      return NotificationManager.warning("Please enter your email.", "", 3000);
+    }
+    if (!validateEmail(email)) {
+      return NotificationManager.warning(
+        "This email format is invalid.",
+        "",
+        3000
+      );
+    }
+    actionSubmitClaimNotify(account, email).then((res) => {
+      console.log(res);
+      if (res.flagSuccess) {
+        return NotificationManager.info(
+          "Thank you we will send a notification when claim will be available!",
+          "",
+          5000
+        );
+      } else {
+        return NotificationManager.warning(res.msgError, "", 5000);
+      }
+    });
+  };
 
   useEffect(() => {
     if (account === undefined || account === null) {
@@ -86,9 +120,12 @@ const ClaimRewards = () => {
             <InputEmail
               component="input"
               placeholder="example@gmail.com"
+              onChange={(e: any) => {
+                setEmail(e.target.value);
+              }}
             ></InputEmail>
           </SectionInputEmail>
-          <ButtonSubmit>Submit</ButtonSubmit>
+          <ButtonSubmit onClick={() => handleSubmit()}>Submit</ButtonSubmit>
         </SectionNotify>
       </SectionDescription>
     </StyledComponent>
@@ -103,60 +140,60 @@ const StyledComponent = styled(Box)`
   background: rgba(0, 61, 40, 1);
 `;
 
-const SectionClaim = styled(Box)`
-  display: flex;
-  position: relative;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  background-image: url(${imgBackClaim});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 150px 0px;
-  box-sizing: border-box;
+// const SectionClaim = styled(Box)`
+//   display: flex;
+//   position: relative;
+//   width: 100%;
+//   flex-direction: column;
+//   align-items: center;
+//   background-image: url(${imgBackClaim});
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   padding: 150px 0px;
+//   box-sizing: border-box;
 
-  /* box-shadow: inset 0px 0px 20px 0px #666666; */
+//   /* box-shadow: inset 0px 0px 20px 0px #666666; */
 
-  transition: 0.3s;
-  @media (max-width: 1440px) {
-    padding: 200px 0px;
-  }
-  @media (max-width: 1200px) {
-    padding: 150px 0px;
-  }
-  @media (max-width: 1200px) {
-    padding: 120px 0px;
-  }
-  @media (max-width: 768px) {
-    padding: 100px 0px;
-  }
-  @media (max-width: 500px) {
-    padding: 70px 0px;
-  }
-  @media (max-width: 390px) {
-    padding: 50px 0px;
-  }
-`;
+//   transition: 0.3s;
+//   @media (max-width: 1440px) {
+//     padding: 200px 0px;
+//   }
+//   @media (max-width: 1200px) {
+//     padding: 150px 0px;
+//   }
+//   @media (max-width: 1200px) {
+//     padding: 120px 0px;
+//   }
+//   @media (max-width: 768px) {
+//     padding: 100px 0px;
+//   }
+//   @media (max-width: 500px) {
+//     padding: 70px 0px;
+//   }
+//   @media (max-width: 390px) {
+//     padding: 50px 0px;
+//   }
+// `;
 
-const TextAirdrop = styled(Box)`
-  color: #38150a;
-  text-align: center;
-  font-family: "Wendy One";
-  font-size: 12em;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 90px;
-  z-index: 100;
-  /* -webkit-background-clip: text; */
-  /* -webkit-text-fill-color: transparent; */
-  -webkit-text-stroke: 3px white;
+// const TextAirdrop = styled(Box)`
+//   color: #38150a;
+//   text-align: center;
+//   font-family: "Wendy One";
+//   font-size: 12em;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: 90px;
+//   z-index: 100;
+//   /* -webkit-background-clip: text; */
+//   /* -webkit-text-fill-color: transparent; */
+//   -webkit-text-stroke: 3px white;
 
-  transition: 0.3s;
-  @media (max-width: 390px) {
-    -webkit-text-stroke: 2px white;
-  }
-`;
+//   transition: 0.3s;
+//   @media (max-width: 390px) {
+//     -webkit-text-stroke: 2px white;
+//   }
+// `;
 
 const SectionDescription = styled(Box)`
   display: flex;
@@ -420,15 +457,15 @@ const SectionImageGroup = styled(Box)`
 //   }
 // `;
 
-const SectionDropEffect = styled(Box)`
-  display: flex;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-`;
+// const SectionDropEffect = styled(Box)`
+//   display: flex;
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   left: 50%;
+//   top: 50%;
+//   transform: translate(-50%, -50%);
+// `;
 
 const ButtonStart = styled(Box)`
   display: flex;

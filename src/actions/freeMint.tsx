@@ -19,3 +19,14 @@ export const actionGetFreeMintCount = (account: any) => {
       return res.data;
     });
 };
+
+export const actionSubmitClaimNotify = (account: any, email: any) => {
+  return axios
+    .post("/api/free_mint/submit_claim_notify", {
+      addressWallet: account,
+      email: email,
+    })
+    .then((res) => {
+      return res.data;
+    });
+};
