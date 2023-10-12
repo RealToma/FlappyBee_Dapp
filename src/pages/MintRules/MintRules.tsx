@@ -88,11 +88,11 @@ const MintRules = () => {
             <br />
             4. Play the game and record your score on Goerli network.
             <br />
-            5. Your score multiplied by 1% will determine your reward on the
+            5. Your score multiplied by 10% will determine your reward on the
             mainnet. For instance, if you score{" "}
             <span style={{ color: "#00FF19" }}>100 $BEET</span> on the testnet,
             you will be eligible to claim{" "}
-            <span style={{ color: "#00FF19" }}>1 $BEET</span> on the mainnet.
+            <span style={{ color: "#00FF19" }}>10 $BEET</span> on the mainnet.
             <br />
             6. Tokens will be claimable on mainnet once the FREE MINT session
             concludes.
