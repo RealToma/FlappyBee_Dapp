@@ -280,6 +280,7 @@ const SectionEachStats = styled(Box)`
   flex: 1;
   width: 100%;
   flex-direction: column;
+  justify-content: center;
   padding: 30px 50px;
   box-sizing: border-box;
   background-image: url(${imgLeaderboardStas});
@@ -296,10 +297,13 @@ const SectionEachStats = styled(Box)`
     padding: 20px 35px;
   }
   @media (max-width: 768px) {
-    padding: 30px 70px;
+    padding: 30px 65px;
+  }
+  @media (max-width: 600px) {
+    padding: 25px 50px;
   }
   @media (max-width: 500px) {
-    padding: 20px 40px;
+    padding: 20px 30px;
   }
   @media (max-width: 390px) {
     padding: 10px 20px;

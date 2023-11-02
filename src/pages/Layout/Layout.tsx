@@ -114,8 +114,8 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {"\u00a0"}
           {flagDisplayFooter === 0
-            ? "📢  Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
-            : `📢 FREE MINT event will start on October 15, 2023!`}
+            ? "📢 Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
+            : `📢 Be informed of our upcoming BEET presale!`}
           {"\u00a0"}
           {"\u00a0"}
           {"\u00a0"}
@@ -896,6 +896,7 @@ export const backdropstyled = styled(Box)`
 const SectionTopbar = styled(Box)`
   display: flex;
   position: relative;
+  cursor: pointer;
   width: 100%;
   height: 40px;
   min-height: 40px;
