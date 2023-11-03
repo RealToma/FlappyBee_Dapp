@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgBackHome from "../../assets/images/background/BGHome.png";
+import imgButtonGreen from "../../assets/images/buttons/GreenWide.svg";
 import imgButtonSmall from "../../assets/images/buttons/HomeSmall.png";
 import imgButtonStart from "../../assets/images/buttons/HomeWide.png";
 import imgLogoBee from "../../assets/images/Bee.png";
@@ -11,12 +12,14 @@ import { useNavigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import { checkWhiteList } from "../../actions/auth";
 import { actionGetFreeMintCount } from "../../actions/freeMint";
+import { useState } from "react";
+import ModalPlayToEarn from "../../components/Modal/ModalPlayToEarn";
 // import useProgressiveImg from "../../components/Image/ImageLoadEffect";
 
 const Home = () => {
   const navigate = useNavigate();
   const { account } = useWeb3React();
-
+  const [flagModalP2E, setFlagModalP2E] = useState(false);
   // const [srcBackHome, { blur }] = useProgressiveImg(imgBackHome, imgBackHome);
   // console.log("blur:", blur);
 
@@ -58,6 +61,10 @@ const Home = () => {
       }
     });
   };
+
+  const handlePlayToEarn = () => {
+    setFlagModalP2E(true);
+  };
   // const handleAlert = () => {
   // if (!toast.isActive(toastId.current)) {
   //   toastId.current = toast.info("🐝 Coming soon.");
@@ -82,13 +89,13 @@ const Home = () => {
         </SectionImageLogo>
       </SectionTitle>
       <SectionButtonGroup>
-        <ButtonStart
+        <ButtonStartGreen
           onClick={() => {
-            handleStart();
+            handlePlayToEarn();
           }}
         >
           Play to earn
-        </ButtonStart>
+        </ButtonStartGreen>
         <ButtonStart
           onClick={() => {
             handleStart();
@@ -96,13 +103,6 @@ const Home = () => {
         >
           Play for fun
         </ButtonStart>
-        {/* <ButtonStart
-          onClick={() => {
-            handleStart();
-          }}
-        >
-          Free Mint
-        </ButtonStart> */}
       </SectionButtonGroup>
 
       <SectionSocialButton>
@@ -113,6 +113,14 @@ const Home = () => {
           <AiFillLike />
         </ButtonSocial>
       </SectionSocialButton>
+      {flagModalP2E ? (
+        <ModalPlayToEarn
+          flagModalP2E={flagModalP2E}
+          setFlagModalP2E={setFlagModalP2E}
+        />
+      ) : (
+        <></>
+      )}
     </StyledComponent>
   );
 };
@@ -273,6 +281,8 @@ const ButtonStart = styled(Box)`
   color: #511900;
   cursor: pointer;
   user-select: none;
+  margin: 0px 20px;
+
   transition: 0.2s;
   &:hover {
     color: white;
@@ -295,6 +305,64 @@ const ButtonStart = styled(Box)`
     width: 300px;
     height: 85px;
   }
+  @media (max-width: 700px) {
+    margin: 10px 0px;
+  }
+  @media (max-width: 390px) {
+    width: 235px;
+    height: 66px;
+  }
+`;
+
+const ButtonStartGreen = styled(Box)`
+  display: flex;
+  width: 460px;
+  height: 130px;
+  justify-content: center;
+  align-items: center;
+  background-image: url(${imgButtonGreen});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  font-family: "Rowdies";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 6em;
+  line-height: 90px;
+  /* identical to box height, or 129% */
+
+  text-align: center;
+
+  color: #511900;
+  cursor: pointer;
+  user-select: none;
+  margin: 0px 20px;
+
+  transition: 0.2s;
+  &:hover {
+    color: white;
+    text-shadow: 0px 0px 12px white;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+
+  transition: 0.3s;
+  @media (max-width: 1440px) {
+    width: 400px;
+    height: 100px;
+  }
+  @media (max-width: 1024px) {
+    width: 350px;
+    height: 93px;
+  }
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 85px;
+  }
+  @media (max-width: 700px) {
+    margin: 10px 0px;
+  }
   @media (max-width: 390px) {
     width: 235px;
     height: 66px;
@@ -310,6 +378,9 @@ const SectionSocialButton = styled(Box)`
 const SectionButtonGroup = styled(Box)`
   display: flex;
   align-items: center;
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 export default Home;
