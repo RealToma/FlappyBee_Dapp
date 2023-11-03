@@ -15,8 +15,8 @@ const Stake = () => {
           newly issued BEET tokens as rewards for their long term alignment.
         </TextDescription>
         <SectionButtonGroup>
-          <ButtonPlay>Buy BEET</ButtonPlay>
-          <ButtonHome>Stake</ButtonHome>
+          <ButtonHome>Buy BEET</ButtonHome>
+          <ButtonPlay>Stake</ButtonPlay>
         </SectionButtonGroup>
       </SectionTop>
       <SectionContent>
@@ -76,7 +76,7 @@ const Stake = () => {
             <SectionGroupValue>
               <SectionEachValue>
                 <TextUpValueState style={{ color: "white" }}>
-                --
+                  --
                 </TextUpValueState>
                 <TextDownValueState>Total Staked</TextDownValueState>
               </SectionEachValue>
@@ -204,10 +204,10 @@ const ButtonPlay = styled(Box)`
     transform: scale(0.9);
   }
   &:hover {
+    text-shadow: 0px 0px 12px white;
     color: white;
   }
 
-  margin-right: 20px;
   transition: 0.3s;
   @media (max-width: 1440px) {
     width: 300px;
@@ -252,10 +252,13 @@ const ButtonHome = styled(Box)`
   cursor: pointer;
   user-select: none;
   transition: 0.3s;
+  margin-right: 20px;
+
   &:active {
     transform: scale(0.9);
   }
   &:hover {
+    text-shadow: 0px 0px 12px white;
     color: white;
   }
 

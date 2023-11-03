@@ -34,12 +34,7 @@ const NFT = () => {
       <SectionContent>
         <SectionInitialNFT>
           {new Array(countNFT).fill(0).map((each, index) => {
-            return (
-              <CardNFT
-                key={index}
-                data={index}
-              />
-            );
+            return <CardNFT key={index} data={index} />;
           })}
         </SectionInitialNFT>
         <SectionButtonGroup>
@@ -158,6 +153,7 @@ const ButtonPlay = styled(Box)`
   }
   &:hover {
     color: white;
+    text-shadow: 0px 0px 12px white;
   }
 
   margin-right: 20px;

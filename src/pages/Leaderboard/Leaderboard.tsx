@@ -420,6 +420,7 @@ const ButtonPlay = styled(Box)`
   }
   &:hover {
     color: white;
+    text-shadow: 0px 0px 12px white;
   }
 
   transition: 0.3s;
@@ -464,6 +465,7 @@ const ButtonHome = styled(Box)`
   }
   &:hover {
     color: white;
+    text-shadow: 0px 0px 12px white;
   }
 
   transition: all 0.2s;

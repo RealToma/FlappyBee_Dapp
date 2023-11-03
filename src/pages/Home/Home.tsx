@@ -87,7 +87,14 @@ const Home = () => {
             handleStart();
           }}
         >
-          Start
+          Play to earn
+        </ButtonStart>
+        <ButtonStart
+          onClick={() => {
+            handleStart();
+          }}
+        >
+          Play for fun
         </ButtonStart>
         {/* <ButtonStart
           onClick={() => {
@@ -153,6 +160,9 @@ const ButtonSocial = styled(Box)`
   transition: 0.2s;
   &:hover {
     color: white;
+    > svg {
+      filter: drop-shadow(0px 0px 6px white);
+    }
   }
   &:active {
     transform: scale(0.9);
@@ -254,7 +264,7 @@ const ButtonStart = styled(Box)`
   font-family: "Rowdies";
   font-style: normal;
   font-weight: 300;
-  font-size: 7em;
+  font-size: 6em;
   line-height: 90px;
   /* identical to box height, or 129% */
 
@@ -266,6 +276,7 @@ const ButtonStart = styled(Box)`
   transition: 0.2s;
   &:hover {
     color: white;
+    text-shadow: 0px 0px 12px white;
   }
   &:active {
     transform: scale(0.9);

@@ -19,9 +19,13 @@ const Rewards = () => {
           {new Array(7).fill(0).map((each: any, index: any) => {
             const _key = index;
             if (index < claimed) {
-              console.log("index:", index);
+              // console.log("index:", index);
               return (
-                <SectionEachClaimedReward key={_key}>
+                <SectionEachClaimedReward
+                  key={_key}
+                  data-aos="flip-right"
+                  data-aos-duration="2000"
+                >
                   <TextClaimedDay>Day {index + 1}</TextClaimedDay>
                   <ImageCoin>
                     <img src={imgBee} width={"60%"} alt="" />
@@ -33,9 +37,13 @@ const Rewards = () => {
                 </SectionEachClaimedReward>
               );
             } else if (index === claimed) {
-              console.log("index:", index);
+              // console.log("index:", index);
               return (
-                <SectionEachReward key={_key}>
+                <SectionEachReward
+                  key={_key}
+                  data-aos="flip-right"
+                  data-aos-duration="2000"
+                >
                   <TextDay>Day {index + 1}</TextDay>
                   <ImageCoin>
                     <img src={imgBee} width={"60%"} alt="" />
@@ -44,9 +52,14 @@ const Rewards = () => {
                 </SectionEachReward>
               );
             } else {
-              console.log("index:", index);
+              // console.log("index:", index);
               return (
-                <SectionEachReward key={_key} style={{ opacity: "0.4" }}>
+                <SectionEachReward
+                  key={_key}
+                  style={{ opacity: "0.4", cursor: "not-allowed" }}
+                  data-aos="flip-right"
+                  data-aos-duration="2000"
+                >
                   <TextDay>Day {index + 1}</TextDay>
                   <ImageCoin>
                     <img src={imgBee} width={"60%"} alt="" />
@@ -366,6 +379,7 @@ const ButtonClaim = styled(Box)`
   }
   &:hover {
     color: white;
+    text-shadow: 0px 0px 12px white;
   }
   margin: 100px 0px;
 

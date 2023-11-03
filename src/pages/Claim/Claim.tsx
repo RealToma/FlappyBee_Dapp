@@ -164,6 +164,7 @@ const ButtonStart = styled(Box)`
   transition: 0.2s;
   &:hover {
     color: white;
+    text-shadow: 0px 0px 12px white;
   }
   &:active {
     transform: scale(0.9);

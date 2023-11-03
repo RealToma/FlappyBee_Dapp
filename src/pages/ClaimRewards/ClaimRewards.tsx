@@ -85,7 +85,11 @@ const ClaimRewards = () => {
         </SectionDropEffect>
       </SectionClaim> */}
       <SectionDescription>
-        <SectionImageGroup data-aos="zoom-in" data-aos-duration="2000">
+        <SectionImageGroup
+          data-aos="zoom-in"
+          data-aos-duration="2000"
+          data-aos-once="true"
+        >
           {/* <ImageLeft>
             <img src={imgAirdropBee} width={"100%"} alt="" />
           </ImageLeft>
@@ -94,10 +98,18 @@ const ClaimRewards = () => {
           </ImageRight> */}
           <img src={imgCoinsRewards} width={"100%"} alt="" />
         </SectionImageGroup>
-        <TextHead data-aos="fade-up" data-aos-duration="2000">
+        <TextHead
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          data-aos-once="true"
+        >
           You are eligible to claim up to:
         </TextHead>
-        <TextHeadGuide data-aos="fade-up" data-aos-duration="2000">
+        <TextHeadGuide
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          data-aos-once="true"
+        >
           {checkInteger(
             amountClaim * (process.env.REACT_APP_CLAIM_RATE as any)
           )}{" "}
@@ -108,13 +120,22 @@ const ClaimRewards = () => {
           onClick={() => {}}
           data-aos="fade-up"
           data-aos-duration="2000"
+          data-aos-once="true"
         >
           Claim $BEET
         </ButtonStart>
-        <TextSmall data-aos="fade-up" data-aos-duration="2000">
+        <TextSmall
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          data-aos-once="true"
+        >
           🥳 BEET will soon be claimable🥳
         </TextSmall>
-        <SectionNotify data-aos="fade-up" data-aos-duration="2000">
+        <SectionNotify
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          data-aos-once="true"
+        >
           <TextHead>Notify me when $BEET goes mainnet:</TextHead>
           <SectionInputEmail>
             <InputEmail

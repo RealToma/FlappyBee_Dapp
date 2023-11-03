@@ -157,6 +157,7 @@ const ButtonReplay = styled(Box)`
   transition: 0.2s;
   &:hover {
     color: white;
+    text-shadow: 0px 0px 12px white;
   }
   &:active {
     transform: scale(0.9);
@@ -200,6 +201,9 @@ const ButtonSocial = styled(Box)`
   transition: 0.2s;
   &:hover {
     color: white;
+    > svg {
+      filter: drop-shadow(0px 0px 6px white);
+    }
   }
   &:active {
     transform: scale(0.9);
