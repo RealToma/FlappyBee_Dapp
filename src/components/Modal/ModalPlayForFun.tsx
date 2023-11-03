@@ -77,7 +77,7 @@ const ModalPlayForFun = ({ flagModalP2E, setFlagModalP2E }: any) => {
           <SectionEachContent>
             <TextHead>Just play for fun!</TextHead>
             <TextHead>
-              Share your score on Social, get a chance to be rewarded in
+              Share your score on social, get a chance to be rewarded in
               leaderboard every week!
             </TextHead>
           </SectionEachContent>

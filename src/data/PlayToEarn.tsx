@@ -8,7 +8,7 @@ export const textModalPlayToEarn = [
     textBody: [
       "- You can play up 3 game sessions.",
       "- All rewards earned will sent to Stake vault and vested 90 days period.",
-      "- After 3 game session if you want to play more, you will need another 300 BEET staked.",
+      "- If you want to play more after 3 game sessions, you will need to stake another 300 BEET.",
     ],
   },
   {
