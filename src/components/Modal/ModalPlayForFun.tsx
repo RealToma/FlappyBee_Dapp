@@ -1,6 +1,5 @@
 import { Box, Modal } from "@mui/material";
 import styled from "styled-components";
-import { textModalPlayToEarn } from "../../data/PlayToEarn";
 import { RiCloseCircleFill } from "react-icons/ri";
 import {
   MdOutlineRadioButtonUnchecked,
@@ -14,7 +13,7 @@ import { checkWhiteList } from "../../actions/auth";
 import { actionGetFreeMintCount } from "../../actions/freeMint";
 import { useNavigate } from "react-router-dom";
 
-const ModalPlayToEarn = ({ flagModalP2E, setFlagModalP2E }: any) => {
+const ModalPlayForFun = ({ flagModalP2E, setFlagModalP2E }: any) => {
   const navigate = useNavigate();
   const { account } = useWeb3React();
 
@@ -73,17 +72,16 @@ const ModalPlayToEarn = ({ flagModalP2E, setFlagModalP2E }: any) => {
     >
       <ModalBox>
         <SectionInsideBoard>
-          <TextTitle>Play to earn</TextTitle>
-          {textModalPlayToEarn.map((each, index) => {
-            return (
-              <SectionEachContent key={index}>
-                <TextHead>{each.textHead}</TextHead>
-                {each.textBody.map((each) => {
-                  return <TextBody>{each}</TextBody>;
-                })}
-              </SectionEachContent>
-            );
-          })}
+          <TextTitle>Play for fun</TextTitle>
+
+          <SectionEachContent>
+            <TextHead>Just play for fun!</TextHead>
+            <TextHead>
+              Share your score on Social, get a chance to be rewarded in
+              leaderboard every week!
+            </TextHead>
+          </SectionEachContent>
+
           <SectionAcknowledge
             onClick={() => {
               setFlagAcknowledge(!flagAcknowledge);
@@ -127,7 +125,7 @@ const ModalBox = styled(Box)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 750px;
+  width: 620px;
   background: #fff;
   background: linear-gradient(white, white) padding-box,
     linear-gradient(to bottom, rgba(255, 153, 0, 1), rgba(216, 32, 5, 1))
@@ -152,13 +150,13 @@ const ModalBox = styled(Box)`
   }
 
   @media (max-width: 1600px) {
-    width: 650px;
-  }
-  @media (max-width: 1440px) {
     width: 580px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 1440px) {
     width: 520px;
+  }
+  @media (max-width: 768px) {
+    width: 480px;
   }
   @media (max-width: 600px) {
     width: 420px;
@@ -265,29 +263,14 @@ const TextHead = styled(Box)`
   font-size: 24px;
   font-style: normal;
   font-weight: 300;
-
+  margin-top: 10px;
   transition: 0.3s;
   @media (max-width: 1440px) {
     font-size: 20px;
   }
   @media (max-width: 768px) {
     font-size: 16px;
-  }
-`;
-
-const TextBody = styled(Box)`
-  color: #511900;
-  font-family: Lato;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  margin-top: 8px;
-  transition: 0.3s;
-  @media (max-width: 1440px) {
-    font-size: 14px;
-  }
-  @media (max-width: 768px) {
-    font-size: 12px;
+    margin-top: 6px;
   }
 `;
 
@@ -402,4 +385,4 @@ const ButtonPlay = styled(Box)`
   }
 `;
 
-export default ModalPlayToEarn;
+export default ModalPlayForFun;

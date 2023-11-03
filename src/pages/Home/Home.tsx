@@ -14,12 +14,14 @@ import { checkWhiteList } from "../../actions/auth";
 import { actionGetFreeMintCount } from "../../actions/freeMint";
 import { useState } from "react";
 import ModalPlayToEarn from "../../components/Modal/ModalPlayToEarn";
+import ModalPlayForFun from "../../components/Modal/ModalPlayForFun";
 // import useProgressiveImg from "../../components/Image/ImageLoadEffect";
 
 const Home = () => {
   const navigate = useNavigate();
   const { account } = useWeb3React();
   const [flagModalP2E, setFlagModalP2E] = useState(false);
+  const [flagModalP4F, setFlagModalP4F] = useState(false);
   // const [srcBackHome, { blur }] = useProgressiveImg(imgBackHome, imgBackHome);
   // console.log("blur:", blur);
 
@@ -65,6 +67,10 @@ const Home = () => {
   const handlePlayToEarn = () => {
     setFlagModalP2E(true);
   };
+
+  const handlePlayForFun = () => {
+    setFlagModalP4F(true);
+  };
   // const handleAlert = () => {
   // if (!toast.isActive(toastId.current)) {
   //   toastId.current = toast.info("🐝 Coming soon.");
@@ -98,7 +104,7 @@ const Home = () => {
         </ButtonStartGreen>
         <ButtonStart
           onClick={() => {
-            handleStart();
+            handlePlayForFun();
           }}
         >
           Play for fun
@@ -117,6 +123,14 @@ const Home = () => {
         <ModalPlayToEarn
           flagModalP2E={flagModalP2E}
           setFlagModalP2E={setFlagModalP2E}
+        />
+      ) : (
+        <></>
+      )}
+      {flagModalP4F ? (
+        <ModalPlayForFun
+          flagModalP2E={flagModalP4F}
+          setFlagModalP2E={setFlagModalP4F}
         />
       ) : (
         <></>
