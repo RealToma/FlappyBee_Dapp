@@ -247,15 +247,15 @@ const SectionInitialNFT = styled(Box)`
   }
 `;
 
-const TextMoreComingSoon = styled(Box)`
-  display: flex;
-  color: #fff;
-  text-align: center;
-  font-family: Rowdies;
-  font-size: 7rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 90px;
-`;
+// const TextMoreComingSoon = styled(Box)`
+//   display: flex;
+//   color: #fff;
+//   text-align: center;
+//   font-family: Rowdies;
+//   font-size: 7rem;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: 90px;
+// `;
 
 export default NFT;

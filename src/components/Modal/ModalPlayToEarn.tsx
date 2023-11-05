@@ -44,7 +44,9 @@ const ModalPlayToEarn = ({ flagModalP2E, setFlagModalP2E }: any) => {
                 5000
               );
             } else {
-              navigate("/game");
+              navigate("/game", {
+                state: { flagAcknowledge: flagAcknowledge, typeGame: "p2e" },
+              });
             }
           } else {
             return NotificationManager.warning(res1.msgError, "", 5000);

@@ -98,6 +98,7 @@ const App = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="/terms_of_use" element={<TermsOfUse />} />
             <Route path="/about_us" element={<AboutUs />} />
+            <Route path="*" element={<Home />} />
           </Routes>
         </Layout>
         <ButtonPlayMusic onClick={() => handlePlayMusic()}>

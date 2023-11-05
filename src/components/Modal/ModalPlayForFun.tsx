@@ -32,33 +32,8 @@ const ModalPlayForFun = ({ flagModalP2E, setFlagModalP2E }: any) => {
       );
     }
 
-    checkWhiteList(account).then((res) => {
-      if (res.flagSuccess) {
-        actionGetFreeMintCount(account).then((res1) => {
-          if (res1.flagSuccess) {
-            if (res1.count >= 3) {
-              return NotificationManager.warning(
-                "You can't play anymore. Your fee mint event has expired.",
-                "",
-                5000
-              );
-            } else {
-              navigate("/game");
-            }
-          } else {
-            return NotificationManager.warning(res1.msgError, "", 5000);
-          }
-        });
-        // window.open("https://app.flappybee.com/#/game", "_self");
-        return;
-      } else {
-        return NotificationManager.warning(
-          "Oops....  it seems this address is not whitelisted. Please make sure to connect with a whitelisted address",
-          // "You are not whitelisted!",
-          "",
-          5000
-        );
-      }
+    navigate("/game", {
+      state: { flagAcknowledge: flagAcknowledge, typeGame: "p4f" },
     });
   };
 
@@ -73,7 +48,6 @@ const ModalPlayForFun = ({ flagModalP2E, setFlagModalP2E }: any) => {
       <ModalBox>
         <SectionInsideBoard>
           <TextTitle>Play for fun</TextTitle>
-
           <SectionEachContent>
             <TextHead>Just play for fun!</TextHead>
             <TextHead>

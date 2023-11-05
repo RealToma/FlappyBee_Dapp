@@ -14,7 +14,7 @@ import GameOver from "./Components/Modal/GameOver";
 import { useEffect } from "react";
 import { checkWhiteList } from "../actions/auth";
 import { useWeb3React } from "@web3-react/core";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { NotificationManager } from "react-notifications";
 import { actionGetFreeMintCount } from "../actions/freeMint";
 
@@ -22,6 +22,7 @@ const Game = ({ setPlayMusicGame }: any) => {
   const { gameHasStarted, startGame, restartGame } = useGameSystem();
   const { account } = useWeb3React();
   const navigate = useNavigate();
+  const location = useLocation();
 
   let increment = GAME_WIDTH / 2;
   const Obstacle1 = createObstacle({ increment: increment / 2 });
@@ -58,6 +59,21 @@ const Game = ({ setPlayMusicGame }: any) => {
       }
     });
   }, [account, navigate]);
+
+  useEffect(() => {
+    console.log("location:", location);
+    if (location.state === null || location.state === undefined) {
+      return navigate("/play");
+    }
+    
+    if (!location.state.flagAcknowledge) {
+      return NotificationManager.warning(
+        "Please acknowledge and accept our requirements, rules, rewards calcuation first.",
+        "",
+        5000
+      );
+    }
+  }, [location, navigate]);
 
   return (
     <Container>
