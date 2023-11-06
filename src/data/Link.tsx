@@ -59,13 +59,28 @@ export const dataTopNavigation: Link[] = [
     flagNavigate: false,
     flagSubLink: false,
   },
+  // {
+  //   name: "Leaderboard",
+  //   link: "/leaderboard",
+  //   flagNavigate: false,
+  //   flagSubLink: false,
+  // },
   {
     name: "Leaderboard",
     link: "/leaderboard",
     flagNavigate: false,
-    flagSubLink: false,
+    flagSubLink: true,
+    sublink: [
+      {
+        name: "Premium",
+        link: "/leaderboard_premium",
+      },
+      {
+        name: "Free",
+        link: "/leaderboard_free",
+      },
+    ],
   },
-
   {
     name: "Rewards",
     link: "/rewards",

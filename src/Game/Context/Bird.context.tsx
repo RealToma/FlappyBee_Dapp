@@ -6,6 +6,7 @@ import { useScore } from "./Score.context";
 import { useWeb3React } from "@web3-react/core";
 import { actionSetScore } from "../../actions/score";
 import { NotificationManager } from "react-notifications";
+import { useLocation } from "react-router-dom";
 
 interface IBirdContext {
   birdPosition: number;
@@ -27,6 +28,8 @@ export const BirdProvider = ({ children }: IChildren) => {
   const [birdPosition, setBirdPosition] = React.useState<number>(
     GAME_HEIGHT / 2
   );
+  const location = useLocation();
+
   const { gameHasStarted, restartGame, startGame, pauseGame, overGame } =
     useGameSystem();
   const [birdAngle, setBirdAngle] = React.useState<number>(0);
@@ -67,14 +70,14 @@ export const BirdProvider = ({ children }: IChildren) => {
         );
       } else {
         console.log("score:", score);
-        actionSetScore(account, score);
+        actionSetScore(account, score, location.state.typeGame);
       }
     }
 
     return () => {
       clearInterval(intervalID);
     };
-  }, [birdPosition, gameHasStarted]);
+  }, [birdPosition, gameHasStarted, location]);
 
   function restartBird() {
     setBirdPosition(GAME_HEIGHT / 2);

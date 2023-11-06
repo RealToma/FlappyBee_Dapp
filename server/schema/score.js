@@ -16,7 +16,9 @@ const schemaScore = new mongoose.Schema({
 });
 
 const modelScore = mongoose.model("scores", schemaScore);
+const modelStagingScore = mongoose.model("staging_scores", schemaScore);
 
 module.exports = {
   modelScore: modelScore,
+  modelStagingScore: modelStagingScore,
 };

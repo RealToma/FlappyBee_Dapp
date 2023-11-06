@@ -21,7 +21,12 @@ const schemaTotalScore = new mongoose.Schema({
 });
 
 const modelTotalScore = mongoose.model("total_scores", schemaTotalScore);
+const modelStagingTotalScore = mongoose.model(
+  "staging_total_scores",
+  schemaTotalScore
+);
 
 module.exports = {
   modelTotalScore: modelTotalScore,
+  modelStagingTotalScore: modelStagingTotalScore,
 };

@@ -4,7 +4,6 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Game from "./Game/Game";
 import Layout from "./pages/Layout/Layout";
-import Leaderboard from "./pages/Leaderboard/Leaderboard";
 import Rewards from "./pages/Rewards/Rewards";
 import Stake from "./pages/Stake/Stake";
 import Settings from "./pages/Settings/Settings";
@@ -24,6 +23,12 @@ import ClaimRewards from "./pages/ClaimRewards/ClaimRewards";
 import MintRules from "./pages/MintRules/MintRules";
 import TermsOfUse from "./pages/TermsOfUse/TermsOfUse";
 import AboutUs from "./pages/AboutUs/AboutUs";
+import { GameSystemProvider } from "./Game/Context/GameSystem.context";
+import { BirdProvider } from "./Game/Context/Bird.context";
+// import { ObstacleProvider } from "./Game/Context/Obstacle.context";
+import { ScoreProvider } from "./Game/Context/Score.context";
+import LeaderboardPremium from "./pages/Leaderboard/LeaderboardPremium";
+import LeaderboardFree from "./pages/Leaderboard/LeaderboardFree";
 
 const App = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -78,44 +83,57 @@ const App = () => {
 
   return (
     <HashRouter>
-      <StyledComponent>
-        <Layout setPlayMusicGame={setPlayMusicGame}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/play" element={<Home />} />
-            <Route path="/mint_rules" element={<MintRules />} />
-            <Route path="/claim_rewards" element={<ClaimRewards />} />
-            {/* <Route path="/claim" element={<Claim />} /> */}
-            {/* <Route path="/airdrop" element={<Airdrop />} /> */}
-            <Route path="/stake" element={<Stake />} />
-            <Route path="/nft" element={<NFT />} />
-            <Route
-              path="/game"
-              element={<Game setPlayMusicGame={setPlayMusicGame} />}
-            />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/rewards" element={<Rewards />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/terms_of_use" element={<TermsOfUse />} />
-            <Route path="/about_us" element={<AboutUs />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </Layout>
-        <ButtonPlayMusic onClick={() => handlePlayMusic()}>
-          {playMusicBack ? <MdMusicOff /> : <MdMusicNote />}
-          {playMusicBack && (
-            <audio
-              src={
-                !palyMusicGame
-                  ? musicFiles[currentTrackIndex]
-                  : "/assets/music/play01.mp3"
-              }
-              autoPlay
-              onEnded={playNextTrack}
-            />
-          )}
-        </ButtonPlayMusic>
-      </StyledComponent>
+      <GameSystemProvider>
+        <ScoreProvider>
+          <BirdProvider>
+            <StyledComponent>
+              <Layout setPlayMusicGame={setPlayMusicGame}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/play" element={<Home />} />
+                  <Route path="/mint_rules" element={<MintRules />} />
+                  <Route path="/claim_rewards" element={<ClaimRewards />} />
+                  {/* <Route path="/claim" element={<Claim />} /> */}
+                  {/* <Route path="/airdrop" element={<Airdrop />} /> */}
+                  <Route path="/stake" element={<Stake />} />
+                  <Route path="/nft" element={<NFT />} />
+                  <Route
+                    path="/game"
+                    element={<Game setPlayMusicGame={setPlayMusicGame} />}
+                  />
+                  <Route
+                    path="/leaderboard_premium"
+                    element={<LeaderboardPremium />}
+                  />
+                  <Route
+                    path="/leaderboard_free"
+                    element={<LeaderboardFree />}
+                  />
+                  <Route path="/rewards" element={<Rewards />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/terms_of_use" element={<TermsOfUse />} />
+                  <Route path="/about_us" element={<AboutUs />} />
+                  <Route path="*" element={<Home />} />
+                </Routes>
+              </Layout>
+              <ButtonPlayMusic onClick={() => handlePlayMusic()}>
+                {playMusicBack ? <MdMusicOff /> : <MdMusicNote />}
+                {playMusicBack && (
+                  <audio
+                    src={
+                      !palyMusicGame
+                        ? musicFiles[currentTrackIndex]
+                        : "/assets/music/play01.mp3"
+                    }
+                    autoPlay
+                    onEnded={playNextTrack}
+                  />
+                )}
+              </ButtonPlayMusic>
+            </StyledComponent>
+          </BirdProvider>
+        </ScoreProvider>
+      </GameSystemProvider>
       <NotificationContainer />
       {/* <audio
         ref={(el: any) => audioRefs.current.push(el)}

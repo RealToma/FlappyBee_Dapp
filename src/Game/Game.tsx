@@ -61,11 +61,15 @@ const Game = ({ setPlayMusicGame }: any) => {
   }, [account, navigate]);
 
   useEffect(() => {
-    console.log("location:", location);
     if (location.state === null || location.state === undefined) {
-      return navigate("/play");
+      navigate("/play");
+      return NotificationManager.warning(
+        "Please acknowledge & accept our requirements, rules and rewards calcuation first.",
+        "",
+        5000
+      );
     }
-    
+
     if (!location.state.flagAcknowledge) {
       return NotificationManager.warning(
         "Please acknowledge and accept our requirements, rules, rewards calcuation first.",

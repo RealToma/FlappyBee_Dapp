@@ -14,6 +14,7 @@ import { useBird } from "./Bird.context";
 import { useWeb3React } from "@web3-react/core";
 import { NotificationManager } from "react-notifications";
 import { actionSetScore } from "../../actions/score";
+import { useLocation } from "react-router-dom";
 
 interface IObstacleContext {
   obstacleHeight: number;
@@ -41,6 +42,7 @@ export const ObstacleProvider = ({
   children,
   startPosition,
 }: IObstacleProvider) => {
+  const location = useLocation();
   const [obstacleHeight, setObstacleHeight] = React.useState<number>(0);
   const [obstacleBottomHeight, setObstacleBottomHeight] =
     React.useState<number>(0);
@@ -125,7 +127,7 @@ export const ObstacleProvider = ({
         );
       } else {
         console.log("score:", score);
-        actionSetScore(account, score);
+        actionSetScore(account, score, location.state.typeGame);
       }
     }
   }, [birdPosition]);

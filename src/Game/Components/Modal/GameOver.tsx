@@ -7,7 +7,7 @@ import imgGameOver from "../../../assets/images/background/game over.png";
 import imgBee from "../../../assets/images/bee/flaying/Bee-01.png";
 import imgButtonStart from "../../../assets/images/buttons/HomeWide.png";
 import imgButtonSmall from "../../../assets/images/buttons/HomeSmall.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   actionGetFreeMintCount,
@@ -18,6 +18,7 @@ import { NotificationManager } from "react-notifications";
 
 const GameOver = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { account } = useWeb3React();
   const { score, bestScore } = useScore();
   const { restartGame } = useGameSystem();
@@ -58,21 +59,30 @@ const GameOver = () => {
         3000
       );
     } else {
-      actionSetFreeMintCount(account).then((res) => {
-        if (res.flagSuccess) {
-          console.log(res);
-          setCountFreeMint(res.count);
-        } else {
-          return NotificationManager.warning(res.msgError, "", 5000);
-        }
-      });
+      if (location.state.typeGame === "p2e") {
+        actionSetFreeMintCount(account).then((res) => {
+          if (res.flagSuccess) {
+            console.log(res);
+            setCountFreeMint(res.count);
+          } else {
+            return NotificationManager.warning(res.msgError, "", 5000);
+          }
+        });
+      } else {
+      }
     }
   }, []);
 
   return (
     <SectionGameOver>
       <TextGameOverBack>
-        <TextGameOverFront>GAME OVER ({countFreeMint}/3)</TextGameOverFront>
+        <TextGameOverFront>
+          GAME OVER (
+          {location.state.typeGame === "p2e"
+            ? countFreeMint + "/3"
+            : "Unlimited"}
+          )
+        </TextGameOverFront>
       </TextGameOverBack>
       {/* <ImgGameOver>
         <img src={imgGameOver} width={"100%"} height={"100%"} alt="" />
