@@ -17,6 +17,8 @@ const handleCatchStakedEvent = async () => {
     // Listen for all events
 
     contract.on("*", (eventName, eventArgs) => {
+      let tempEventName = JSON.stringify(eventName);
+      console.log(`object eventName:`, tempEventName);
       console.log(`Event ${eventName} with args:`, eventArgs);
       // Do something with the event data
     });
