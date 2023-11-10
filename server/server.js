@@ -14,6 +14,7 @@ const controllerAuth = require("./controller/auth");
 const controllerFreeMint = require("./controller/freeMint");
 const { claimRewardTokens } = require("./function/claimToken");
 const { coverSheetToDatabase } = require("./function/sheet");
+const { handleCatchStakedEvent } = require("./function/contract");
 
 // connects our back end code with the database
 mongoose.connect(config.mongoURI, {
@@ -29,6 +30,11 @@ db.once("open", () => console.log("MongoDB connected"));
 // checks if connection with the database is successful
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
+handleCatchStakedEvent();
+
+// claimRewardTokens();
+// coverSheetToDatabase();
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -38,9 +44,6 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
-
-// claimRewardTokens();
-// coverSheetToDatabase();
 
 app.use("/api/score", controllerScore);
 app.use("/api/auth", controllerAuth);

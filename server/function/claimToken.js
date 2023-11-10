@@ -1,16 +1,18 @@
-const { ethers, JsonRpcProvider, parseUnits } = require("ethers");
-const { abiTokenBEET } = require("../utils/ABI");
+const { ethers, JsonRpcProvider } = require("ethers");
+const { ABI_BEET_TOKEN } = require("../utils/ABI");
 const { modelTotalScore } = require("../schema/totalScore");
 
-const provider = new JsonRpcProvider(process.env.REACT_APP_URL_PRC_PROVIDER);
+const provider = new JsonRpcProvider(
+  process.env.REACT_APP_ADDRESS_CONTRACT_BEET_STAKING
+);
 const wallet = new ethers.Wallet(
   process.env.REACT_APP_KEY_PRIVATE_OWNER,
   provider
 );
 
 const tokenContract = new ethers.Contract(
-  process.env.REACT_APP_ADDRESS_TOKEN_CONTRACT,
-  abiTokenBEET,
+  process.env.REACT_APP_ADDRESS_CONTRACT_BEET_TOKEN,
+  ABI_BEET_TOKEN,
   wallet
 );
 
