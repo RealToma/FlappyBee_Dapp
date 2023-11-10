@@ -3,7 +3,7 @@ import styled from "styled-components";
 import imgBackHome from "../../assets/images/background/BGHome.png";
 import imgBackFooter from "../../assets/images/background/floor.png";
 import { dataTopNavigation } from "../../data/Link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import { Slide } from "@mui/material";
@@ -20,12 +20,15 @@ import {
 } from "../../utils/connectors";
 import { shortAddress } from "../../libs/Functions";
 import imgButtonTop from "../../assets/images/buttons/topbar.png";
-import MetaMaskOnboarding from "@metamask/onboarding";
+// import MetaMaskOnboarding from "@metamask/onboarding";
 import Marquee from "react-fast-marquee";
 import { FaHeart, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import MenuSubLink from "../../components/DropDown/MenuSubLink";
 import MenuMobileSubLink from "../../components/DropDown/MenuMobileSubLink";
 import { NotificationManager } from "react-notifications";
+import { useOutsideDetector } from "../../components/Hooks/useOutsideDetector";
+import imgCoinBEET from "../../assets/images/icons/coins/BEET.png";
+import imgCoinETH from "../../assets/images/icons/coins/ether02.png";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -38,6 +41,8 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   const [open, setOpen] = useState(false);
   const { account, active, activate, deactivate } = useWeb3React();
   const [flagConnectDrop, setFlagConnectDrop] = useState(false);
+  const refConnectDown = useRef(0);
+  useOutsideDetector([refConnectDown], () => setFlagConnectDrop(false));
 
   const walletConnectors: any = DESKTOP_CONNECTORS;
 
@@ -72,6 +77,12 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     handleSwitch();
     // setConnected(true);
     handleClose();
+  };
+
+  const handleDisconnect = async () => {
+    await deactivate();
+    window.localStorage.removeItem("CurrentWalletConnect");
+    setFlagConnectDrop(false);
   };
 
   useEffect(() => {
@@ -226,16 +237,73 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                 setOpen(true);
               } else {
                 setOpen(false);
-                setFlagConnectDrop(!flagClickedMenu);
               }
             }}
           >
             {active ? shortAddress(account) : "Connect Wallet"}
           </SectionWalletConnect>{" "}
           {active ? (
-            <IconConnectMore>
+            <IconConnectMore
+              onClick={() => {
+                if (active) {
+                  setFlagConnectDrop(true);
+                }
+              }}
+            >
               <MdMoreVert />
             </IconConnectMore>
+          ) : (
+            <></>
+          )}
+          {flagConnectDrop ? (
+            <SectionConnectMore ref={refConnectDown}>
+              <TextTitle color={"#a9d100"}>Balance</TextTitle>
+              <SectionBalance>
+                <SectionBalanceIcon>
+                  <img
+                    src={imgCoinBEET}
+                    width={"100%"}
+                    height={"100%"}
+                    alt=""
+                  />
+                </SectionBalanceIcon>
+                <TextBalance>5000 BEET</TextBalance>
+              </SectionBalance>
+              <SectionBalance>
+                <SectionBalanceIcon>
+                  <img src={imgCoinETH} width={"100%"} height={"100%"} alt="" />
+                </SectionBalanceIcon>
+                <TextBalance>0.56 ETH</TextBalance>
+              </SectionBalance>
+              <TextTitle mt="20px" color={"#f38d2d"}>
+                Staked
+              </TextTitle>
+              <SectionBalance>
+                <SectionBalanceIcon>
+                  <img
+                    src={imgCoinBEET}
+                    width={"100%"}
+                    height={"100%"}
+                    alt=""
+                  />
+                </SectionBalanceIcon>
+                <TextBalance>300 BEET</TextBalance>
+              </SectionBalance>
+              <SectionBuyStake>
+                <ButtonBuy>Buy BEET</ButtonBuy>
+                <ButtonStake
+                  onClick={() => {
+                    setFlagConnectDrop(false);
+                    navigate("/stake");
+                  }}
+                >
+                  Stake BEET
+                </ButtonStake>
+              </SectionBuyStake>
+              <ButtonDisconnect onClick={() => handleDisconnect()}>
+                Disconnect Wallet
+              </ButtonDisconnect>
+            </SectionConnectMore>
           ) : (
             <></>
           )}
@@ -1043,6 +1111,7 @@ const SectionInputEmail = styled(Box)`
 
 const SectionConnect = styled(Box)`
   display: flex;
+  position: relative;
   align-items: center;
 `;
 
@@ -1082,6 +1151,145 @@ const IconConnectMore = styled(Box)`
     height: 30px;
     width: 22px;
     border-radius: 7px;
+  }
+`;
+
+const SectionConnectMore = styled(Box)`
+  display: flex;
+  position: absolute;
+  bottom: -290px;
+  right: 0px;
+  background-color: #003d28;
+  border-radius: 12px;
+  padding: 15px;
+  box-sizing: border-box;
+  flex-direction: column;
+`;
+
+const SectionBalance = styled(Box)`
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  cursor: pointer;
+
+  &:hover {
+    > div:nth-child(2) {
+      transition: 0.3s;
+      color: #fdc400;
+    }
+  }
+`;
+
+const SectionBalanceIcon = styled(Box)`
+  display: flex;
+  width: 25px;
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+`;
+
+const TextTitle = styled(Box)`
+  display: flex;
+  /* color: white; */
+  font-family: "Rowdies";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  transition: 0.3s;
+  /* text-decoration: underline; */
+`;
+
+const TextBalance = styled(Box)`
+  display: flex;
+  color: white;
+  font-family: "Rowdies";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  transition: 0.3s;
+`;
+
+const SectionBuyStake = styled(Box)`
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+`;
+
+const ButtonBuy = styled(Box)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 32px;
+  background-color: #a9d100;
+  color: white;
+  border-radius: 6px;
+  font-family: "Rowdies";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background-color: white;
+    color: #a9d100;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+`;
+
+const ButtonStake = styled(Box)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 32px;
+  background-color: #e47b1a;
+  color: white;
+  border-radius: 6px;
+  font-family: "Rowdies";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background-color: white;
+    color: #e47b1a;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+`;
+
+const ButtonDisconnect = styled(Box)`
+  display: flex;
+  width: 210px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  background-color: #5a5757;
+  color: white;
+  border-radius: 6px;
+  font-family: "Rowdies";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background-color: white;
+    color: #5a5757;
+  }
+  &:active {
+    transform: scale(0.9);
   }
 `;
 

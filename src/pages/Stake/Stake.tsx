@@ -16,7 +16,7 @@ const Stake = () => {
         </TextDescription>
         <SectionButtonGroup>
           <ButtonHome>Buy BEET</ButtonHome>
-          <ButtonPlay>Stake</ButtonPlay>
+          <ButtonPlay>Stake BEET</ButtonPlay>
         </SectionButtonGroup>
       </SectionTop>
       <SectionContent>
@@ -226,7 +226,7 @@ const ButtonPlay = styled(Box)`
     width: 150px;
     height: 45px;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 390px) {
     width: 135px;
     height: 40px;
   }
@@ -279,7 +279,7 @@ const ButtonHome = styled(Box)`
     width: 150px;
     height: 45px;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 390px) {
     width: 135px;
     height: 40px;
   }
