@@ -15,7 +15,7 @@ const Stake = () => {
           newly issued BEET tokens as rewards for their long term alignment.
         </TextDescription>
         <SectionButtonGroup>
-          <ButtonHome>Buy BEET</ButtonHome>
+          <ButtonHome>Buy $BEET</ButtonHome>
           <ButtonPlay>Stake BEET</ButtonPlay>
         </SectionButtonGroup>
       </SectionTop>

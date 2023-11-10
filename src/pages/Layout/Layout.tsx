@@ -139,7 +139,10 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         const formattedBalanceBEETStaked: any =
           ethers.utils.formatEther(balanceBEETStaked);
 
-        console.log("formattedBalanceBEETStaked:", Number(formattedBalanceBEETStaked));
+        console.log(
+          "formattedBalanceBEETStaked:",
+          Number(formattedBalanceBEETStaked)
+        );
         setBalanceBEETStaked(Number(formattedBalanceBEETStaked));
       }
     } catch (error) {
@@ -296,6 +299,14 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           <HiMenu />
         </SectionMobileButton>
         <SectionConnect>
+          {active ? (
+            <SectionP2EAvailable>
+              P2E session available:{"\u00a0"}
+              <span>3</span>
+            </SectionP2EAvailable>
+          ) : (
+            <></>
+          )}
           <SectionWalletConnect
             active={active ? 1 : 0}
             onClick={() => {
@@ -307,7 +318,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
             }}
           >
             {active ? shortAddress(account) : "Connect Wallet"}
-          </SectionWalletConnect>{" "}
+          </SectionWalletConnect>
           {active ? (
             <IconConnectMore
               onClick={() => {
@@ -322,6 +333,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           ) : (
             <></>
           )}
+
           {flagConnectDrop ? (
             <SectionConnectMore ref={refConnectDown}>
               <TextTitle color={"#a9d100"}>Balance</TextTitle>
@@ -358,8 +370,23 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                   {shortFloat(balanceBEETStaked, 4)} BEET
                 </TextBalance>
               </SectionBalance>
+              <TextTitle mt="20px" color={"#ffd92e"}>
+                Owned NFTs
+              </TextTitle>
+              <SectionBalance>
+                <TextBalance>No NFTs</TextBalance>
+              </SectionBalance>
               <SectionBuyStake>
-                <ButtonBuy>Buy BEET</ButtonBuy>
+                <ButtonBuy
+                  onClick={() => {
+                    setFlagConnectDrop(false);
+                    window.open(
+                      "https://www.pinksale.finance/launchpad/0xb4BBdFe024c61183037725800A1C76bc70fd7043?chain=ETH"
+                    );
+                  }}
+                >
+                  Buy $BEET
+                </ButtonBuy>
                 <ButtonStake
                   onClick={() => {
                     setFlagConnectDrop(false);
@@ -424,7 +451,13 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
             </SectionFooterText>
           </SectionFooterSide>
           <SectionFooterSide>
-            <SectionFooterTextETH>
+            <SectionFooterTextETH
+              onClick={() => {
+                window.open(
+                  "https://etherscan.io/token/0x9E1f90970D6cbDdf193F418281612B7aF563985A"
+                );
+              }}
+            >
               Made with{"\u00a0"}
               <FaHeart style={{ color: "#ff1616" }} />
               {"\u00a0"}on ETH blockchain
@@ -1226,7 +1259,7 @@ const IconConnectMore = styled(Box)`
 const SectionConnectMore = styled(Box)`
   display: flex;
   position: absolute;
-  bottom: -290px;
+  bottom: -360px;
   width: 250px;
   min-width: 250px;
   right: 0px;
@@ -1364,6 +1397,90 @@ const ButtonDisconnect = styled(Box)`
   }
   &:active {
     transform: scale(0.9);
+  }
+`;
+
+const SectionP2EAvailable = styled(Box)`
+  display: flex;
+  /* white-space: nowrap; */
+  align-items: center;
+  margin-right: 20px;
+  color: #003d28;
+  font-family: "Rowdies";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 23px;
+
+  @media (max-width: 1440px) {
+    font-size: 20px;
+  }
+  @media (max-width: 1150px) {
+    font-size: 16px;
+    width: 110px;
+  }
+  @media (max-width: 1024px) {
+    font-size: 18px;
+    width: unset;
+  }
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  @media (max-width: 500px) {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  @media (max-width: 420px) {
+    font-size: 12px;
+    margin-right: 5px;
+  }
+  @media (max-width: 350px) {
+    font-size: 10px;
+    margin-right: 5px;
+  }
+
+  > span {
+    color: #e73c28;
+    font-weight: 400;
+    text-shadow: 0px 0px 2px black;
+    font-size: 30px;
+
+    @media (max-width: 1440px) {
+      font-size: 25px;
+    }
+
+    @media (max-width: 1024px) {
+      font-size: 22px;
+    }
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
+    @media (max-width: 500px) {
+      font-size: 18px;
+    }
+    @media (max-width: 420px) {
+      font-size: 14px;
+    }
+    @media (max-width: 350px) {
+      font-size: 12px;
+    }
+    /* animation: colorAvailable 5s infinite;
+    @keyframes colorAvailable {
+      0% {
+        text-shadow: 0px 0px 3px black;
+      }
+      25% {
+        text-shadow: 0px 0px 0px #ff1616;
+      }
+      50% {
+        text-shadow: 0px 0px 3px black;
+      }
+      75% {
+        text-shadow: 0px 0px 0px #ff1616;
+      }
+      100% {
+        text-shadow: 0px 0px 3px black;
+      }
+    } */
   }
 `;
 

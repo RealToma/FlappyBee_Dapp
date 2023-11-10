@@ -85,7 +85,7 @@ const GameOver = () => {
           GAME OVER (
           {location.state.typeGame === "p2e"
             ? countFreeMint + "/3"
-            : "Unlimited"}
+            : "Free"}
           )
         </TextGameOverFront>
       </TextGameOverBack>
