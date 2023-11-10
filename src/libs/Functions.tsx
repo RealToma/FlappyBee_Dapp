@@ -32,3 +32,11 @@ export const sort24hScores = (dataScores: any) => {
 
   return data24hBefore.slice(0, 10);
 };
+
+export const shortFloat = (number: any, pointNum: any) => {
+  if (!Number.isNaN(number) && Number.isInteger(number)) {
+    return number;
+  } else {
+    return number.toFixed(pointNum); //number.toFixed(pointNum);
+  }
+};

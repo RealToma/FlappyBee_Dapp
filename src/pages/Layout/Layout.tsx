@@ -13,12 +13,13 @@ import imgWalletConnect from "../../assets/images/wallet/walletConnect.svg";
 import imgBinance from "../../assets/images/wallet/binance.png";
 import imgTrust from "../../assets/images/wallet/trust.png";
 import { useWeb3React } from "@web3-react/core";
+import { Web3Provider } from "@ethersproject/providers";
 import {
   DESKTOP_CONNECTORS,
   chainId,
   NETWORK_NAME,
 } from "../../utils/connectors";
-import { shortAddress } from "../../libs/Functions";
+import { shortAddress, shortFloat } from "../../libs/Functions";
 import imgButtonTop from "../../assets/images/buttons/topbar.png";
 // import MetaMaskOnboarding from "@metamask/onboarding";
 import Marquee from "react-fast-marquee";
@@ -29,6 +30,9 @@ import { NotificationManager } from "react-notifications";
 import { useOutsideDetector } from "../../components/Hooks/useOutsideDetector";
 import imgCoinBEET from "../../assets/images/icons/coins/BEET.png";
 import imgCoinETH from "../../assets/images/icons/coins/ether02.png";
+import { ethers } from "ethers";
+import { CONTRACTS } from "../../utils/constants";
+import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -39,12 +43,28 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   const [flagDisplayFooter, setFlagDisplayFooter] = useState(1);
   const handleClose = () => setOpen(false);
   const [open, setOpen] = useState(false);
-  const { account, active, activate, deactivate } = useWeb3React();
+  const { account, active, library, activate, deactivate } = useWeb3React();
+  const [balanceETH, setBalanceETH] = useState(0);
+  const [balanceBEET, setBalanceBEET] = useState(0);
+  const [balanceBEETStaked, setBalanceBEETStaked] = useState(0);
+
   const [flagConnectDrop, setFlagConnectDrop] = useState(false);
   const refConnectDown = useRef(0);
   useOutsideDetector([refConnectDown], () => setFlagConnectDrop(false));
 
   const walletConnectors: any = DESKTOP_CONNECTORS;
+
+  // const contractBEETToken: any = useMemo(
+  //   () =>
+  //     library
+  //       ? new ethers.Contract(
+  //           CONTRACTS.BEETToken,
+  //           ABI_BEET_TOKEN,
+  //           library.getSigner()
+  //         )
+  //       : null,
+  //   [library]
+  // );
 
   const handleSwitch = async () => {
     try {
@@ -75,7 +95,6 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     // set_wConnect(walletConnectors[currentConnector]);
     window.localStorage.setItem("CurrentWalletConnect", currentConnector);
     handleSwitch();
-    // setConnected(true);
     handleClose();
   };
 
@@ -83,6 +102,49 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     await deactivate();
     window.localStorage.removeItem("CurrentWalletConnect");
     setFlagConnectDrop(false);
+  };
+
+  const handleGetBalance = async () => {
+    try {
+      if (active) {
+        const provider: any = new Web3Provider(library.provider);
+        const signer: any = provider.getSigner();
+
+        const contractBEETToken: any = new ethers.Contract(
+          CONTRACTS.BEETToken,
+          ABI_BEET_TOKEN,
+          signer
+        );
+
+        const contractBEETStaking: any = new ethers.Contract(
+          CONTRACTS.BEETStaking,
+          ABI_BEET_STAKING,
+          signer
+        );
+
+        const balanceETH: any = await provider.getBalance(account);
+        // console.log("balanceETH:", balanceETH);
+        const formattedBalanceETH: any = ethers.utils.formatEther(balanceETH);
+        setBalanceETH(Number(formattedBalanceETH));
+
+        const balanceBEET: any = await contractBEETToken.balanceOf(account);
+        // console.log("balanceBEET:", balanceBEET);
+        const formattedBalanceBEET: any = ethers.utils.formatEther(balanceBEET);
+        setBalanceBEET(Number(formattedBalanceBEET));
+
+        const balanceBEETStaked: any =
+          await contractBEETStaking.getStakedAmount(account);
+
+        // console.log("balanceBEETStaked:", balanceBEETStaked);
+        const formattedBalanceBEETStaked: any =
+          ethers.utils.formatEther(balanceBEETStaked);
+
+        console.log("formattedBalanceBEETStaked:", Number(formattedBalanceBEETStaked));
+        setBalanceBEETStaked(Number(formattedBalanceBEETStaked));
+      }
+    } catch (error) {
+      console.log("Error of getting balance:", error);
+    }
   };
 
   useEffect(() => {
@@ -122,6 +184,10 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     );
     currentWalletState && activate(walletConnectors[currentWalletState]);
   }, []);
+
+  useEffect(() => {
+    handleGetBalance();
+  }, [active, account]);
 
   return (
     <StyledComponent>
@@ -245,6 +311,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {active ? (
             <IconConnectMore
               onClick={() => {
+                handleGetBalance();
                 if (active) {
                   setFlagConnectDrop(true);
                 }
@@ -267,15 +334,15 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                     alt=""
                   />
                 </SectionBalanceIcon>
-                <TextBalance>5000 BEET</TextBalance>
+                <TextBalance>{shortFloat(balanceBEET, 4)} BEET</TextBalance>
               </SectionBalance>
               <SectionBalance>
                 <SectionBalanceIcon>
                   <img src={imgCoinETH} width={"100%"} height={"100%"} alt="" />
                 </SectionBalanceIcon>
-                <TextBalance>0.56 ETH</TextBalance>
+                <TextBalance>{shortFloat(balanceETH, 4)} ETH</TextBalance>
               </SectionBalance>
-              <TextTitle mt="20px" color={"#f38d2d"}>
+              <TextTitle mt="20px" color={"#f87c34"}>
                 Staked
               </TextTitle>
               <SectionBalance>
@@ -287,7 +354,9 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                     alt=""
                   />
                 </SectionBalanceIcon>
-                <TextBalance>300 BEET</TextBalance>
+                <TextBalance>
+                  {shortFloat(balanceBEETStaked, 4)} BEET
+                </TextBalance>
               </SectionBalance>
               <SectionBuyStake>
                 <ButtonBuy>Buy BEET</ButtonBuy>
@@ -1158,6 +1227,8 @@ const SectionConnectMore = styled(Box)`
   display: flex;
   position: absolute;
   bottom: -290px;
+  width: 250px;
+  min-width: 250px;
   right: 0px;
   background-color: #003d28;
   border-radius: 12px;
@@ -1183,6 +1254,7 @@ const SectionBalance = styled(Box)`
 const SectionBalanceIcon = styled(Box)`
   display: flex;
   width: 25px;
+  min-width: 25px;
   aspect-ratio: 1;
   justify-content: center;
   align-items: center;
@@ -1221,9 +1293,10 @@ const SectionBuyStake = styled(Box)`
 
 const ButtonBuy = styled(Box)`
   display: flex;
+  flex: 1;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  width: 100px;
   height: 32px;
   background-color: #a9d100;
   color: white;
@@ -1248,7 +1321,8 @@ const ButtonStake = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
+  flex: 1;
+  width: 100%;
   height: 32px;
   background-color: #e47b1a;
   color: white;
@@ -1271,7 +1345,7 @@ const ButtonStake = styled(Box)`
 
 const ButtonDisconnect = styled(Box)`
   display: flex;
-  width: 210px;
+  width: 100%;
   height: 32px;
   justify-content: center;
   align-items: center;
