@@ -32,23 +32,28 @@ const GameOver = () => {
         3000
       );
     }
-    actionGetFreeMintCount(account).then((res) => {
-      if (res.flagSuccess) {
-        if (res.count >= 3) {
-          navigate("/play");
-          return NotificationManager.warning(
-            "You can't play anymore. Your fee mint event has expired.",
-            "",
-            5000
-          );
+    if (location.state.typeGame === "p2e") {
+      actionGetFreeMintCount(account).then((res) => {
+        if (res.flagSuccess) {
+          if (res.count >= 3) {
+            navigate("/play");
+            return NotificationManager.warning(
+              "You can't play anymore. Your free mint event has expired.",
+              "",
+              5000
+            );
+          } else {
+            restartGame();
+            return;
+          }
         } else {
-          restartGame();
-          return;
+          return NotificationManager.warning(res.msgError, "", 5000);
         }
-      } else {
-        return NotificationManager.warning(res.msgError, "", 5000);
-      }
-    });
+      });
+    } else {
+      restartGame();
+      return;
+    }
   };
 
   useEffect(() => {
@@ -122,7 +127,15 @@ const GameOver = () => {
           <FaShareAlt />
         </ButtonSocial>
         <ButtonReplay onClick={() => handleReplay()}>Replay</ButtonReplay>
-        <ButtonSocial onClick={() => {}}>
+        <ButtonSocial
+          onClick={() => {
+            if (location.state.typeGame === "p2e") {
+              navigate("/leaderboard_premium");
+            } else {
+              navigate("/leaderboard_free");
+            }
+          }}
+        >
           <FaMedal />
         </ButtonSocial>
       </ButtonGroup>

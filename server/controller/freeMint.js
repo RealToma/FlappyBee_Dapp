@@ -13,7 +13,7 @@ router.post("/set_count", async (req, res) => {
       if (tempCount >= 3) {
         return res.json({
           flagSuccess: false,
-          msgError: "You can't play anymore. Your fee mint event has expired.",
+          msgError: "You can't play anymore. Your free mint event has expired.",
         });
       } else {
         await modelUsers.findOneAndUpdate(

@@ -32,33 +32,35 @@ const Game = ({ setPlayMusicGame }: any) => {
   const obstacles = [Obstacle1, Obstacle2];
 
   useEffect(() => {
-    checkWhiteList(account).then((res) => {
-      if (res.flagSuccess) {
-        actionGetFreeMintCount(account).then((res1) => {
-          if (res1.flagSuccess) {
-            if (res1.count >= 3) {
-              navigate("/play");
-              return NotificationManager.warning(
-                "You can't play anymore. Your fee mint event has expired.",
-                "",
-                5000
-              );
+    if (location.state.typeGame === "p2e") {
+      checkWhiteList(account).then((res) => {
+        if (res.flagSuccess) {
+          actionGetFreeMintCount(account).then((res1) => {
+            if (res1.flagSuccess) {
+              if (res1.count >= 3) {
+                navigate("/play");
+                return NotificationManager.warning(
+                  "You can't play anymore. Your free mint event has expired.",
+                  "",
+                  5000
+                );
+              }
+            } else {
+              return NotificationManager.warning(res1.msgError, "", 5000);
             }
-          } else {
-            return NotificationManager.warning(res1.msgError, "", 5000);
-          }
-        });
-      } else {
-        navigate("/play");
-        return NotificationManager.warning(
-          "Oops....  it seems this address is not whitelisted. Please make sure to connect with a whitelisted address",
-          "",
-          // "You are not whitelisted!",
-          5000
-        );
-      }
-    });
-  }, [account, navigate]);
+          });
+        } else {
+          navigate("/play");
+          return NotificationManager.warning(
+            "Oops....  it seems this address is not whitelisted. Please make sure to connect with a whitelisted address",
+            "",
+            // "You are not whitelisted!",
+            5000
+          );
+        }
+      });
+    }
+  }, [location, account, navigate]);
 
   useEffect(() => {
     if (location.state === null || location.state === undefined) {
@@ -71,6 +73,7 @@ const Game = ({ setPlayMusicGame }: any) => {
     }
 
     if (!location.state.flagAcknowledge) {
+      navigate("/play");
       return NotificationManager.warning(
         "Please acknowledge and accept our requirements, rules, rewards calcuation first.",
         "",

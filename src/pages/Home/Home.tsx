@@ -40,7 +40,7 @@ const Home = () => {
           if (res1.flagSuccess) {
             if (res1.count >= 3) {
               return NotificationManager.warning(
-                "You can't play anymore. Your fee mint event has expired.",
+                "You can't play anymore. Your free mint event has expired.",
                 "",
                 5000
               );

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import { Slide } from "@mui/material";
-import { MdClose, MdLockClock } from "react-icons/md";
+import { MdClose, MdLockClock, MdMoreVert } from "react-icons/md";
 import imgMetamask from "../../assets/images/wallet/metamask.png";
 import imgWalletConnect from "../../assets/images/wallet/walletConnect.svg";
 import imgBinance from "../../assets/images/wallet/binance.png";
@@ -25,6 +25,7 @@ import Marquee from "react-fast-marquee";
 import { FaHeart, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import MenuSubLink from "../../components/DropDown/MenuSubLink";
 import MenuMobileSubLink from "../../components/DropDown/MenuMobileSubLink";
+import { NotificationManager } from "react-notifications";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   const handleClose = () => setOpen(false);
   const [open, setOpen] = useState(false);
   const { account, active, activate, deactivate } = useWeb3React();
+  const [flagConnectDrop, setFlagConnectDrop] = useState(false);
 
   const walletConnectors: any = DESKTOP_CONNECTORS;
 
@@ -54,16 +56,16 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
       }
     } catch (ex) {
       //   setConnected(false);
-      // NotificationManager.warning(
-      //   "Failed to switch to " + NETWORK_NAME + " network.",
-      //   "ERROR",
-      //   3000
-      // );
+      NotificationManager.error(
+        "Failed to switch to " + NETWORK_NAME + " network.",
+        "ERROR",
+        5000
+      );
     }
   };
 
   const handleConnect = async (currentConnector: any) => {
-    const onboarding = new MetaMaskOnboarding();
+    // const onboarding = new MetaMaskOnboarding();
     await activate(walletConnectors[currentConnector]);
     // set_wConnect(walletConnectors[currentConnector]);
     window.localStorage.setItem("CurrentWalletConnect", currentConnector);
@@ -75,8 +77,17 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   useEffect(() => {
     let pathName = location.pathname;
     for (let i = 0; i < dataTopNavigation.length - 1; i++) {
-      if (dataTopNavigation[i].link === pathName) {
-        setFlagLink(i);
+      if (dataTopNavigation[i].flagSubLink) {
+        if (
+          dataTopNavigation[i].sublink[0].link === pathName ||
+          dataTopNavigation[i].sublink[1].link === pathName
+        ) {
+          setFlagLink(i);
+        }
+      } else {
+        if (dataTopNavigation[i].link === pathName) {
+          setFlagLink(i);
+        }
       }
     }
     if (pathName === "/game") {
@@ -120,6 +131,11 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {"\u00a0"}
         </Marquee>
+        {/* <SectionEmail>
+          <SectionInputEmail>
+            <InputEmail component="input"></InputEmail>
+          </SectionInputEmail>
+        </SectionEmail> */}
         <SecitonSocial>
           <IconSocial
             onClick={() => {
@@ -202,13 +218,28 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         >
           <HiMenu />
         </SectionMobileButton>
-        <SectionWalletConnect
-          onClick={() => {
-            setOpen(true);
-          }}
-        >
-          {active ? shortAddress(account) : "Connect Wallet"}
-        </SectionWalletConnect>
+        <SectionConnect>
+          <SectionWalletConnect
+            active={active ? 1 : 0}
+            onClick={() => {
+              if (!active) {
+                setOpen(true);
+              } else {
+                setOpen(false);
+                setFlagConnectDrop(!flagClickedMenu);
+              }
+            }}
+          >
+            {active ? shortAddress(account) : "Connect Wallet"}
+          </SectionWalletConnect>{" "}
+          {active ? (
+            <IconConnectMore>
+              <MdMoreVert />
+            </IconConnectMore>
+          ) : (
+            <></>
+          )}
+        </SectionConnect>
       </SectionHeader>
       {flagLockPath ? (
         <SectionContent>
@@ -669,7 +700,7 @@ const SectionMobilePageLink = styled(Box)`
 
 const SectionWalletConnect = styled(Box)`
   display: flex;
-  width: 250px;
+  width: 200px;
   height: 50px;
   justify-content: center;
   align-items: center;
@@ -679,7 +710,7 @@ const SectionWalletConnect = styled(Box)`
   font-family: "Rowdies";
   font-style: normal;
   font-weight: 400;
-  font-size: 2.6em;
+  font-size: 23px;
   /* line-height: 38px; */
   text-align: center;
   color: white;
@@ -688,27 +719,29 @@ const SectionWalletConnect = styled(Box)`
   cursor: pointer;
   user-select: none;
   &:hover {
-    color: #daf07e;
+    color: ${({ active }: any) => (active ? "white" : "#fdc400")};
   }
   &:active {
-    transform: scale(0.9);
+    transform: scale(${({ active }: any) => (active ? "1" : "0.9")});
   }
 
   @media (max-width: 1440px) {
-    width: 200px;
+    width: 170px;
     height: 46px;
-  }
-  @media (max-width: 1024px) {
-    width: 180px;
-    height: 40px;
+    border-radius: 10px;
+    font-size: 20px;
   }
   @media (max-width: 768px) {
     width: 150px;
-    height: 36px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 18px;
   }
   @media (max-width: 390px) {
-    width: 100px;
+    width: 120px;
     height: 30px;
+    font-size: 14px;
+    border-radius: 7px;
   }
 `;
 
@@ -979,6 +1012,76 @@ const IconSocial = styled(Box)`
   @media (max-width: 768px) {
     font-size: 16px;
     margin: 0px 5px;
+  }
+`;
+
+const SectionEmail = styled(Box)`
+  display: flex;
+  align-items: center;
+`;
+
+const InputEmail = styled(Box)`
+  display: flex;
+  color: #90c9b5;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  border: none;
+  outline: none;
+`;
+
+const SectionInputEmail = styled(Box)`
+  display: flex;
+  height: 40px;
+  width: 230px;
+  align-items: center;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #90c9b5;
+  color: #90c9b5;
+`;
+
+const SectionConnect = styled(Box)`
+  display: flex;
+  align-items: center;
+`;
+
+const IconConnectMore = styled(Box)`
+  display: flex;
+  background-color: #003d28;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 50px;
+  color: white;
+  font-size: 30px;
+  border-radius: 10px;
+  margin-left: 5px;
+
+  transition: 0.2s;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    color: #fdc400;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+
+  @media (max-width: 1440px) {
+    height: 46px;
+    border-radius: 9px;
+  }
+
+  @media (max-width: 768px) {
+    height: 40px;
+    width: 25px;
+    border-radius: 8px;
+  }
+  @media (max-width: 390px) {
+    height: 30px;
+    width: 22px;
+    border-radius: 7px;
   }
 `;
 
