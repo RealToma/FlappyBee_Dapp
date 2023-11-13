@@ -106,11 +106,11 @@ export const ObstacleProvider = ({
 
   React.useEffect(() => {
     let hasCollideWithTopObstacle =
-      birdPosition >= 0 && birdPosition < obstacleHeight + BIRD_SIZE / 1.5;
+      birdPosition >= 0 && birdPosition < obstacleHeight + BIRD_SIZE / 2;
     let hasCollideWithBottomObstacle =
       birdPosition <= GAME_HEIGHT &&
       birdPosition >= GAME_HEIGHT - obstacleBottomHeight;
-    let birdDistanteToLeft = GAME_WIDTH / 5;
+    let birdDistanteToLeft = GAME_WIDTH / 5 + BIRD_SIZE / 2;
     if (
       obstaclePosition <= birdDistanteToLeft &&
       obstaclePosition >= GAME_WIDTH / 5 - OBSTACLE_WIDTH &&

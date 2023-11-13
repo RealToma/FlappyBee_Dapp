@@ -60,7 +60,7 @@ export const BirdProvider = ({ children }: IChildren) => {
       gameHasStarted === 1 &&
       birdPosition > GAME_HEIGHT - BIRD_SIZE - 125 - 28
     ) {
-      console.log("dead!");
+      // console.log("dead!");
       overGame();
       if (account === undefined || account === null) {
         return NotificationManager.warning(
@@ -69,7 +69,7 @@ export const BirdProvider = ({ children }: IChildren) => {
           3000
         );
       } else {
-        console.log("score:", score);
+        // console.log("score:", score);
         actionSetScore(account, score, location.state.typeGame);
       }
     }

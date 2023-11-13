@@ -2,6 +2,7 @@ const { ethers, JsonRpcProvider, Interface, formatEther } = require("ethers");
 const { ABI_BEE_STAKING } = require("../utils/ABI");
 const { modelUsers } = require("../schema/users");
 const { getCurrentTime } = require("./time");
+const { modelStakedLogs } = require("../schema/logs");
 // const { serverWebsocket } = require("../config/websocket");
 
 const handleCatchStakedEvent = async () => {
@@ -55,6 +56,15 @@ const handleCatchStakedEvent = async () => {
             let amountStaked = Number(formatEther(tempAmountStaked));
             console.log("Staked Address:", addressWallet);
             console.log("Staked Amount:", amountStaked);
+
+            let modelLog = new modelStakedLogs({
+              adressWallet: addressWallet,
+              amountStaked: amountStaked,
+              transactionHash: transactionHash,
+              dateProcessed: getCurrentTime("en-US", "America/New_York"),
+            });
+
+            await modelLog.save();
 
             let dataStakedUser = await modelUsers.find({
               addressWallet: addressWallet,

@@ -1,13 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.c948ab76.css",
-    "main.js": "/static/js/main.76369536.js",
+    "main.js": "/static/js/main.bdfb0bfa.js",
     "static/js/563.1d645fe9.chunk.js": "/static/js/563.1d645fe9.chunk.js",
     "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
     "static/js/778.245eeb8f.chunk.js": "/static/js/778.245eeb8f.chunk.js",
     "static/media/BGHome.png": "/static/media/BGHome.c20685ce6e266b6b6c9c.png",
     "static/media/backSky.png": "/static/media/backSky.c20685ce6e266b6b6c9c.png",
     "static/media/coins.png": "/static/media/coins.d3ec69b9944558f62f4b.png",
+    "static/media/BEET.png": "/static/media/BEET.5210044f29ab1f98d348.png",
     "static/media/airdrop.png": "/static/media/airdrop.5210044f29ab1f98d348.png",
     "static/media/bgAirdrop.png": "/static/media/bgAirdrop.e49248e7d899f6f9cf12.png",
     "static/media/binance.png": "/static/media/binance.c419fbd4e7c0ee4ff313.png",
@@ -23,6 +24,7 @@
     "static/media/coinReward.png": "/static/media/coinReward.dbb2ff0fdb21b9c0a9ce.png",
     "static/media/floor.png": "/static/media/floor.138d35eea73f8d30467c.png",
     "static/media/walletConnect.svg": "/static/media/walletConnect.488dc369fbb265f431a7f8e741623b76.svg",
+    "static/media/ether02.png": "/static/media/ether02.141cb5bac5c28a092d3e.png",
     "static/media/HomeSmall.png": "/static/media/HomeSmall.82bebf0155559005e43c.png",
     "static/media/cursorClickon.png": "/static/media/cursorClickon.d0c6db7c1d71413e978e.png",
     "static/media/GreenWide.svg": "/static/media/GreenWide.fba4f2011fe14af9b4bff83140843109.svg",
@@ -35,12 +37,12 @@
     "static/media/notification.woff?s3g3t9": "/static/media/notification.c392cd33d9d9de730f9d.woff",
     "static/media/notification.ttf?s3g3t9": "/static/media/notification.c5d9251ea82e42f75381.ttf",
     "main.c948ab76.css.map": "/static/css/main.c948ab76.css.map",
-    "main.76369536.js.map": "/static/js/main.76369536.js.map",
+    "main.bdfb0bfa.js.map": "/static/js/main.bdfb0bfa.js.map",
     "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map",
     "778.245eeb8f.chunk.js.map": "/static/js/778.245eeb8f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c948ab76.css",
-    "static/js/main.76369536.js"
+    "static/js/main.bdfb0bfa.js"
   ]
 }

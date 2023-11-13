@@ -208,7 +208,6 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           res.flagSuccess === "existed_user" ||
           res.flagSuceess === "new_user"
         ) {
-          console.log("res.dataUser:", res.dataUser);
           setDatauser(res.dataUser);
         }
       });
@@ -223,7 +222,6 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           res.flagSuccess === "existed_user" ||
           res.flagSuceess === "new_user"
         ) {
-          console.log("res.dataUser:", res.dataUser);
           setDatauser(res.dataUser);
         }
       });

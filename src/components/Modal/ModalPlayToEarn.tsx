@@ -37,7 +37,7 @@ const ModalPlayToEarn = ({ flagModalP2E, setFlagModalP2E }: any) => {
 
     actionGetCountP2EAvailable(account).then((res1) => {
       if (res1.flagSuccess) {
-        if (Math.floor(res1.count) <= 0) {
+        if (Math.floor(res1.count) < 1) {
           return NotificationManager.warning(
             `You need to stake ${process.env.REACT_APP_AMOUNT_STAKE_DEFAULT} BEET to play games.`,
             "",

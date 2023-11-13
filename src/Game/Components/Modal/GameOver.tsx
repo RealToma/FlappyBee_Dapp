@@ -36,7 +36,7 @@ const GameOver = () => {
     if (location.state.typeGame === "p2e") {
       actionGetCountP2EAvailable(account).then((res) => {
         if (res.flagSuccess) {
-          if (Math.floor(res.count) <= 0) {
+          if (Math.floor(res.count) < 1) {
             navigate("/play");
             return NotificationManager.warning(
               `You need to stake ${process.env.REACT_APP_AMOUNT_STAKE_DEFAULT} BEET.`,

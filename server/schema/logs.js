@@ -5,15 +5,15 @@ const schemaStakedLogs = new mongoose.Schema({
     type: String,
     require: true,
   },
-  countFreeMint: {
+  amountStaked: {
     type: Number,
     require: true,
   },
-  dateJoined: {
+  transactionHash: {
     type: String,
     require: true,
   },
-  flagVerified: {
+  dateProcessed: {
     type: String,
     require: true,
   },
