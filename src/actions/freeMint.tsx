@@ -20,6 +20,8 @@ export const actionGetFreeMintCount = (account: any) => {
     });
 };
 
+
+
 export const actionSubmitClaimNotify = (account: any, email: any) => {
   return axios
     .post("/api/free_mint/submit_claim_notify", {

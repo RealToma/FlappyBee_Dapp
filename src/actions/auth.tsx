@@ -19,3 +19,23 @@ export const actionAddUser = (account: any) => {
       return res.data;
     });
 };
+
+export const actionGetCountP2EAvailable = (account: any) => {
+  return axios
+    .post("/api/auth/get_count_p2e_available", {
+      addressWallet: account,
+    })
+    .then((res) => {
+      return res.data;
+    });
+};
+
+export const actionSetCountP2EAvailable = (account: any) => {
+  return axios
+    .post("/api/auth/set_count_p2e_available", {
+      addressWallet: account,
+    })
+    .then((res) => {
+      return res.data;
+    });
+};

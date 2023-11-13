@@ -15,6 +15,7 @@ import {
 } from "../../../actions/freeMint";
 import { useWeb3React } from "@web3-react/core";
 import { NotificationManager } from "react-notifications";
+import { actionGetCountP2EAvailable } from "../../../actions/auth";
 
 const GameOver = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const GameOver = () => {
   const { account } = useWeb3React();
   const { score, bestScore } = useScore();
   const { restartGame } = useGameSystem();
-  const [countFreeMint, setCountFreeMint] = useState();
+  // const [countFreeMint, setCountFreeMint] = useState();
 
   const handleReplay = () => {
     if (account === undefined || account === null) {
@@ -33,12 +34,12 @@ const GameOver = () => {
       );
     }
     if (location.state.typeGame === "p2e") {
-      actionGetFreeMintCount(account).then((res) => {
+      actionGetCountP2EAvailable(account).then((res) => {
         if (res.flagSuccess) {
-          if (res.count >= 3) {
+          if (Math.floor(res.count) <= 0) {
             navigate("/play");
             return NotificationManager.warning(
-              "You can't play anymore. Your free mint event has expired.",
+              `You need to stake ${process.env.REACT_APP_AMOUNT_STAKE_DEFAULT} BEET.`,
               "",
               5000
             );
@@ -56,38 +57,36 @@ const GameOver = () => {
     }
   };
 
-  useEffect(() => {
-    if (account === undefined || account === null) {
-      return NotificationManager.warning(
-        "Please connect your wallet.",
-        "",
-        3000
-      );
-    } else {
-      if (location.state.typeGame === "p2e") {
-        actionSetFreeMintCount(account).then((res) => {
-          if (res.flagSuccess) {
-            console.log(res);
-            setCountFreeMint(res.count);
-          } else {
-            return NotificationManager.warning(res.msgError, "", 5000);
-          }
-        });
-      } else {
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (account === undefined || account === null) {
+  //     return NotificationManager.warning(
+  //       "Please connect your wallet.",
+  //       "",
+  //       3000
+  //     );
+  //   } else {
+  //     if (location.state.typeGame === "p2e") {
+  //       actionSetFreeMintCount(account).then((res) => {
+  //         if (res.flagSuccess) {
+  //           console.log(res);
+  //           setCountFreeMint(res.count);
+  //         } else {
+  //           return NotificationManager.warning(res.msgError, "", 5000);
+  //         }
+  //       });
+  //     } else {
+  //     }
+  //   }
+  // }, []);
 
   return (
     <SectionGameOver>
       <TextGameOverBack>
-        <TextGameOverFront>
+        {/* <TextGameOverFront>
           GAME OVER (
-          {location.state.typeGame === "p2e"
-            ? countFreeMint + "/3"
-            : "Free"}
-          )
-        </TextGameOverFront>
+          {location.state.typeGame === "p2e" ? countFreeMint + "/3" : "Free"})
+        </TextGameOverFront> */}
+        <TextGameOverFront>GAME OVER</TextGameOverFront>
       </TextGameOverBack>
       {/* <ImgGameOver>
         <img src={imgGameOver} width={"100%"} height={"100%"} alt="" />

@@ -12,7 +12,11 @@ import { FaPause } from "react-icons/fa";
 import imgCursorStart from "../assets/images/icons/cursorClickon.png";
 import GameOver from "./Components/Modal/GameOver";
 import { useEffect } from "react";
-import { checkWhiteList } from "../actions/auth";
+import {
+  actionGetCountP2EAvailable,
+  actionSetCountP2EAvailable,
+  checkWhiteList,
+} from "../actions/auth";
 import { useWeb3React } from "@web3-react/core";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NotificationManager } from "react-notifications";
@@ -32,29 +36,50 @@ const Game = ({ setPlayMusicGame }: any) => {
   const obstacles = [Obstacle1, Obstacle2];
 
   useEffect(() => {
+    // if (location.state.typeGame === "p2e") {
+    //   checkWhiteList(account).then((res) => {
+    //     if (res.flagSuccess) {
+    //       actionGetFreeMintCount(account).then((res1) => {
+    //         if (res1.flagSuccess) {
+    //           if (res1.count >= 3) {
+    //             navigate("/play");
+    //             return NotificationManager.warning(
+    //               "You can't play anymore. Your free mint event has expired.",
+    //               "",
+    //               5000
+    //             );
+    //           }
+    //         } else {
+    //           return NotificationManager.warning(res1.msgError, "", 5000);
+    //         }
+    //       });
+    //     } else {
+    //       navigate("/play");
+    //       return NotificationManager.warning(
+    //         "Oops....  it seems this address is not whitelisted. Please make sure to connect with a whitelisted address",
+    //         "",
+    //         // "You are not whitelisted!",
+    //         5000
+    //       );
+    //     }
+    //   });
+    // }
     if (location.state.typeGame === "p2e") {
-      checkWhiteList(account).then((res) => {
-        if (res.flagSuccess) {
-          actionGetFreeMintCount(account).then((res1) => {
-            if (res1.flagSuccess) {
-              if (res1.count >= 3) {
-                navigate("/play");
-                return NotificationManager.warning(
-                  "You can't play anymore. Your free mint event has expired.",
-                  "",
-                  5000
-                );
-              }
-            } else {
-              return NotificationManager.warning(res1.msgError, "", 5000);
-            }
-          });
+      actionGetCountP2EAvailable(account).then((res1) => {
+        if (res1.flagSuccess) {
+          if (Math.floor(res1.count) <= 0) {
+            navigate("/play");
+            return NotificationManager.warning(
+              `You need to stake ${process.env.REACT_APP_AMOUNT_STAKE_DEFAULT} BEET to play games.`,
+              "",
+              5000
+            );
+          }
         } else {
           navigate("/play");
           return NotificationManager.warning(
-            "Oops....  it seems this address is not whitelisted. Please make sure to connect with a whitelisted address",
+            `You need to stake ${process.env.REACT_APP_AMOUNT_STAKE_DEFAULT} BEET to play games.`,
             "",
-            // "You are not whitelisted!",
             5000
           );
         }
@@ -98,6 +123,19 @@ const Game = ({ setPlayMusicGame }: any) => {
         {gameHasStarted === 0 ? (
           <SectionGameStart
             onClick={() => {
+              if (location.state.typeGame === "p2e") {
+                actionSetCountP2EAvailable(account).then((res) => {
+                  if (!res.flagSuccess) {
+                    navigate("/play");
+                    return NotificationManager.warning(
+                      "Please acknowledge and accept our requirements, rules, rewards calcuation first.",
+                      "",
+                      5000
+                    );
+                  }
+                });
+              }
+
               startGame();
               setPlayMusicGame(true);
             }}

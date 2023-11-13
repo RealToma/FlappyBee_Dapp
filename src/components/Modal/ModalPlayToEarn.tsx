@@ -10,8 +10,8 @@ import { useState } from "react";
 import imgButtonPlay from "../../assets/images/buttons/HomeWide.png";
 import { useWeb3React } from "@web3-react/core";
 import { NotificationManager } from "react-notifications";
-import { checkWhiteList } from "../../actions/auth";
-import { actionGetFreeMintCount } from "../../actions/freeMint";
+import { actionGetCountP2EAvailable } from "../../actions/auth";
+// import { actionGetFreeMintCount } from "../../actions/freeMint";
 import { useNavigate } from "react-router-dom";
 
 const ModalPlayToEarn = ({ flagModalP2E, setFlagModalP2E }: any) => {
@@ -20,6 +20,8 @@ const ModalPlayToEarn = ({ flagModalP2E, setFlagModalP2E }: any) => {
 
   const handleClose = () => setFlagModalP2E(false);
   const [flagAcknowledge, setFlagAcknowledge] = useState(false);
+
+  const handleCheckStakedBEET = () => {};
 
   const handleStart = () => {
     if (!flagAcknowledge) {
@@ -33,36 +35,53 @@ const ModalPlayToEarn = ({ flagModalP2E, setFlagModalP2E }: any) => {
       );
     }
 
-    checkWhiteList(account).then((res) => {
-      if (res.flagSuccess) {
-        actionGetFreeMintCount(account).then((res1) => {
-          if (res1.flagSuccess) {
-            if (res1.count >= 3) {
-              return NotificationManager.warning(
-                "You can't play anymore. Your free mint event has expired.",
-                "",
-                5000
-              );
-            } else {
-              navigate("/game", {
-                state: { flagAcknowledge: flagAcknowledge, typeGame: "p2e" },
-              });
-            }
-          } else {
-            return NotificationManager.warning(res1.msgError, "", 5000);
-          }
-        });
-        // window.open("https://app.flappybee.com/#/game", "_self");
-        return;
+    actionGetCountP2EAvailable(account).then((res1) => {
+      if (res1.flagSuccess) {
+        if (Math.floor(res1.count) <= 0) {
+          return NotificationManager.warning(
+            `You need to stake ${process.env.REACT_APP_AMOUNT_STAKE_DEFAULT} BEET to play games.`,
+            "",
+            5000
+          );
+        } else {
+          navigate("/game", {
+            state: { flagAcknowledge: flagAcknowledge, typeGame: "p2e" },
+          });
+        }
       } else {
-        return NotificationManager.warning(
-          "Oops....  it seems this address is not whitelisted. Please make sure to connect with a whitelisted address",
-          // "You are not whitelisted!",
-          "",
-          5000
-        );
+        return NotificationManager.warning(res1.msgError, "", 5000);
       }
     });
+    // checkWhiteList(account).then((res) => {
+    //   if (res.flagSuccess) {
+    //     actionGetFreeMintCount(account).then((res1) => {
+    //       if (res1.flagSuccess) {
+    //         if (res1.count >= 3) {
+    //           return NotificationManager.warning(
+    //             "You can't play anymore. Your free mint event has expired.",
+    //             "",
+    //             5000
+    //           );
+    //         } else {
+    //           navigate("/game", {
+    //             state: { flagAcknowledge: flagAcknowledge, typeGame: "p2e" },
+    //           });
+    //         }
+    //       } else {
+    //         return NotificationManager.warning(res1.msgError, "", 5000);
+    //       }
+    //     });
+    //     // window.open("https://app.flappybee.com/#/game", "_self");
+    //     return;
+    //   } else {
+    //     return NotificationManager.warning(
+    //       "Oops....  it seems this address is not whitelisted. Please make sure to connect with a whitelisted address",
+    //       // "You are not whitelisted!",
+    //       "",
+    //       5000
+    //     );
+    //   }
+    // });
   };
 
   return (

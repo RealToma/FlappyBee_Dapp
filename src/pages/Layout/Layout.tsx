@@ -34,6 +34,7 @@ import { ethers } from "ethers";
 import { CONTRACTS } from "../../utils/constants";
 import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
 import { actionAddUser } from "../../actions/auth";
+import { useGameSystem } from "../../Game/Context";
 // import io from "socket.io-client";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
@@ -56,6 +57,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   useOutsideDetector([refConnectDown], () => setFlagConnectDrop(false));
 
   const walletConnectors: any = DESKTOP_CONNECTORS;
+  const { gameHasStarted } = useGameSystem();
 
   // const contractBEETToken: any = useMemo(
   //   () =>
@@ -213,6 +215,20 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
       handleGetBalance();
     }
   }, [active, account]);
+
+  useEffect(() => {
+    if (gameHasStarted === 1) {
+      actionAddUser(account).then((res) => {
+        if (
+          res.flagSuccess === "existed_user" ||
+          res.flagSuceess === "new_user"
+        ) {
+          console.log("res.dataUser:", res.dataUser);
+          setDatauser(res.dataUser);
+        }
+      });
+    }
+  }, [gameHasStarted]);
 
   // useEffect(() => {
   //   // Connect to WebSocket server

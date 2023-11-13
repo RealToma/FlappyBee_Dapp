@@ -98,4 +98,60 @@ router.post("/add_user", async (req, res) => {
   }
 });
 
+router.post("/get_count_p2e_available", async (req, res) => {
+  try {
+    const dataUser = await modelUsers.find({
+      addressWallet: req.body.addressWallet,
+    });
+    if (dataUser.length !== 0) {
+      return res.json({
+        flagSuccess: true,
+        count: dataUser[0].countP2EAvailable,
+      });
+    } else {
+      return res.json({
+        flagSuccess: false,
+        msgError: `You need to stake ${process.env.REACT_APP_AMOUNT_STAKE_DEFAULT} BEET.`,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      flagSuccess: false,
+      msgError: error,
+    });
+  }
+});
+
+router.post("/set_count_p2e_available", async (req, res) => {
+  try {
+    const dataUser = await modelUsers.find({
+      addressWallet: req.body.addressWallet,
+    });
+    if (dataUser.length !== 0) {
+      let tempCount = dataUser[0].countP2EAvailable - 1;
+      let tempUser = await modelUsers.findOneAndUpdate(
+        {
+          addressWallet: req.body.addressWallet,
+        },
+        { countP2EAvailable: tempCount }
+      );
+      return res.json({
+        flagSuccess: true,
+        // dataUser: tempUser,
+      });
+    } else {
+      return res.json({
+        flagSuccess: false,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      flagSuccess: false,
+      msgError: error,
+    });
+  }
+});
+
 module.exports = router;
