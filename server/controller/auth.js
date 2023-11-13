@@ -1,5 +1,6 @@
 const express = require("express");
 const { modelUsers } = require("../schema/users");
+const { getCurrentTime } = require("../function/time");
 const router = express.Router();
 // const { google } = require("googleapis");
 
@@ -54,6 +55,46 @@ router.post("/check_white_list", async (req, res) => {
     return res.json({
       flagSuccess: false,
     });
+  }
+});
+
+router.post("/add_user", async (req, res) => {
+  let addressWallet = req.body.addressWallet;
+  // console.log("wallet address:", addressWallet);
+  try {
+    let dataUser = await modelUsers.find({
+      addressWallet: addressWallet,
+    });
+
+    if (dataUser.length !== 0) {
+      // console.log("dataUser:", dataUser);
+      let tempUser = await modelUsers.findOneAndUpdate(
+        {
+          addressWallet: addressWallet,
+        },
+        { dateLastLoggedIn: getCurrentTime("en-US", "America/New_York") }
+      );
+      return res.json({
+        flagSuccess: "existed_user",
+        dataUser: tempUser,
+      });
+    } else {
+      let newUser = new modelUsers({
+        addressWallet: addressWallet,
+        countP2EAvailable: 0,
+        dateJoined: getCurrentTime("en-US", "America/New_York"),
+        dateLastLoggedIn: getCurrentTime("en-US", "America/New_York"),
+        flagPermission: true,
+      });
+      let tempUser = await newUser.save();
+      // console.log("after add new user:", tempUser);
+      return res.json({
+        flagSuccess: "new_user",
+        dataUser: tempUser,
+      });
+    }
+  } catch (error) {
+    console.error("Error of adding user:", error);
   }
 });
 

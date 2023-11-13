@@ -793,6 +793,90 @@ const ABI_BEE_STAKING = [
     type: "constructor",
   },
   {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "RewardEarned",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "newLockPeriod",
+        type: "uint256",
+      },
+    ],
+    name: "SetLockPeriodUpdated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "newRewardPercent",
+        type: "uint256",
+      },
+    ],
+    name: "SetRewardPercentUpdated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "newSecondsPerDay",
+        type: "uint256",
+      },
+    ],
+    name: "SetSecondsPerDayUpdated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "Staked",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "Withdrawn",
+    type: "event",
+  },
+  {
     inputs: [{ internalType: "address", name: "user", type: "address" }],
     name: "calculateReward",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
@@ -822,6 +906,20 @@ const ABI_BEE_STAKING = [
   },
   {
     inputs: [],
+    name: "lockPeriod",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "owner",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "rewardPercentPerYear",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
@@ -842,14 +940,7 @@ const ABI_BEE_STAKING = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "secondsPerYear",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "lockPeriod", type: "uint256" }],
+    inputs: [{ internalType: "uint256", name: "lockDays", type: "uint256" }],
     name: "setLockPeriod",
     outputs: [],
     stateMutability: "nonpayable",
@@ -864,9 +955,15 @@ const ABI_BEE_STAKING = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "amount", type: "uint256" },
-      { internalType: "uint256", name: "lockPeriod", type: "uint256" },
+      { internalType: "uint256", name: "_secondsPerDay", type: "uint256" },
     ],
+    name: "setSecondsPerDay",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
     name: "stake",
     outputs: [],
     stateMutability: "nonpayable",

@@ -33,6 +33,8 @@ import imgCoinETH from "../../assets/images/icons/coins/ether02.png";
 import { ethers } from "ethers";
 import { CONTRACTS } from "../../utils/constants";
 import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
+import { actionAddUser } from "../../actions/auth";
+// import io from "socket.io-client";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -47,6 +49,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   const [balanceETH, setBalanceETH] = useState(0);
   const [balanceBEET, setBalanceBEET] = useState(0);
   const [balanceBEETStaked, setBalanceBEETStaked] = useState(0);
+  const [dataUser, setDatauser]: any = useState();
 
   const [flagConnectDrop, setFlagConnectDrop] = useState(false);
   const refConnectDown = useRef(0);
@@ -77,7 +80,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           .then(() => {
             //   setConnected(true);
           });
-        console.log("You have successfully switched to Correct Network");
+        // console.log("You have successfully switched to Correct Network");
       }
     } catch (ex) {
       //   setConnected(false);
@@ -90,18 +93,26 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   };
 
   const handleConnect = async (currentConnector: any) => {
-    // const onboarding = new MetaMaskOnboarding();
-    await activate(walletConnectors[currentConnector]);
-    // set_wConnect(walletConnectors[currentConnector]);
-    window.localStorage.setItem("CurrentWalletConnect", currentConnector);
-    handleSwitch();
-    handleClose();
+    try {
+      // const onboarding = new MetaMaskOnboarding();
+      await activate(walletConnectors[currentConnector]);
+      // set_wConnect(walletConnectors[currentConnector]);
+      window.localStorage.setItem("CurrentWalletConnect", currentConnector);
+      handleSwitch();
+      handleClose();
+    } catch (error) {
+      console.log("error of connect wallet:", error);
+    }
   };
 
   const handleDisconnect = async () => {
-    await deactivate();
-    window.localStorage.removeItem("CurrentWalletConnect");
-    setFlagConnectDrop(false);
+    try {
+      await deactivate();
+      window.localStorage.removeItem("CurrentWalletConnect");
+      setFlagConnectDrop(false);
+    } catch (error) {
+      console.log("error of disconnect wallet:", error);
+    }
   };
 
   const handleGetBalance = async () => {
@@ -139,10 +150,10 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         const formattedBalanceBEETStaked: any =
           ethers.utils.formatEther(balanceBEETStaked);
 
-        console.log(
-          "formattedBalanceBEETStaked:",
-          Number(formattedBalanceBEETStaked)
-        );
+        // console.log(
+        //   "formattedBalanceBEETStaked:",
+        //   Number(formattedBalanceBEETStaked)
+        // );
         setBalanceBEETStaked(Number(formattedBalanceBEETStaked));
       }
     } catch (error) {
@@ -189,8 +200,34 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   }, []);
 
   useEffect(() => {
-    handleGetBalance();
+    if (active && (account !== undefined || account !== null)) {
+      actionAddUser(account).then((res) => {
+        if (
+          res.flagSuccess === "existed_user" ||
+          res.flagSuceess === "new_user"
+        ) {
+          console.log("res.dataUser:", res.dataUser);
+          setDatauser(res.dataUser);
+        }
+      });
+      handleGetBalance();
+    }
   }, [active, account]);
+
+  // useEffect(() => {
+  //   // Connect to WebSocket server
+  //   const socket = io("http://localhost:8080");
+
+  //   // Listen for incoming data
+  //   socket.on("message", (message) => {
+  //     console.log("Data received:", message);
+  //   });
+
+  //   return () => {
+  //     // Disconnect from WebSocket server when component unmounts
+  //     socket.disconnect();
+  //   };
+  // }, []);
 
   return (
     <StyledComponent>
@@ -302,7 +339,11 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {active ? (
             <SectionP2EAvailable>
               P2E session available:{"\u00a0"}
-              <span>3</span>
+              <span>
+                {dataUser?.countP2EAvailable
+                  ? Math.floor(dataUser?.countP2EAvailable)
+                  : 0}
+              </span>
             </SectionP2EAvailable>
           ) : (
             <></>
