@@ -30,11 +30,10 @@ db.once("open", () => console.log("MongoDB connected"));
 // checks if connection with the database is successful
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-handleCatchStakedEvent();
-
 app.use(cors());
 // claimRewardTokens();
 // coverSheetToDatabase();
+handleCatchStakedEvent();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

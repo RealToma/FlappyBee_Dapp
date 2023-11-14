@@ -35,7 +35,7 @@ import { CONTRACTS } from "../../utils/constants";
 import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
 import { actionAddUser } from "../../actions/auth";
 import { useGameSystem } from "../../Game/Context";
-// import io from "socket.io-client";
+import io from "socket.io-client";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -228,20 +228,21 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     }
   }, [gameHasStarted]);
 
-  // useEffect(() => {
-  //   // Connect to WebSocket server
-  //   const socket = io("http://localhost:8080");
+  useEffect(() => {
+    // Connect to WebSocket server
+    const socket = io("http://localhost:8080");
 
-  //   // Listen for incoming data
-  //   socket.on("message", (message) => {
-  //     console.log("Data received:", message);
-  //   });
+    // Listen for incoming data
+    socket.on("dataUser", (message) => {
+      console.log("Data received:", message);
+      setDatauser(message);
+    });
 
-  //   return () => {
-  //     // Disconnect from WebSocket server when component unmounts
-  //     socket.disconnect();
-  //   };
-  // }, []);
+    return () => {
+      // Disconnect from WebSocket server when component unmounts
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <StyledComponent>

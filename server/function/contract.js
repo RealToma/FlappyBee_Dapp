@@ -3,7 +3,7 @@ const { ABI_BEE_STAKING } = require("../utils/ABI");
 const { modelUsers } = require("../schema/users");
 const { getCurrentTime } = require("./time");
 const { modelStakedLogs } = require("../schema/logs");
-// const { serverWebsocket } = require("../config/websocket");
+const { serverWebsocket } = require("../config/websocket");
 
 const handleCatchStakedEvent = async () => {
   console.log("========== handle catch staked event ============");
@@ -19,6 +19,7 @@ const handleCatchStakedEvent = async () => {
   );
 
   try {
+    // serverWebsocket.on
     // Listen for all events
     contract.on("*", async (eventName, eventArgs) => {
       //   console.log(`Event ${eventName} with args:`, eventArgs);
@@ -77,7 +78,7 @@ const handleCatchStakedEvent = async () => {
               let tempCountP2E =
                 dataStakedUser[0].countP2EAvailable +
                 amountStaked / process.env.REACT_APP_AMOUNT_STAKE_DEFAULT;
-              console.log("tempCountP2E:", tempCountP2E);
+              console.log("P2E count:", tempCountP2E);
               await modelUsers.findOneAndUpdate(
                 {
                   addressWallet: addressWallet,
@@ -95,7 +96,7 @@ const handleCatchStakedEvent = async () => {
                 dateLastLoggedIn: getCurrentTime("en-US", "America/New_York"),
                 flagPermission: true,
               });
-              await newUser.save();
+              let tempUser = await newUser.save();
             }
           }
         }
