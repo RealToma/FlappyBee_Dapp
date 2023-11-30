@@ -13,7 +13,9 @@ const IS_MAINNET = false;
 //   ? "https://etherscan.io"
 //   : "https://goerli.etherscan.io";
 
-const NETWORK_NAME = IS_MAINNET ? "BNB Smart Chain Mainnet" : "BNB Smart Chain Testnet";
+const NETWORK_NAME = IS_MAINNET
+  ? "BNB Smart Chain Mainnet"
+  : "BNB Smart Chain Testnet";
 const chainId = IS_MAINNET ? 56 : 97;
 const rpcUrl = IS_MAINNET
   ? "https://bsc.publicnode.com"

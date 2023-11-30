@@ -47,7 +47,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   const handleClose = () => setOpen(false);
   const [open, setOpen] = useState(false);
   const { account, active, library, activate, deactivate } = useWeb3React();
-  const [balanceETH, setBalanceETH] = useState(0);
+  const [balanceBSC, setBalanceETH] = useState(0);
   const [balanceBEET, setBalanceBEET] = useState(0);
   const [balanceBEETStaked, setBalanceBEETStaked] = useState(0);
   const [dataUser, setDatauser]: any = useState();
@@ -135,10 +135,10 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           signer
         );
 
-        const balanceETH: any = await provider.getBalance(account);
-        // console.log("balanceETH:", balanceETH);
-        const formattedBalanceETH: any = ethers.utils.formatEther(balanceETH);
-        setBalanceETH(Number(formattedBalanceETH));
+        const balanceBSC: any = await provider.getBalance(account);
+        // console.log("balanceBSC:", balanceBSC);
+        const formattedBalanceBSC: any = ethers.utils.formatEther(balanceBSC);
+        setBalanceETH(Number(formattedBalanceBSC));
 
         const balanceBEET: any = await contractBEETToken.balanceOf(account);
         // console.log("balanceBEET:", balanceBEET);
@@ -409,7 +409,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                 <SectionBalanceIcon>
                   <img src={imgCoinETH} width={"100%"} height={"100%"} alt="" />
                 </SectionBalanceIcon>
-                <TextBalance>{shortFloat(balanceETH, 4)} ETH</TextBalance>
+                <TextBalance>{shortFloat(balanceBSC, 4)} BNB</TextBalance>
               </SectionBalance>
               <TextTitle mt="20px" color={"#f87c34"}>
                 Staked
@@ -517,7 +517,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
             >
               Made with{"\u00a0"}
               <FaHeart style={{ color: "#ff1616" }} />
-              {"\u00a0"}on ETH blockchain
+              {"\u00a0"}on BNB blockchain
             </SectionFooterTextETH>
           </SectionFooterSide>
         </SectionFooter>
