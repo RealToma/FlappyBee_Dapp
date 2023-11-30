@@ -6,6 +6,12 @@ import { dataStakingOptions } from "../../data/Staking";
 import CardStakingOption from "../../components/Card/CardStakingOption";
 
 const Stake = () => {
+  const handleBuyBEET = () => {
+    // window.open(
+    //   "https://www.pinksale.finance/launchpad/0xb4BBdFe024c61183037725800A1C76bc70fd7043?chain=ETH"
+    // );
+  };
+
   return (
     <StyledComponent>
       <SectionTop>
@@ -15,7 +21,7 @@ const Stake = () => {
           newly issued BEET tokens as rewards for their long term alignment.
         </TextDescription>
         <SectionButtonGroup>
-          <ButtonHome>Buy $BEET</ButtonHome>
+          <ButtonHome onClick={() => handleBuyBEET()}>Buy $BEET</ButtonHome>
           <ButtonPlay>Stake BEET</ButtonPlay>
         </SectionButtonGroup>
       </SectionTop>

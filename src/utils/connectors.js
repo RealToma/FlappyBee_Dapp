@@ -4,14 +4,23 @@ import { ethers } from "ethers";
 
 // const IS_MAINNET = process.env.REACT_APP_NETWORK === "mainnet";
 const IS_MAINNET = false;
-const NETWORK_NAME = IS_MAINNET ? "Ethereum Mainnet" : "Goerli test network";
-const chainId = IS_MAINNET ? 1 : 5;
+// const NETWORK_NAME = IS_MAINNET ? "Ethereum Mainnet" : "Goerli test network";
+// const chainId = IS_MAINNET ? 1 : 5;
+// const rpcUrl = IS_MAINNET
+//   ? "https://mainnet.infura.io/v3/"
+//   : "https://goerli.infura.io/v3/";
+// const scanUrl = IS_MAINNET
+//   ? "https://etherscan.io"
+//   : "https://goerli.etherscan.io";
+
+const NETWORK_NAME = IS_MAINNET ? "BNB Smart Chain Mainnet" : "BNB Smart Chain Testnet";
+const chainId = IS_MAINNET ? 56 : 97;
 const rpcUrl = IS_MAINNET
-  ? "https://mainnet.infura.io/v3/"
-  : "https://goerli.infura.io/v3/";
+  ? "https://bsc.publicnode.com"
+  : "https://bsc-testnet.publicnode.com";
 const scanUrl = IS_MAINNET
-  ? "https://etherscan.io"
-  : "https://goerli.etherscan.io";
+  ? "https://bscscan.com"
+  : "https://testnet.bscscan.com";
 
 const BINANCE_MAINNET_PARAMS = {
   chainId: chainId,

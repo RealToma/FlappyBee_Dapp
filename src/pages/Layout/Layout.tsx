@@ -35,7 +35,7 @@ import { CONTRACTS } from "../../utils/constants";
 import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
 import { actionAddUser } from "../../actions/auth";
 import { useGameSystem } from "../../Game/Context";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -187,7 +187,8 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
       setFlagDisplayFooter(2);
     }
 
-    if (pathName === "/stake" || pathName === "/rewards") {
+    if (pathName === "/rewards") {
+      //pathName === "/stake" ||
       setFlagLockPath(true);
     } else {
       setFlagLockPath(false);
@@ -228,21 +229,21 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     }
   }, [gameHasStarted]);
 
-  useEffect(() => {
-    // Connect to WebSocket server
-    const socket = io("http://localhost:8080");
+  // useEffect(() => {
+  //   // Connect to WebSocket server
+  //   const socket = io("http://localhost:8080");
 
-    // Listen for incoming data
-    socket.on("dataUser", (message) => {
-      console.log("Data received:", message);
-      setDatauser(message);
-    });
+  //   // Listen for incoming data
+  //   socket.on("dataUser", (message) => {
+  //     console.log("Data received:", message);
+  //     setDatauser(message);
+  //   });
 
-    return () => {
-      // Disconnect from WebSocket server when component unmounts
-      socket.disconnect();
-    };
-  }, []);
+  //   return () => {
+  //     // Disconnect from WebSocket server when component unmounts
+  //     socket.disconnect();
+  //   };
+  // }, []);
 
   return (
     <StyledComponent>
@@ -436,9 +437,9 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                 <ButtonBuy
                   onClick={() => {
                     setFlagConnectDrop(false);
-                    window.open(
-                      "https://www.pinksale.finance/launchpad/0xb4BBdFe024c61183037725800A1C76bc70fd7043?chain=ETH"
-                    );
+                    // window.open(
+                    //   "https://www.pinksale.finance/launchpad/0xb4BBdFe024c61183037725800A1C76bc70fd7043?chain=ETH"
+                    // );
                   }}
                 >
                   Buy $BEET

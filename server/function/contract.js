@@ -3,11 +3,11 @@ const { ABI_BEE_STAKING } = require("../utils/ABI");
 const { modelUsers } = require("../schema/users");
 const { getCurrentTime } = require("./time");
 const { modelStakedLogs } = require("../schema/logs");
-const { serverWebsocket } = require("../config/websocket");
+// const { serverWebsocket } = require("../config/websocket");
 
 const handleCatchStakedEvent = async () => {
   console.log("========== handle catch staked event ============");
-  const provider = new JsonRpcProvider(process.env.REACT_APP_URL_PRC_PROVIDER);
+  const provider = new JsonRpcProvider(process.env.REACT_APP_URL_PRC_BSC_PROVIDER);
   const addressContractBEETStaking =
     process.env.REACT_APP_ADDRESS_CONTRACT_BEET_STAKING;
   const abiBEETStaking = ABI_BEE_STAKING;

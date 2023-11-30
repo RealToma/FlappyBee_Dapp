@@ -198,6 +198,25 @@ export const ABI_BEET_STAKING: any = [
   {
     anonymous: false,
     inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "previousOwner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
+      },
+    ],
+    name: "OwnershipTransferred",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
       { indexed: false, internalType: "address", name: "by", type: "address" },
       {
         indexed: false,
@@ -206,7 +225,21 @@ export const ABI_BEET_STAKING: any = [
         type: "uint256",
       },
     ],
-    name: "RewardEarned",
+    name: "RecoveredTokens",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "RewardClaimed",
     type: "event",
   },
   {
@@ -235,6 +268,20 @@ export const ABI_BEET_STAKING: any = [
       },
     ],
     name: "SetRewardPercentUpdated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "token",
+        type: "address",
+      },
+    ],
+    name: "SetRewardTokenAddress",
     type: "event",
   },
   {
@@ -276,7 +323,21 @@ export const ABI_BEET_STAKING: any = [
         type: "uint256",
       },
     ],
-    name: "Withdrawn",
+    name: "Unstaked",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "WithdrawnUnstaked",
     type: "event",
   },
   {
@@ -288,14 +349,17 @@ export const ABI_BEET_STAKING: any = [
   },
   {
     inputs: [],
-    name: "earnDailyRewards",
+    name: "claimReward",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [{ internalType: "address", name: "user", type: "address" }],
-    name: "getRemainedPeriod",
+    inputs: [
+      { internalType: "address", name: "user", type: "address" },
+      { internalType: "uint256", name: "index", type: "uint256" },
+    ],
+    name: "getRemainedLockTime",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
@@ -304,6 +368,31 @@ export const ABI_BEET_STAKING: any = [
     inputs: [{ internalType: "address", name: "user", type: "address" }],
     name: "getStakedAmount",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "user", type: "address" }],
+    name: "getTotalArrayUnstakedTokens",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "user", type: "address" }],
+    name: "getUnstakedTokens",
+    outputs: [
+      {
+        components: [
+          { internalType: "uint256", name: "amount", type: "uint256" },
+          { internalType: "uint256", name: "unlockTime", type: "uint256" },
+          { internalType: "bool", name: "withdrawn", type: "bool" },
+        ],
+        internalType: "struct StakingBEET.UnstakedToken[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
     stateMutability: "view",
     type: "function",
   },
@@ -319,6 +408,13 @@ export const ABI_BEET_STAKING: any = [
     name: "owner",
     outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "recoverTokens",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -366,6 +462,15 @@ export const ABI_BEET_STAKING: any = [
     type: "function",
   },
   {
+    inputs: [
+      { internalType: "address", name: "tokenAddress", type: "address" },
+    ],
+    name: "setTokenAddress",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
     name: "stake",
     outputs: [],
@@ -378,7 +483,6 @@ export const ABI_BEET_STAKING: any = [
     outputs: [
       { internalType: "uint256", name: "amount", type: "uint256" },
       { internalType: "uint256", name: "startTime", type: "uint256" },
-      { internalType: "uint256", name: "unlockTime", type: "uint256" },
       { internalType: "bool", name: "active", type: "bool" },
     ],
     stateMutability: "view",
@@ -392,8 +496,36 @@ export const ABI_BEET_STAKING: any = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "withdraw",
+    inputs: [{ internalType: "address", name: "newOwner", type: "address" }],
+    name: "transferOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
+    name: "unstake",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "", type: "address" },
+      { internalType: "uint256", name: "", type: "uint256" },
+    ],
+    name: "unstakedInfo",
+    outputs: [
+      { internalType: "uint256", name: "amount", type: "uint256" },
+      { internalType: "uint256", name: "unlockTime", type: "uint256" },
+      { internalType: "bool", name: "withdrawn", type: "bool" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "index", type: "uint256" }],
+    name: "withdrawUnstakedTokens",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

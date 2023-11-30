@@ -17,7 +17,6 @@ const CardStakingOption = ({ data }: any) => {
   const handleStake = () => {
     handleModalOpen();
     setFlagStake(false);
-    console.log("account:", account);
   };
 
   const handleUnStake = () => {
@@ -469,7 +468,7 @@ const SectionBalance = styled(Box)`
     margin-top: 50px;
   }
   @media (max-width: 390px) {
-    margin-top:40px;
+    margin-top: 40px;
   }
 `;
 
@@ -562,8 +561,6 @@ const ButtonMax = styled(Box)`
   &:active {
     transform: scale(0.9);
   }
-
-
 `;
 
 const InputStake = styled(Box)<any>`
@@ -610,7 +607,6 @@ const ButtonConfirm = styled(Box)`
     transform: scale(0.9);
   }
 
-  
   transition: 0.3s;
   @media (max-width: 768px) {
     height: 50px;
