@@ -2,8 +2,8 @@ import { InjectedConnector } from "@web3-react/injected-connector";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { ethers } from "ethers";
 
-// const IS_MAINNET = process.env.REACT_APP_NETWORK === "mainnet";
-const IS_MAINNET = false;
+const IS_MAINNET = process.env.REACT_APP_NETWORK === "mainnet";
+// const IS_MAINNET = false;
 // const NETWORK_NAME = IS_MAINNET ? "Ethereum Mainnet" : "Goerli test network";
 // const chainId = IS_MAINNET ? 1 : 5;
 // const rpcUrl = IS_MAINNET
