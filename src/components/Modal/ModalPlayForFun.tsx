@@ -9,8 +9,8 @@ import { useState } from "react";
 import imgButtonPlay from "../../assets/images/buttons/HomeWide.png";
 import { useWeb3React } from "@web3-react/core";
 import { NotificationManager } from "react-notifications";
-import { checkWhiteList } from "../../actions/auth";
-import { actionGetFreeMintCount } from "../../actions/freeMint";
+// import { checkWhiteList } from "../../actions/auth";
+// import { actionGetFreeMintCount } from "../../actions/freeMint";
 import { useNavigate } from "react-router-dom";
 
 const ModalPlayForFun = ({ flagModalP2E, setFlagModalP2E }: any) => {
