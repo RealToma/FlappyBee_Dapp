@@ -6,7 +6,7 @@ export const textAirdropParticipate = [
   // "5. Claimed $BEET will be locked for 60 days on your wallet before it can be spend",
   "1. Visit FlappyBee.com: Head to our website and prepare for takeoff.",
   "2. Connect Your Wallet: To participate, connect your wallet securely on the FlappyBee platform. This is crucial for tracking your progress and distributing your rewards.",
-  "3. Play Flappy Bee on Ethereum Testnet: Start your adventure by playing our captivating game on the Ethereum testnet. Help Flappy, the heroic bee, navigate through obstacles and protect the queen.",
+  "3. Play Flappy Bee on BNB Testnet: Start your adventure by playing our captivating game on the BNB Testnet. Help Flappy, the heroic bee, navigate through obstacles and protect the queen.",
 ];
 
 export const textAirdropPeriod = [

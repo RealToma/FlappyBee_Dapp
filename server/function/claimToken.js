@@ -44,7 +44,7 @@ const claimRewardTokens = async () => {
           `${i + 1} - Sent ${
             process.env.REACT_APP_CLAIM_RATE * dataTotalScores[i]["totalScore"]
           } BEET to ${dataTotalScores[i]["addressWallet"]}:`,
-          `https://goerli.etherscan.io/tx/${transRecipt.hash}`
+          `https://testnet.bscscan.com/tx/${transRecipt.hash}`
         );
 
         const now = new Date();

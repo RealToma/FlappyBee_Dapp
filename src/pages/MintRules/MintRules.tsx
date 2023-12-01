@@ -39,11 +39,19 @@ const MintRules = () => {
           </ImageRight>
           <img src={imgAirdropBee} width={"100%"} alt="" />
         </SectionImageGroup>
-        <TextHeadGuide data-aos="zoom-in" data-aos-duration="1000" data-aos-once='true'>
+        <TextHeadGuide
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          data-aos-once="true"
+        >
           You can earn free $BEET by playing FlappyBee game during FREE MINT
           event!
         </TextHeadGuide>
-        <TextHead data-aos="fade-up" data-aos-duration="2000" data-aos-once='true'>
+        <TextHead
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          data-aos-once="true"
+        >
           Before proceeding, please ensure you have completed the required
           procedure at: {"\u00a0"}
           <a
@@ -57,10 +65,18 @@ const MintRules = () => {
           {"\u00a0"}
           for full participation.
         </TextHead>
-        <TextHeadGuide data-aos="fade-up" data-aos-duration="2000" data-aos-once='true'>
+        <TextHeadGuide
+          data-aos="fade-up"
+          data-aos-duration="2000"
+          data-aos-once="true"
+        >
           Kindly review the following rules carefully to earn FREE $BEET:
         </TextHeadGuide>
-        <SectionGuide data-aos="fade-up" data-aos-duration="3000" data-aos-once='true'>
+        <SectionGuide
+          data-aos="fade-up"
+          data-aos-duration="3000"
+          data-aos-once="true"
+        >
           <TextEachGuide>
             1. Visit{" "}
             <a
@@ -74,8 +90,8 @@ const MintRules = () => {
             <br />
             2. Connect your wallet.
             <br />
-            3. Ensure you have selected the Goerli network (for instructions on
-            switching to Goerli, please refer to :{"\u00a0"}
+            3. Ensure you have selected the BNB Test network (for instructions
+            on switching to BNB Testnet, please refer to :{"\u00a0"}
             <a
               href="https://flappybee.com"
               target="_blank"
@@ -86,7 +102,7 @@ const MintRules = () => {
             </a>
             )
             <br />
-            4. Play the game and record your score on Goerli network.
+            4. Play the game and record your score on BNB Test network.
             <br />
             5. Your score multiplied by 10% will determine your reward on the
             mainnet. For instance, if you score{" "}

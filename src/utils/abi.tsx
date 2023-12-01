@@ -1,5 +1,21 @@
 export const ABI_BEET_TOKEN: any = [
-  { inputs: [], stateMutability: "nonpayable", type: "constructor" },
+  {
+    inputs: [
+      { internalType: "string", name: "name_", type: "string" },
+      { internalType: "string", name: "symbol_", type: "string" },
+      { internalType: "uint256", name: "totalSupply_", type: "uint256" },
+      { internalType: "address", name: "treasury", type: "address" },
+    ],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  { inputs: [], name: "InvalidShortString", type: "error" },
+  {
+    inputs: [{ internalType: "string", name: "str", type: "string" }],
+    name: "StringTooLong",
+    type: "error",
+  },
+  { inputs: [], name: "Unauthorized", type: "error" },
   {
     anonymous: false,
     inputs: [
@@ -25,6 +41,7 @@ export const ABI_BEET_TOKEN: any = [
     name: "Approval",
     type: "event",
   },
+  { anonymous: false, inputs: [], name: "EIP712DomainChanged", type: "event" },
   {
     anonymous: false,
     inputs: [
@@ -47,6 +64,19 @@ export const ABI_BEET_TOKEN: any = [
   {
     anonymous: false,
     inputs: [
+      {
+        indexed: false,
+        internalType: "address",
+        name: "tokenPool",
+        type: "address",
+      },
+    ],
+    name: "TokenPoolUpdated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
       { indexed: true, internalType: "address", name: "from", type: "address" },
       { indexed: true, internalType: "address", name: "to", type: "address" },
       {
@@ -59,7 +89,13 @@ export const ABI_BEET_TOKEN: any = [
     name: "Transfer",
     type: "event",
   },
-  { stateMutability: "payable", type: "fallback" },
+  {
+    inputs: [],
+    name: "DOMAIN_SEPARATOR",
+    outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
+    stateMutability: "view",
+    type: "function",
+  },
   {
     inputs: [
       { internalType: "address", name: "owner", type: "address" },
@@ -88,13 +124,6 @@ export const ABI_BEET_TOKEN: any = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "address", name: "token", type: "address" }],
-    name: "claimStuckTokens",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     inputs: [],
     name: "decimals",
     outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
@@ -109,6 +138,21 @@ export const ABI_BEET_TOKEN: any = [
     name: "decreaseAllowance",
     outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "eip712Domain",
+    outputs: [
+      { internalType: "bytes1", name: "fields", type: "bytes1" },
+      { internalType: "string", name: "name", type: "string" },
+      { internalType: "string", name: "version", type: "string" },
+      { internalType: "uint256", name: "chainId", type: "uint256" },
+      { internalType: "address", name: "verifyingContract", type: "address" },
+      { internalType: "bytes32", name: "salt", type: "bytes32" },
+      { internalType: "uint256[]", name: "extensions", type: "uint256[]" },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -129,10 +173,32 @@ export const ABI_BEET_TOKEN: any = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "address", name: "owner", type: "address" }],
+    name: "nonces",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "owner",
     outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "owner", type: "address" },
+      { internalType: "address", name: "spender", type: "address" },
+      { internalType: "uint256", name: "value", type: "uint256" },
+      { internalType: "uint256", name: "deadline", type: "uint256" },
+      { internalType: "uint8", name: "v", type: "uint8" },
+      { internalType: "bytes32", name: "r", type: "bytes32" },
+      { internalType: "bytes32", name: "s", type: "bytes32" },
+    ],
+    name: "permit",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -143,9 +209,23 @@ export const ABI_BEET_TOKEN: any = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "address", name: "_tokenPool", type: "address" }],
+    name: "setTokenPool",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "symbol",
     outputs: [{ internalType: "string", name: "", type: "string" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "tokenPool",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
@@ -184,7 +264,6 @@ export const ABI_BEET_TOKEN: any = [
     stateMutability: "nonpayable",
     type: "function",
   },
-  { stateMutability: "payable", type: "receive" },
 ];
 
 export const ABI_BEET_STAKING: any = [

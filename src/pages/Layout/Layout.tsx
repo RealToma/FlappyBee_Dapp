@@ -124,13 +124,13 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         const signer: any = provider.getSigner();
 
         const contractBEETToken: any = new ethers.Contract(
-          CONTRACTS.BEETToken,
+          CONTRACTS.BEETToken as any,
           ABI_BEET_TOKEN,
           signer
         );
 
         const contractBEETStaking: any = new ethers.Contract(
-          CONTRACTS.BEETStaking,
+          CONTRACTS.BEETStaking as any,
           ABI_BEET_STAKING,
           signer
         );
@@ -187,7 +187,12 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
       setFlagDisplayFooter(2);
     }
 
-    if (pathName === "/rewards") {
+    if (
+      pathName === "/rewards" ||
+      pathName === "/mint_rules" ||
+      pathName === "/claim_rewards" ||
+      pathName === "/stake"
+    ) {
       //pathName === "/stake" ||
       setFlagLockPath(true);
     } else {
@@ -259,7 +264,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {flagDisplayFooter === 0
             ? "📢 Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
-            : `📢 Be informed of our upcoming BEET presale!`}
+            : `📢 Be informed of our upcoming fair launch event 🐝`}
           {"\u00a0"}
           {"\u00a0"}
           {"\u00a0"}
@@ -272,14 +277,14 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         <SecitonSocial>
           <IconSocial
             onClick={() => {
-              window.open("https://twitter.com/FlappyBee_ETH", "_blank");
+              window.open("https://twitter.com/FlappyBee_BSC", "_blank");
             }}
           >
             <FaTwitter />
           </IconSocial>
           <IconSocial
             onClick={() => {
-              window.open("https://t.me/FlappyBee_ETH", "_blank");
+              window.open("https://t.me/FlappyBee_BSC", "_blank");
             }}
           >
             <FaTelegramPlane />
@@ -511,13 +516,13 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
             <SectionFooterTextETH
               onClick={() => {
                 window.open(
-                  "https://etherscan.io/token/0x9E1f90970D6cbDdf193F418281612B7aF563985A"
+                  "https://bscscan.com/address/0x684eAfeb7E5be043842D892980695C68e15152b7"
                 );
               }}
             >
               Made with{"\u00a0"}
               <FaHeart style={{ color: "#ff1616" }} />
-              {"\u00a0"}on BNB blockchain
+              {"\u00a0"}on BNB Smart Chain
             </SectionFooterTextETH>
           </SectionFooterSide>
         </SectionFooter>
@@ -760,7 +765,7 @@ const SectionLockContent = styled(Box)`
   cursor: not-allowed;
   background-color: #0f160d;
   opacity: 0.7;
-  z-index: 2;
+  z-index: 100000;
 `;
 
 const SectionTextLock = styled(Box)`
@@ -777,7 +782,7 @@ const SectionTextLock = styled(Box)`
   font-size: 30rem;
   color: #a81010;
   transform: rotate(-15deg);
-  z-index: 3;
+  z-index: 100001;
 
   transition: 0.3s;
   @media (max-width: 1440px) {
