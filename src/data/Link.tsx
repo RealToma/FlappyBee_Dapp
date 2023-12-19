@@ -51,7 +51,25 @@ export const dataTopNavigation: Link[] = [
     name: "Stake",
     link: "/stake",
     flagNavigate: false,
-    flagSubLink: false,
+    flagSubLink: true,
+    sublink: [
+      {
+        name: "Dashboard",
+        link: "/dashboard",
+      },
+      {
+        name: "Stake",
+        link: "/stake",
+      },
+      {
+        name: "Validator",
+        link: "/validator",
+      },
+      {
+        name: "Buy/Sell",
+        link: "/buysell",
+      },
+    ],
   },
   {
     name: "Marketplace",

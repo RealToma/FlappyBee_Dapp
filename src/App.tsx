@@ -29,6 +29,7 @@ import { BirdProvider } from "./Game/Context/Bird.context";
 import { ScoreProvider } from "./Game/Context/Score.context";
 import LeaderboardPremium from "./pages/Leaderboard/LeaderboardPremium";
 import LeaderboardFree from "./pages/Leaderboard/LeaderboardFree";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 const App = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -96,6 +97,7 @@ const App = () => {
                   {/* <Route path="/claim" element={<Claim />} /> */}
                   {/* <Route path="/airdrop" element={<Airdrop />} /> */}
                   <Route path="/stake" element={<Stake />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/nft" element={<NFT />} />
                   <Route
                     path="/game"

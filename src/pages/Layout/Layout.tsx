@@ -264,7 +264,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {flagDisplayFooter === 0
             ? "📢 Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
-            : `📢 Be informed of our upcoming fair launch event 🐝`}
+            : "📢 Flappy Bee game is optimized on Google Chrome / Firefox / Brave"}
           {"\u00a0"}
           {"\u00a0"}
           {"\u00a0"}

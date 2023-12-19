@@ -117,7 +117,7 @@ const SectionDropDown = styled(Box)`
   flex-direction: column;
   width: max-content;
   height: fit-content;
-  bottom: ${({ length }: any) => length * -60 + "px"};
+  bottom: ${({ length }: any) => length * -40 - 30 - 10 + "px"};
   left: 50%;
   transform: translateX(-50%);
   padding: 15px 30px;
@@ -129,6 +129,7 @@ const SectionDropDown = styled(Box)`
   transition: 0.3s;
   @media (max-width: 1440px) {
     padding: 12px 24px;
+    bottom: ${({ length }: any) => length * -35 - 24 - 10 + "px"};
   }
   @media (max-width: 1024px) {
     padding: 10px 20px;
