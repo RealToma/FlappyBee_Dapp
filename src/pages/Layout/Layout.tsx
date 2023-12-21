@@ -29,13 +29,16 @@ import MenuMobileSubLink from "../../components/DropDown/MenuMobileSubLink";
 import { NotificationManager } from "react-notifications";
 import { useOutsideDetector } from "../../components/Hooks/useOutsideDetector";
 import imgCoinBEET from "../../assets/images/icons/coins/BEET.png";
-import imgCoinETH from "../../assets/images/icons/coins/ether02.png";
+// import imgCoinETH from "../../assets/images/icons/coins/ether02.png";
+import imgCoinBNB from "../../assets/images/icons/coins/bnb01.png";
 import { ethers } from "ethers";
 import { CONTRACTS } from "../../utils/constants";
 import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
 import { actionAddUser } from "../../actions/auth";
 import { useGameSystem } from "../../Game/Context";
 // import io from "socket.io-client";
+import { RefContext } from "../../libs/RefContext";
+import { useContext } from "react";
 
 const Layout = ({ children, setPlayMusicGame }: any) => {
   const navigate = useNavigate();
@@ -47,9 +50,15 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   const handleClose = () => setOpen(false);
   const [open, setOpen] = useState(false);
   const { account, active, library, activate, deactivate } = useWeb3React();
-  const [balanceBSC, setBalanceETH] = useState(0);
-  const [balanceBEET, setBalanceBEET] = useState(0);
-  const [balanceBEETStaked, setBalanceBEETStaked] = useState(0);
+
+  const {
+    balanceBNB,
+    setBalanceBNB,
+    balanceBEET,
+    setBalanceBEET,
+    balanceBEETStaked,
+    setBalanceBEETStaked,
+  }: any = useContext(RefContext);
   const [dataUser, setDatauser]: any = useState();
 
   const [flagConnectDrop, setFlagConnectDrop] = useState(false);
@@ -58,18 +67,6 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
 
   const walletConnectors: any = DESKTOP_CONNECTORS;
   const { gameHasStarted } = useGameSystem();
-
-  // const contractBEETToken: any = useMemo(
-  //   () =>
-  //     library
-  //       ? new ethers.Contract(
-  //           CONTRACTS.BEETToken,
-  //           ABI_BEET_TOKEN,
-  //           library.getSigner()
-  //         )
-  //       : null,
-  //   [library]
-  // );
 
   const handleSwitch = async () => {
     try {
@@ -135,10 +132,10 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           signer
         );
 
-        const balanceBSC: any = await provider.getBalance(account);
-        // console.log("balanceBSC:", balanceBSC);
-        const formattedBalanceBSC: any = ethers.utils.formatEther(balanceBSC);
-        setBalanceETH(Number(formattedBalanceBSC));
+        const balanceBNB: any = await provider.getBalance(account);
+        // console.log("balanceBNB:", balanceBNB);
+        const formattedBalanceBSC: any = ethers.utils.formatEther(balanceBNB);
+        setBalanceBNB(Number(formattedBalanceBSC));
 
         const balanceBEET: any = await contractBEETToken.balanceOf(account);
         // console.log("balanceBEET:", balanceBEET);
@@ -190,8 +187,8 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     if (
       pathName === "/rewards" ||
       pathName === "/mint_rules" ||
-      pathName === "/claim_rewards" ||
-      pathName === "/stake"
+      pathName === "/claim_rewards"
+      // pathName === "/stake"
     ) {
       //pathName === "/stake" ||
       setFlagLockPath(true);
@@ -412,9 +409,9 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
               </SectionBalance>
               <SectionBalance>
                 <SectionBalanceIcon>
-                  <img src={imgCoinETH} width={"100%"} height={"100%"} alt="" />
+                  <img src={imgCoinBNB} width={"100%"} height={"100%"} alt="" />
                 </SectionBalanceIcon>
-                <TextBalance>{shortFloat(balanceBSC, 4)} BNB</TextBalance>
+                <TextBalance>{shortFloat(balanceBNB, 4)} BNB</TextBalance>
               </SectionBalance>
               <TextTitle mt="20px" color={"#f87c34"}>
                 Staked
@@ -1321,11 +1318,12 @@ const IconConnectMore = styled(Box)`
 const SectionConnectMore = styled(Box)`
   display: flex;
   position: absolute;
-  bottom: -360px;
+  bottom: -365px;
   width: 250px;
   min-width: 250px;
   right: 0px;
   background-color: #003d28;
+  border: 2px solid rgb(253, 196, 0);
   border-radius: 12px;
   padding: 15px;
   box-sizing: border-box;
@@ -1402,13 +1400,13 @@ const ButtonBuy = styled(Box)`
   font-size: 16px;
 
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
   &:hover {
     background-color: white;
     color: #a9d100;
   }
   &:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
 `;
 
@@ -1428,13 +1426,13 @@ const ButtonStake = styled(Box)`
   font-size: 16px;
 
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
   &:hover {
     background-color: white;
     color: #e47b1a;
   }
   &:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
 `;
 
@@ -1452,13 +1450,13 @@ const ButtonDisconnect = styled(Box)`
   font-weight: 300;
   font-size: 18px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
   &:hover {
     background-color: white;
     color: #5a5757;
   }
   &:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
 `;
 

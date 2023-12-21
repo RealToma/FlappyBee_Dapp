@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
+import RefContextProvider from "./libs/RefContext";
 
 function getLibrary(provider: any) {
   const library = new Web3Provider(provider);
@@ -19,7 +20,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Web3ReactProvider getLibrary={getLibrary as any}>
-      <App />
+      <RefContextProvider>
+        <App />
+      </RefContextProvider>
     </Web3ReactProvider>
   </React.StrictMode>
 );
