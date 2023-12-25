@@ -261,7 +261,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {flagDisplayFooter === 0
             ? "📢 Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
-            : "📢 Flappy Bee game is optimized on Google Chrome / Firefox / Brave"}
+            : "🎄 Merry Christmas and Happy New Year 2024! 🎉"}
           {"\u00a0"}
           {"\u00a0"}
           {"\u00a0"}

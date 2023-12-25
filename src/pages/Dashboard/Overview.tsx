@@ -1,13 +1,16 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import { useContext, useState } from "react";
-import { FaUser } from "react-icons/fa";
+// import { FaUser } from "react-icons/fa";
 import { useWeb3React } from "@web3-react/core";
 import { shortAddress } from "../../libs/Functions";
 import copy from "copy-to-clipboard";
 import { HiClipboard, HiClipboardCheck } from "react-icons/hi";
 import { RefContext } from "../../libs/RefContext";
 import Chart from "react-apexcharts";
+import imgUser01 from "../../assets/images/icons/user01.png";
+import imgLeaderboardStas from "../../assets/images/background/leaderboardStats.svg";
+import imgButtonGreen01 from "../../assets/images/buttons/GreenButton01.svg";
 
 const dataChartAssets: any = {
   series: [44, 55, 13, 43, 22],
@@ -60,7 +63,7 @@ const Overview = () => {
       <SectionTop>
         <SectionUser>
           <IconUser>
-            <FaUser />
+            <img src={imgUser01} width={"100%"} alt="user" />
           </IconUser>
           <SectionUserDetail>
             <SectionAddressWallet>
@@ -88,7 +91,7 @@ const Overview = () => {
           </SectionUserDetail>
         </SectionUser>
         <SectionClaimable>
-          <TextAddressWallet>Total Claimabe Rewards :</TextAddressWallet>
+          <TextClaimableRewards>Total Claimabe Rewards :</TextClaimableRewards>
           <SectionClaim>
             <TextBEETtoUSD>
               {balanceBEET} $BEET = {balanceBEET * 0.001} USD
@@ -112,7 +115,7 @@ const Overview = () => {
         </SectionEachStatsBEET>
       </SecionBEETBalance>
       <SectionTotalAssets>
-        <TextHead01>Total Assets Overview</TextHead01>
+        <TextTitle>Total Assets Overview</TextTitle>
         <SectionChartData>
           <SectionPieChart>
             <Chart
@@ -123,28 +126,30 @@ const Overview = () => {
             />
           </SectionPieChart>
           <SectionAssetsDetails>
-            <TableRowAssets>
+            <TableRowAssetsHead>
+              <TableRowNo></TableRowNo>
               <TableRowEachHead>Asset</TableRowEachHead>
               <TableRowEachHead>Allocation %</TableRowEachHead>
               <TableRowEachHead>Quantity</TableRowEachHead>
               <TableRowEachHead>USD Value</TableRowEachHead>
-            </TableRowAssets>
-            <TableRowAssets>
-              <TableRowEachContentUnderLine>BNB</TableRowEachContentUnderLine>
+            </TableRowAssetsHead>
+            <TableRowAssets borderBottom="1px solid #117754">
+              <TableRowNo>1</TableRowNo>
+              <TableRowEachContent>BNB</TableRowEachContent>
               <TableRowEachContent>70%</TableRowEachContent>
               <TableRowEachContent>1.35</TableRowEachContent>
               <TableRowEachContent>$325.56</TableRowEachContent>
             </TableRowAssets>
-            <TableRowAssets>
-              <TableRowEachContentUnderLine>BEET</TableRowEachContentUnderLine>
+            <TableRowAssets borderBottom="1px solid #117754">
+              <TableRowNo>2</TableRowNo>
+              <TableRowEachContent>BEET</TableRowEachContent>
               <TableRowEachContent>20%</TableRowEachContent>
               <TableRowEachContent>4500</TableRowEachContent>
               <TableRowEachContent>$450</TableRowEachContent>
             </TableRowAssets>
-            <TableRowAssets>
-              <TableRowEachContentUnderLine>
-                BEET NFTs
-              </TableRowEachContentUnderLine>
+            <TableRowAssets borderRadius="0px 0px 16px 16px">
+              <TableRowNo>3</TableRowNo>
+              <TableRowEachContent>BEET NFTs</TableRowEachContent>
               <TableRowEachContent>10%</TableRowEachContent>
               <TableRowEachContent>6</TableRowEachContent>
               <TableRowEachContent>$60</TableRowEachContent>
@@ -153,7 +158,7 @@ const Overview = () => {
         </SectionChartData>
       </SectionTotalAssets>
       <SectionTotalAssets>
-        <TextHead01>Actions</TextHead01>
+        <TextTitle>Actions</TextTitle>
         <SecitonActionButtonGroup>
           <ButtonAction>Buy/Sell</ButtonAction>
           <ButtonAction>Send</ButtonAction>
@@ -185,8 +190,9 @@ const SectionUser = styled(Box)`
 
 const IconUser = styled(Box)`
   display: flex;
-  color: white;
-  font-size: 40px;
+
+  width: 100px;
+  aspect-ratio: 1;
 `;
 
 const SectionUserDetail = styled(Box)`
@@ -203,9 +209,25 @@ const SectionAddressWallet = styled(Box)`
 
 const TextAddressWallet = styled(Box)`
   display: flex;
-  color: rgb(0, 255, 25);
+  color: #a9d100;
   font-family: Rowdies;
-  font-size: 2em;
+  font-size: 2.4em;
+  font-style: normal;
+`;
+
+const TextClaimableRewards = styled(Box)`
+  display: flex;
+  color: white;
+  font-family: Rowdies;
+  font-size: 2.4em;
+  font-style: normal;
+`;
+
+const TextTitle = styled(Box)`
+  display: flex;
+  color: white;
+  font-family: Rowdies;
+  font-size: 3em;
   font-style: normal;
 `;
 
@@ -235,7 +257,7 @@ const TextBigDate = styled(Box)`
   display: flex;
   color: #fff;
   font-family: Rowdies;
-  font-size: 1.7em;
+  font-size: 1.5em;
   font-style: normal;
   margin-left: 5px;
 `;
@@ -243,9 +265,11 @@ const TextBigDate = styled(Box)`
 const SectionClaimable = styled(Box)`
   display: flex;
   box-sizing: border-box;
-  padding: 20px;
-  border-radius: 6px;
-  border: 2px solid white;
+  padding: 20px 30px;
+  border-radius: 16px;
+  border: 1px solid #117754;
+
+  background: #003d28;
   flex-direction: column;
 `;
 
@@ -257,7 +281,7 @@ const SectionClaim = styled(Box)`
 
 const TextBEETtoUSD = styled(Box)`
   display: flex;
-  color: #fff;
+  color: #a9d100;
   font-family: Rowdies;
   font-size: 3em;
   font-style: normal;
@@ -266,17 +290,19 @@ const TextBEETtoUSD = styled(Box)`
 
 const ButtonClaim = styled(Box)`
   display: flex;
-  width: 200px;
-  height: 50px;
+  width: fit-content;
+  height: 46px;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #117754;
+  padding: 0px 20px;
+  box-sizing: border-box;
   background: #a9d100;
   color: #003d28;
   text-align: center;
   font-family: Rowdies;
-  font-size: 2.5em;
+  font-size: 2em;
   font-style: normal;
   font-weight: 400;
   cursor: pointer;
@@ -300,31 +326,50 @@ const ButtonClaim = styled(Box)`
 `;
 
 const SecionBEETBalance = styled(Box)`
-  display: flex;
+  display: grid;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 80px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 30px;
 `;
 
 const SectionEachStatsBEET = styled(Box)`
   display: flex;
   flex: 1;
   flex-direction: column;
+  border-radius: 16px;
+  border: 1px solid #117754;
+
+  background: #003624;
+  padding: 30px;
+  box-sizing: border-box;
+
+  transition: 0.2s;
+  cursor: pointer;
+  &:hover {
+    filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.5));
+  }
 `;
 
 const TextHead01 = styled(Box)`
   display: flex;
-  color: #fff;
+  color: #7cc2aa;
+
   font-family: Rowdies;
-  font-size: 3em;
+  font-size: 22px;
   font-style: normal;
+  font-weight: 400;
 `;
 
 const TextContent01 = styled(Box)`
   display: flex;
-  color: rgb(255, 199, 0);
-  font-family: Rowdies;
-  font-size: 2.2em;
+  margin-top: 5px;
+  color: #fff;
+
+  font-family: Lato;
+  font-size: 30px;
   font-style: normal;
+  font-weight: 500;
 
   margin-top: 10px;
 `;
@@ -333,13 +378,14 @@ const SectionTotalAssets = styled(Box)`
   display: flex;
   width: 100%;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 80px;
 `;
 
 const SectionChartData = styled(Box)`
   display: flex;
   margin-top: 30px;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const SectionPieChart = styled(Box)`
@@ -348,78 +394,114 @@ const SectionPieChart = styled(Box)`
 
 const SectionAssetsDetails = styled(Box)`
   display: flex;
-  width: 800px;
+  flex: 1;
+  width: 100%;
+  margin-left: 100px;
   flex-direction: column;
+  border: 1px solid #117754;
+  border-radius: 16px;
+`;
+
+const TableRowAssetsHead = styled(Box)`
+  display: flex;
+  width: 100%;
+  height: 52px;
+  align-items: center;
+  border-radius: 16px 16px 0px 0px;
+  background: #a9d100;
+  border-bottom: 1px solid white;
+  /* box-shadow: 0px -1px 0px 0px #edf2f7 inset; */
 `;
 
 const TableRowAssets = styled(Box)`
   display: flex;
   width: 100%;
+  height: 80px;
   align-items: center;
-  margin-bottom: 20px;
+  background: #003624;
+  /* border-bottom: 1px solid #117754; */
+  /* box-shadow: 0px -1px 0px 0px #117754 inset; */
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    background: #117754;
+  }
+`;
+
+const TableRowNo = styled(Box)`
+  display: flex;
+  flex: 0.2;
+  color: #7cc2aa;
+  padding: 0px 15px;
+  font-family: Lato;
+  font-size: 2em;
+  font-weight: 500;
+  font-style: normal;
 `;
 
 const TableRowEachHead = styled(Box)`
   display: flex;
   flex: 1;
-  color: rgb(0, 255, 25);
+  color: #003d28;
+
   font-family: Rowdies;
   font-size: 2em;
-  font-style: normal;
+  font-weight: 400;
 `;
 
 const TableRowEachContent = styled(Box)`
   display: flex;
   flex: 1;
-  color: white;
-  font-family: Rowdies;
-  font-size: 1.6em;
+  color: #7cc2aa;
+
+  font-family: Lato;
+  font-size: 2em;
+  font-weight: 500;
   font-style: normal;
 `;
 
-const TableRowEachContentUnderLine = styled(Box)`
-  display: flex;
-  flex: 1;
-  color: white;
-  font-family: Rowdies;
-  font-size: 1.6em;
-  font-style: normal;
-  text-decoration: underline;
-`;
+// const TableRowEachContentUnderLine = styled(Box)`
+//   display: flex;
+//   flex: 1;
+//   color: #7cc2aa;
+
+//   font-family: Lato;
+//   font-size: 2em;
+//   font-weight: 500;
+// `;
 
 const SecitonActionButtonGroup = styled(Box)`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 30px;
 `;
 
 const ButtonAction = styled(Box)`
   display: flex;
-  width: fit-content;
-  padding: 0px 20px;
-  height: 50px;
+  width: 300px;
+  height: 100px;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  border: 1px solid #117754;
-  background: #a9d100;
-  color: #003d28;
+
+  background-image: url(${imgButtonGreen01});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  color: white;
   text-align: center;
-  font-family: Rowdies;
-  font-size: 2.5em;
+  font-family: Lato;
+  font-size: 2.4em;
   font-style: normal;
-  font-weight: 400;
-  margin-right: 100px;
+  font-weight: 700;
   cursor: pointer;
   user-select: none;
 
   transition: 0.2s;
+  cursor: pointer;
   &:hover {
-    background-color: white;
-    color: #a9d100;
-  }
-  &:active {
-    transform: scale(0.95);
+    filter: drop-shadow(0px 6px 6px rgba(255, 255, 255, 0.3));
   }
 
   @media (max-width: 768px) {

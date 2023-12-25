@@ -11,7 +11,7 @@ const Dashboard = () => {
 
   return (
     <StyledComponent>
-      <SectionTabContent>
+      <SectionTabContent clicked={flagClickedTab === 0 ? true : false}>
         <SectionTab>
           {dataTabDashboard.map((each, index) => {
             if (flagClickedTab === index) {
@@ -79,24 +79,25 @@ const SectionTabContent = styled(Box)`
   width: 100%;
   border: 2px solid #117754;
   background-color: #00583a;
-  border-radius: 12px;
+  border-radius: ${({ clicked }: any) =>
+    clicked ? "0px 8px 8px 8px" : "8px 8px 8px 8px"};
 
-  padding: 40px;
+  padding: 60px 30px;
   box-sizing: border-box;
 `;
 
 const SectionTab = styled(Box)`
   display: flex;
   position: absolute;
-  top: -45px;
-  left: 40px;
+  top: -50px;
+  left: -2px;
 `;
 
 const ButtonClickedTab = styled(Box)`
   display: flex;
   width: fit-content;
-  height: 45px;
-  padding: 0px 15px;
+  height: 50px;
+  padding: 0px 16px;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
@@ -106,7 +107,7 @@ const ButtonClickedTab = styled(Box)`
   border-left: 2px solid #117754;
   border-right: 2px solid #117754;
   border-bottom: 2px solid #00583a;
-  border-radius: 6px 6px 0px 0px;
+  border-radius: 8px 8px 0px 0px;
 
   font-family: "Rowdies";
   font-style: normal;
@@ -120,8 +121,8 @@ const ButtonClickedTab = styled(Box)`
 const ButtonUnClickedTab = styled(Box)`
   display: flex;
   width: fit-content;
-  height: 45px;
-  padding: 0px 15px;
+  height: 50px;
+  padding: 0px 16px;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
