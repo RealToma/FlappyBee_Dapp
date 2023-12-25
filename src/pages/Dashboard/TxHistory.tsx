@@ -19,7 +19,7 @@ const TxHistory = () => {
       <SectionAssetsDetails>
         <TableRowAssetsHead>
           <TableRowNo></TableRowNo>
-          <TableRowEachHead flex="1.5">TX ID</TableRowEachHead>
+          <TableRowEachHead flex="1.5">Tx ID</TableRowEachHead>
           <TableRowEachHead flex="1">Date</TableRowEachHead>
           <TableRowEachHead flex="1">Type</TableRowEachHead>
           <TableRowEachHead flex="1.5">Comment</TableRowEachHead>
@@ -51,27 +51,6 @@ const TxHistory = () => {
             </TableRowAssets>
           );
         })}
-        {/* <TableRowAssets borderBottom="1px solid #117754">
-          <TableRowNo>1</TableRowNo>
-          <TableRowEachContent>BNB</TableRowEachContent>
-          <TableRowEachContent>70%</TableRowEachContent>
-          <TableRowEachContent>1.35</TableRowEachContent>
-          <TableRowEachContent>$325.56</TableRowEachContent>
-        </TableRowAssets>
-        <TableRowAssets borderBottom="1px solid #117754">
-          <TableRowNo>2</TableRowNo>
-          <TableRowEachContent>BEET</TableRowEachContent>
-          <TableRowEachContent>20%</TableRowEachContent>
-          <TableRowEachContent>4500</TableRowEachContent>
-          <TableRowEachContent>$450</TableRowEachContent>
-        </TableRowAssets>
-        <TableRowAssets borderRadius="0px 0px 16px 16px">
-          <TableRowNo>3</TableRowNo>
-          <TableRowEachContent>BEET NFTs</TableRowEachContent>
-          <TableRowEachContent>10%</TableRowEachContent>
-          <TableRowEachContent>6</TableRowEachContent>
-          <TableRowEachContent>$60</TableRowEachContent>
-        </TableRowAssets> */}
       </SectionAssetsDetails>
     </StyledComponent>
   );

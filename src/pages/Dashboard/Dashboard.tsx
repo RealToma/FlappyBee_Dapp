@@ -77,7 +77,7 @@ const SectionTabContent = styled(Box)`
   display: flex;
   position: relative;
   width: 100%;
-  border: 2px solid #117754;
+  border: 2px solid #a9d100;
   background-color: #00583a;
   border-radius: ${({ clicked }: any) =>
     clicked ? "0px 8px 8px 8px" : "8px 8px 8px 8px"};
@@ -101,12 +101,14 @@ const ButtonClickedTab = styled(Box)`
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  color: white;
-  background-color: #00583a;
-  border-top: 2px solid #117754;
-  border-left: 2px solid #117754;
-  border-right: 2px solid #117754;
-  border-bottom: 2px solid #00583a;
+  /* color: white; */
+  color: #003d28;
+  background: #a9d100;
+  /* background-color: #00583a; */
+  border-top: 2px solid #a9d100;
+  border-left: 2px solid #a9d100;
+  border-right: 2px solid #a9d100;
+  border-bottom: 2px solid #a9d100;
   border-radius: 8px 8px 0px 0px;
 
   font-family: "Rowdies";
