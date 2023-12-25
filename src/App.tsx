@@ -5,7 +5,11 @@ import Home from "./pages/Home/Home";
 import Game from "./Game/Game";
 import Layout from "./pages/Layout/Layout";
 import Rewards from "./pages/Rewards/Rewards";
-import Stake from "./pages/Stake/Stake";
+import LeaderboardPremium from "./pages/Leaderboard/LeaderboardPremium";
+import LeaderboardFree from "./pages/Leaderboard/LeaderboardFree";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import StakePage from "./pages/Stake/StakePage";
+// import Stake from "./pages/Stake/Stake";
 import Settings from "./pages/Settings/Settings";
 // import Airdrop from "./pages/Airdrop/Airdop";
 import "./actions/baseURL";
@@ -27,9 +31,6 @@ import { GameSystemProvider } from "./Game/Context/GameSystem.context";
 import { BirdProvider } from "./Game/Context/Bird.context";
 // import { ObstacleProvider } from "./Game/Context/Obstacle.context";
 import { ScoreProvider } from "./Game/Context/Score.context";
-import LeaderboardPremium from "./pages/Leaderboard/LeaderboardPremium";
-import LeaderboardFree from "./pages/Leaderboard/LeaderboardFree";
-import Dashboard from "./pages/Dashboard/Dashboard";
 
 const App = () => {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -96,7 +97,7 @@ const App = () => {
                   <Route path="/claim_rewards" element={<ClaimRewards />} />
                   {/* <Route path="/claim" element={<Claim />} /> */}
                   {/* <Route path="/airdrop" element={<Airdrop />} /> */}
-                  <Route path="/stake" element={<Stake />} />
+                  <Route path="/stake" element={<StakePage />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/nft" element={<NFT />} />
                   <Route

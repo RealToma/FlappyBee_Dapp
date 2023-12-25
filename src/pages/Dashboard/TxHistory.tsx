@@ -3,12 +3,13 @@ import styled from "styled-components";
 // import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { dataTxHistory } from "../../data/Transactions";
+import { TextStakeTitle } from "../../components/Text/TextStakeTitle";
 
 const TxHistory = () => {
   return (
     <StyledComponent>
       <SectionSearchTx>
-        <TextHead01>All Transactions</TextHead01>
+      <TextStakeTitle text="All Transactions" />
         <InputSearchTx>
           <IconSearch>
             <FaSearch />
@@ -65,14 +66,6 @@ const StyledComponent = styled(Box)`
 const SectionSearchTx = styled(Box)`
   display: flex;
   align-items: center;
-`;
-
-const TextHead01 = styled(Box)`
-  display: flex;
-  color: #fff;
-  font-family: Rowdies;
-  font-size: 3em;
-  font-style: normal;
 `;
 
 const InputSearchTx = styled(Box)`

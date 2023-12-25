@@ -10,6 +10,7 @@ import { RefContext } from "../../libs/RefContext";
 import Chart from "react-apexcharts";
 import imgUser01 from "../../assets/images/icons/user01.png";
 import imgButtonGreen01 from "../../assets/images/buttons/GreenButton01.svg";
+import { TextStakeTitle } from "../../components/Text/TextStakeTitle";
 
 const dataChartAssets: any = {
   series: [70, 20, 10],
@@ -124,7 +125,7 @@ const Overview = () => {
         </SectionEachStatsBEET>
       </SecionBEETBalance>
       <SectionTotalAssets>
-        <TextTitle>Total Assets Overview</TextTitle>
+        <TextStakeTitle text="Total Assets Overview" />
         <SectionChartData>
           <SectionPieChart>
             <Chart
@@ -171,7 +172,7 @@ const Overview = () => {
         </SectionChartData>
       </SectionTotalAssets>
       <SectionTotalAssets>
-        <TextTitle>Actions</TextTitle>
+        <TextStakeTitle text="Actions" />
         <SecitonActionButtonGroup>
           <ButtonAction>Buy/Sell</ButtonAction>
           <ButtonAction>Send</ButtonAction>
@@ -203,7 +204,6 @@ const SectionUser = styled(Box)`
 
 const IconUser = styled(Box)`
   display: flex;
-
   width: 100px;
   aspect-ratio: 1;
 `;
@@ -233,14 +233,6 @@ const TextClaimableRewards = styled(Box)`
   color: white;
   font-family: Rowdies;
   font-size: 2.4em;
-  font-style: normal;
-`;
-
-const TextTitle = styled(Box)`
-  display: flex;
-  color: white;
-  font-family: Rowdies;
-  font-size: 3em;
   font-style: normal;
 `;
 
