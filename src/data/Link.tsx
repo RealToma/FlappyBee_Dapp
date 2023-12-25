@@ -65,10 +65,6 @@ export const dataTopNavigation: Link[] = [
         name: "Validator",
         link: "/validator",
       },
-      {
-        name: "Buy/Sell",
-        link: "/buysell",
-      },
     ],
   },
   {

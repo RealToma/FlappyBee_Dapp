@@ -9,11 +9,10 @@ import { HiClipboard, HiClipboardCheck } from "react-icons/hi";
 import { RefContext } from "../../libs/RefContext";
 import Chart from "react-apexcharts";
 import imgUser01 from "../../assets/images/icons/user01.png";
-import imgLeaderboardStas from "../../assets/images/background/leaderboardStats.svg";
 import imgButtonGreen01 from "../../assets/images/buttons/GreenButton01.svg";
 
 const dataChartAssets: any = {
-  series: [44, 55, 13, 43, 22],
+  series: [70, 20, 10],
   options: {
     // chart: {
     //   width: 380,
@@ -26,7 +25,7 @@ const dataChartAssets: any = {
         opacity: 0.5,
       },
     },
-    labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+    labels: [" BNB", " $ BEET", " BEET NFTs"],
     responsive: [
       {
         breakpoint: 480,
@@ -94,7 +93,8 @@ const Overview = () => {
           <TextClaimableRewards>Total Claimabe Rewards :</TextClaimableRewards>
           <SectionClaim>
             <TextBEETtoUSD>
-              {balanceBEET} $BEET = {balanceBEET * 0.001} USD
+              {balanceBEET} $BEET ={" "}
+              {balanceBEET * (process.env.REACT_APP_PRICE_BEET_USD as any)} USD
             </TextBEETtoUSD>
             <ButtonClaim>Claim Now</ButtonClaim>
           </SectionClaim>
@@ -103,15 +103,24 @@ const Overview = () => {
       <SecionBEETBalance>
         <SectionEachStatsBEET>
           <TextHead01>BEET Wallet</TextHead01>
-          <TextContent01>$597.68</TextContent01>
+          <TextContent01>
+            ${" "}
+            {(balanceBEET + balanceBEETStaked) *
+              (process.env.REACT_APP_PRICE_BEET_USD as any)}
+          </TextContent01>
         </SectionEachStatsBEET>
         <SectionEachStatsBEET>
           <TextHead01>Available</TextHead01>
-          <TextContent01>$30</TextContent01>
+          <TextContent01>
+            $ {balanceBEET * (process.env.REACT_APP_PRICE_BEET_USD as any)}
+          </TextContent01>
         </SectionEachStatsBEET>
         <SectionEachStatsBEET>
           <TextHead01>Staked</TextHead01>
-          <TextContent01>$567.68</TextContent01>
+          <TextContent01>
+            ${" "}
+            {balanceBEETStaked * (process.env.REACT_APP_PRICE_BEET_USD as any)}
+          </TextContent01>
         </SectionEachStatsBEET>
       </SecionBEETBalance>
       <SectionTotalAssets>
@@ -137,15 +146,19 @@ const Overview = () => {
               <TableRowNo>1</TableRowNo>
               <TableRowEachContent>BNB</TableRowEachContent>
               <TableRowEachContent>70%</TableRowEachContent>
-              <TableRowEachContent>1.35</TableRowEachContent>
-              <TableRowEachContent>$325.56</TableRowEachContent>
+              <TableRowEachContent>{balanceBNB}</TableRowEachContent>
+              <TableRowEachContent>$ {balanceBNB * 250}</TableRowEachContent>
             </TableRowAssets>
             <TableRowAssets borderBottom="1px solid #117754">
               <TableRowNo>2</TableRowNo>
               <TableRowEachContent>BEET</TableRowEachContent>
               <TableRowEachContent>20%</TableRowEachContent>
-              <TableRowEachContent>4500</TableRowEachContent>
-              <TableRowEachContent>$450</TableRowEachContent>
+              <TableRowEachContent>{balanceBEET}</TableRowEachContent>
+              <TableRowEachContent>
+                ${" "}
+                {(balanceBEET + balanceBEETStaked) *
+                  (process.env.REACT_APP_PRICE_BEET_USD as any)}
+              </TableRowEachContent>
             </TableRowAssets>
             <TableRowAssets borderRadius="0px 0px 16px 16px">
               <TableRowNo>3</TableRowNo>
