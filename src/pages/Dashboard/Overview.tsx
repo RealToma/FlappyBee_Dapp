@@ -55,7 +55,7 @@ const Overview = () => {
     }, 1000);
   };
 
-  const { balanceBNB, balanceBEET, balanceBEETStaked }: any =
+  const { balanceBNB, balanceBEET, balanceBEETStaked, balanceBEETNFT }: any =
     useContext(RefContext);
 
   return (
@@ -165,8 +165,8 @@ const Overview = () => {
               <TableRowNo>3</TableRowNo>
               <TableRowEachContent>BEET NFTs</TableRowEachContent>
               <TableRowEachContent>10%</TableRowEachContent>
-              <TableRowEachContent>6</TableRowEachContent>
-              <TableRowEachContent>$60</TableRowEachContent>
+              <TableRowEachContent>{balanceBEETNFT}</TableRowEachContent>
+              <TableRowEachContent>${balanceBEETNFT*(process.env.REACT_APP_PRICE_BEETNFT_USD as any)}</TableRowEachContent>
             </TableRowAssets>
           </SectionAssetsDetails>
         </SectionChartData>

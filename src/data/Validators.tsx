@@ -7,14 +7,14 @@ export const dataValidators = [
     flagFeatured: true,
   },
   {
-    name: "Joshua Kimmich",
+    name: "Joshua Kahn",
     addressWallet: "0xf19bDBc8dF1C299a2eB13A680fdF4E9E75c1D36E",
     commission: "1",
     sizePool: 230000,
     flagFeatured: true,
   },
   {
-    name: "Jeffrey Grover",
+    name: "J.Grover",
     addressWallet: "0x6a541f2c597c557d97cDDF64F56FF12F1f29102f",
     commission: "1",
     sizePool: 300000,

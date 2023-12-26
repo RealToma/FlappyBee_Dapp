@@ -57,7 +57,7 @@ const ModalStake = () => {
             <SectionEachCard>
               <TextCardTitle>{dataValidator.name} Total Staked</TextCardTitle>
               <SectionCardDown>
-                <TextCardValue>$30</TextCardValue>
+                <TextCardValue>${dataValidator.sizePool * (process.env.REACT_APP_PRICE_BEET_USD as any)}</TextCardValue>
                 <IconLock>
                   <RiLock2Line />
                 </IconLock>
