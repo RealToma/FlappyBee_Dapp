@@ -44,7 +44,7 @@ const LeaderboardFree = () => {
   const handleConnectWallet = () => {
     if (account === undefined) {
       return NotificationManager.warning(
-        "Please connect your wallet.",
+        "Connect your wallet.",
         "",
         3000
       );

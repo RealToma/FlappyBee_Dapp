@@ -21,7 +21,7 @@ const ModalPlayToEarn = ({ flagModalP2E, setFlagModalP2E }: any) => {
   const handleClose = () => setFlagModalP2E(false);
   const [flagAcknowledge, setFlagAcknowledge] = useState(false);
 
-  const handleCheckStakedBEET = () => {};
+  // const handleCheckStakedBEET = () => {};
 
   const handleStart = () => {
     if (!flagAcknowledge) {
@@ -29,7 +29,7 @@ const ModalPlayToEarn = ({ flagModalP2E, setFlagModalP2E }: any) => {
     }
     if (account === undefined || account === null) {
       return NotificationManager.warning(
-        "Please connect your wallet.",
+        "Connect your wallet.",
         "",
         3000
       );

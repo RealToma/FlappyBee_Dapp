@@ -61,10 +61,10 @@ export const dataTopNavigation: Link[] = [
         name: "Stake",
         link: "/stake",
       },
-      {
-        name: "Validator",
-        link: "/validator",
-      },
+      // {
+      //   name: "Validator",
+      //   link: "/validator",
+      // },
     ],
   },
   {

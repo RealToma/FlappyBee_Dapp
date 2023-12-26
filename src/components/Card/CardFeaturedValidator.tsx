@@ -2,8 +2,23 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import imgUser02 from "../../assets/images/icons/user02.png";
 import { shortAddress } from "../../libs/Functions";
+import { useContext } from "react";
+import { RefContext } from "../../libs/RefContext";
+import { useWeb3React } from "@web3-react/core";
+import { NotificationManager } from "react-notifications";
 
 const CardFeaturedValidator = ({ data }: any) => {
+  const { account } = useWeb3React();
+  const { setFlagModalDelegate, setDataValidator }: any =
+    useContext(RefContext);
+  const handleDelegate = () => {
+    if (account === undefined || account === null) {
+      return NotificationManager.warning("Connect your wallet.", "", 3000);
+    }
+    setDataValidator(data);
+    setFlagModalDelegate(true);
+  };
+
   return (
     <StyledComponent>
       <SectionUp>
@@ -18,14 +33,20 @@ const CardFeaturedValidator = ({ data }: any) => {
             </TextAddressWallet>
           </SectionUserInfo>
         </SectionUserDetail>
-        <TextCommission>{data.commission}% commision</TextCommission>
+        <TextCommission>{data.commission}% commission</TextCommission>
       </SectionUp>
       <SectionDown>
         <SectionPoolSize>
           <TextPoolTitle>Validator Pool size</TextPoolTitle>
           <TextPoolValue>{data.sizePool}</TextPoolValue>
         </SectionPoolSize>
-        <ButtonDelegate>Delegate</ButtonDelegate>
+        <ButtonDelegate
+          onClick={() => {
+            handleDelegate();
+          }}
+        >
+          Delegate
+        </ButtonDelegate>
       </SectionDown>
     </StyledComponent>
   );
@@ -44,7 +65,7 @@ const StyledComponent = styled(Box)`
 
   cursor: pointer;
   transition: 0.3s;
-  &:hover{
+  &:hover {
     filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.5));
   }
 `;

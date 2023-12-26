@@ -27,7 +27,7 @@ const CardStakingOption = ({ data }: any) => {
   const handleConfirm = () => {
     if (account === undefined) {
       return NotificationManager.warning(
-        "Please connect your wallet.",
+        "Connect your wallet.",
         "",
         3000
       );

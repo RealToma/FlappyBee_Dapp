@@ -9,7 +9,7 @@ const TxHistory = () => {
   return (
     <StyledComponent>
       <SectionSearchTx>
-      <TextStakeTitle text="All Transactions" />
+        <TextStakeTitle text="All Transactions" />
         <InputSearchTx>
           <IconSearch>
             <FaSearch />
@@ -152,9 +152,9 @@ const TableRowAssets = styled(Box)`
 
 const TableRowNo = styled(Box)`
   display: flex;
-  flex: 0.2;
+  flex: 0.1;
   color: #7cc2aa;
-  padding: 0px 15px;
+  padding-left: 20px;
   font-family: Lato;
   font-size: 2em;
   font-weight: 500;

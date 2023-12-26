@@ -121,7 +121,7 @@ export const ObstacleProvider = ({
 
       if (account === undefined || account === null) {
         return NotificationManager.warning(
-          "Please connect your wallet.",
+          "Connect your wallet.",
           "",
           3000
         );

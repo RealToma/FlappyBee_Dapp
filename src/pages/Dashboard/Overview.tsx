@@ -26,7 +26,7 @@ const dataChartAssets: any = {
         opacity: 0.5,
       },
     },
-    labels: [" BNB", " $ BEET", " BEET NFTs"],
+    labels: [" BNB", " BEET", " BEET NFTs"],
     responsive: [
       {
         breakpoint: 480,
@@ -435,9 +435,9 @@ const TableRowAssets = styled(Box)`
 
 const TableRowNo = styled(Box)`
   display: flex;
-  flex: 0.2;
+  flex: 0.1;
   color: #7cc2aa;
-  padding: 0px 15px;
+  padding-left: 20px;
   font-family: Lato;
   font-size: 2em;
   font-weight: 500;
