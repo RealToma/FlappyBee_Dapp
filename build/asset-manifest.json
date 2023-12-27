@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.c948ab76.css",
-    "main.js": "/static/js/main.88e65b4b.js",
+    "main.css": "/static/css/main.ff0c2824.css",
+    "main.js": "/static/js/main.6587296c.js",
     "static/js/563.1d645fe9.chunk.js": "/static/js/563.1d645fe9.chunk.js",
     "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
-    "static/js/778.245eeb8f.chunk.js": "/static/js/778.245eeb8f.chunk.js",
+    "static/js/778.8df39935.chunk.js": "/static/js/778.8df39935.chunk.js",
     "static/media/BGHome.png": "/static/media/BGHome.c20685ce6e266b6b6c9c.png",
     "static/media/backSky.png": "/static/media/backSky.c20685ce6e266b6b6c9c.png",
     "static/media/coins.png": "/static/media/coins.d3ec69b9944558f62f4b.png",
@@ -13,6 +13,7 @@
     "static/media/bgAirdrop.png": "/static/media/bgAirdrop.e49248e7d899f6f9cf12.png",
     "static/media/binance.png": "/static/media/binance.c419fbd4e7c0ee4ff313.png",
     "static/media/metamask.png": "/static/media/metamask.02e3ec2750d2107176f5.png",
+    "static/media/bnb01.png": "/static/media/bnb01.27f54c9b112c188df5b5.png",
     "static/media/TopFlowers.png": "/static/media/TopFlowers.1c25468452a6bad64455.png",
     "static/media/pipe.png": "/static/media/pipe.c012cc55f45026713ad8.png",
     "static/media/Bee01.png": "/static/media/Bee01.b341fb5114ed2c4f32ee.png",
@@ -21,28 +22,27 @@
     "static/media/Bee-01.png": "/static/media/Bee-01.79c8e64d624457035e64.png",
     "static/media/Bee-02.png": "/static/media/Bee-02.de6d815550eb00ce3436.png",
     "static/media/Bee-03.png": "/static/media/Bee-03.112b3b46031ea605964b.png",
-    "static/media/coinReward.png": "/static/media/coinReward.dbb2ff0fdb21b9c0a9ce.png",
     "static/media/floor.png": "/static/media/floor.138d35eea73f8d30467c.png",
     "static/media/walletConnect.svg": "/static/media/walletConnect.488dc369fbb265f431a7f8e741623b76.svg",
-    "static/media/ether02.png": "/static/media/ether02.141cb5bac5c28a092d3e.png",
     "static/media/HomeSmall.png": "/static/media/HomeSmall.82bebf0155559005e43c.png",
     "static/media/cursorClickon.png": "/static/media/cursorClickon.d0c6db7c1d71413e978e.png",
     "static/media/GreenWide.svg": "/static/media/GreenWide.fba4f2011fe14af9b4bff83140843109.svg",
     "static/media/leaderboardTop.svg": "/static/media/leaderboardTop.edf36bd5774ea1b7f472eb5f8e169502.svg",
     "static/media/notification.svg?s3g3t9": "/static/media/notification.5d0158671dd860c714c4.svg",
     "index.html": "/index.html",
+    "static/media/GreenButton01.svg": "/static/media/GreenButton01.91eb2eeba7b36a38086c0813ac8e4bc2.svg",
     "static/media/leaderboardStats.svg": "/static/media/leaderboardStats.2a90fa3898e28d0ff93a2228c7df9a14.svg",
     "static/media/leaderboardNormal.svg": "/static/media/leaderboardNormal.f23e8a57bf53a42aa7731f24a3f70cdb.svg",
     "static/media/notification.eot": "/static/media/notification.3657084dc0419605a91c.eot",
     "static/media/notification.woff?s3g3t9": "/static/media/notification.c392cd33d9d9de730f9d.woff",
     "static/media/notification.ttf?s3g3t9": "/static/media/notification.c5d9251ea82e42f75381.ttf",
-    "main.c948ab76.css.map": "/static/css/main.c948ab76.css.map",
-    "main.88e65b4b.js.map": "/static/js/main.88e65b4b.js.map",
+    "main.ff0c2824.css.map": "/static/css/main.ff0c2824.css.map",
+    "main.6587296c.js.map": "/static/js/main.6587296c.js.map",
     "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map",
-    "778.245eeb8f.chunk.js.map": "/static/js/778.245eeb8f.chunk.js.map"
+    "778.8df39935.chunk.js.map": "/static/js/778.8df39935.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c948ab76.css",
-    "static/js/main.88e65b4b.js"
+    "static/css/main.ff0c2824.css",
+    "static/js/main.6587296c.js"
   ]
 }

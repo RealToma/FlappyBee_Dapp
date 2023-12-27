@@ -222,61 +222,71 @@ const Overview = () => {
               <TableRowNo>1</TableRowNo>
               <TableRowEachContent>BNB</TableRowEachContent>
               <TableRowEachContent>
-                {shortFloat(getAssetPercent(balanceBNB * 250), 1)}%
+                {!active
+                  ? "_"
+                  : shortFloat(getAssetPercent(balanceBNB * 250), 1) + "%"}
               </TableRowEachContent>
               <TableRowEachContent>
-                {shortFloat(balanceBNB, 5)}
+                {!active ? "_" : shortFloat(balanceBNB, 5)}
               </TableRowEachContent>
               <TableRowEachContent>
-                $ {shortFloat(balanceBNB * 250, 3)}
+                {!active ? "_" : "$ " + shortFloat(balanceBNB * 250, 3)}
               </TableRowEachContent>
             </TableRowAssets>
             <TableRowAssets borderBottom="1px solid #117754">
               <TableRowNo>2</TableRowNo>
               <TableRowEachContent>BEET</TableRowEachContent>
               <TableRowEachContent>
-                {shortFloat(
-                  getAssetPercent(
-                    (balanceBEET + balanceBEETStaked) *
-                      (process.env.REACT_APP_PRICE_BEET_USD as any)
-                  ),
-                  1
-                )}
-                %
+                {!active
+                  ? "_"
+                  : shortFloat(
+                      getAssetPercent(
+                        (balanceBEET + balanceBEETStaked) *
+                          (process.env.REACT_APP_PRICE_BEET_USD as any)
+                      ),
+                      1
+                    ) + "%"}
               </TableRowEachContent>
               <TableRowEachContent>
-                {shortFloat(balanceBEET, 5)}
+                {!active ? "_" : shortFloat(balanceBEET, 5)}
               </TableRowEachContent>
               <TableRowEachContent>
-                ${" "}
-                {shortFloat(
-                  (balanceBEET + balanceBEETStaked) *
-                    (process.env.REACT_APP_PRICE_BEET_USD as any),
-                  3
-                )}
+                {!active
+                  ? "_"
+                  : "$ " +
+                    shortFloat(
+                      (balanceBEET + balanceBEETStaked) *
+                        (process.env.REACT_APP_PRICE_BEET_USD as any),
+                      3
+                    )}
               </TableRowEachContent>
             </TableRowAssets>
             <TableRowAssets borderRadius="0px 0px 16px 16px">
               <TableRowNo>3</TableRowNo>
               <TableRowEachContent>BEET NFTs</TableRowEachContent>
               <TableRowEachContent>
-                {shortFloat(
-                  getAssetPercent(
-                    balanceBEETNFT *
-                      (process.env.REACT_APP_PRICE_BEETNFT_USD as any)
-                  ),
-                  1
-                )}
-                %
+                {!active
+                  ? "_"
+                  : shortFloat(
+                      getAssetPercent(
+                        balanceBEETNFT *
+                          (process.env.REACT_APP_PRICE_BEETNFT_USD as any)
+                      ),
+                      1
+                    ) + "%"}
               </TableRowEachContent>
-              <TableRowEachContent>{balanceBEETNFT}</TableRowEachContent>
               <TableRowEachContent>
-                ${" "}
-                {shortFloat(
-                  balanceBEETNFT *
-                    (process.env.REACT_APP_PRICE_BEETNFT_USD as any),
-                  3
-                )}
+                {!active ? "_" : balanceBEETNFT}
+              </TableRowEachContent>
+              <TableRowEachContent>
+                {!active
+                  ? "_"
+                  : "$ " +
+                    shortFloat(
+                      balanceBEETNFT *
+                        (process.env.REACT_APP_PRICE_BEETNFT_USD as any),
+                      3
+                    )}
               </TableRowEachContent>
             </TableRowAssets>
           </SectionAssetsDetails>

@@ -11,7 +11,11 @@ import { Web3Provider } from "@ethersproject/providers";
 import { ethers } from "ethers";
 import { CONTRACTS } from "../../utils/constants";
 import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
-import { covertEthToWei, getAllBalance } from "../../libs/Functions";
+import {
+  covertEthToWei,
+  getAllBalance,
+  shortFloat,
+} from "../../libs/Functions";
 import { Hourglass } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 
@@ -153,9 +157,7 @@ const ModalStake = () => {
               <TextCardTitle>{dataValidator.name} Total Staked</TextCardTitle>
               <SectionCardDown>
                 <TextCardValue>
-                  $
-                  {dataValidator.sizePool *
-                    (process.env.REACT_APP_PRICE_BEET_USD as any)}
+                  {shortFloat(Number(dataValidator.sizePool), 2)} $BEET
                 </TextCardValue>
                 <IconLock>
                   <RiLock2Line />
@@ -175,13 +177,17 @@ const ModalStake = () => {
               <SectionEachCard>
                 <TextCardTitle>Total Staked</TextCardTitle>
                 <SectionCardDown>
-                  <TextCardValue>{balanceBEETStaked}</TextCardValue>
+                  <TextCardValue>
+                    {shortFloat(balanceBEETStaked, 2)} $BEET
+                  </TextCardValue>
                 </SectionCardDown>
               </SectionEachCard>
               <SectionEachCard>
                 <TextCardTitle>Available in Wallet</TextCardTitle>
                 <SectionCardDown>
-                  <TextCardValue>{balanceBEET}</TextCardValue>
+                  <TextCardValue>
+                    {shortFloat(balanceBEET, 2)} $BEET
+                  </TextCardValue>
                 </SectionCardDown>
               </SectionEachCard>
             </SectionValidatorInfo>
@@ -189,7 +195,15 @@ const ModalStake = () => {
               <SectionEachCard>
                 <TextCardTitle>Staked With {dataValidator.name}</TextCardTitle>
                 <SectionCardDown01>
-                  <TextCardValue>{dataValidator.sizePool}</TextCardValue>
+                  <TextCardValue>
+                    {shortFloat(Number(dataValidator.sizePool), 2)} $BEET ={" "}
+                    {shortFloat(
+                      Number(dataValidator.sizePool) *
+                        (process.env.REACT_APP_PRICE_BEET_USD as any),
+                      3
+                    )}{" "}
+                    USD
+                  </TextCardValue>
                   <TextRedelegate
                     onClick={() => {
                       handleCloseModal();
@@ -208,7 +222,9 @@ const ModalStake = () => {
               <SectionEachCard>
                 <SectionEachCardUp>
                   <TextCardTitle>Amount</TextCardTitle>
-                  <TextCardTitle>Available : {balanceBEET} $BEET</TextCardTitle>
+                  <TextCardTitle>
+                    Available : {shortFloat(balanceBEET, 2)} $BEET
+                  </TextCardTitle>
                 </SectionEachCardUp>
 
                 <SectionCardDown>
