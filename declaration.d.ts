@@ -1,6 +1,7 @@
 declare module "styled-components";
 declare module "aos";
-declare module "react-fast-marquee"
+declare module "react-fast-marquee";
+declare module "react-loader-spinner";
 declare module "react-notifications" {
   import { ReactNode } from "react";
   import { EventEmitter } from "events";
@@ -50,14 +51,14 @@ declare module "react-notifications" {
     priority?: boolean;
   }
 
-  class Notification extends React.Component<NotificationProps, {}> {}
+  class Notification extends React.Component<NotificationProps, {}> { }
 
-  class Notifications extends React.Component<NotificationsProps, {}> {}
+  class Notifications extends React.Component<NotificationsProps, {}> { }
 
   class NotificationContainer extends React.Component<
     NotificationContainerProps,
     {}
-  > {}
+  > { }
 
   class NotificationManager extends EventEmitter {
     static create(INotificationManagerCreate): void;

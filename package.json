@@ -28,6 +28,7 @@
     "react-dom": "^18.2.0",
     "react-fast-marquee": "^1.6.1",
     "react-icons": "^4.9.0",
+    "react-loader-spinner": "^6.1.6",
     "react-notifications": "^1.7.4",
     "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
@@ -65,6 +66,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-loader-spinner": "^4.0.0",
     "@types/styled-components": "^5.1.26"
   }
 }

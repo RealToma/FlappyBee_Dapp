@@ -11,6 +11,7 @@ import Chart from "react-apexcharts";
 import imgUser01 from "../../assets/images/icons/user01.png";
 import imgButtonGreen01 from "../../assets/images/buttons/GreenButton01.svg";
 import { TextStakeTitle } from "../../components/Text/TextStakeTitle";
+import { NotificationManager } from "react-notifications";
 
 const dataChartAssets: any = {
   series: [70, 20, 10],
@@ -58,6 +59,27 @@ const Overview = () => {
   const { balanceBNB, balanceBEET, balanceBEETStaked, balanceBEETNFT }: any =
     useContext(RefContext);
 
+  const handleClaim = () => {
+    if (account === undefined || account === null) {
+      return NotificationManager.warning("Connect your wallet.", "", 3000);
+    }
+  };
+
+  const handleOpenMetamask = () => {
+    // if (window.ethereum) {
+    //   window.ethereum
+    //     .request({ method: "eth_requestAccounts" })
+    //     .then((accounts) => {
+    //       console.log("Connected to MetaMask:", accounts[0]);
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error connecting to MetaMask:", error);
+    //     });
+    // } else {
+    //   console.error("MetaMask not installed");
+    // }
+  };
+
   return (
     <StyledComponent>
       <SectionTop>
@@ -94,10 +116,13 @@ const Overview = () => {
           <TextClaimableRewards>Total Claimabe Rewards :</TextClaimableRewards>
           <SectionClaim>
             <TextBEETtoUSD>
-              {balanceBEET} $BEET ={" "}
-              {balanceBEET * (process.env.REACT_APP_PRICE_BEET_USD as any)} USD
+              {active
+                ? `${balanceBEET} $BEET = ${
+                    balanceBEET * (process.env.REACT_APP_PRICE_BEET_USD as any)
+                  } USD`
+                : "Connect Wallet"}
             </TextBEETtoUSD>
-            <ButtonClaim>Claim Now</ButtonClaim>
+            <ButtonClaim onClick={() => handleClaim()}>Claim Now</ButtonClaim>
           </SectionClaim>
         </SectionClaimable>
       </SectionTop>
@@ -105,22 +130,33 @@ const Overview = () => {
         <SectionEachStatsBEET>
           <TextHead01>BEET Wallet</TextHead01>
           <TextContent01>
-            ${" "}
-            {(balanceBEET + balanceBEETStaked) *
-              (process.env.REACT_APP_PRICE_BEET_USD as any)}
+            {active
+              ? `$ ${
+                  (balanceBEET + balanceBEETStaked) *
+                  (process.env.REACT_APP_PRICE_BEET_USD as any)
+                }`
+              : "Connect Wallet"}
           </TextContent01>
         </SectionEachStatsBEET>
         <SectionEachStatsBEET>
           <TextHead01>Available</TextHead01>
           <TextContent01>
-            $ {balanceBEET * (process.env.REACT_APP_PRICE_BEET_USD as any)}
+            {active
+              ? `$ ${
+                  balanceBEET * (process.env.REACT_APP_PRICE_BEET_USD as any)
+                }`
+              : "Connect Wallet"}
           </TextContent01>
         </SectionEachStatsBEET>
         <SectionEachStatsBEET>
           <TextHead01>Staked</TextHead01>
           <TextContent01>
-            ${" "}
-            {balanceBEETStaked * (process.env.REACT_APP_PRICE_BEET_USD as any)}
+            {active
+              ? `$ ${
+                  balanceBEETStaked *
+                  (process.env.REACT_APP_PRICE_BEET_USD as any)
+                }`
+              : "Connect Wallet"}
           </TextContent01>
         </SectionEachStatsBEET>
       </SecionBEETBalance>
@@ -166,7 +202,11 @@ const Overview = () => {
               <TableRowEachContent>BEET NFTs</TableRowEachContent>
               <TableRowEachContent>10%</TableRowEachContent>
               <TableRowEachContent>{balanceBEETNFT}</TableRowEachContent>
-              <TableRowEachContent>${balanceBEETNFT*(process.env.REACT_APP_PRICE_BEETNFT_USD as any)}</TableRowEachContent>
+              <TableRowEachContent>
+                $
+                {balanceBEETNFT *
+                  (process.env.REACT_APP_PRICE_BEETNFT_USD as any)}
+              </TableRowEachContent>
             </TableRowAssets>
           </SectionAssetsDetails>
         </SectionChartData>
@@ -174,8 +214,16 @@ const Overview = () => {
       <SectionTotalAssets>
         <TextStakeTitle text="Actions" />
         <SecitonActionButtonGroup>
-          <ButtonAction>Buy/Sell</ButtonAction>
-          <ButtonAction>Send</ButtonAction>
+          <ButtonAction
+            onClick={() => {
+              window.open(
+                "https://pancakeswap.finance/swap?outputCurrency=0x684eAfeb7E5be043842D892980695C68e15152b7"
+              );
+            }}
+          >
+            Buy/Sell
+          </ButtonAction>
+          <ButtonAction onClick={() => handleOpenMetamask()}>Send</ButtonAction>
           <ButtonAction>Receive</ButtonAction>
           <ButtonAction>Unstake</ButtonAction>
         </SecitonActionButtonGroup>

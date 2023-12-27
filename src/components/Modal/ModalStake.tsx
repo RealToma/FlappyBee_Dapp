@@ -5,33 +5,129 @@ import { useContext, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { NotificationManager } from "react-notifications";
 import { RiLock2Line } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
 import { RefContext } from "../../libs/RefContext";
 import { TextStakeTitle } from "../Text/TextStakeTitle";
+import { Web3Provider } from "@ethersproject/providers";
+import { ethers } from "ethers";
+import { CONTRACTS } from "../../utils/constants";
+import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
+import { covertEthToWei } from "../../libs/Functions";
+import { Hourglass } from "react-loader-spinner";
 
 const ModalStake = () => {
-  const { account } = useWeb3React();
+  const { account, active, library } = useWeb3React();
   const {
+    balanceBNB,
     balanceBEET,
     balanceBEETStaked,
     flagModalDelegate,
     setFlagModalDelegate,
     dataValidator,
+    setBalanceBNB,
+    setBalanceBEET,
+    setBalanceBEETStaked,
   }: any = useContext(RefContext);
 
   const [amountStake, setAmountStake] = useState(0);
+  const [flagClickedStake, setFlagClickedStake] = useState(false);
 
   const handleCloseModal = () => {
+    setAmountStake(0);
     setFlagModalDelegate(false);
+    setFlagClickedStake(false);
   };
 
-  const handleStake = () => {
+  // const handleGetBalance = async () => {
+  //   try {
+  //     if (active) {
+  //       const balanceBNB: any = await provider.getBalance(account);
+  //       // console.log("balanceBNB:", balanceBNB);
+  //       const formattedBalanceBSC: any = ethers.utils.formatEther(balanceBNB);
+  //       setBalanceBNB(Number(formattedBalanceBSC));
+
+  //       const balanceBEET: any = await contractBEETToken.balanceOf(account);
+  //       // console.log("balanceBEET:", balanceBEET);
+  //       const formattedBalanceBEET: any = ethers.utils.formatEther(balanceBEET);
+  //       setBalanceBEET(Number(formattedBalanceBEET));
+
+  //       const balanceBEETStaked: any =
+  //         await contractBEETStaking.getStakedAmount(account);
+
+  //       // console.log("balanceBEETStaked:", balanceBEETStaked);
+  //       const formattedBalanceBEETStaked: any =
+  //         ethers.utils.formatEther(balanceBEETStaked);
+
+  //       setBalanceBEETStaked(Number(formattedBalanceBEETStaked));
+  //     }
+  //   } catch (error) {
+  //     console.log("Error of getting balance:", error);
+  //   }
+  // };
+
+  const handleStake = async () => {
     if (account === undefined || account === null) {
-      return NotificationManager.warning(
-        "Connect your wallet.",
+      return NotificationManager.warning("Connect your wallet.", "", 3000);
+    }
+
+    if (amountStake < 300) {
+      return NotificationManager.error(
+        "Staking amount is greater than 300.",
         "",
         3000
       );
+    }
+
+    if (amountStake > balanceBEET) {
+      return NotificationManager.error(
+        "Staking amount is greater than max amount.",
+        "",
+        3000
+      );
+    }
+
+    if (balanceBNB <= 0) {
+      return NotificationManager.error(
+        "You don't have enough BNB to process transaction.",
+        "",
+        3000
+      );
+    }
+
+    setFlagClickedStake(true);
+
+    const provider: any = new Web3Provider(library.provider);
+    const signer: any = provider.getSigner();
+
+    const contractBEETToken: any = new ethers.Contract(
+      CONTRACTS.BEETToken as any,
+      ABI_BEET_TOKEN,
+      signer
+    );
+
+    const contractBEETStaking: any = new ethers.Contract(
+      CONTRACTS.BEETStaking as any,
+      ABI_BEET_STAKING,
+      signer
+    );
+    try {
+      if (active) {
+        await contractBEETToken.approve(
+          process.env.REACT_APP_NETWORK === "mainnet"
+            ? process.env.REACT_APP_ADDRESS_CONTRACT_BEET_STAKING_MAIN
+            : process.env.REACT_APP_ADDRESS_CONTRACT_BEET_STAKING_TEST,
+          covertEthToWei(amountStake)
+        );
+        await contractBEETStaking.wait();
+        await contractBEETStaking.stake(
+          covertEthToWei(amountStake)
+          // "0x" + (amountStake * Math.pow(10, 18)).toString(16)
+        );
+        await contractBEETStaking.wait();
+      }
+    } catch (error: any) {
+      setFlagClickedStake(false);
+      console.log("staking error:", error);
+      // return NotificationManager.error(`${error}`, "", 3000);
     }
   };
 
@@ -57,7 +153,11 @@ const ModalStake = () => {
             <SectionEachCard>
               <TextCardTitle>{dataValidator.name} Total Staked</TextCardTitle>
               <SectionCardDown>
-                <TextCardValue>${dataValidator.sizePool * (process.env.REACT_APP_PRICE_BEET_USD as any)}</TextCardValue>
+                <TextCardValue>
+                  $
+                  {dataValidator.sizePool *
+                    (process.env.REACT_APP_PRICE_BEET_USD as any)}
+                </TextCardValue>
                 <IconLock>
                   <RiLock2Line />
                 </IconLock>
@@ -117,6 +217,13 @@ const ModalStake = () => {
                     component="input"
                     value={amountStake}
                     onChange={(e: any) => {
+                      if (isNaN(e.target.value)) {
+                        return NotificationManager.error(
+                          "You should input number.",
+                          "",
+                          3000
+                        );
+                      }
                       setAmountStake(e.target.value);
                     }}
                   ></InputAmountStake>
@@ -130,7 +237,26 @@ const ModalStake = () => {
               </SectionEachCard>
             </SectionValidatorInfo01>
           </SectionStakeInfo>
-          <ButtonStake onClick={() => handleStake()}>Stake</ButtonStake>
+          <ButtonStake
+            onClick={() => handleStake()}
+            active={flagClickedStake ? true : false}
+          >
+            {!flagClickedStake ? (
+              <TextStakeButton>Stake</TextStakeButton>
+            ) : (
+              <SectionProgressStake>
+                <TextStakeButton>Processing</TextStakeButton>
+                <SectionCircleProgress>
+                  <Hourglass
+                    colors={["#003624", "#003624"]}
+                    width="100%"
+                    height="100%"
+                    radius="1"
+                  />
+                </SectionCircleProgress>
+              </SectionProgressStake>
+            )}
+          </ButtonStake>
           <ButtonClose>
             <MdClose onClick={() => handleCloseModal()} />
           </ButtonClose>
@@ -393,6 +519,20 @@ const ButtonStake = styled(Box)`
   background: #a9d100;
   justify-content: center;
   align-items: center;
+  margin-top: 40px;
+  cursor: ${({ active }: any) => (active ? "not-allowed" : "pointer")};
+  user-select: none;
+  transition: 0.2s;
+  &:hover {
+    background-color: ${({ active }: any) => (active ? "none" : "white")};
+    color: ${({ active }: any) => (active ? "none" : "#a9d100")};
+  }
+  &:active {
+    transform: ${({ active }: any) => (active ? "none" : "scale(0.95)")};
+  }
+`;
+
+const TextStakeButton = styled(Box)`
   color: #003624;
 
   text-align: center;
@@ -400,18 +540,17 @@ const ButtonStake = styled(Box)`
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
+`;
 
-  margin-top: 40px;
-  cursor: pointer;
-  user-select: none;
-  transition: 0.2s;
-  &:hover {
-    background-color: white;
-    color: #a9d100;
-  }
-  &:active {
-    transform: scale(0.95);
-  }
+const SectionProgressStake = styled(Box)`
+  display: flex;
+  align-items: center;
+`;
+
+const SectionCircleProgress = styled(Box)`
+  display: flex;
+  margin-left: 10px;
+  width: 25px;
 `;
 
 export default ModalStake;

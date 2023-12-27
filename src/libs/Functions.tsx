@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 export const shortAddress = (address: any) => {
   return address?.slice(0, 6) + "..." + address?.slice(-4);
 };
@@ -39,4 +41,16 @@ export const shortFloat = (number: any, pointNum: any) => {
   } else {
     return number.toFixed(pointNum); //number.toFixed(pointNum);
   }
+};
+
+export const isNumber = (number: any) => {
+  if (!Number.isNaN(number) && Number.isInteger(number)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const covertEthToWei = (value: any) => {
+  return ethers.utils.parseUnits(value);
 };
