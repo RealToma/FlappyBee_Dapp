@@ -19,7 +19,7 @@ import {
   chainId,
   NETWORK_NAME,
 } from "../../utils/connectors";
-import { shortAddress, shortFloat } from "../../libs/Functions";
+import { getAllBalance, shortAddress, shortFloat } from "../../libs/Functions";
 import imgButtonTop from "../../assets/images/buttons/topbar.png";
 // import MetaMaskOnboarding from "@metamask/onboarding";
 import Marquee from "react-fast-marquee";
@@ -49,7 +49,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   const [flagDisplayFooter, setFlagDisplayFooter] = useState(1);
   const handleClose = () => setOpen(false);
   const [open, setOpen] = useState(false);
-  const { account, active, library, activate, deactivate } = useWeb3React();
+  const { account, active, activate, deactivate } = useWeb3React();
 
   const {
     balanceBNB,
@@ -58,6 +58,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     setBalanceBEET,
     balanceBEETStaked,
     setBalanceBEETStaked,
+    setBalanceBEETClaimReward,
   }: any = useContext(RefContext);
   const [dataUser, setDatauser]: any = useState();
 
@@ -117,43 +118,48 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   const handleGetBalance = async () => {
     try {
       if (active) {
-        const provider: any = new Web3Provider(library.provider);
-        const signer: any = provider.getSigner();
+        const balanceALl: any = await getAllBalance(account);
+        setBalanceBNB(balanceALl.balanceBNB);
+        setBalanceBEET(balanceALl.balanceBEET);
+        setBalanceBEETStaked(balanceALl.balanceBEETStaked);
+        setBalanceBEETClaimReward(balanceALl.balanceBEETClaimReward);
+        // const provider: any = new Web3Provider(library.provider);
+        // const signer: any = provider.getSigner();
 
-        const contractBEETToken: any = new ethers.Contract(
-          CONTRACTS.BEETToken as any,
-          ABI_BEET_TOKEN,
-          signer
-        );
-
-        const contractBEETStaking: any = new ethers.Contract(
-          CONTRACTS.BEETStaking as any,
-          ABI_BEET_STAKING,
-          signer
-        );
-
-        const balanceBNB: any = await provider.getBalance(account);
-        // console.log("balanceBNB:", balanceBNB);
-        const formattedBalanceBSC: any = ethers.utils.formatEther(balanceBNB);
-        setBalanceBNB(Number(formattedBalanceBSC));
-
-        const balanceBEET: any = await contractBEETToken.balanceOf(account);
-        // console.log("balanceBEET:", balanceBEET);
-        const formattedBalanceBEET: any = ethers.utils.formatEther(balanceBEET);
-        setBalanceBEET(Number(formattedBalanceBEET));
-
-        const balanceBEETStaked: any =
-          await contractBEETStaking.getStakedAmount(account);
-
-        // console.log("balanceBEETStaked:", balanceBEETStaked);
-        const formattedBalanceBEETStaked: any =
-          ethers.utils.formatEther(balanceBEETStaked);
-
-        // console.log(
-        //   "formattedBalanceBEETStaked:",
-        //   Number(formattedBalanceBEETStaked)
+        // const contractBEETToken: any = new ethers.Contract(
+        //   CONTRACTS.BEETToken as any,
+        //   ABI_BEET_TOKEN,
+        //   signer
         // );
-        setBalanceBEETStaked(Number(formattedBalanceBEETStaked));
+
+        // const contractBEETStaking: any = new ethers.Contract(
+        //   CONTRACTS.BEETStaking as any,
+        //   ABI_BEET_STAKING,
+        //   signer
+        // );
+
+        // const balanceBNB: any = await provider.getBalance(account);
+        // // console.log("balanceBNB:", balanceBNB);
+        // const formattedBalanceBSC: any = ethers.utils.formatEther(balanceBNB);
+        // setBalanceBNB(Number(formattedBalanceBSC));
+
+        // const balanceBEET: any = await contractBEETToken.balanceOf(account);
+        // // console.log("balanceBEET:", balanceBEET);
+        // const formattedBalanceBEET: any = ethers.utils.formatEther(balanceBEET);
+        // setBalanceBEET(Number(formattedBalanceBEET));
+
+        // const balanceBEETStaked: any =
+        //   await contractBEETStaking.getStakedAmount(account);
+
+        // // console.log("balanceBEETStaked:", balanceBEETStaked);
+        // const formattedBalanceBEETStaked: any =
+        //   ethers.utils.formatEther(balanceBEETStaked);
+
+        // // console.log(
+        // //   "formattedBalanceBEETStaked:",
+        // //   Number(formattedBalanceBEETStaked)
+        // // );
+        // setBalanceBEETStaked(Number(formattedBalanceBEETStaked));
       }
     } catch (error) {
       console.log("Error of getting balance:", error);
@@ -405,13 +411,13 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                     alt=""
                   />
                 </SectionBalanceIcon>
-                <TextBalance>{shortFloat(balanceBEET, 4)} BEET</TextBalance>
+                <TextBalance>{shortFloat(balanceBEET, 5)} BEET</TextBalance>
               </SectionBalance>
               <SectionBalance>
                 <SectionBalanceIcon>
                   <img src={imgCoinBNB} width={"100%"} height={"100%"} alt="" />
                 </SectionBalanceIcon>
-                <TextBalance>{shortFloat(balanceBNB, 4)} BNB</TextBalance>
+                <TextBalance>{shortFloat(balanceBNB, 5)} BNB</TextBalance>
               </SectionBalance>
               <TextTitle mt="20px" color={"#f87c34"}>
                 Staked
@@ -426,7 +432,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                   />
                 </SectionBalanceIcon>
                 <TextBalance>
-                  {shortFloat(balanceBEETStaked, 4)} BEET
+                  {shortFloat(balanceBEETStaked, 5)} BEET
                 </TextBalance>
               </SectionBalance>
               <TextTitle mt="20px" color={"#ffd92e"}>

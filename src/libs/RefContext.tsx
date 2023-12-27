@@ -8,6 +8,7 @@ export default function RefContextProvider({ children }: any) {
   const [balanceBEET, setBalanceBEET] = useState(0);
   const [balanceBEETStaked, setBalanceBEETStaked] = useState(0);
   const [balanceBEETNFT, setBalanceBEETNFT] = useState(0);
+  const [balanceBEETClaimReward, setBalanceBEETClaimReward] = useState(0);
   const [flagModalDelegate, setFlagModalDelegate] = useState(false);
   const [dataValidator, setDataValidator] = useState({});
 
@@ -27,6 +28,8 @@ export default function RefContextProvider({ children }: any) {
           setDataValidator,
           balanceBEETNFT,
           setBalanceBEETNFT,
+          balanceBEETClaimReward,
+          setBalanceBEETClaimReward,
         } as any
       }
     >

@@ -17,11 +17,7 @@ const Stake = () => {
     useContext(RefContext);
   const handleDelegate = (each: any) => {
     if (account === undefined || account === null) {
-      return NotificationManager.warning(
-        "Connect your wallet.",
-        "",
-        3000
-      );
+      return NotificationManager.warning("Connect your wallet.", "", 3000);
     }
     setDataValidator(each);
     setFlagModalDelegate(true);
@@ -40,7 +36,7 @@ const Stake = () => {
             if (each.flagFeatured) {
               return <CardFeaturedValidator key={index} data={each} />;
             } else {
-              return <></>;
+              return <Box style={{ display: "none" }} key={index}></Box>;
             }
           })}
         </SecitonFeatureValidators>

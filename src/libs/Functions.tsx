@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
-
+import { CONTRACTS } from "../utils/constants";
+import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../utils/abi";
 export const shortAddress = (address: any) => {
   return address?.slice(0, 6) + "..." + address?.slice(-4);
 };
@@ -53,4 +54,55 @@ export const isNumber = (number: any) => {
 
 export const covertEthToWei = (value: any) => {
   return ethers.utils.parseUnits(value);
+};
+
+const urlRPC: any =
+  (process.env.REACT_APP_NETWORK as any) === "mainnet"
+    ? "https://bsc.publicnode.com"
+    : "https://bsc-testnet.publicnode.com";
+
+const provider: any = new ethers.providers.JsonRpcProvider(urlRPC);
+
+const contractBEETToken = new ethers.Contract(
+  CONTRACTS.BEETToken as any,
+  ABI_BEET_TOKEN,
+  provider
+);
+
+const contractBEETStaking = new ethers.Contract(
+  CONTRACTS.BEETStaking as any,
+  ABI_BEET_STAKING,
+  provider
+);
+
+export const getAllBalance = async (account: any) => {
+  const balanceBNB: any = await provider.getBalance(account);
+  const formattedBalanceBSC: any = ethers.utils.formatEther(balanceBNB);
+  // console.log("balanceBNB:", Number(formattedBalanceBSC));
+
+  const balanceBEET: any = await contractBEETToken.balanceOf(account);
+  const formattedBalanceBEET: any = ethers.utils.formatEther(balanceBEET);
+  // console.log("balanceBEET:", Number(formattedBalanceBEET));
+
+  const balanceBEETStaked: any = await contractBEETStaking.getStakedAmount(
+    account
+  );
+
+  const formattedBalanceBEETStaked: any =
+    ethers.utils.formatEther(balanceBEETStaked);
+  // console.log("balanceBEETStaked:", Number(formattedBalanceBEETStaked));
+
+  const balanceBEETClaimableReward: any =
+    await contractBEETStaking.calculateReward(account);
+  const formattedBalancReward: any = ethers.utils.formatEther(
+    balanceBEETClaimableReward
+  );
+
+  return {
+    balanceBNB: Number(formattedBalanceBSC),
+    balanceBEET: Number(formattedBalanceBEET),
+    balanceBEETStaked: Number(formattedBalanceBEETStaked),
+    balanceBEETClaimReward: Number(formattedBalancReward),
+    balanceBEETNFT: 0,
+  };
 };

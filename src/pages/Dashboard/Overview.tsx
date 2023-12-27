@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useContext, useState } from "react";
 // import { FaUser } from "react-icons/fa";
 import { useWeb3React } from "@web3-react/core";
-import { shortAddress } from "../../libs/Functions";
+import { shortAddress, shortFloat } from "../../libs/Functions";
 import copy from "copy-to-clipboard";
 import { HiClipboard, HiClipboardCheck } from "react-icons/hi";
 import { RefContext } from "../../libs/RefContext";
@@ -14,7 +14,7 @@ import { TextStakeTitle } from "../../components/Text/TextStakeTitle";
 import { NotificationManager } from "react-notifications";
 
 const dataChartAssets: any = {
-  series: [70, 20, 10],
+  // series: [70, 20, 10],
   options: {
     // chart: {
     //   width: 380,
@@ -56,13 +56,27 @@ const Overview = () => {
     }, 1000);
   };
 
-  const { balanceBNB, balanceBEET, balanceBEETStaked, balanceBEETNFT }: any =
-    useContext(RefContext);
+  const {
+    balanceBNB,
+    balanceBEET,
+    balanceBEETStaked,
+    balanceBEETNFT,
+    balanceBEETClaimReward,
+  }: any = useContext(RefContext);
 
   const handleClaim = () => {
     if (account === undefined || account === null) {
       return NotificationManager.warning("Connect your wallet.", "", 3000);
     }
+  };
+
+  const getAssetPercent = (amount: any) => {
+    const totalUSD =
+      balanceBNB * 250 +
+      (balanceBEET + balanceBEETStaked) *
+        (process.env.REACT_APP_PRICE_BEET_USD as any) +
+      balanceBEETNFT * (process.env.REACT_APP_PRICE_BEETNFT_USD as any);
+    return (amount / totalUSD) * 100;
   };
 
   const handleOpenMetamask = () => {
@@ -113,13 +127,18 @@ const Overview = () => {
           </SectionUserDetail>
         </SectionUser>
         <SectionClaimable>
-          <TextClaimableRewards>Total Claimabe Rewards :</TextClaimableRewards>
+          <TextClaimableRewards>Total Claimable Rewards :</TextClaimableRewards>
           <SectionClaim>
             <TextBEETtoUSD>
               {active
-                ? `${balanceBEET} $BEET = ${
-                    balanceBEET * (process.env.REACT_APP_PRICE_BEET_USD as any)
-                  } USD`
+                ? `${shortFloat(
+                    balanceBEETClaimReward,
+                    5
+                  )} $BEET = ${shortFloat(
+                    balanceBEETClaimReward *
+                      (process.env.REACT_APP_PRICE_BEET_USD as any),
+                    3
+                  )} USD`
                 : "Connect Wallet"}
             </TextBEETtoUSD>
             <ButtonClaim onClick={() => handleClaim()}>Claim Now</ButtonClaim>
@@ -128,13 +147,17 @@ const Overview = () => {
       </SectionTop>
       <SecionBEETBalance>
         <SectionEachStatsBEET>
-          <TextHead01>BEET Wallet</TextHead01>
+          <TextHead01>Total BEET Wallet</TextHead01>
           <TextContent01>
             {active
-              ? `$ ${
+              ? `${shortFloat(
+                  balanceBEET + balanceBEETStaked,
+                  5
+                )} $BEET = ${shortFloat(
                   (balanceBEET + balanceBEETStaked) *
-                  (process.env.REACT_APP_PRICE_BEET_USD as any)
-                }`
+                    (process.env.REACT_APP_PRICE_BEET_USD as any),
+                  3
+                )} USD`
               : "Connect Wallet"}
           </TextContent01>
         </SectionEachStatsBEET>
@@ -142,9 +165,10 @@ const Overview = () => {
           <TextHead01>Available</TextHead01>
           <TextContent01>
             {active
-              ? `$ ${
-                  balanceBEET * (process.env.REACT_APP_PRICE_BEET_USD as any)
-                }`
+              ? `${shortFloat(balanceBEET, 5)} $BEET = ${shortFloat(
+                  balanceBEET * (process.env.REACT_APP_PRICE_BEET_USD as any),
+                  3
+                )} USD`
               : "Connect Wallet"}
           </TextContent01>
         </SectionEachStatsBEET>
@@ -152,10 +176,11 @@ const Overview = () => {
           <TextHead01>Staked</TextHead01>
           <TextContent01>
             {active
-              ? `$ ${
+              ? `${shortFloat(balanceBEETStaked, 5)} $BEET = ${shortFloat(
                   balanceBEETStaked *
-                  (process.env.REACT_APP_PRICE_BEET_USD as any)
-                }`
+                    (process.env.REACT_APP_PRICE_BEET_USD as any),
+                  3
+                )} USD`
               : "Connect Wallet"}
           </TextContent01>
         </SectionEachStatsBEET>
@@ -166,7 +191,21 @@ const Overview = () => {
           <SectionPieChart>
             <Chart
               options={dataChartAssets.options}
-              series={dataChartAssets.series}
+              series={
+                active
+                  ? [
+                      getAssetPercent(balanceBNB * 250),
+                      getAssetPercent(
+                        (balanceBEET + balanceBEETStaked) *
+                          (process.env.REACT_APP_PRICE_BEET_USD as any)
+                      ),
+                      getAssetPercent(
+                        balanceBEETNFT *
+                          (process.env.REACT_APP_PRICE_BEETNFT_USD as any)
+                      ),
+                    ]
+                  : [1, 1, 1]
+              }
               type="pie"
               width={500}
             />
@@ -182,30 +221,62 @@ const Overview = () => {
             <TableRowAssets borderBottom="1px solid #117754">
               <TableRowNo>1</TableRowNo>
               <TableRowEachContent>BNB</TableRowEachContent>
-              <TableRowEachContent>70%</TableRowEachContent>
-              <TableRowEachContent>{balanceBNB}</TableRowEachContent>
-              <TableRowEachContent>$ {balanceBNB * 250}</TableRowEachContent>
+              <TableRowEachContent>
+                {shortFloat(getAssetPercent(balanceBNB * 250), 1)}%
+              </TableRowEachContent>
+              <TableRowEachContent>
+                {shortFloat(balanceBNB, 5)}
+              </TableRowEachContent>
+              <TableRowEachContent>
+                $ {shortFloat(balanceBNB * 250, 3)}
+              </TableRowEachContent>
             </TableRowAssets>
             <TableRowAssets borderBottom="1px solid #117754">
               <TableRowNo>2</TableRowNo>
               <TableRowEachContent>BEET</TableRowEachContent>
-              <TableRowEachContent>20%</TableRowEachContent>
-              <TableRowEachContent>{balanceBEET}</TableRowEachContent>
+              <TableRowEachContent>
+                {shortFloat(
+                  getAssetPercent(
+                    (balanceBEET + balanceBEETStaked) *
+                      (process.env.REACT_APP_PRICE_BEET_USD as any)
+                  ),
+                  1
+                )}
+                %
+              </TableRowEachContent>
+              <TableRowEachContent>
+                {shortFloat(balanceBEET, 5)}
+              </TableRowEachContent>
               <TableRowEachContent>
                 ${" "}
-                {(balanceBEET + balanceBEETStaked) *
-                  (process.env.REACT_APP_PRICE_BEET_USD as any)}
+                {shortFloat(
+                  (balanceBEET + balanceBEETStaked) *
+                    (process.env.REACT_APP_PRICE_BEET_USD as any),
+                  3
+                )}
               </TableRowEachContent>
             </TableRowAssets>
             <TableRowAssets borderRadius="0px 0px 16px 16px">
               <TableRowNo>3</TableRowNo>
               <TableRowEachContent>BEET NFTs</TableRowEachContent>
-              <TableRowEachContent>10%</TableRowEachContent>
+              <TableRowEachContent>
+                {shortFloat(
+                  getAssetPercent(
+                    balanceBEETNFT *
+                      (process.env.REACT_APP_PRICE_BEETNFT_USD as any)
+                  ),
+                  1
+                )}
+                %
+              </TableRowEachContent>
               <TableRowEachContent>{balanceBEETNFT}</TableRowEachContent>
               <TableRowEachContent>
-                $
-                {balanceBEETNFT *
-                  (process.env.REACT_APP_PRICE_BEETNFT_USD as any)}
+                ${" "}
+                {shortFloat(
+                  balanceBEETNFT *
+                    (process.env.REACT_APP_PRICE_BEETNFT_USD as any),
+                  3
+                )}
               </TableRowEachContent>
             </TableRowAssets>
           </SectionAssetsDetails>
@@ -419,7 +490,7 @@ const TextContent01 = styled(Box)`
   margin-top: 5px;
   color: #fff;
 
-  font-family: Lato;
+  font-family: Rowdies;
   font-size: 30px;
   font-style: normal;
   font-weight: 500;

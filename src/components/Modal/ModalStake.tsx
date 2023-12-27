@@ -11,10 +11,12 @@ import { Web3Provider } from "@ethersproject/providers";
 import { ethers } from "ethers";
 import { CONTRACTS } from "../../utils/constants";
 import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
-import { covertEthToWei } from "../../libs/Functions";
+import { covertEthToWei, getAllBalance } from "../../libs/Functions";
 import { Hourglass } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 const ModalStake = () => {
+  const navigate = useNavigate();
   const { account, active, library } = useWeb3React();
   const {
     balanceBNB,
@@ -36,33 +38,6 @@ const ModalStake = () => {
     setFlagModalDelegate(false);
     setFlagClickedStake(false);
   };
-
-  // const handleGetBalance = async () => {
-  //   try {
-  //     if (active) {
-  //       const balanceBNB: any = await provider.getBalance(account);
-  //       // console.log("balanceBNB:", balanceBNB);
-  //       const formattedBalanceBSC: any = ethers.utils.formatEther(balanceBNB);
-  //       setBalanceBNB(Number(formattedBalanceBSC));
-
-  //       const balanceBEET: any = await contractBEETToken.balanceOf(account);
-  //       // console.log("balanceBEET:", balanceBEET);
-  //       const formattedBalanceBEET: any = ethers.utils.formatEther(balanceBEET);
-  //       setBalanceBEET(Number(formattedBalanceBEET));
-
-  //       const balanceBEETStaked: any =
-  //         await contractBEETStaking.getStakedAmount(account);
-
-  //       // console.log("balanceBEETStaked:", balanceBEETStaked);
-  //       const formattedBalanceBEETStaked: any =
-  //         ethers.utils.formatEther(balanceBEETStaked);
-
-  //       setBalanceBEETStaked(Number(formattedBalanceBEETStaked));
-  //     }
-  //   } catch (error) {
-  //     console.log("Error of getting balance:", error);
-  //   }
-  // };
 
   const handleStake = async () => {
     if (account === undefined || account === null) {
@@ -94,6 +69,9 @@ const ModalStake = () => {
     }
 
     setFlagClickedStake(true);
+    if (flagClickedStake) {
+      return;
+    }
 
     const provider: any = new Web3Provider(library.provider);
     const signer: any = provider.getSigner();
@@ -111,27 +89,48 @@ const ModalStake = () => {
     );
     try {
       if (active) {
-        await contractBEETToken.approve(
+        const resApprove = await contractBEETToken.approve(
           process.env.REACT_APP_NETWORK === "mainnet"
             ? process.env.REACT_APP_ADDRESS_CONTRACT_BEET_STAKING_MAIN
             : process.env.REACT_APP_ADDRESS_CONTRACT_BEET_STAKING_TEST,
           covertEthToWei(amountStake)
         );
-        await contractBEETStaking.wait();
-        await contractBEETStaking.stake(
+        await resApprove.wait();
+        const resStake = await contractBEETStaking.stake(
           covertEthToWei(amountStake)
           // "0x" + (amountStake * Math.pow(10, 18)).toString(16)
         );
-        await contractBEETStaking.wait();
+        await resStake.wait();
+        NotificationManager.success(
+          `Staked ${amountStake}BEET. Please check your dashboard.`,
+          "Success!",
+          3000
+        );
+
+        const balanceALl: any = await getAllBalance(account);
+        setBalanceBNB(balanceALl.balanceBNB);
+        setBalanceBEET(balanceALl.balanceBEET);
+        setBalanceBEETStaked(balanceALl.balanceBEETStaked);
+        setTimeout(() => {
+          setFlagClickedStake(false);
+          handleCloseModal();
+          navigate("/dashboard");
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+        }, 3000);
       }
     } catch (error: any) {
       setFlagClickedStake(false);
       console.log("staking error:", error);
+      NotificationManager.error("Failed. Try it again.", "", 3000);
       // return NotificationManager.error(`${error}`, "", 3000);
     }
   };
 
-  const handleSetMaxStake = () => {
+  const handleSetMaxStake = async () => {
     setAmountStake(balanceBEET);
   };
 
@@ -395,7 +394,7 @@ const ButtonClose = styled(Box)`
   right: 20px;
   top: 20px;
   font-size: 30px;
-  color: white;
+  color: #a9d100;
 
   cursor: pointer;
   user-select: none;
