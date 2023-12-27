@@ -11,6 +11,7 @@ export default function RefContextProvider({ children }: any) {
   const [balanceBEETClaimReward, setBalanceBEETClaimReward] = useState(0);
   const [flagModalDelegate, setFlagModalDelegate] = useState(false);
   const [dataValidator, setDataValidator] = useState({});
+  const [dataUser, setDatauser] = useState();
 
   return (
     <RefContext.Provider
@@ -30,6 +31,8 @@ export default function RefContextProvider({ children }: any) {
           setBalanceBEETNFT,
           balanceBEETClaimReward,
           setBalanceBEETClaimReward,
+          dataUser,
+          setDatauser,
         } as any
       }
     >

@@ -18,6 +18,7 @@ import {
 } from "../../libs/Functions";
 import { Hourglass } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { actionAddUser } from "../../actions/auth";
 
 const ModalStake = () => {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const ModalStake = () => {
     setBalanceBNB,
     setBalanceBEET,
     setBalanceBEETStaked,
+    setDatauser,
   }: any = useContext(RefContext);
 
   const [amountStake, setAmountStake] = useState(0);
@@ -105,8 +107,20 @@ const ModalStake = () => {
           // "0x" + (amountStake * Math.pow(10, 18)).toString(16)
         );
         await resStake.wait();
+
+        actionAddUser(account).then((res) => {
+          if (
+            res.flagSuccess === "existed_user" ||
+            res.flagSuceess === "new_user"
+          ) {
+            setDatauser(res.dataUser);
+          }
+        });
         NotificationManager.success(
-          `Staked ${amountStake}BEET. Please check your dashboard.`,
+          `Staked ${amountStake} BEET (+${shortFloat(
+            amountStake / 300,
+            1
+          )} P2E Seesion Available). Please check your wallet.`,
           "Success!",
           3000
         );
@@ -124,7 +138,7 @@ const ModalStake = () => {
             left: 0,
             behavior: "smooth",
           });
-        }, 3000);
+        }, 2000);
       }
     } catch (error: any) {
       setFlagClickedStake(false);

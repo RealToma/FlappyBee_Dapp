@@ -62,6 +62,7 @@ const Overview = () => {
     balanceBEETStaked,
     balanceBEETNFT,
     balanceBEETClaimReward,
+    dataUser,
   }: any = useContext(RefContext);
 
   const handleClaim = () => {
@@ -118,11 +119,19 @@ const Overview = () => {
             </SectionAddressWallet>
             <SectionAddressWallet>
               <TextSmallDate>First Joined :</TextSmallDate>
-              <TextBigDate>12/1/2023, 12:03:33 PM</TextBigDate>
+              <TextBigDate>{active ? dataUser?.dateJoined : "_"}</TextBigDate>
             </SectionAddressWallet>
             <SectionAddressWallet>
               <TextSmallDate>Last Login :</TextSmallDate>
-              <TextBigDate>12/1/2023, 12:03:33 PM</TextBigDate>
+              <TextBigDate>
+                {active ? dataUser?.dateLastLoggedIn : "_"}
+              </TextBigDate>
+            </SectionAddressWallet>
+            <SectionAddressWallet>
+              <TextSmallDate>P2E Seesion Available :</TextSmallDate>
+              <TextP2EAvailable>
+                {active ? parseInt(dataUser.countP2EAvailable) : "_"}
+              </TextP2EAvailable>
             </SectionAddressWallet>
           </SectionUserDetail>
         </SectionUser>
@@ -644,6 +653,16 @@ const ButtonAction = styled(Box)`
   @media (max-width: 500px) {
     height: 40px;
   }
+`;
+
+const TextP2EAvailable = styled(Box)`
+  font-family: Rowdies;
+  font-size: 2em;
+  font-style: normal;
+  margin-left: 5px;
+  color: #e73c28;
+  font-weight: 400;
+  text-shadow: 0px 0px 2px black;
 `;
 
 export default Overview;

@@ -59,8 +59,10 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     balanceBEETStaked,
     setBalanceBEETStaked,
     setBalanceBEETClaimReward,
+    dataUser,
+    setDatauser
   }: any = useContext(RefContext);
-  const [dataUser, setDatauser]: any = useState();
+
 
   const [flagConnectDrop, setFlagConnectDrop] = useState(false);
   const refConnectDown = useRef(0);
@@ -362,7 +364,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         <SectionConnect>
           {active ? (
             <SectionP2EAvailable>
-              P2E session available:{"\u00a0"}
+              P2E Session Available:{"\u00a0"}
               <span>
                 {dataUser?.countP2EAvailable
                   ? Math.floor(dataUser?.countP2EAvailable)
