@@ -27,11 +27,7 @@ const Home = () => {
 
   const handleStart = () => {
     if (account === undefined || account === null) {
-      return NotificationManager.warning(
-        "Connect your wallet.",
-        "",
-        3000
-      );
+      return NotificationManager.warning("Connect your wallet.", "", 3000);
     }
 
     checkWhiteList(account).then((res) => {
