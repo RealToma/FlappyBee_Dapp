@@ -181,7 +181,10 @@ const ModalStake = () => {
             <SectionEachCard>
               <TextCardTitle>Esstimated Rewards</TextCardTitle>
               <SectionCardDown>
-                <TextCardValue>11.87 %</TextCardValue>
+                <TextCardValue>
+                  {shortFloat((12 / 100) * (100 - dataValidator.commission), 2)}{" "}
+                  %
+                </TextCardValue>
               </SectionCardDown>
             </SectionEachCard>
           </SectionValidatorInfo>

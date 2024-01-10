@@ -13,7 +13,7 @@ export const sortAllTimeScores = (dataScores: any) => {
 const get24hData = (dataScores: any) => {
   const currentTime = new Date();
   const currentTotalSeconds = Math.floor(currentTime.getTime() / 1000);
-  console.log(currentTotalSeconds);
+  // console.log(currentTotalSeconds);
 
   const timeOnedayBefore = currentTotalSeconds - 1 * 24 * 60 * 60;
   let temp24hData = [];
@@ -25,7 +25,7 @@ const get24hData = (dataScores: any) => {
     }
   }
 
-  console.log(temp24hData);
+  // console.log(temp24hData);
   return temp24hData;
 };
 

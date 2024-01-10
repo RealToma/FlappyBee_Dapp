@@ -9,7 +9,7 @@ const {
 router.post("/set_score", async (req, res) => {
   // console.log(new Date().toLocaleString());
 
-  console.log("type:", req.body.typeGame);
+  // console.log("type:", req.body.typeGame);
   const now = new Date();
   const options = { timeZone: "America/New_York" };
   const estDateTime = now.toLocaleString("en-US", options);

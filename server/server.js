@@ -33,7 +33,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 app.use(cors());
 // claimRewardTokens();
 // coverSheetToDatabase();
-handleCatchStakedEvent();
+// handleCatchStakedEvent();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

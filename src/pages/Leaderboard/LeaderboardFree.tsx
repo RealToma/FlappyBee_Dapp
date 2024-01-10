@@ -43,11 +43,7 @@ const LeaderboardFree = () => {
 
   const handleConnectWallet = () => {
     if (account === undefined) {
-      return NotificationManager.warning(
-        "Connect your wallet.",
-        "",
-        3000
-      );
+      return NotificationManager.warning("Connect your wallet.", "", 3000);
     }
   };
   useEffect(() => {
@@ -110,7 +106,11 @@ const LeaderboardFree = () => {
         );
         bestMy = tempSortDataMyAllScores[0]?.score;
         recordMy = tempDataMyScores.length;
+
         // rankMy =
+        console.log("tempDataMyScores:", tempDataMyScores);
+        console.log("tempSortDataAllScores:", tempSortDataAllScores);
+
         let objectDataMyScores = {
           average: averageMy,
           best: bestMy,

@@ -130,19 +130,23 @@ const Overview = () => {
             <SectionAddressWallet>
               <TextSmallDate>P2E Seesion Available :</TextSmallDate>
               <TextP2EAvailable>
-                {active ? parseInt(dataUser.countP2EAvailable) : "_"}
+                {active
+                  ? dataUser && parseInt(dataUser?.countP2EAvailable)
+                  : "_"}
               </TextP2EAvailable>
             </SectionAddressWallet>
           </SectionUserDetail>
         </SectionUser>
         <SectionClaimable>
-          <TextClaimableRewards>Total Claimable Rewards :</TextClaimableRewards>
+          <TextClaimableRewards>
+            Claimable Staking Rewards :
+          </TextClaimableRewards>
           <SectionClaim>
             <TextBEETtoUSD>
               {active
                 ? `${shortFloat(
                     balanceBEETClaimReward,
-                    5
+                    3
                   )} $BEET = ${shortFloat(
                     balanceBEETClaimReward *
                       (process.env.REACT_APP_PRICE_BEET_USD as any),

@@ -13,7 +13,7 @@ import imgWalletConnect from "../../assets/images/wallet/walletConnect.svg";
 import imgBinance from "../../assets/images/wallet/binance.png";
 import imgTrust from "../../assets/images/wallet/trust.png";
 import { useWeb3React } from "@web3-react/core";
-import { Web3Provider } from "@ethersproject/providers";
+// import { Web3Provider } from "@ethersproject/providers";
 import {
   DESKTOP_CONNECTORS,
   chainId,
@@ -31,9 +31,9 @@ import { useOutsideDetector } from "../../components/Hooks/useOutsideDetector";
 import imgCoinBEET from "../../assets/images/icons/coins/BEET.png";
 // import imgCoinETH from "../../assets/images/icons/coins/ether02.png";
 import imgCoinBNB from "../../assets/images/icons/coins/bnb01.png";
-import { ethers } from "ethers";
-import { CONTRACTS } from "../../utils/constants";
-import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
+// import { ethers } from "ethers";
+// import { CONTRACTS } from "../../utils/constants";
+// import { ABI_BEET_STAKING, ABI_BEET_TOKEN } from "../../utils/abi";
 import { actionAddUser } from "../../actions/auth";
 import { useGameSystem } from "../../Game/Context";
 // import io from "socket.io-client";
@@ -60,9 +60,8 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     setBalanceBEETStaked,
     setBalanceBEETClaimReward,
     dataUser,
-    setDatauser
+    setDatauser,
   }: any = useContext(RefContext);
-
 
   const [flagConnectDrop, setFlagConnectDrop] = useState(false);
   const refConnectDown = useRef(0);
@@ -261,7 +260,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         <Marquee
           speed={30}
           // gradient={true}
-          // gradientWidth={200}
+          // gradientWidth={200}      G
           // gradientColor={[255,0,255]}
         >
           {"\u00a0"}
@@ -269,14 +268,14 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {flagDisplayFooter === 0
             ? "📢 Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
-            : "🎄 Merry Christmas and Happy New Year 2024! 🎉"}
+            : "🎉 Happy New Year 2024!"}
           {"\u00a0"}
           {"\u00a0"}
           {"\u00a0"}
         </Marquee>
         {/* <SectionEmail>
           <SectionInputEmail>
-            <InputEmail component="input"></InputEmail>
+            <InputEmail component="input"></InputEmail>x
           </SectionInputEmail>
         </SectionEmail> */}
         <SecitonSocial>
