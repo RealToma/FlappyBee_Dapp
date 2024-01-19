@@ -18,6 +18,9 @@ import {
   DESKTOP_CONNECTORS,
   chainId,
   NETWORK_NAME,
+  rpcUrl,
+  scanUrl,
+  symbolBNB,
 } from "../../utils/connectors";
 import { getAllBalance, shortAddress, shortFloat } from "../../libs/Functions";
 import imgButtonTop from "../../assets/images/buttons/topbar.png";
@@ -70,7 +73,32 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
   const walletConnectors: any = DESKTOP_CONNECTORS;
   const { gameHasStarted } = useGameSystem();
 
-  const handleSwitch = async () => {
+  const handleAddNetwork = async () => {
+    try {
+      if ((window as any).ethereum.networkVersion !== chainId) {
+        await (window as any).ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainId: `0x${Number(chainId).toString(16)}`,
+              chainName: NETWORK_NAME,
+              nativeCurrency: {
+                name: symbolBNB,
+                symbol: symbolBNB,
+                decimals: 18,
+              },
+              rpcUrls: [rpcUrl],
+              blockExplorerUrls: [scanUrl],
+            },
+          ],
+        });
+      }
+    } catch (ex) {
+      NotificationManager.error("Failed to add " + NETWORK_NAME, "ERROR", 5000);
+    }
+  };
+
+  const handleSwitchNetwork = async () => {
     try {
       if ((window as any).ethereum.networkVersion !== chainId) {
         await (window as any).ethereum
@@ -99,7 +127,8 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
       await activate(walletConnectors[currentConnector]);
       // set_wConnect(walletConnectors[currentConnector]);
       window.localStorage.setItem("CurrentWalletConnect", currentConnector);
-      handleSwitch();
+      handleAddNetwork();
+      handleSwitchNetwork();
       handleClose();
     } catch (error) {
       console.log("error of connect wallet:", error);
@@ -622,7 +651,15 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           <ConnectPart>
             <ConnectWallet
               onClick={() => {
-                handleConnect("MetaMask");
+                if ((window as any).ethereum) {
+                  handleConnect("MetaMask");
+                } else {
+                  return NotificationManager.error(
+                    "Install MetaMask Wallet!",
+                    "",
+                    3000
+                  );
+                }
               }}
             >
               <Box display={"flex"} marginLeft={"5%"}>
@@ -634,7 +671,15 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
             </ConnectWallet>
             <ConnectWallet
               onClick={() => {
-                handleConnect("BinanceWallet");
+                if ((window as any).BinanceChain) {
+                  handleConnect("BinanceWallet");
+                } else {
+                  return NotificationManager.error(
+                    "Install Binance Wallet!.",
+                    "",
+                    3000
+                  );
+                }
               }}
             >
               <Box display={"flex"} marginLeft={"5%"}>
@@ -646,7 +691,15 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
             </ConnectWallet>
             <ConnectWallet
               onClick={() => {
-                handleConnect("WalletConnect");
+                if ((window as any).WalletConnectProvider) {
+                  handleConnect("WalletConnect");
+                } else {
+                  return NotificationManager.error(
+                    "Install WalletConnect!",
+                    "",
+                    3000
+                  );
+                }
               }}
             >
               <Box display={"flex"} marginLeft={"5%"}>
@@ -663,7 +716,15 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
             </ConnectWallet>
             <ConnectWallet
               onClick={() => {
-                handleConnect("TrustWallet");
+                if ((window as any).web3) {
+                  handleConnect("TrustWallet");
+                } else {
+                  return NotificationManager.error(
+                    "Install Trust Wallet!",
+                    "",
+                    3000
+                  );
+                }
               }}
             >
               <Box display={"flex"} marginLeft={"5%"}>

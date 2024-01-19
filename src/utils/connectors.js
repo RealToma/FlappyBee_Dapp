@@ -13,9 +13,7 @@ const IS_MAINNET = process.env.REACT_APP_NETWORK === "mainnet";
 //   ? "https://etherscan.io"
 //   : "https://goerli.etherscan.io";
 
-const NETWORK_NAME = IS_MAINNET
-  ? "BNB Smart Chain Mainnet"
-  : "BNB Smart Chain Testnet";
+const NETWORK_NAME = IS_MAINNET ? "BNB Chain" : "BNB Smart Chain Testnet";
 const chainId = IS_MAINNET ? 56 : 97;
 const rpcUrl = IS_MAINNET
   ? "https://bsc.publicnode.com"
@@ -23,6 +21,8 @@ const rpcUrl = IS_MAINNET
 const scanUrl = IS_MAINNET
   ? "https://bscscan.com"
   : "https://testnet.bscscan.com";
+
+const symbolBNB = IS_MAINNET ? "BNB" : "tBNB";
 
 const BINANCE_MAINNET_PARAMS = {
   chainId: chainId,
@@ -66,4 +66,4 @@ export const getLibrary = (provider) => {
   return library;
 };
 
-export { DESKTOP_CONNECTORS, NETWORK_NAME, chainId };
+export { DESKTOP_CONNECTORS, NETWORK_NAME, chainId, rpcUrl, scanUrl, symbolBNB };

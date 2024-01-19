@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { FaUser } from "react-icons/fa";
 import { useWeb3React } from "@web3-react/core";
 import { shortAddress, shortFloat } from "../../libs/Functions";
@@ -12,6 +12,7 @@ import imgUser01 from "../../assets/images/icons/user01.png";
 import imgButtonGreen01 from "../../assets/images/buttons/GreenButton01.svg";
 import { TextStakeTitle } from "../../components/Text/TextStakeTitle";
 import { NotificationManager } from "react-notifications";
+import { actionGetUserClaimScore } from "../../actions/score";
 
 const dataChartAssets: any = {
   // series: [70, 20, 10],
@@ -47,6 +48,7 @@ const dataChartAssets: any = {
 const Overview = () => {
   const { account, active } = useWeb3React();
   const [flagCopiedAddress, setFlagCopiedAddress] = useState(false);
+  const [rewardP2E, setRewardP2E] = useState(0);
 
   const handleCopyAddress = () => {
     setFlagCopiedAddress(true);
@@ -95,6 +97,16 @@ const Overview = () => {
     // }
   };
 
+  useEffect(() => {
+    actionGetUserClaimScore(account).then((res) => {
+      if (res.flagSuccess) {
+        setRewardP2E(res.dataClaimScore.totalScore);
+      } else {
+        return;
+      }
+    });
+  }, [account]);
+
   return (
     <StyledComponent>
       <SectionTop>
@@ -138,9 +150,7 @@ const Overview = () => {
           </SectionUserDetail>
         </SectionUser>
         <SectionClaimable>
-          <TextClaimableRewards>
-            Claimable Staking Rewards :
-          </TextClaimableRewards>
+          <TextClaimableRewards>Staking Rewards :</TextClaimableRewards>
           <SectionClaim>
             <TextBEETtoUSD>
               {active
@@ -156,6 +166,20 @@ const Overview = () => {
             </TextBEETtoUSD>
             <ButtonClaim onClick={() => handleClaim()}>Claim Now</ButtonClaim>
           </SectionClaim>
+
+          <SectionP2EReward>
+            <TextClaimableRewards>P2E Rewards :</TextClaimableRewards>
+            <SectionClaim>
+              <TextBEETtoUSD>
+                {active
+                  ? `${shortFloat(rewardP2E, 3)} $BEET = ${shortFloat(
+                      rewardP2E * (process.env.REACT_APP_PRICE_BEET_USD as any),
+                      3
+                    )} USD`
+                  : "Connect Wallet"}
+              </TextBEETtoUSD>
+            </SectionClaim>
+          </SectionP2EReward>
         </SectionClaimable>
       </SectionTop>
       <SecionBEETBalance>
@@ -423,7 +447,7 @@ const SectionClaimable = styled(Box)`
 const SectionClaim = styled(Box)`
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 0px;
 `;
 
 const TextBEETtoUSD = styled(Box)`
@@ -667,6 +691,15 @@ const TextP2EAvailable = styled(Box)`
   color: #e73c28;
   font-weight: 400;
   text-shadow: 0px 0px 2px black;
+`;
+
+const SectionP2EReward = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid #117754;
+  margin-top: 20px;
+  padding-top: 20px;
 `;
 
 export default Overview;
