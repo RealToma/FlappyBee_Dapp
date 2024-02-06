@@ -26,22 +26,22 @@ export const dataTopNavigation: Link[] = [
   //   flagNavigate: false,
   //   flagSubLink: false,
   // },
-  {
-    name: "Free Mint",
-    link: "/free_mint",
-    flagNavigate: false,
-    flagSubLink: true,
-    sublink: [
-      {
-        name: "Rules",
-        link: "/mint_rules",
-      },
-      {
-        name: "Claim Rewards",
-        link: "/claim_rewards",
-      },
-    ],
-  },
+  // {
+  //   name: "Free Mint",
+  //   link: "/free_mint",
+  //   flagNavigate: false,
+  //   flagSubLink: true,
+  //   sublink: [
+  //     {
+  //       name: "Rules",
+  //       link: "/mint_rules",
+  //     },
+  //     {
+  //       name: "Claim Rewards",
+  //       link: "/claim_rewards",
+  //     },
+  //   ],
+  // },
   // {
   //   name: "Airdrop",
   //   link: "/airdrop",

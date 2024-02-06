@@ -92,7 +92,7 @@ const StyledComponent = styled(Box)`
     padding: 3px 8px;
     line-height: 27px;
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 1280px) {
     margin-right: 5px;
   }
   @media (max-width: 1024px) {

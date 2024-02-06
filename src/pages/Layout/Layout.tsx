@@ -392,7 +392,10 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
         <SectionConnect>
           {active ? (
             <SectionP2EAvailable>
-              P2E Session Available:{"\u00a0"}
+              {window.innerWidth <= 430
+                ? "P2E Available:"
+                : "P2E Session Available:"}
+              {"\u00a0"}
               <span>
                 {dataUser?.countP2EAvailable
                   ? Math.floor(dataUser?.countP2EAvailable)
@@ -803,9 +806,10 @@ const SectionHeader = styled(Box)`
     height: 70px;
     min-height: 70px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 430px) {
     height: 60px;
     min-height: 60px;
+    padding: 0px 10px;
   }
 `;
 
@@ -1542,13 +1546,10 @@ const SectionP2EAvailable = styled(Box)`
   @media (max-width: 1440px) {
     font-size: 20px;
   }
-  @media (max-width: 1150px) {
-    font-size: 16px;
-    width: 110px;
+  @media (max-width: 1280px) {
+    font-size: 18px;
   }
   @media (max-width: 1024px) {
-    font-size: 18px;
-    width: unset;
   }
   @media (max-width: 768px) {
     font-size: 18px;
@@ -1576,7 +1577,7 @@ const SectionP2EAvailable = styled(Box)`
       font-size: 25px;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1280px) {
       font-size: 22px;
     }
     @media (max-width: 768px) {

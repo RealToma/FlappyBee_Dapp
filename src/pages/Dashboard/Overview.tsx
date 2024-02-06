@@ -205,11 +205,11 @@ const Overview = () => {
               {active
                 ? `${shortFloat(
                     balanceBEETClaimReward,
-                    6
+                    2
                   )} $BEET = ${shortFloat(
                     balanceBEETClaimReward *
                       (process.env.REACT_APP_PRICE_BEET_USD as any),
-                    8
+                    3
                   )} USD`
                 : "Connect Wallet"}
             </TextBEETtoUSD>
@@ -254,7 +254,7 @@ const Overview = () => {
           </SectionP2EReward>
         </SectionClaimable>
       </SectionTop>
-      <SecionBEETBalance>
+      {/* <SecionBEETBalance>
         <SectionEachStatsBEET>
           <TextHead01>Total BEET Wallet</TextHead01>
           <TextContent01>
@@ -422,7 +422,7 @@ const Overview = () => {
           <ButtonAction>Receive</ButtonAction>
           <ButtonAction>Unstake</ButtonAction>
         </SecitonActionButtonGroup>
-      </SectionTotalAssets>
+      </SectionTotalAssets> */}
     </StyledComponent>
   );
 };
@@ -438,6 +438,11 @@ const SectionTop = styled(Box)`
   width: 100%;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 1023px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const SectionUser = styled(Box)`
@@ -449,12 +454,47 @@ const IconUser = styled(Box)`
   display: flex;
   width: 100px;
   aspect-ratio: 1;
+
+  @media (max-width: 1440px) {
+    width: 85px;
+  }
+  @media (max-width: 1280px) {
+    width: 70px;
+  }
+  @media (max-width: 1023px) {
+    width: 90px;
+  }
+  @media (max-width: 768px) {
+    width: 90px;
+  }
+  @media (max-width: 600px) {
+    width: 70px;
+  }
+  @media (max-width: 430px) {
+    width: 60px;
+  }
 `;
 
 const SectionUserDetail = styled(Box)`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+
+  @media (max-width: 1440px) {
+    margin-left: 15px;
+  }
+  @media (max-width: 1280px) {
+    margin-left: 12px;
+  }
+  @media (max-width: 1023px) {
+    margin-left: 20px;
+  }
+  @media (max-width: 430px) {
+    margin-left: 15px;
+  }
+  @media (max-width: 390px) {
+    margin-left: 10px;
+  }
 `;
 
 const SectionAddressWallet = styled(Box)`
@@ -467,16 +507,48 @@ const TextAddressWallet = styled(Box)`
   display: flex;
   color: #a9d100;
   font-family: Rowdies;
-  font-size: 2.4em;
+  font-size: 25px;
   font-style: normal;
+
+  @media (max-width: 1440px) {
+    font-size: 23px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  @media (max-width: 430px) {
+    font-size: 16px;
+  }
+  @media (max-width: 390px) {
+    font-size: 14px;
+  }
 `;
 
 const TextClaimableRewards = styled(Box)`
   display: flex;
   color: white;
   font-family: Rowdies;
-  font-size: 2.4em;
+  font-size: 25px;
   font-style: normal;
+
+  @media (max-width: 1440px) {
+    font-size: 23px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  @media (max-width: 430px) {
+    font-size: 16px;
+  }
+  @media (max-width: 390px) {
+    font-size: 14px;
+  }
 `;
 
 const IconCopyAddress = styled(Box)`
@@ -491,23 +563,77 @@ const IconCopyAddress = styled(Box)`
   &:hover {
     filter: drop-shadow(0px 0px 2px white);
   }
+
+  @media (max-width: 1440px) {
+    font-size: 23px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  @media (max-width: 430px) {
+    font-size: 16px;
+  }
+  @media (max-width: 390px) {
+    font-size: 14px;
+  }
 `;
 
 const TextSmallDate = styled(Box)`
   display: flex;
   color: #fff;
   font-family: Lato;
-  font-size: 1.5em;
+  font-size: 20px;
   font-style: normal;
+
+  @media (max-width: 1440px) {
+    font-size: 18px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+  @media (max-width: 430px) {
+    font-size: 14px;
+  }
+  @media (max-width: 390px) {
+    font-size: 13px;
+  }
+  @media (max-width: 350px) {
+    font-size: 11px;
+  }
 `;
 
 const TextBigDate = styled(Box)`
   display: flex;
   color: #fff;
   font-family: Rowdies;
-  font-size: 1.5em;
+  font-size: 20px;
   font-style: normal;
   margin-left: 5px;
+
+  @media (max-width: 1440px) {
+    font-size: 18px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+  @media (max-width: 430px) {
+    font-size: 14px;
+  }
+  @media (max-width: 390px) {
+    font-size: 13px;
+  }
+  @media (max-width: 350px) {
+    font-size: 11px;
+  }
 `;
 
 const SectionClaimable = styled(Box)`
@@ -519,21 +645,58 @@ const SectionClaimable = styled(Box)`
 
   background: #003d28;
   flex-direction: column;
+
+  @media (max-width: 1440px) {
+    padding: 20px 20px;
+  }
+  @media (max-width: 1280px) {
+    padding: 18px 18px;
+  }
+
+  @media (max-width: 1023px) {
+    padding: 20px 20px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  @media (max-width: 768px) {
+    padding: 15px 15px;
+  }
 `;
 
 const SectionClaim = styled(Box)`
   display: flex;
   align-items: center;
-  margin-top: 0px;
+  justify-content: space-between;
+  margin-top: 5px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const TextBEETtoUSD = styled(Box)`
   display: flex;
   color: #a9d100;
   font-family: Rowdies;
-  font-size: 3em;
+  font-size: 30px;
   font-style: normal;
-  margin-right: 50px;
+
+  @media (max-width: 1440px) {
+    font-size: 27px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 25px;
+  }
+  @media (max-width: 768px) {
+    font-size: 23px;
+  }
+  @media (max-width: 430px) {
+    font-size: 20px;
+  }
+  @media (max-width: 390px) {
+    font-size: 18px;
+  }
 `;
 
 const ButtonClaim = styled(Box)`
@@ -558,11 +721,19 @@ const ButtonClaim = styled(Box)`
     transform: ${({ active }: any) => (active ? "none" : "scale(0.95)")};
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1440px) {
+    width: 180px;
     height: 45px;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 1280px) {
+    width: 160px;
     height: 40px;
+  }
+  @media (max-width: 600px) {
+    margin-top: 15px;
+    width: 100%;
+  }
+  @media (max-width: 430px) {
   }
 `;
 
@@ -571,9 +742,25 @@ const TextClaimButton = styled(Box)`
 
   text-align: center;
   font-family: Rowdies;
-  font-size: 2rem;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
+
+  @media (max-width: 1440px) {
+    font-size: 18px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+  @media (max-width: 430px) {
+    font-size: 14px;
+  }
+  @media (max-width: 390px) {
+    font-size: 13px;
+  }
 `;
 
 const SectionProgressStake = styled(Box)`
@@ -782,7 +969,7 @@ const ButtonAction = styled(Box)`
 
 const TextP2EAvailable = styled(Box)`
   font-family: Rowdies;
-  font-size: 2em;
+  font-size: 20px;
   font-style: normal;
   margin-left: 5px;
   color: #e73c28;
@@ -808,6 +995,25 @@ const TextClaimP2EDescription = styled(Box)`
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
+
+  @media (max-width: 1440px) {
+    font-size: 16px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 15px;
+  }
+  @media (max-width: 1024px) {
+    font-size: 13px;
+  }
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (max-width: 430px) {
+    font-size: 11px;
+  }
+  @media (max-width: 390px) {
+    font-size: 10px;
+  }
 `;
 
 export default Overview;
