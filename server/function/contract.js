@@ -7,7 +7,9 @@ const { modelStakedLogs } = require("../schema/logs");
 
 const handleCatchStakedEvent = async () => {
   console.log("========== handle catch staked event ============");
-  const provider = new JsonRpcProvider(process.env.REACT_APP_URL_PRC_BSC_PROVIDER);
+  const provider = new JsonRpcProvider(
+    process.env.REACT_APP_URL_PRC_BSC_PROVIDER
+  );
   const addressContractBEETStaking =
     process.env.REACT_APP_ADDRESS_CONTRACT_BEET_STAKING;
   const abiBEETStaking = ABI_BEET_STAKING;
@@ -51,7 +53,7 @@ const handleCatchStakedEvent = async () => {
           console.log("Event Name:", log?.name); // Event name
           console.log("Event Args:", log?.args); // Event arguments
           let eventName = log.name;
-          if (eventName === "Staked") {
+          if (eventName === "EventStaked") {
             let addressWallet = log.args[0];
             let tempAmountStaked = log.args[1];
             let amountStaked = Number(formatEther(tempAmountStaked));
