@@ -84,7 +84,7 @@ export const getAllBalance = async (account: any) => {
   const formattedBalanceBEET: any = ethers.utils.formatEther(balanceBEET);
   // console.log("balanceBEET:", Number(formattedBalanceBEET));
 
-  const balanceBEETStaked: any = await contractBEETStaking.getStakedAmount(
+  const balanceBEETStaked: any = await contractBEETStaking.getTotalStakedAmount(
     account
   );
 
@@ -93,7 +93,7 @@ export const getAllBalance = async (account: any) => {
   // console.log("balanceBEETStaked:", Number(formattedBalanceBEETStaked));
 
   const balanceBEETClaimableReward: any =
-    await contractBEETStaking.calculateReward(account);
+    await contractBEETStaking.getTotalClaimableRewards(account);
   const formattedBalancReward: any = ethers.utils.formatEther(
     balanceBEETClaimableReward
   );

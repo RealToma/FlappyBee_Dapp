@@ -1,5 +1,5 @@
 const { ethers, JsonRpcProvider, Interface, formatEther } = require("ethers");
-const { ABI_BEE_STAKING } = require("../utils/ABI");
+const { ABI_BEET_STAKING } = require("../utils/ABI");
 const { modelUsers } = require("../schema/users");
 const { getCurrentTime } = require("./time");
 const { modelStakedLogs } = require("../schema/logs");
@@ -10,7 +10,7 @@ const handleCatchStakedEvent = async () => {
   const provider = new JsonRpcProvider(process.env.REACT_APP_URL_PRC_BSC_PROVIDER);
   const addressContractBEETStaking =
     process.env.REACT_APP_ADDRESS_CONTRACT_BEET_STAKING;
-  const abiBEETStaking = ABI_BEE_STAKING;
+  const abiBEETStaking = ABI_BEET_STAKING;
 
   const contract = new ethers.Contract(
     addressContractBEETStaking,
@@ -35,12 +35,12 @@ const handleCatchStakedEvent = async () => {
 
       // Decode the log data
       //   const abiCoder = new AbiCoder();
-      //   const decodedData = abiCoder.decode(ABI_BEE_STAKING, logData);
+      //   const decodedData = abiCoder.decode(ABI_BEET_STAKING, logData);
 
       //   console.log("decodedData:", decodedData);
 
       // Create an interface for the event ABI
-      const eventInterface = new Interface(ABI_BEE_STAKING);
+      const eventInterface = new Interface(ABI_BEET_STAKING);
       const logs = receipt.logs.map((log) => eventInterface.parseLog(log));
 
       // console.log("logs:", logs);

@@ -287,7 +287,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
     <StyledComponent>
       <SectionTopbar>
         <Marquee
-          speed={30}
+          speed={60}
           // gradient={true}
           // gradientWidth={200}      G
           // gradientColor={[255,0,255]}
@@ -297,7 +297,7 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           {"\u00a0"}
           {flagDisplayFooter === 0
             ? "📢 Flappy Bee game is optimized on Google Chrome / Firefox / Brave"
-            : "🎉 Happy New Year 2024!"}
+            : "🐝 BEET Game Is now live! Start play and earn some BEET!"}
           {"\u00a0"}
           {"\u00a0"}
           {"\u00a0"}
@@ -1391,7 +1391,7 @@ const SectionConnectMore = styled(Box)`
   min-width: 250px;
   right: 0px;
   background-color: #003d28;
-  border: 2px solid rgb(253, 196, 0);
+  border: 3px solid rgb(253, 196, 0);
   border-radius: 12px;
   padding: 15px;
   box-sizing: border-box;

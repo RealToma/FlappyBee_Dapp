@@ -1,21 +1,5 @@
 export const ABI_BEET_TOKEN: any = [
-  {
-    inputs: [
-      { internalType: "string", name: "name_", type: "string" },
-      { internalType: "string", name: "symbol_", type: "string" },
-      { internalType: "uint256", name: "totalSupply_", type: "uint256" },
-      { internalType: "address", name: "treasury", type: "address" },
-    ],
-    stateMutability: "nonpayable",
-    type: "constructor",
-  },
-  { inputs: [], name: "InvalidShortString", type: "error" },
-  {
-    inputs: [{ internalType: "string", name: "str", type: "string" }],
-    name: "StringTooLong",
-    type: "error",
-  },
-  { inputs: [], name: "Unauthorized", type: "error" },
+  { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
     anonymous: false,
     inputs: [
@@ -41,7 +25,25 @@ export const ABI_BEET_TOKEN: any = [
     name: "Approval",
     type: "event",
   },
-  { anonymous: false, inputs: [], name: "EIP712DomainChanged", type: "event" },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "isExcluded",
+        type: "bool",
+      },
+    ],
+    name: "ExcludeFromFees",
+    type: "event",
+  },
   {
     anonymous: false,
     inputs: [
@@ -66,12 +68,51 @@ export const ABI_BEET_TOKEN: any = [
     inputs: [
       {
         indexed: false,
-        internalType: "address",
-        name: "tokenPool",
-        type: "address",
+        internalType: "uint256",
+        name: "tokensSwapped",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "bnbReceived",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "tokensIntoLiqudity",
+        type: "uint256",
       },
     ],
-    name: "TokenPoolUpdated",
+    name: "SwapAndLiquify",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "to", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "tokensSwapped",
+        type: "uint256",
+      },
+    ],
+    name: "SwapFeeToETH",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "newAmount",
+        type: "uint256",
+      },
+    ],
+    name: "SwapTokensAtAmountChanged",
     type: "event",
   },
   {
@@ -90,11 +131,75 @@ export const ABI_BEET_TOKEN: any = [
     type: "event",
   },
   {
-    inputs: [],
-    name: "DOMAIN_SEPARATOR",
-    outputs: [{ internalType: "bytes32", name: "", type: "bytes32" }],
-    stateMutability: "view",
-    type: "function",
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "devBuyFee",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "liquidityBuyFee",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "burnBuyFee",
+        type: "uint256",
+      },
+    ],
+    name: "UpdateBuyFee",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "newWallet",
+        type: "address",
+      },
+    ],
+    name: "UpdateMarketingWalletChanged",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "devSellFee",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "liquiditySellFee",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "burnSellFee",
+        type: "uint256",
+      },
+    ],
+    name: "UpdateSellFee",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "bool", name: "enabled", type: "bool" },
+    ],
+    name: "UpdateSwapEnabled",
+    type: "event",
   },
   {
     inputs: [
@@ -124,6 +229,34 @@ export const ABI_BEET_TOKEN: any = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
+    name: "burn",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "burnBuyFee",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "burnSellFee",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "token", type: "address" }],
+    name: "claimStuck",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "decimals",
     outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
@@ -141,18 +274,13 @@ export const ABI_BEET_TOKEN: any = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "eip712Domain",
-    outputs: [
-      { internalType: "bytes1", name: "fields", type: "bytes1" },
-      { internalType: "string", name: "name", type: "string" },
-      { internalType: "string", name: "version", type: "string" },
-      { internalType: "uint256", name: "chainId", type: "uint256" },
-      { internalType: "address", name: "verifyingContract", type: "address" },
-      { internalType: "bytes32", name: "salt", type: "bytes32" },
-      { internalType: "uint256[]", name: "extensions", type: "uint256[]" },
+    inputs: [
+      { internalType: "address", name: "account", type: "address" },
+      { internalType: "bool", name: "excluded", type: "bool" },
     ],
-    stateMutability: "view",
+    name: "excludeFromFees",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -166,16 +294,58 @@ export const ABI_BEET_TOKEN: any = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "name",
-    outputs: [{ internalType: "string", name: "", type: "string" }],
+    inputs: [{ internalType: "address", name: "account", type: "address" }],
+    name: "isExcludedFromFees",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [{ internalType: "address", name: "owner", type: "address" }],
-    name: "nonces",
+    inputs: [],
+    name: "liquidityBuyFee",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "liquiditySellFee",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "manualSwap",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "marketingBuyFee",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "marketingSellFee",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "marketingWallet",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "name",
+    outputs: [{ internalType: "string", name: "", type: "string" }],
     stateMutability: "view",
     type: "function",
   },
@@ -187,18 +357,10 @@ export const ABI_BEET_TOKEN: any = [
     type: "function",
   },
   {
-    inputs: [
-      { internalType: "address", name: "owner", type: "address" },
-      { internalType: "address", name: "spender", type: "address" },
-      { internalType: "uint256", name: "value", type: "uint256" },
-      { internalType: "uint256", name: "deadline", type: "uint256" },
-      { internalType: "uint8", name: "v", type: "uint8" },
-      { internalType: "bytes32", name: "r", type: "bytes32" },
-      { internalType: "bytes32", name: "s", type: "bytes32" },
-    ],
-    name: "permit",
-    outputs: [],
-    stateMutability: "nonpayable",
+    inputs: [],
+    name: "percentDenominator",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -209,23 +371,23 @@ export const ABI_BEET_TOKEN: any = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "address", name: "_tokenPool", type: "address" }],
-    name: "setTokenPool",
-    outputs: [],
-    stateMutability: "nonpayable",
+    inputs: [],
+    name: "swapEnabled",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "swapTokensAtAmount",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "symbol",
     outputs: [{ internalType: "string", name: "", type: "string" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "tokenPool",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
@@ -238,7 +400,7 @@ export const ABI_BEET_TOKEN: any = [
   },
   {
     inputs: [
-      { internalType: "address", name: "to", type: "address" },
+      { internalType: "address", name: "recipient", type: "address" },
       { internalType: "uint256", name: "amount", type: "uint256" },
     ],
     name: "transfer",
@@ -248,8 +410,8 @@ export const ABI_BEET_TOKEN: any = [
   },
   {
     inputs: [
-      { internalType: "address", name: "from", type: "address" },
-      { internalType: "address", name: "to", type: "address" },
+      { internalType: "address", name: "sender", type: "address" },
+      { internalType: "address", name: "recipient", type: "address" },
       { internalType: "uint256", name: "amount", type: "uint256" },
     ],
     name: "transferFrom",
@@ -264,6 +426,72 @@ export const ABI_BEET_TOKEN: any = [
     stateMutability: "nonpayable",
     type: "function",
   },
+  {
+    inputs: [],
+    name: "uniswapV2Pair",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "uniswapV2Router",
+    outputs: [
+      {
+        internalType: "contract IUniswapV2Router02",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_marketingBuyFee", type: "uint256" },
+      { internalType: "uint256", name: "_liquidityBuyFee", type: "uint256" },
+      { internalType: "uint256", name: "_burnBuyFee", type: "uint256" },
+    ],
+    name: "updateBuyFee",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "_marketingWallet", type: "address" },
+    ],
+    name: "updateMarketingWallet",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "_marketingSellFee", type: "uint256" },
+      { internalType: "uint256", name: "_liquiditySellFee", type: "uint256" },
+      { internalType: "uint256", name: "_burnBuyFee", type: "uint256" },
+    ],
+    name: "updateSellFee",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "bool", name: "_enabled", type: "bool" }],
+    name: "updateSwapEnabled",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "newAmount", type: "uint256" }],
+    name: "updateSwapTokensAtAmount",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  { stateMutability: "payable", type: "receive" },
 ];
 
 export const ABI_BEET_STAKING: any = [
@@ -273,6 +501,120 @@ export const ABI_BEET_STAKING: any = [
     ],
     stateMutability: "nonpayable",
     type: "constructor",
+  },
+  {
+    inputs: [{ internalType: "address", name: "target", type: "address" }],
+    name: "AddressEmptyCode",
+    type: "error",
+  },
+  {
+    inputs: [{ internalType: "address", name: "account", type: "address" }],
+    name: "AddressInsufficientBalance",
+    type: "error",
+  },
+  { inputs: [], name: "FailedInnerCall", type: "error" },
+  {
+    inputs: [{ internalType: "address", name: "token", type: "address" }],
+    name: "SafeERC20FailedOperation",
+    type: "error",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "EventClaimReward",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "EventRecoverTokens",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "newLockPeriod",
+        type: "uint256",
+      },
+    ],
+    name: "EventSetLockPeriod",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "newRewardPercent",
+        type: "uint256",
+      },
+    ],
+    name: "EventSetRewardPercent",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "address",
+        name: "token",
+        type: "address",
+      },
+    ],
+    name: "EventSetRewardTokenAddress",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "newSecondsPerDay",
+        type: "uint256",
+      },
+    ],
+    name: "EventSetSecondsPerDay",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: false, internalType: "address", name: "by", type: "address" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "EventStaked",
+    type: "event",
   },
   {
     anonymous: false,
@@ -290,7 +632,7 @@ export const ABI_BEET_STAKING: any = [
         type: "address",
       },
     ],
-    name: "OwnershipTransferred",
+    name: "EventTransferOwnership",
     type: "event",
   },
   {
@@ -304,7 +646,7 @@ export const ABI_BEET_STAKING: any = [
         type: "uint256",
       },
     ],
-    name: "RecoveredTokens",
+    name: "EventUnstaked",
     type: "event",
   },
   {
@@ -318,109 +660,14 @@ export const ABI_BEET_STAKING: any = [
         type: "uint256",
       },
     ],
-    name: "RewardClaimed",
+    name: "EventWithdrawUnstaked",
     type: "event",
   },
   {
-    anonymous: false,
     inputs: [
-      { indexed: false, internalType: "address", name: "by", type: "address" },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "newLockPeriod",
-        type: "uint256",
-      },
+      { internalType: "address", name: "user", type: "address" },
+      { internalType: "uint256", name: "index", type: "uint256" },
     ],
-    name: "SetLockPeriodUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      { indexed: false, internalType: "address", name: "by", type: "address" },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "newRewardPercent",
-        type: "uint256",
-      },
-    ],
-    name: "SetRewardPercentUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      { indexed: false, internalType: "address", name: "by", type: "address" },
-      {
-        indexed: false,
-        internalType: "address",
-        name: "token",
-        type: "address",
-      },
-    ],
-    name: "SetRewardTokenAddress",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      { indexed: false, internalType: "address", name: "by", type: "address" },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "newSecondsPerDay",
-        type: "uint256",
-      },
-    ],
-    name: "SetSecondsPerDayUpdated",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      { indexed: false, internalType: "address", name: "by", type: "address" },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "Staked",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      { indexed: false, internalType: "address", name: "by", type: "address" },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "Unstaked",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      { indexed: false, internalType: "address", name: "by", type: "address" },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "WithdrawnUnstaked",
-    type: "event",
-  },
-  {
-    inputs: [{ internalType: "address", name: "user", type: "address" }],
     name: "calculateReward",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
@@ -445,7 +692,33 @@ export const ABI_BEET_STAKING: any = [
   },
   {
     inputs: [{ internalType: "address", name: "user", type: "address" }],
-    name: "getStakedAmount",
+    name: "getStakedTokensInfo",
+    outputs: [
+      {
+        components: [
+          { internalType: "uint256", name: "amount", type: "uint256" },
+          { internalType: "uint256", name: "startTime", type: "uint256" },
+          { internalType: "uint256", name: "claimTime", type: "uint256" },
+          { internalType: "bool", name: "active", type: "bool" },
+        ],
+        internalType: "struct StakingBEET.StakedToken[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "user", type: "address" }],
+    name: "getTotalAmountOfUnstakedTokens",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "user", type: "address" }],
+    name: "getTotalArrayStakedTokens",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
@@ -459,7 +732,21 @@ export const ABI_BEET_STAKING: any = [
   },
   {
     inputs: [{ internalType: "address", name: "user", type: "address" }],
-    name: "getUnstakedTokens",
+    name: "getTotalClaimableRewards",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "user", type: "address" }],
+    name: "getTotalStakedAmount",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "user", type: "address" }],
+    name: "getUnstakedTokensInfo",
     outputs: [
       {
         components: [
@@ -499,13 +786,6 @@ export const ABI_BEET_STAKING: any = [
   {
     inputs: [],
     name: "rewardPercentPerYear",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "", type: "address" }],
-    name: "rewards",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
@@ -557,11 +837,15 @@ export const ABI_BEET_STAKING: any = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "address", name: "", type: "address" }],
+    inputs: [
+      { internalType: "address", name: "", type: "address" },
+      { internalType: "uint256", name: "", type: "uint256" },
+    ],
     name: "stakes",
     outputs: [
       { internalType: "uint256", name: "amount", type: "uint256" },
       { internalType: "uint256", name: "startTime", type: "uint256" },
+      { internalType: "uint256", name: "claimTime", type: "uint256" },
       { internalType: "bool", name: "active", type: "bool" },
     ],
     stateMutability: "view",
@@ -582,7 +866,7 @@ export const ABI_BEET_STAKING: any = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
+    inputs: [{ internalType: "uint256", name: "index", type: "uint256" }],
     name: "unstake",
     outputs: [],
     stateMutability: "nonpayable",
