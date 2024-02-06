@@ -390,21 +390,18 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
           <HiMenu />
         </SectionMobileButton>
         <SectionConnect>
-          {active ? (
-            <SectionP2EAvailable>
-              {window.innerWidth <= 430
-                ? "P2E Available:"
-                : "P2E Session Available:"}
-              {"\u00a0"}
-              <span>
-                {dataUser?.countP2EAvailable
-                  ? Math.floor(dataUser?.countP2EAvailable)
-                  : 0}
-              </span>
-            </SectionP2EAvailable>
-          ) : (
-            <></>
-          )}
+          <SectionP2EAvailable>
+            {window.innerWidth <= 430
+              ? "P2E Available:"
+              : "P2E Session Available:"}
+            {"\u00a0"}
+            <span>
+              {active && dataUser?.countP2EAvailable
+                ? Math.floor(dataUser?.countP2EAvailable)
+                : 0}
+            </span>
+          </SectionP2EAvailable>
+
           <SectionWalletConnect
             active={active ? 1 : 0}
             onClick={() => {

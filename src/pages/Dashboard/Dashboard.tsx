@@ -58,7 +58,6 @@ const StyledComponent = styled(Box)`
   background: #003d28;
   padding: 80px 60px 150px 60px;
   box-sizing: border-box;
-  transition: 0.3s;
   @media (max-width: 1600px) {
     padding: 80px 60px 150px 60px;
   }

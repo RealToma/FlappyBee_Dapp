@@ -31,11 +31,11 @@ const dataChartAssets: any = {
     labels: [" BNB", " BEET", " BEET NFTs"],
     responsive: [
       {
-        breakpoint: 480,
+        breakpoint: 769,
         options: {
-          chart: {
-            width: 200,
-          },
+          // chart: {
+          //   width: 200,
+          // },
           legend: {
             position: "bottom",
           },
@@ -254,18 +254,18 @@ const Overview = () => {
           </SectionP2EReward>
         </SectionClaimable>
       </SectionTop>
-      {/* <SecionBEETBalance>
+      <SecionBEETBalance>
         <SectionEachStatsBEET>
           <TextHead01>Total BEET Wallet</TextHead01>
           <TextContent01>
             {active
               ? `${shortFloat(
                   balanceBEET + balanceBEETStaked,
-                  5
+                  3
                 )} $BEET = ${shortFloat(
                   (balanceBEET + balanceBEETStaked) *
                     (process.env.REACT_APP_PRICE_BEET_USD as any),
-                  3
+                  2
                 )} USD`
               : "Connect Wallet"}
           </TextContent01>
@@ -274,9 +274,9 @@ const Overview = () => {
           <TextHead01>Available</TextHead01>
           <TextContent01>
             {active
-              ? `${shortFloat(balanceBEET, 5)} $BEET = ${shortFloat(
+              ? `${shortFloat(balanceBEET, 3)} $BEET = ${shortFloat(
                   balanceBEET * (process.env.REACT_APP_PRICE_BEET_USD as any),
-                  3
+                  2
                 )} USD`
               : "Connect Wallet"}
           </TextContent01>
@@ -285,10 +285,10 @@ const Overview = () => {
           <TextHead01>Staked</TextHead01>
           <TextContent01>
             {active
-              ? `${shortFloat(balanceBEETStaked, 5)} $BEET = ${shortFloat(
+              ? `${shortFloat(balanceBEETStaked, 3)} $BEET = ${shortFloat(
                   balanceBEETStaked *
                     (process.env.REACT_APP_PRICE_BEET_USD as any),
-                  3
+                  2
                 )} USD`
               : "Connect Wallet"}
           </TextContent01>
@@ -313,14 +313,12 @@ const Overview = () => {
                   ),
                 ]}
                 type="pie"
-                width={500}
               />
             ) : (
               <Chart
                 options={dataChartAssets.options}
                 series={[1, 1, 1]}
                 type="pie"
-                width={500}
               />
             )}
           </SectionPieChart>
@@ -422,7 +420,7 @@ const Overview = () => {
           <ButtonAction>Receive</ButtonAction>
           <ButtonAction>Unstake</ButtonAction>
         </SecitonActionButtonGroup>
-      </SectionTotalAssets> */}
+      </SectionTotalAssets>
     </StyledComponent>
   );
 };
@@ -780,6 +778,26 @@ const SecionBEETBalance = styled(Box)`
   margin-top: 80px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 30px;
+
+  @media (max-width: 1440px) {
+    margin-top: 70px;
+    grid-column-gap: 10px;
+  }
+  @media (max-width: 1024px) {
+    margin-top: 60px;
+  }
+
+  @media (max-width: 1023px) {
+    grid-template-columns: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 20px;
+  }
+  @media (max-width: 768px) {
+    grid-row-gap: 15px;
+  }
+  @media (max-width: 430px) {
+    grid-row-gap: 10px;
+  }
 `;
 
 const SectionEachStatsBEET = styled(Box)`
@@ -798,6 +816,14 @@ const SectionEachStatsBEET = styled(Box)`
   &:hover {
     filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.5));
   }
+
+  @media (max-width: 1440px) {
+    padding: 20px;
+  }
+  @media (max-width: 768px) {
+    padding: 15px;
+    border-radius: 12px;
+  }
 `;
 
 const TextHead01 = styled(Box)`
@@ -808,6 +834,19 @@ const TextHead01 = styled(Box)`
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
+
+  @media (max-width: 1440px) {
+    font-size: 20px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 18px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 
 const TextContent01 = styled(Box)`
@@ -821,6 +860,23 @@ const TextContent01 = styled(Box)`
   font-weight: 500;
 
   margin-top: 10px;
+
+  @media (max-width: 1440px) {
+    font-size: 27px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 25px;
+  }
+  @media (max-width: 768px) {
+    font-size: 23px;
+    margin-top: 15px;
+  }
+  @media (max-width: 500px) {
+    font-size: 20px;
+  }
+  @media (max-width: 390px) {
+    font-size: 16px;
+  }
 `;
 
 const SectionTotalAssets = styled(Box)`
@@ -835,16 +891,51 @@ const SectionChartData = styled(Box)`
   /* margin-top: 30px; */
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 1023px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const SectionPieChart = styled(Box)`
   display: flex;
   width: 550px;
   height: 550px;
-  padding: 20px;
-  box-sizing: border-box;
   justify-content: center;
   align-items: center;
+  > div {
+    width: 100%;
+  }
+
+  @media (max-width: 1440px) {
+    width: 400px;
+    height: 400px;
+  }
+  @media (max-width: 1023px) {
+    width: 600px;
+    height: 600px;
+  }
+
+  @media (max-width: 700px) {
+    width: 500px;
+    height: 500px;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 430px) {
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+  }
+  @media (max-width: 350px) {
+    height: 250px;
+  }
 `;
 
 const SectionAssetsDetails = styled(Box)`
@@ -855,6 +946,17 @@ const SectionAssetsDetails = styled(Box)`
   flex-direction: column;
   border: 1px solid #117754;
   border-radius: 16px;
+
+  @media (max-width: 1440px) {
+    margin-left: 50px;
+  }
+  @media (max-width: 1280px) {
+    margin-left: 20px;
+  }
+  @media (max-width: 1023px) {
+    margin-left: 0px;
+    margin-top: 30px;
+  }
 `;
 
 const TableRowAssetsHead = styled(Box)`
@@ -926,15 +1028,45 @@ const TableRowEachContent = styled(Box)`
 // `;
 
 const SecitonActionButtonGroup = styled(Box)`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
   margin-top: 30px;
+  grid-column-gap: 150px;
+
+  @media (max-width: 1600px) {
+    grid-column-gap: 120px;
+  }
+  @media (max-width: 1440px) {
+    grid-column-gap: 100px;
+  }
+  @media (max-width: 1280px) {
+    grid-column-gap: 60px;
+  }
+  @media (max-width: 1024px) {
+    grid-column-gap: 40px;
+    margin-top: 10px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 0px;
+    grid-column-gap: 10px;
+  }
+  @media (max-width: 600px) {
+    margin-top: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+  }
+  @media (max-width: 430px) {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+  }
 `;
 
 const ButtonAction = styled(Box)`
   display: flex;
-  width: 300px;
+  width: 100%;
   height: 100px;
   justify-content: center;
   align-items: center;
@@ -959,11 +1091,8 @@ const ButtonAction = styled(Box)`
     filter: drop-shadow(0px 6px 6px rgba(255, 255, 255, 0.3));
   }
 
-  @media (max-width: 768px) {
-    height: 45px;
-  }
-  @media (max-width: 500px) {
-    height: 40px;
+  @media (max-width: 1280px) {
+    width: 100%;
   }
 `;
 

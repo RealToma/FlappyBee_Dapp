@@ -328,13 +328,45 @@ const ModalBox = styled(Box)`
       opacity: 100%;
     }
   }
-  /* @media (max-width: 600px) {
-    transition: 0.5s !important;
+
+  @media (max-width: 1600px) {
+    width: 800px;
+    height: 700px;
+    padding: 55px 30px 50px 50px;
+  }
+
+  @media (max-width: 1440px) {
+    width: 700px;
+    height: 700px;
+    padding: 40px 25px 40px 40px;
+  }
+
+  @media (max-width: 1024px) {
+    width: 600px;
+    height: 650px;
+    padding: 40px 20px 30px 30px;
+  }
+
+  @media (max-width: 768px) {
+    width: 500px;
+    height: 600px;
+    padding: 35px 15px 30px 20px;
+  }
+
+  @media (max-width: 600px) {
+    width: 400px;
+    height: 550px;
+    padding: 30px 10px 25px 15px;
+  }
+
+  @media (max-width: 430px) {
+    width: 350px;
+    height: 550px;
+    padding: 30px 6px 20px 10px;
+  }
+  @media (max-width: 370px) {
     width: 300px;
-  }*/
-  @media (max-width: 450px) {
-    width: 300px;
-    padding: 20px 15px;
+    height: 550px;
   }
 `;
 
@@ -345,6 +377,19 @@ const TextCommission = styled(Box)`
   font-style: normal;
   font-weight: 500;
   margin-top: 5px;
+
+  @media (max-width: 1440px) {
+    font-size: 20px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 18px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 
 const SectionValidatorInfo = styled(Box)`
@@ -355,6 +400,12 @@ const SectionValidatorInfo = styled(Box)`
   grid-column-gap: 30px;
   grid-row-gap: 30px;
   margin-top: 30px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    grid-row-gap: 10px;
+    margin-top: 20px;
+  }
 `;
 
 const SectionValidatorInfo01 = styled(Box)`
@@ -369,12 +420,28 @@ const SectionEachCard = styled(Box)`
   display: flex;
   flex: 1;
   width: 100%;
+  height: 100%;
   border-radius: 16px;
   border: 1px solid #117754;
   background: #003624;
   flex-direction: column;
+  justify-content: space-between;
   padding: 30px;
   box-sizing: border-box;
+  @media (max-width: 1440px) {
+    padding: 20px;
+  }
+  @media (max-width: 1024px) {
+    padding: 15px;
+  }
+  @media (max-width: 768px) {
+    border-radius: 12px;
+    padding: 10px;
+  }
+  @media (max-width: 430px) {
+    border-radius: 10px;
+    padding: 7px;
+  }
 `;
 
 const TextCardTitle = styled(Box)`
@@ -383,6 +450,22 @@ const TextCardTitle = styled(Box)`
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
+
+  @media (max-width: 1440px) {
+    font-size: 20px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 18px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
+  @media (max-width: 430px) {
+    font-size: 13px;
+  }
 `;
 
 const TextCardValue = styled(Box)`
@@ -391,11 +474,31 @@ const TextCardValue = styled(Box)`
   font-size: 30px;
   font-style: normal;
   font-weight: 700;
+
+  @media (max-width: 1600px) {
+    font-size: 28px;
+  }
+  @media (max-width: 1440px) {
+    font-size: 25px;
+  }
+  @media (max-width: 1024px) {
+    font-size: 22px;
+  }
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+  @media (max-width: 430px) {
+    font-size: 18px;
+  }
+  @media (max-width: 390px) {
+    font-size: 15px;
+  }
 `;
 
 const InputAmountStake = styled(Box)`
   display: flex;
   flex: 1;
+  width: 100%;
   margin-right: 50px;
   align-items: center;
   outline: none;
@@ -406,6 +509,31 @@ const InputAmountStake = styled(Box)`
   font-size: 30px;
   font-style: normal;
   font-weight: 700;
+
+  @media (max-width: 1600px) {
+    font-size: 28px;
+  }
+  @media (max-width: 1440px) {
+    font-size: 25px;
+  }
+  @media (max-width: 1024px) {
+    margin-right: 40px;
+    font-size: 22px;
+  }
+  @media (max-width: 768px) {
+    margin-right: 30px;
+    font-size: 20px;
+  }
+  @media (max-width: 600px) {
+    margin-right: 20px;
+  }
+  @media (max-width: 430px) {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  @media (max-width: 390px) {
+    font-size: 15px;
+  }
 `;
 
 const SectionCardDown = styled(Box)`
@@ -419,6 +547,16 @@ const SectionCardDown01 = styled(Box)`
   display: flex;
   align-items: flex-end;
   margin-top: 10px;
+
+  @media (max-width: 1024px) {
+    justify-content: space-between;
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const ButtonClose = styled(Box)`
@@ -441,6 +579,27 @@ const ButtonClose = styled(Box)`
   &:active {
     transform: scale(0.8);
   }
+
+  @media (max-width: 1440px) {
+    right: 18px;
+    top: 10px;
+    font-size: 28px;
+  }
+  @media (max-width: 1024px) {
+    right: 15px;
+    top: 10px;
+    font-size: 25px;
+  }
+  @media (max-width: 768px) {
+    right: 10px;
+    top: 5px;
+    font-size: 23px;
+  }
+  @media (max-width: 430px) {
+    right: 5px;
+    top: 7px;
+    font-size: 21px;
+  }
 `;
 
 const IconLock = styled(Box)`
@@ -454,6 +613,17 @@ const SectionStakeInfo = styled(Box)`
   width: 100%;
   flex-direction: column;
   margin-top: 80px;
+
+  @media (max-width: 1440px) {
+    margin-top: 50px;
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 40px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
 `;
 
 const TextRedelegate = styled(Box)`
@@ -472,6 +642,20 @@ const TextRedelegate = styled(Box)`
   transition: 0.3s;
   &:hover {
     text-shadow: 0px 0px 4px #a9d100;
+  }
+
+  @media (max-width: 1440px) {
+    margin-left: 50px;
+    font-size: 17px;
+  }
+
+  @media (max-width: 1024px) {
+    margin-left: 0px;
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 15px;
+    margin-top: 15px;
   }
 `;
 
@@ -496,6 +680,15 @@ const ModalBoxInsideScroll = styled(Box)`
   ::-webkit-scrollbar-thumb {
     background-color: #00583a;
     border-radius: 3px;
+  }
+  @media (max-width: 1024px) {
+    padding: 0px 15px 0px 0px;
+  }
+  @media (max-width: 768px) {
+    padding: 0px 10px 0px 0px;
+  }
+  @media (max-width: 430px) {
+    padding: 0px 8px 0px 0px;
   }
 `;
 
@@ -539,11 +732,22 @@ const ButtonMax = styled(Box)`
   &:active {
     transform: scale(0.95);
   }
+  @media (max-width: 768px) {
+    height: 25px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  @media (max-width: 430px) {
+    font-size: 14px;
+    height: 23px;
+    margin-right: 5px;
+  }
 `;
 
 const ButtonStake = styled(Box)`
   display: flex;
   width: 100%;
+  height: 60px;
   min-height: 60px;
 
   border-radius: 8px;
@@ -562,6 +766,19 @@ const ButtonStake = styled(Box)`
   &:active {
     transform: ${({ active }: any) => (active ? "none" : "scale(0.95)")};
   }
+
+  @media (max-width: 1440px) {
+    height: 58px;
+    min-height: 58px;
+  }
+  @media (max-width: 768px) {
+    height: 55px;
+    min-height: 55px;
+  }
+  @media (max-width: 430px) {
+    height: 50px;
+    min-height: 50px;
+  }
 `;
 
 const TextStakeButton = styled(Box)`
@@ -572,6 +789,15 @@ const TextStakeButton = styled(Box)`
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
+  @media (max-width: 1440px) {
+    font-size: 20px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 18px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const SectionProgressStake = styled(Box)`
@@ -583,6 +809,13 @@ const SectionCircleProgress = styled(Box)`
   display: flex;
   margin-left: 10px;
   width: 25px;
+
+  @media (max-width: 768px) {
+    width: 22px;
+  }
+  @media (max-width: 500px) {
+    width: 20px;
+  }
 `;
 
 export default ModalStake;

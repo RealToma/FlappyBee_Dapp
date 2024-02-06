@@ -68,6 +68,19 @@ const StyledComponent = styled(Box)`
   &:hover {
     filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.5));
   }
+
+  @media (max-width: 1440px) {
+    font-size: 25px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    border-radius: 12px;
+  }
+  @media (max-width: 430px) {
+    padding: 15px;
+    border-radius: 10px;
+  }
 `;
 
 const SectionUp = styled(Box)`
@@ -89,18 +102,54 @@ const TextCommission = styled(Box)`
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
+
+  @media (max-width: 1440px) {
+    font-size: 17px;
+  }
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+  @media (max-width: 430px) {
+    font-size: 14px;
+  }
 `;
 
 const IconUser = styled(Box)`
   display: flex;
   width: 80px;
   aspect-ratio: 1;
+
+  @media (max-width: 1440px) {
+    width: 75px;
+  }
+  @media (max-width: 1280px) {
+    width: 70px;
+  }
+  @media (max-width: 768px) {
+    width: 60px;
+  }
+  @media (max-width: 430px) {
+    width: 50px;
+  }
+  @media (max-width: 390px) {
+    width: 40px;
+  }
 `;
 
 const SectionUserInfo = styled(Box)`
   display: flex;
   flex-direction: column;
   margin-left: 15px;
+
+  @media (max-width: 1280px) {
+    margin-left: 10px;
+  }
+  @media (max-width: 390px) {
+    margin-left: 5px;
+  }
 `;
 
 const TextUsername = styled(Box)`
@@ -109,6 +158,18 @@ const TextUsername = styled(Box)`
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
+  @media (max-width: 1440px) {
+    font-size: 20px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 18px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 
 const TextAddressWallet = styled(Box)`
@@ -119,6 +180,19 @@ const TextAddressWallet = styled(Box)`
   font-weight: 500;
 
   margin-top: 5px;
+
+  @media (max-width: 1440px) {
+    font-size: 17px;
+  }
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+  @media (max-width: 430px) {
+    font-size: 14px;
+  }
 `;
 
 const SectionDown = styled(Box)`
@@ -126,6 +200,19 @@ const SectionDown = styled(Box)`
   margin-top: 40px;
   justify-content: space-between;
   align-items: flex-end;
+
+  @media (max-width: 1440px) {
+    margin-top: 35px;
+  }
+  @media (max-width: 1024px) {
+    margin-top: 30px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 25px;
+  }
+  @media (max-width: 430px) {
+    margin-top: 20px;
+  }
 `;
 
 const SectionPoolSize = styled(Box)`
@@ -142,6 +229,19 @@ const TextPoolTitle = styled(Box)`
   font-weight: 400;
 
   margin-bottom: 5px;
+
+  @media (max-width: 1440px) {
+    font-size: 20px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 18px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 
 const TextPoolValue = styled(Box)`
@@ -151,6 +251,18 @@ const TextPoolValue = styled(Box)`
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
+  @media (max-width: 1440px) {
+    font-size: 20px;
+  }
+  @media (max-width: 1280px) {
+    font-size: 18px;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
 `;
 
 const ButtonDelegate = styled(Box)`
@@ -180,6 +292,23 @@ const ButtonDelegate = styled(Box)`
   }
   &:active {
     transform: scale(0.95);
+  }
+
+  @media (max-width: 1440px) {
+    font-size: 17px;
+  }
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 15px;
+    width: 110px;
+    height: 43px;
+  }
+  @media (max-width: 430px) {
+    font-size: 14px;
+    width: 100px;
+    height: 40px;
   }
 `;
 
