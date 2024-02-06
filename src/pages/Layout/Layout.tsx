@@ -475,6 +475,11 @@ const Layout = ({ children, setPlayMusicGame }: any) => {
                 <ButtonBuy
                   onClick={() => {
                     setFlagConnectDrop(false);
+                    return NotificationManager.info(
+                      "Please wait. Coming soon.",
+                      "",
+                      5000
+                    );
                     // window.open(
                     //   "https://www.pinksale.finance/launchpad/0xb4BBdFe024c61183037725800A1C76bc70fd7043?chain=ETH"
                     // );

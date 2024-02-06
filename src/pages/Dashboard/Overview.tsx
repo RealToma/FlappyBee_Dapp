@@ -409,9 +409,14 @@ const Overview = () => {
         <SecitonActionButtonGroup>
           <ButtonAction
             onClick={() => {
-              window.open(
-                "https://pancakeswap.finance/swap?outputCurrency=0x684eAfeb7E5be043842D892980695C68e15152b7"
+              return NotificationManager.info(
+                "Please wait. Coming soon.",
+                "",
+                5000
               );
+              // window.open(
+              //   "https://pancakeswap.finance/swap?outputCurrency=0x684eAfeb7E5be043842D892980695C68e15152b7"
+              // );
             }}
           >
             Buy/Sell
